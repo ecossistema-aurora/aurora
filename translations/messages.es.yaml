@@ -13,6 +13,7 @@ activity: Actividad
 activity_created: Se creó el área de actividad
 activity_deleted: Se ha excluido el área de actividad
 activity_updated: Se ha actualizado el área de actividad
+activity_area_register: Crear nueva área de actuación
 area_of_activity: Área de Actividad
 accept_terms: Aceite de los termos
 address: Dirección

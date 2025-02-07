@@ -13,6 +13,7 @@ activity: Activity
 activity_created: Area of activity was created
 activity_deleted: Area of activity has been excluded
 activity_updated: Area of activity has been updated
+activity_area_register: Create a new area of activity
 area_of_activity: Area of Activity
 accept_terms: Accept the terms
 address: Address
