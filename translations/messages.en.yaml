@@ -164,6 +164,7 @@ inscriptions: Inscriptions
 input_search: Search for keywords
 introduction: Introduction
 is_itinerant: Is it an itinerant agent?
+is-accessible: Is the space accessible?
 
 language: Language
 lastname: Last Name
@@ -186,6 +187,7 @@ map: Map
 management: Management of Entities
 masculine: Masculine
 maroons: Maroon
+max-capacity: Maximum space capacity
 mei: MEI (CNPJ of MEI)
 menu: Control Panel Menu
 medium: High School
