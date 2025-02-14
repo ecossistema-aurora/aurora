@@ -435,7 +435,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'name' => 'Tecnologia',
                 ],
             ],
-            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
         ]);
@@ -530,7 +530,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Social',
                     ],
                 ],
-                'createdAt' => '2024-07-11T10:49:00+00:00',
+                'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
                 'updatedAt' => null,
                 'deletedAt' => null,
             ],
@@ -568,7 +568,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'name' => 'Tradição',
                 ],
             ],
-            'createdAt' => '2024-07-16T17:22:00+00:00',
+            'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);

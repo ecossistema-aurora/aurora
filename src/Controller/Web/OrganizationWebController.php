@@ -9,11 +9,13 @@ use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OrganizationWebController extends AbstractWebController
 {
     public function __construct(
         public readonly OrganizationServiceInterface $service,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -22,8 +24,10 @@ class OrganizationWebController extends AbstractWebController
         $filters = $request->query->all();
 
         $organizations = $this->service->list(params: $filters);
-
         $totalOrganizations = count($organizations);
+
+        $days = 7;
+        $recentOrganizations = $this->service->countRecentRecords($days);
 
         $dashboard = [
             'color' => '#6A5ACD',
@@ -31,7 +35,7 @@ class OrganizationWebController extends AbstractWebController
                 new CardItem(icon: 'description', quantity: $totalOrganizations, text: 'view.organization.quantity.total'),
                 new CardItem(icon: 'person', quantity: 30, text: 'view.organization.quantity.culture'),
                 new CardItem(icon: 'block', quantity: 20, text: 'view.organization.quantity.inactive'),
-                new CardItem(icon: 'today', quantity: 10, text: 'view.organization.quantity.last_days'),
+                new CardItem(icon: 'today', quantity: $recentOrganizations, text: $this->translator->trans('view.organization.quantity.last_days', ['{days}' => $days])),
             ],
         ];
 
