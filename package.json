@@ -4,5 +4,8 @@
     "cypress-file-upload": "^5.0.8",
     "dotenv": "^16.4.5",
     "node": "^22.6.0"
+  },
+  "dependencies": {
+    "use-bootstrap-tag": "^2.2.2"
   }
 }
