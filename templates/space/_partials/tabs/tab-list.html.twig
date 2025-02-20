@@ -1,53 +1,92 @@
 <div class="d-flex justify-content-between align-items-end">
-    <p class="fw-bold">{{ totalSpaces  }} {{ 'view.space.quantity.total' | trans }}</p>
+    <p class="fw-bold">{{ totalSpaces }} {{ 'view.space.quantity.total' | trans }}</p>
     {% include '_components/order-select.html.twig' %}
 </div>
 
 {% for space in spaces %}
-<div class="space-card d-flex flex-column flex-md-row">
-    <img src="{{ asset('img/allan.png') }}" alt="{{ 'space.picture' | trans }}" class="space-img">
-    <div class="space-card__content">
-        <div class="d-flex justify-content-between mb-4 mb-md-2">
-            <div class="d-flex flex-column gap-1">
-                <h1 class="space-card__title">{{ space.name }}</h1>
-                <span class="space-card__type">{{ space.extraFields.type ?? '' }}</span>
-            </div>
-            <span class="event-id">
-                ID: <span title="{{ space.id }}">{{ space.id|split('-')|first }}...</span>
-            </span>
-        </div>
+    <div class="space-card d-flex flex-column flex-md-row">
+        <img src="{{ space.image ? asset(space.image) : asset('img/default.png') }}"
+             alt="{{ space.name }}" class="space-img">
 
-        <div class="space-card__info">
-            <p class="mb-3 mb-md-2">{{ space.extraFields.description ?? '' }}</p>
-            <div class="d-flex gap-2 gap-md-1 mb-3 mb-md-3 align-items-center">
-                <i class="material-icons fs-3">location_on</i>
-                <span>{{ space.extraFields.location ?? '' }}</span>
-            </div>
-            <div class="mb-3">
-                <span class="fw-bold">{{ 'areas_of_expertise' | trans}} (3): </span>
-                <span class="fw-bold space-card__areas">{{ (space.extraFields.areasOfActivity ?? []) |join(', ') }}</span>
-            </div>
-            <div class="d-flex align-items-center gap-2 mb-3">
-                <i class="material-icons fs-3">accessibility_new</i>
-                <div class="align-self-center">
-                    <span class="text-dark fw-bold">{{ 'accessibility' | trans }}:</span>
-                    {{ (space.extraFields.accessibility ?? []) | join(', ') }}
+        <div class="space-card__content">
+            <div class="d-flex justify-content-between align-items-center mb-4 mb-md-2">
+                <div class="d-flex flex-column gap-1">
+                    <h1 class="space-card__title">{{ space.name ?? 'available_name' | trans }}</h1>
+                    <span class="space-card__type">
+                        {{ space.spaceType is defined and space.spaceType is not null ? space.spaceType.name : 'available_type' | trans }}
+                    </span>
                 </div>
+
+                <button class="btn btn-outline-primary copy-id-btn" data-id="{{ space.id }}" onclick="copyToClipboard(this)">
+                    {{ 'copy_id' | trans }}
+                </button>
             </div>
 
-            <div class="entity-seals">
-                <strong>{{ 'seals'| trans }}:</strong>
-                <p class="seal-entity">Avaliador UFPR</p>
-                <p class="seal-entity">Avaliador UFC</p>
-                <p class="seal-entity">Selo Mapas</p>
-            </div>
+            <div class="space-card__info">
+                <p class="mb-3 mb-md-2">
+                    {{ space.shortDescription ?? 'available_description' | trans }}
+                </p>
 
-            <div class="d-flex justify-content-center justify-content-md-end">
-                <a href="{{ path('web_space_getOne', {'id': space.id }) }}" class="btn btn-primary list-page__access-btn">{{ 'view.space.access' | trans }}</a>
+                <div class="d-flex gap-2 gap-md-1 mb-3 mb-md-3 align-items-center">
+                    <i class="material-icons fs-3">location_on</i>
+                    <span>
+                        {% if space.address is defined and space.address is not empty %}
+                            {{ space.address.street|default('') }},
+                            {{ space.address.city.name|default('') }}
+                            {{ space.address.state.name|default('') }}
+                        {% else %}
+                            {{ 'available_address' | trans }}
+                        {% endif %}
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <span class="fw-bold">{{ 'areas_of_expertise' | trans }} ({{ space.activityAreas|length }}): </span>
+                    {% if space.activityAreas is not empty %}
+                        <span class="fw-bold space-card__areas">
+                            {% for area in space.activityAreas %}
+                                {{ area.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </span>
+                    {% else %}
+                        <span class="fw-bold">{{ 'no_areas' | trans }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="material-icons fs-3">accessibility_new</i>
+                    <div class="align-self-center">
+                        <span class="text-dark fw-bold">{{ 'accessibility' | trans }}:</span>
+                        {% if space.accessibilities is not empty %}
+                            {% for acc in space.accessibilities %}
+                                {{ acc.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {{ 'no_accessibility' | trans }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="entity-seals">
+                    <strong>{{ 'seals' | trans }}:</strong>
+                    {% if space.tags is not empty %}
+                        {% for tag in space.tags %}
+                            <p class="seal-entity">{{ tag.name }}</p>
+                        {% endfor %}
+                    {% else %}
+                        <p class="seal-entity">{{ 'no_seals' | trans }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-center justify-content-md-end">
+                    <a href="{{ path('web_space_getOne', {'id': space.id }) }}"
+                       class="btn btn-primary list-page__access-btn">
+                        {{ 'view.space.access' | trans }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endfor %}
 
 {% if spaces|length > 10 %}
