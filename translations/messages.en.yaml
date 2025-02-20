@@ -96,6 +96,7 @@ change_email: Change email
 change_password: Change password
 coming_soon: Coming soon
 contact: Contact
+contacts: Contacts
 cultural_language: Cultural language
 cultural_languages: Cultural languages
 
@@ -116,6 +117,7 @@ downloadable-files: Downloadable Files
 
 edit: Edit
 edit_faq: Edit FAQ
+edit_initiative: Edit Initiative
 edit_seals: Edit Seals
 edit_space: Edit Space
 edit_activity_area: Edit Area of Activity
@@ -132,6 +134,7 @@ events: Events
 everybody: Everybody
 evidences: Evidences
 elderly_person: Elderly Person
+execution_period: Execution Period
 explore_repository: Explore Repository
 
 faq: FaQ
@@ -168,6 +171,7 @@ image_gallery: Add photos to the gallery
 indicators: Indicators
 indigenous: Indigenous
 initiative: Initiative
+initiative_data: Initiative Data
 initiatives: Initiatives
 in_progress: In Progress
 inscriptions: Inscriptions
@@ -287,6 +291,8 @@ phase_success: Phase created successfully
 phase_error: Error creating phase
 phase_timeline: Phase Timeline
 postal_code: Postal Code
+private_email: Private Email
+private_phone: Private Telephone (with area code)
 profile_picture: Profile Picture
 projects: Projects
 physical: Physical
@@ -585,6 +591,7 @@ view:
     message:
       created: The Initiative was successfully created
       deleted: The initiative has been deleted
+    project_linked_program: This project is linked to the programa-nome and was selected through the Opportunity oportunidade-nome.
     quantity:
       total: Initiatives Found
       finished: Completed Initiatives

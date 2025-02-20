@@ -96,6 +96,7 @@ chain: Corrente
 change_email: Alterar email
 change_password: Alterar Senha
 contact: Contato
+contacts: Contatos
 cultural_language: Linguagem cultural
 cultural_languages: Linguagens culturais
 
@@ -116,6 +117,7 @@ downloadable-files: Arquivos para download
 
 edit: Editar
 edit_faq: Editar FAQ
+edit_initiative: Editar Iniciativa
 edit_seals: Editar Selos
 edit_space: Editar Espaços
 edit_activity_area: Editar Área de Atuação
@@ -132,6 +134,7 @@ events: Eventos
 everybody: Todos
 evidences: Evidências
 elderly_person: Pessoa idosa
+execution_period: Período de execução
 explore_repository: Conheça o repositório
 
 faq: FaQ
@@ -167,6 +170,7 @@ image_gallery: Adicionar fotos na galeria
 indicators: Indicadores
 indigenous: Indígena
 initiative: Iniciativa
+initiative_data: Dados da Iniciativa
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
@@ -288,6 +292,8 @@ phase_timeline: Timeline da fase
 physical: Física
 physical_accessibility: Recursos de acessibilidade física
 postal_code: CEP
+private_email: Email privado
+private_phone: Telefone privado (com DDD)
 profile_picture: Foto de Perfil
 projects: Projetos
 project_value: Valor do projeto
@@ -584,6 +590,7 @@ view:
     message:
       created: A Iniciativa foi criada com sucesso
       deleted: A Iniciativa foi excluída
+    project_linked_program: Este projeto está vinculado ao programa programa-nome e foi selecionado por meio da oportunidade oportunidade-nome.
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
