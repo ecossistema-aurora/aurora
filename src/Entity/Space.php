@@ -89,6 +89,9 @@ class Space extends AbstractEntity
     #[Groups(['space.get', 'space.get.item'])]
     private Collection $activityAreas;
 
+    #[ORM\OneToOne(targetEntity: SpaceLinkEntity::class, mappedBy: 'entity', cascade: ['persist', 'remove'])]
+    private SpaceLinkEntity $linkEntity;
+
     #[ORM\ManyToMany(targetEntity: Tag::class)]
     #[ORM\JoinTable(name: 'space_tags')]
     #[Groups(['space.get', 'space.get.item'])]
@@ -338,6 +341,16 @@ class Space extends AbstractEntity
     public function removeAccessibility(ArchitecturalAccessibility $accessibility): void
     {
         $this->accessibilities->removeElement($accessibility);
+    }
+
+    public function getLinkEntity(): SpaceLinkEntity
+    {
+        return $this->linkEntity;
+    }
+
+    public function setLinkEntity(SpaceLinkEntity $linkEntity): void
+    {
+        $this->linkEntity = $linkEntity;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
