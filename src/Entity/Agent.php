@@ -73,6 +73,10 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get.item'])]
     private ?Collection $addresses = null;
 
+    #[ORM\OneToMany(targetEntity: AgentSocialNetwork::class, mappedBy: 'agent', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'agent_social_network')]
+    private Collection $socialNetworks;
+
     #[ORM\Column]
     #[Groups(['agent.get'])]
     private DateTimeImmutable $createdAt;
@@ -90,6 +94,7 @@ class Agent extends AbstractEntity
         $this->organizations = new ArrayCollection();
         $this->opportunities = new ArrayCollection();
         $this->seals = new ArrayCollection();
+        $this->socialNetworks = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
     }
 
@@ -236,6 +241,28 @@ class Agent extends AbstractEntity
     public function removeAddress(AgentAddress $address): void
     {
         $this->addresses->removeElement($address);
+    }
+
+    public function getSocialNetworks(): Collection
+    {
+        return $this->socialNetworks;
+    }
+
+    public function setSocialNetworks(Collection $socialNetworks): void
+    {
+        $this->socialNetworks = $socialNetworks;
+    }
+
+    public function addSocialNetwork(AgentSocialNetwork $socialNetwork): void
+    {
+        if (false === $this->socialNetworks->contains($socialNetwork)) {
+            $this->socialNetworks->add($socialNetwork);
+        }
+    }
+
+    public function removeSocialNetwork(AgentSocialNetwork $socialNetwork): void
+    {
+        $this->socialNetworks->removeElement($socialNetwork);
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
