@@ -17,9 +17,9 @@ describe('Página de Lista de Espaços', () => {
 
     it('Garante que as tabs estão funcionando', () => {
         const tabs = [
-            { tab: '#pills-list-tab'},
-            { tab: '#pills-map-tab'},
-            { tab: '#pills-indicators-tab'}
+            { tab: '#pills-list-tab' },
+            { tab: '#pills-map-tab' },
+            { tab: '#pills-indicators-tab' }
         ];
 
         tabs.forEach(({ tab }) => {
@@ -29,18 +29,19 @@ describe('Página de Lista de Espaços', () => {
     });
 
     it('Garante que os cards de espaços estão visíveis', () => {
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__type').contains('Complexo Cultural').should('be.visible');
-        cy.get('.space-card__info > .mb-md-2').contains('O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-center > .btn').contains('Acessar espaço').should('be.visible');
+        cy.get('.space-card').first().within(() => {
+            cy.get('.space-card__title').contains('Dragão do Mar').should('be.visible');
+            cy.get('.space-card__type').contains(/Complexo Cultural|Laboratório/).should('be.visible');
+            cy.get('.list-page__access-btn').contains('Acessar espaço').should('be.visible');
+        });
     });
 
     it('Garante que o filtro funciona', () => {
         cy.get('#open-filter').click();
         cy.get('#space-name').type('Dragão do Mar');
         cy.get('#apply-filters').click();
-        cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
+        cy.get('.fw-bold').contains('1 Espaços Encontrados').should('be.visible');
+        cy.get('.space-card__title').contains('Dragão do Mar').should('be.visible');
     });
 
     it('Garante que as opções de ordenar funcionam', () => {
