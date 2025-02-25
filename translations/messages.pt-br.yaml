@@ -82,6 +82,7 @@ control_panel: Painel de Controle
 completed: Finalizados
 coming_soon: Em breve
 cover_image: Imagem de capa
+copy_id: Copiar ID
 cpf: CPF
 cnpj: CNPJ (MEI)
 configure: Configurar
@@ -268,6 +269,8 @@ other_files: Outros arquivos
 other_information: Outras informações
 
 pardo: Pardo
+paid: Pago
+peoples: Pessoas
 participants: Participantes
 people: Pessoas
 people_capacity: Capacidade de pessoas
@@ -278,6 +281,7 @@ privacy: Privacidade
 profile: Perfil
 password: Senha
 password_strength: Força da senha
+participants: Participantes
 personal_data: Dados pessoais
 person_disabled: Pessoa com Deficiência
 presentation_information: Informações de apresentação
