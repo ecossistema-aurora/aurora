@@ -9,4 +9,6 @@ use App\Entity\Space;
 interface SpaceRepositoryInterface
 {
     public function save(Space $space): Space;
+
+    public function findByNameAndLinkableEntityType(string $name, int $codeEntityType, int $limit): array;
 }
