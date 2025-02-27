@@ -706,6 +706,11 @@ view:
       last_days: Registrados nos últimos {days} dias
     picture: Foto do Espaço
 
+  space_type:
+    create: Criar Tipo de Espaço
+    message:
+      created: O Tipo de Espaço foi criado
+
   registration:
     available: Recursos abertos e disponíveis
     data: Coleta de dados

@@ -729,6 +729,11 @@ view:
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
 
+  space_type:
+    create: Crear un Tipo de Espacio
+    message:
+      created: El tipo de espacio ha sido creado
+
   registration:
     available: Recursos abiertos y disponibles
     data: Recolección de datos
