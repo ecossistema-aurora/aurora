@@ -359,6 +359,7 @@ sort_by: Ordenar por
 social_name: Nombre Social
 short_presentation: Presentación Corta
 space: Espacio
+space_type: Tipo de Espacio
 spaces: Espacios
 start_now: Comenzar Ahora
 start_date: Fecha de inicio
@@ -727,6 +728,13 @@ view:
       opened: Espacios Abiertos
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
+
+  space_type:
+    create: Crear un Tipo de Espacio
+    edit: Editar Tipo de Espacio
+    message:
+      created: El tipo de espacio ha sido creado
+      updated: El tipo de espacio ha sido actualizado
 
   registration:
     available: Recursos abiertos y disponibles

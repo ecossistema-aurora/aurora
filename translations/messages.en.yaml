@@ -360,6 +360,7 @@ sort_by: Sort by
 social_name: Social Name
 short_presentation: Short Presentation
 space: Space
+space_type: Space Type
 spaces: Spaces
 start_now: Start Now
 start_date: Start date
@@ -722,6 +723,13 @@ view:
       opened: Open Spaces
       last_days: Registered in the last 7 days
     picture: Space Picture
+
+  space_type:
+    create: Create a Space Type
+    edit: Edit Space Type
+    message:
+      created: The space type has been created
+      updated: The space type has been updated
 
 
   registration:
