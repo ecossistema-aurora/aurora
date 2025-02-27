@@ -4,77 +4,79 @@
 </div>
 
 {% for event in events %}
-    <div class="card mw-100 event-card mt-1">
-        <div class="event-card-header">
-            <div class="d-flex flex-column flex-md-row align-items-center">
-                <img src="{{ asset('img/home-events.png') }}" alt="Foto do evento" class="rounded-circle event-image">
-                <div class="ms-0 ms-md-3 mt-2 mt-md-0">
-                    <h5 class="event-name">{{ event.name }}</h5>
-                    <p class="event-subtitle">Subtítulo do evento</p>
+    <div class="card event-card mt-3">
+        <div class="card-body row">
+
+            <div class="col-12 col-sm-8 col-md-9">
+                <div class="d-flex align-items-center">
+                    <img src="{{ event.image ? asset(event.image) : asset('img/home-events.png') }}"
+                         alt="{{ event.name }}" class="rounded-circle event-img">
+                    <div class="ms-3">
+                        <h5 class="event-name fw-bold">{{ event.name }}</h5>
+                        <p class="text-dark mb-0">{{ event.subtitle ?? 'no_subtitle' | trans }}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column gap-2 mt-3">
+                    <p class="d-flex align-items-center gap-2 mb-0">
+                        <i class="material-icons text-primary">event</i>
+                        <strong class="text-dark">
+                            {% set nextOccurrence = event.eventSchedules|sort((a, b) => a.startHour <=> b.startHour)|find(o => o.startHour > "now"|date) %}
+                            {{ nextOccurrence ? nextOccurrence.startHour|date('d/m/Y - H:i') : 'view.event.not_set_datetime' | trans }}
+                        </strong>
+                    </p>
+
+                    <p class="d-flex align-items-center gap-2 mb-0">
+                        <i class="material-icons text-primary">location_on</i>
+                        <span class="fw-bold text-dark">{{ event.space ? event.space.name : 'event.card.location' | trans }}</span>
+                    </p>
+                </div>
+
+                <p class="event-languages mt-4">
+                    <strong class="text-dark">{{ 'language' | trans }} ({{ event.tags|length }}):</strong>
+                    {% for tag in event.tags %}
+                        <span class="badge bg-light text-dark px-3 py-2">{{ tag.name }}</span>
+                    {% else %}
+                        <span class="text-primary">{{ 'no_languages' | trans }}</span>
+                    {% endfor %}
+                </p>
+
+                <div class="event-details d-flex flex-wrap gap-3">
+                    <p class="d-flex align-items-center gap-2 mb-0">
+                        <i class="material-icons text-primary">monetization_on</i>
+                        <strong class="text-dark">{{ 'entry_fee' | trans }}:</strong>
+                        <span class="text-dark">{{ event.free ? 'free' | trans : 'paid' | trans }}</span>
+                    </p>
+
+                    <p class="d-flex align-items-center gap-2 mb-0">
+                        <i class="material-icons text-primary">people</i>
+                        <strong class="text-dark">{{ 'participants' | trans }}:</strong>
+                        <span class="text-dark">{{ event.maxCapacity ?? 'participants' | trans }}</span>
+                    </p>
+                </div>
+
+                <div class="entity-seals mt-3">
+                    <strong class="text-dark">{{ 'seals' | trans }}:</strong>
+                    {% for tag in event.tags %}
+                        <span class="seal-entity">{{ tag.name }}</span>
+                    {% else %}
+                        <span class="seal-entity">{{ 'no_seals' | trans }}</span>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="event-id mt-2 mt-md-0 align-self-end align-self-md-start">
-                ID: <span title="{{ event.id }}">{{ event.id|split('-')|first }}...</span>
-            </div>
-        </div>
 
-        <div class="event-card-body ">
-            <p class="event-date fw-bold align-self-center">
-                <i class="material-icons">event</i>
-                {% set occurrence = (event.extraFields.occurrences ?? ['-2days'])|sort|find(o => date(o) > date('now')) %}
-                {% if occurrence is empty %}
-                    {{ 'view.event.not_set_datetime'|trans }}
-                {% else %}
-                    {{ occurrence|date('view.event.format_datetime'|trans) }}
-                {% endif %}
-            </p>
+            <div class="col-12 col-sm-4 col-md-3 d-flex flex-column justify-content-end">
+                <button class="btn btn-outline-primary mb-2" data-id="{{ event.id }}">
+                    {{ 'copy_id' | trans }}
+                </button>
 
-            <p class="event-location">
-                <i class="material-icons">location_on</i>
-                {% if event.space %}
-                    <span class="location-name fw-bold">{{ event.space.name }}</span> | SCTS – Zona Cívico Administrativa – Brasília/DF – CEP: 70070-150
-                {% else %}
-                    {{ 'event.card.location' | trans }}
-                {% endif %}
-            </p>
-
-            <p class="event-languages text-center text-md-start">
-                <strong>{{ 'language' | trans }} (3):</strong>
-                <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
-                <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
-                <a href="#" class="language-link fw-bold">LINGUAGEM</a>
-            </p>
-
-            <div class="event-details d-flex align-items-start text-center text-md-start">
-                <p class="entry-fee">
-                    <i class="material-icons">monetization_on</i>
-                    <strong>Valor da entrada: </strong> Gratuito
-                </p>
-                <p class="participants">
-                    <i class="material-icons">people</i>
-                    <strong>Número de participantes: </strong> 0
-                </p>
+                <a href="{{ path('web_event_show', {id: event.id}) }}" class="btn btn-primary">
+                    {{ 'view.event.access' | trans }}
+                </a>
             </div>
 
-            <div class="entity-seals">
-                <strong>{{ 'seals'| trans }}:</strong>
-                <p class="seal-entity">Nome do selo</p>
-                <p class="seal-entity">Nome do selo</p>
-                <p class="seal-entity">Nome do selo</p>
-            </div>
-
-            <div class="text-center text-md-end mt-3">
-                <a href="{{ path('web_event_show', {id: event.id}) }}" class="btn btn-primary list-page__access-btn">{{ 'view.event.access' | trans }}</a>
-            </div>
         </div>
     </div>
+{% else %}
+    <p class="text-center text-muted mt-4">{{ 'no_events_available' | trans }}</p>
 {% endfor %}
-
-{% if events|length > 0 %}
-    <div class="container align-items-center mt-5 mb-5">
-        <div class="centered-icon-text card-view-more">
-            <i class="material-icons">add_circle_outline</i>
-            <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
-        </div>
-    </div>
-{% endif %}

@@ -74,6 +74,7 @@ contribute: Contribute
 control_panel: Control Panel
 completed: Completed
 cover_image: Cover image
+copy_id: Copy ID
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Create
@@ -114,6 +115,7 @@ edit_activity_area: Edit Area of Activity
 email: Email
 entity_banner: Entity Banner
 entity: Entity
+entry_fee: Entry fee
 enter_opportunity: Enter the opportunity name
 enter_organization: Enter the organization name
 enter_initiative: Enter the name of the initiative
@@ -144,6 +146,7 @@ full_name: Full Name
 from: From
 from_to: To
 from_to_date: To
+free: Free
 
 gallery: Gallery
 gender: Select the Gender
@@ -234,6 +237,9 @@ no_address: No address
 no_title: Untitled
 no_description: No description
 no_image: Image not available
+no_languages: No language available
+no_seals: No seal
+no_subtitle: No subtitle
 none_area_specified: None area specified
 not_informed: Not informed
 not_sent: Not sent
@@ -258,6 +264,7 @@ other_files: Other files
 other_information: Other information
 
 pardo: Mixed Race
+paid: Paid
 peoples: Peoples
 period: Period
 portfolio: Portfolio
@@ -265,6 +272,7 @@ privacy: Privacy
 profile: Profile
 password: Password
 password_strength: Password Strength
+participants: Participants
 personal_data: Personal Data
 person_disabled: Person with Disability
 phone: Phone

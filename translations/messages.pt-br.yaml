@@ -74,6 +74,7 @@ control_panel: Painel de Controle
 completed: Finalizados
 coming_soon: Em breve
 cover_image: Imagem de capa
+copy_id: Copiar ID
 cpf: CPF
 cnpj: CNPJ (MEI)
 configure: Configurar
@@ -114,6 +115,7 @@ edit_activity_area: Editar Área de Atuação
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
+entry_fee: Valor da entrada
 enter_opportunity: Digite o nome da oportunidade
 enter_organization: Digite o nome da organização
 enter_initiative: Digite o nome da iniciativa
@@ -144,6 +146,7 @@ full_name: Nome completo
 from: De
 from_to: Para
 from_to_date: Até
+free: Gratuito
 
 gallery: Galeria
 gender: Selecione o Gênero
@@ -233,6 +236,9 @@ no_address: Sem endereço
 no_title: Sem título
 no_description: Sem descrição
 no_image: Imagem não disponível
+no_languages: Nenhum idioma disponível
+no_seals: Nenhum selo
+no_subtitle: Não tem subtítulo
 none_area_specified: Nenhuma área especificada
 not_informed: Não informado
 not_sent: Não enviadas
@@ -257,6 +263,7 @@ other_files: Outros arquivos
 other_information: Outras informações
 
 pardo: Pardo
+paid: Pago
 peoples: Pessoas
 period: Período
 portfolio: Portfólio
@@ -264,6 +271,7 @@ privacy: Privacidade
 profile: Perfil
 password: Senha
 password_strength: Força da senha
+participants: Participantes
 personal_data: Dados pessoais
 person_disabled: Pessoa com Deficiência
 postgraduate: Pós-graduação
