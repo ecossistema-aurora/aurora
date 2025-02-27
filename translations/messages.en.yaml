@@ -724,6 +724,11 @@ view:
       last_days: Registered in the last 7 days
     picture: Space Picture
 
+  space_type:
+    create: Create a Space Type
+    message:
+      created: The space type has been created
+
 
   registration:
       available: Open and available resources
