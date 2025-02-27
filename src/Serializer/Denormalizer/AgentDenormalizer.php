@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Serializer\Denormalizer;
 
 use App\Entity\Agent;
+use App\Entity\AgentSocialNetwork;
 use App\Entity\Organization;
+use App\Entity\SocialNetwork;
 use App\Entity\User;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -55,7 +57,23 @@ readonly class AgentDenormalizer implements DenormalizerInterface
             $agent->setOrganizations(new ArrayCollection($organizations));
         }
 
+        $this->mountSocialNetworks($agent, $agentSocialNetworks ?? []);
+
         return $agent;
+    }
+
+    private function mountSocialNetworks(Agent &$agent, array $socialNetworks): void
+    {
+        foreach ($socialNetworks as $socialNetworkData) {
+            $agentSocialNetwork = new AgentSocialNetwork();
+
+            $socialNetwork = $this->entityManager->getRepository(SocialNetwork::class)->findOneBy(['id' => $socialNetworkData['socialNetwork']]);
+            $agentSocialNetwork->setSocialNetwork($socialNetwork);
+            $agentSocialNetwork->setValue($socialNetworkData['value']);
+            $agentSocialNetwork->setAgent($agent);
+
+            $agent->addSocialNetwork($agentSocialNetwork);
+        }
     }
 
     private function uploadImage(array &$data, ?Agent $agentFromDb = null): void
@@ -71,7 +89,7 @@ readonly class AgentDenormalizer implements DenormalizerInterface
 
     private function filterData(array $data): array
     {
-        unset($data['organizations']);
+        unset($data['organizations'], $data['socialNetworks']);
 
         return $data;
     }

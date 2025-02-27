@@ -43,6 +43,16 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
                 'instagram' => '@alessandro',
             ],
             'user' => UserFixtures::USER_ID_1,
+            'socialNetworks' => [
+                [
+                    'socialNetwork' => SocialNetworkFixtures::SOCIAL_NETWORK_ID_1,
+                    'value' => 'Alessandro.Feitoza',
+                ],
+                [
+                    'socialNetwork' => SocialNetworkFixtures::SOCIAL_NETWORK_ID_2,
+                    'value' => 'alessandro_feitoza',
+                ],
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -60,6 +70,12 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
                 'instagram' => '@henrique',
             ],
             'user' => UserFixtures::USER_ID_2,
+            'socialNetworks' => [
+                [
+                    'socialNetwork' => SocialNetworkFixtures::SOCIAL_NETWORK_ID_2,
+                    'value' => 'henriquelopeslima',
+                ],
+            ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -77,6 +93,12 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
                 'instagram' => '@anna',
             ],
             'user' => UserFixtures::USER_ID_3,
+            'socialNetworks' => [
+                [
+                    'socialNetwork' => SocialNetworkFixtures::SOCIAL_NETWORK_ID_2,
+                    'value' => 'anamouraab',
+                ],
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -94,6 +116,12 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
                 'instagram' => '@sara',
             ],
             'user' => UserFixtures::USER_ID_4,
+            'socialNetworks' => [
+                [
+                    'socialNetwork' => SocialNetworkFixtures::SOCIAL_NETWORK_ID_2,
+                    'value' => 'saracamil.o',
+                ],
+            ],
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -111,6 +139,12 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
                 'instagram' => '@talyson',
             ],
             'user' => UserFixtures::USER_ID_5,
+            'socialNetworks' => [
+                [
+                    'socialNetwork' => SocialNetworkFixtures::SOCIAL_NETWORK_ID_2,
+                    'value' => 'talysonsoares_',
+                ],
+            ],
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -251,6 +285,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     {
         return [
             UserFixtures::class,
+            SocialNetworkFixtures::class,
         ];
     }
 
