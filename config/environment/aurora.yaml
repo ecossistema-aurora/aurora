@@ -88,6 +88,10 @@ sidebar:
       admin_tag_list:
         icon: label
         text: tags
+      admin_architectural_accessibility_list:
+        icon: accessibility
+        text: architectural_accessibility
+        route: admin_architectural_accessibility_list
 
 homepage:
   sections:

@@ -92,3 +92,8 @@ admin_tags:
   resource: 'admin/tag.yaml'
   prefix: /painel/admin/tags
   name_prefix: admin_tag_
+
+admin_architectural_accessibility:
+  resource: 'admin/architectural-accessibility.yaml'
+  prefix: /painel/admin/acessibilidade
+  name_prefix: admin_architectural_accessibility_
