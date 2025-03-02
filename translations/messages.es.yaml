@@ -82,6 +82,7 @@ contribute: Contribuir
 control_panel: Panel de control
 completed: Finalizado
 cover_image: Imagen de portada
+copy_id: Copiar ID
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Crear
@@ -122,6 +123,7 @@ edit_activity_area: Editar Área de Actividad
 email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad
+entry_fee: Cuota de entrada
 enter_opportunity: Ingrese el nombre de la oportunidad
 enter_organization: Ingrese el nombre de la organización
 enter_initiative: Digite el nombre de la iniciativa
@@ -152,6 +154,7 @@ full_name: Nombre Completo
 from: de
 from_to: A
 from_to_date: A
+free: Gratis
 
 gallery: Galería
 gender: Seleccione el Género
@@ -242,6 +245,9 @@ no_address: Sin dirección
 no_title: Intitulado
 no_description: Sin descripción
 no_image: Imagen no disponible
+no_languages: No hay idioma disponible
+no_seals: Sin sello
+no_subtitle: Sin subtítulos
 none_area_specified: Ninguna zona especificada
 not_informed: No informado
 not_sent: No enviado
@@ -268,6 +274,8 @@ other_files: Otros archivos
 other_information: Otra información
 
 pardo: Pardo
+paid: Pagado
+peoples: Gente
 people: Gente
 people_capacity: Capacidad de personas
 period: Período
@@ -277,6 +285,7 @@ privacy: Privacidad
 profile: Perfil
 password: Contraseña
 password_strength: Fuerza de la Contraseña
+participants: Participantes
 personal_data: Datos Personales
 person_disabled: Persona con Discapacidad
 presentation_information: Información de presentación
