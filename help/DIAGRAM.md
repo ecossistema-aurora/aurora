@@ -134,6 +134,18 @@ direction BT
        agent_id  /* (DC2Type:uuid) */ uuid
     }
     
+    class link_entity {
+        id  /* (DC2Type:uuid) */ uuid
+        entity_id  /* (DC2Type:uuid) */ uuid
+        integer entity_type
+        boolean agent
+        boolean event
+        boolean initiative
+        boolean space
+        boolean opportunity
+        boolean organization
+    }
+
     event  -->  agent : created_by_id
     event  -->  agent : agent_group_id
     event  -->  event : parent_id
