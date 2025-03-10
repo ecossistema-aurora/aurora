@@ -7,9 +7,32 @@
         {% include "_components/side-bar.html.twig" %}
         <div class="entity-edit">
             {% include "_admin/space/_partials/space-edit-header.html.twig" %}
+
             <section class="entity-edit-content mt-4">
                 {% set asterisk = '<span class="text-danger">*</span>' %}
-                <span class="entity-mandatory-fields">{{ 'view.space-edit.mandatory_fields'|trans({'asterisco': asterisk})|raw }}</span>
+                <span class="entity-mandatory-fields">
+                    {{ 'view.space-edit.mandatory_fields'|trans({'asterisco': asterisk})|raw }}
+                </span>
+
+                {% set areasOfExpertise = [] %}
+                {% for area in space.extraFields.areasOfActivity|default([]) %}
+                    {% set areasOfExpertise = areasOfExpertise|merge([{ label: area, value: area }]) %}
+                {% endfor %}
+
+                {% set tags = [] %}
+                {% for tag in space.extraFields.tags|default([]) %}
+                    {% set tags = tags|merge([{ label: tag, value: tag }]) %}
+                {% endfor %}
+
+                {% set tagOptions = [
+                    'Exemplo Tag 1',
+                    'Exemplo Tag 2',
+                    'Exemplo Tag 3'
+                ] %}
+                {% set tagItems = [] %}
+                {% for option in tagOptions %}
+                    {% set tagItems = tagItems|merge([{ label: option, value: option }]) %}
+                {% endfor %}
 
                 {% include "_admin/space/_partials/forms/entity-edit-form.html.twig" %}
             </section>
@@ -38,4 +61,8 @@
             {% endif %}
         </div>
     </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+     <script type="module" src="{{ asset('js/_components/tags-selector.js') }}"></script>
 {% endblock %}
