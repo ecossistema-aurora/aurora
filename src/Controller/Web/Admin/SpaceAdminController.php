@@ -6,7 +6,9 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\SpaceTimeline;
 use App\DocumentService\SpaceTimelineDocumentService;
+use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
+use App\Service\TagService;
 use DateTime;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -31,6 +33,8 @@ class SpaceAdminController extends AbstractAdminController
         private readonly TranslatorInterface $translator,
         private readonly Security $security,
         private readonly SpaceTimeline $spaceTimeline,
+        private readonly TagService $tagService,
+        private readonly ActivityAreaServiceInterface $activityAreaService
     ) {
     }
 
@@ -55,8 +59,13 @@ class SpaceAdminController extends AbstractAdminController
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
+            $activityAreas = $this->activityAreaService->list();
+            $tags = $this->tagService->list();
+
             return $this->render(self::VIEW_ADD, [
                 'form_id' => self::CREATE_FORM_ID,
+                'activityAreas' => $activityAreas,
+                'tags' => $tags,
             ]);
         }
 
@@ -66,12 +75,20 @@ class SpaceAdminController extends AbstractAdminController
         $maxCapacity = (int) $request->request->get('maxCapacity');
         $isAccessible = (bool) $request->request->get('isAccessible');
 
+        $extraFields = $request->request->get('extraFields', []);
+        $areasOfActivity = $extraFields['areasOfActivity'] ?? [];
+        $tagsInput = $extraFields['tags'] ?? [];
+
         $space = [
             'id' => Uuid::v4(),
             'name' => $name,
             'maxCapacity' => $maxCapacity,
             'isAccessible' => $isAccessible,
             'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'extraFields' => [
+                'areasOfActivity' => $areasOfActivity,
+                'tags' => $tagsInput,
+            ],
         ];
 
         try {
@@ -110,8 +127,42 @@ class SpaceAdminController extends AbstractAdminController
         }
 
         if (Request::METHOD_POST !== $request->getMethod()) {
+            $extraFields = $space->getExtraFields();
+            $areasOfActivity = $extraFields['areasOfActivity'] ?? [];
+            $tagsSelected = $extraFields['tags'] ?? [];
+
+            $areasOfExpertiseStructured = array_map(function ($area) {
+                return ['label' => $area, 'value' => $area];
+            }, $areasOfActivity);
+
+            $tagsStructured = array_map(function ($tag) {
+                return ['label' => $tag, 'value' => $tag];
+            }, $tagsSelected);
+
+            $activityAreasFromDB = $this->activityAreaService->list();
+            $tagsFromDB = $this->tagService->list();
+
+            $areasOfActivityItems = array_map(function ($areaEntity) {
+                return [
+                    'label' => $areaEntity->getName(),
+                    'value' => $areaEntity->getName(),
+                ];
+            }, $activityAreasFromDB);
+
+            $tagItems = array_map(function ($tagEntity) {
+                return [
+                    'label' => $tagEntity->getName(),
+                    'value' => $tagEntity->getName(),
+                ];
+            }, $tagsFromDB);
+
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
+                'areasOfExpertise' => $areasOfExpertiseStructured,
+                'tags' => $tagsStructured,
+                'areasOfActivityItems' => $areasOfActivityItems,
+                'tagItems' => $tagItems,
+
                 'form_id' => self::EDIT_FORM_ID,
             ]);
         }
@@ -119,6 +170,9 @@ class SpaceAdminController extends AbstractAdminController
         $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         $name = $request->request->get('name');
+        $extraFieldsInput = $request->request->get('extraFields', []);
+        $areasOfActivity = $extraFieldsInput['areasOfActivity'] ?? [];
+        $tags = $extraFieldsInput['tags'] ?? [];
         $description = $request->request->get('extraFields')['description'] ?? null;
         $date = $request->request->get('date') ?? null;
 
@@ -127,11 +181,14 @@ class SpaceAdminController extends AbstractAdminController
             'description' => $description,
             'date' => $date ? new DateTime($date) : null,
             'updatedBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'extraFields' => [
+                'areasOfActivity' => $areasOfActivity,
+                'tags' => $tags,
+            ],
         ];
 
         try {
             $this->service->update($id, $dataToUpdate);
-
             $this->addFlashSuccess($this->translator->trans('view.space.message.updated'));
 
             return $this->redirectToRoute('admin_space_list');

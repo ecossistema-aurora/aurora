@@ -1,3 +1,4 @@
+{# templates/_admin/space/_partials/forms/introduction.html.twig #}
 <div class="entity-imgs">
     <div class="banner">
         <input class="banner-input" id="banner-input" type="file" accept="image/*" />
@@ -28,26 +29,24 @@
            required
     >
 
-    <div class="entity-input-tags">
-        <label>
-            {{ 'areas_of_expertise' | trans }}
-            <span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill"></span>
-        </label>
-        <span class="d-flex align-items-center gap-3">
-            {{ 'view.registration-space.add_new' | trans }}
-            <span class="iconify fs-5" data-icon="material-symbols:add"></span>
-        </span>
+    <div class="my-2">
+        {% include '_components/tags-selector.html.twig' with {
+        inputName: 'extraFields[areasOfActivity]',
+        inputLabel: 'areas_of_expertise'|trans,
+        items: areasOfActivityItems,
+        tags: areasOfExpertise,
+        required: true,
+        } %}
     </div>
 
-    <div class="entity-input-tags">
-        <label>
-            {{ 'tags' | trans }}
-            <span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill"></span>
-        </label>
-        <span class="d-flex align-items-center gap-3">
-            {{ 'view.registration-space.add_new' | trans }}
-            <span class="iconify fs-5" data-icon="material-symbols:add"></span>
-        </span>
+    <div class="my-4">
+        {% include '_components/tags-selector.html.twig' with {
+        inputName: 'extraFields[tags]',
+        inputLabel: 'tags'|trans,
+        items: tagItems,
+        tags: tags,
+        required: true,
+        } %}
     </div>
 
     <label for="short-description">{{ 'short_description' | trans }}</label>
@@ -64,7 +63,6 @@
               placeholder="{{ 'long_description' | trans }}"
               required
     >{{ space.longDescription }}</textarea>
-
 
     <div class="d-flex flex-wrap gap-1 gap-md-3">
         <div class="flex-grow-1">

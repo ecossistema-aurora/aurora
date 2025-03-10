@@ -7,6 +7,7 @@
         {% include "_components/side-bar.html.twig" %}
         <div class="entity-edit">
             {% include "_admin/space/_partials/space-edit-header.html.twig" %}
+
             <section class="entity-edit-content mt-4">
                 {% set asterisk = '<span class="text-danger">*</span>' %}
                 <span class="entity-mandatory-fields">{{ 'mandatory_fields'|trans({'asterisco': asterisk})|raw }}</span>
