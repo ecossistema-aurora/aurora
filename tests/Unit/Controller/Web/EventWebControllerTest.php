@@ -13,48 +13,50 @@ use Symfony\Component\Uid\Uuid;
 
 class EventWebControllerTest extends AbstractWebTestCase
 {
+    private EventWebController $controller;
+
+    protected function setUp(): void
+    {
+        $this->client = self::createClient();
+        $this->controller = self::getContainer()->get(EventWebController::class);
+        $this->controller->setContainer(self::getContainer());
+    }
+
     public function testListRouteRendersHTMLSuccessfully(): void
     {
-        $client = static::createClient();
-        $client->request('GET', '/eventos');
+        $this->client->request('GET', '/eventos');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('.event-card');
     }
 
     public function testGetOneRouteNotFound(): void
     {
-        $client = static::createClient();
-        $client->request('GET', '/eventos/'.Uuid::v4()->toRfc4122());
+        $this->client->request('GET', '/eventos/'.Uuid::v4()->toRfc4122());
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testGetOneRouteForExistingEvent(): void
     {
-        $client = static::createClient();
         $existingUuid = EventFixtures::EVENT_ID_1;
-        $client->request('GET', '/eventos/'.$existingUuid);
+        $this->client->request('GET', '/eventos/'.$existingUuid);
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h2.name__entity-details');
     }
 
     public function testControllerShowMethodDirectly(): void
     {
-        $controller = self::getContainer()->get(EventWebController::class);
-        $controller->setContainer(self::getContainer());
-        $response = $controller->show(Uuid::fromString(EventFixtures::EVENT_ID_1));
+        $response = $this->controller->show(Uuid::fromString(EventFixtures::EVENT_ID_1));
         $this->assertInstanceOf(Response::class, $response);
         $this->assertStringContainsString('name__entity-details', $response->getContent());
     }
 
     public function testControllerListMethodDirectly(): void
     {
-        $controller = self::getContainer()->get(EventWebController::class);
-        $controller->setContainer(self::getContainer());
         $request = new Request();
         $request->attributes->set('_route', 'web_event_list');
         $requestStack = self::getContainer()->get('request_stack');
         $requestStack->push($request);
-        $response = $controller->list($request);
+        $response = $this->controller->list($request);
         $this->assertInstanceOf(Response::class, $response);
         $this->assertStringContainsString('event-card', $response->getContent());
         $requestStack->pop();

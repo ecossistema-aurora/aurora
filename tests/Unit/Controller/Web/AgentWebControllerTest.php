@@ -13,9 +13,13 @@ use Symfony\Component\Uid\Uuid;
 
 class AgentWebControllerTest extends AbstractWebTestCase
 {
+    private AgentWebController $controller;
+
     protected function setUp(): void
     {
         $this->client = self::createClient();
+        $this->controller = self::getContainer()->get(AgentWebController::class);
+        $this->controller->setContainer(self::getContainer());
     }
 
     public function testListRouteRendersHTMLSuccessfully(): void
@@ -42,22 +46,18 @@ class AgentWebControllerTest extends AbstractWebTestCase
 
     public function testControllerGetOneMethodDirectly(): void
     {
-        $controller = self::getContainer()->get(AgentWebController::class);
-        $controller->setContainer(self::getContainer());
-        $response = $controller->getOne(Uuid::fromString(AgentFixtures::AGENT_ID_1));
+        $response = $this->controller->getOne(Uuid::fromString(AgentFixtures::AGENT_ID_1));
         $this->assertInstanceOf(Response::class, $response);
         $this->assertStringContainsString('Alessandro', $response->getContent());
     }
 
     public function testControllerListMethodDirectly(): void
     {
-        $controller = self::getContainer()->get(AgentWebController::class);
-        $controller->setContainer(self::getContainer());
         $request = new Request();
         $request->attributes->set('_route', 'web_agent_list');
         $requestStack = self::getContainer()->get('request_stack');
         $requestStack->push($request);
-        $response = $controller->list($request);
+        $response = $this->controller->list($request);
         $this->assertInstanceOf(Response::class, $response);
         $this->assertStringContainsString('agent-card', $response->getContent());
         $requestStack->pop();
