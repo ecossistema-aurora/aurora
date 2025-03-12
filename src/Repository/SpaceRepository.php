@@ -24,16 +24,15 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
         return $space;
     }
 
-    public function findByNameAndLinkableEntityType(?string $name, int $codeEntityType, int $limit): array
+    public function findByNameAndLinkableEntityType(?string $name, string $linkEntity, int $limit): array
     {
-        $sql = <<<EOT
+        $sql = <<<SQL
                 select s.*
                 from space s
-                join link_entity le ON s.id = le.entity_id
-                where le.entity_type = :entityType
+                where :linkEntity = any(s.link_entity)
                   and (cast(:name as varchar) is null or s.name ilike '%' || :name || '%')
                 limit :limit
-            EOT;
+            SQL;
 
         $rsm = new ResultSetMapping();
         $rsm->addEntityResult(Space::class, 's');
@@ -44,7 +43,7 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
 
         $query->setParameter('name', $name);
         $query->setParameter('limit', $limit);
-        $query->setParameter('entityType', 4);
+        $query->setParameter('linkEntity', $linkEntity);
 
         return $query->getResult();
     }

@@ -10,5 +10,5 @@ interface SpaceRepositoryInterface
 {
     public function save(Space $space): Space;
 
-    public function findByNameAndLinkableEntityType(string $name, int $codeEntityType, int $limit): array;
+    public function findByNameAndLinkableEntityType(string $name, string $linkEntity, int $limit): array;
 }
