@@ -66,12 +66,20 @@ class SpaceAdminController extends AbstractAdminController
         $maxCapacity = (int) $request->request->get('maxCapacity');
         $isAccessible = (bool) $request->request->get('isAccessible');
 
+        $extraFields = $request->request->get('extraFields', []);
+        $areasOfActivity = $extraFields['areasOfActivity'] ?? [];
+        $tags = $extraFields['tags'] ?? [];
+
         $space = [
             'id' => Uuid::v4(),
             'name' => $name,
             'maxCapacity' => $maxCapacity,
             'isAccessible' => $isAccessible,
             'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'extraFields' => [
+                'areasOfActivity' => $areasOfActivity,
+                'tags' => $tags,
+            ],
         ];
 
         try {
@@ -92,7 +100,6 @@ class SpaceAdminController extends AbstractAdminController
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
-
         $events = $this->spaceTimeline->getEvents($events);
 
         return $this->render('space/timeline.html.twig', [
@@ -112,8 +119,44 @@ class SpaceAdminController extends AbstractAdminController
         }
 
         if (Request::METHOD_POST !== $request->getMethod()) {
+            $extraFields = $space->getExtraFields();
+            $areasOfActivity = $extraFields['areasOfActivity'] ?? [];
+            $tags = $extraFields['tags'] ?? [];
+
+            $areasOfExpertiseStructured = array_map(function ($area) {
+                return ['label' => $area, 'value' => $area];
+            }, $areasOfActivity);
+
+            $tagsStructured = array_map(function ($tag) {
+                return ['label' => $tag, 'value' => $tag];
+            }, $tags);
+
+            $tagOptions = ['Exemplo Tag 1', 'Exemplo Tag 2', 'Exemplo Tag 3'];
+            $tagItems = array_map(function ($option) {
+                return ['label' => $option, 'value' => $option];
+            }, $tagOptions);
+            $allPossibleAreas = [
+                'Coworking',
+                'Galeria de Arte',
+                'Teatro',
+                'Centro Cultural',
+                'Auditório',
+                'Biblioteca',
+                'Museu',
+                'Sala de Exposição',
+                'Espaço Aberto',
+            ];
+            $areasOfActivityItems = array_map(function ($area) {
+                return ['label' => $area, 'value' => $area];
+            }, $allPossibleAreas);
+
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
+                'areasOfExpertise' => $areasOfExpertiseStructured,
+                'tags' => $tagsStructured,
+                'areasOfActivityItems' => $areasOfActivityItems,
+                'tagItems' => $tagItems,
+
                 'form_id' => self::EDIT_FORM_ID,
             ]);
         }
@@ -121,6 +164,9 @@ class SpaceAdminController extends AbstractAdminController
         $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         $name = $request->request->get('name');
+        $extraFieldsInput = $request->request->get('extraFields', []);
+        $areasOfActivity = $extraFieldsInput['areasOfActivity'] ?? [];
+        $tags = $extraFieldsInput['tags'] ?? [];
         $description = $request->request->get('extraFields')['description'] ?? null;
         $date = $request->request->get('date') ?? null;
 
@@ -129,11 +175,14 @@ class SpaceAdminController extends AbstractAdminController
             'description' => $description,
             'date' => $date ? new DateTime($date) : null,
             'updatedBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'extraFields' => [
+                'areasOfActivity' => $areasOfActivity,
+                'tags' => $tags,
+            ],
         ];
 
         try {
             $this->service->update($id, $dataToUpdate);
-
             $this->addFlashSuccess($this->translator->trans('view.space.message.updated'));
 
             return $this->redirectToRoute('admin_space_list');
