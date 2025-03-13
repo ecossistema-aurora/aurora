@@ -11,19 +11,16 @@ use App\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InitiativeWebControllerTest extends AbstractWebTestCase
 {
     private InitiativeWebController $controller;
-    private TranslatorInterface $translator;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->controller = static::getContainer()->get(InitiativeWebController::class);
-        $this->translator = static::getContainer()->get(TranslatorInterface::class);
     }
 
     public function testInitiativePageShowRenderHTMLWithSuccess(): void

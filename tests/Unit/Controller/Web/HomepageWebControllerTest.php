@@ -7,19 +7,16 @@ namespace App\Tests\Unit\Controller\Web;
 use App\Controller\Web\HomepageWebController;
 use App\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class HomepageWebControllerTest extends AbstractWebTestCase
 {
     private HomepageWebController $controller;
-    private TranslatorInterface $translator;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->controller = static::getContainer()->get(HomepageWebController::class);
-        $this->translator = static::getContainer()->get(TranslatorInterface::class);
     }
 
     public function testHomePageExists(): void

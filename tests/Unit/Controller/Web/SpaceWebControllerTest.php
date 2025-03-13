@@ -13,9 +13,13 @@ use Symfony\Component\Uid\Uuid;
 
 class SpaceWebControllerTest extends AbstractWebTestCase
 {
+    private SpaceWebController $controller;
+
     protected function setUp(): void
     {
         $this->client = self::createClient();
+        $this->controller = self::getContainer()->get(SpaceWebController::class);
+        $this->controller->setContainer(self::getContainer());
     }
 
     public function testListRouteRendersHTMLSuccessfully(): void
@@ -41,22 +45,18 @@ class SpaceWebControllerTest extends AbstractWebTestCase
 
     public function testControllerGetOneMethodDirectly(): void
     {
-        $controller = self::getContainer()->get(SpaceWebController::class);
-        $controller->setContainer(self::getContainer());
-        $response = $controller->getOne(Uuid::fromString(SpaceFixtures::SPACE_ID_1));
+        $response = $this->controller->getOne(Uuid::fromString(SpaceFixtures::SPACE_ID_1));
         $this->assertInstanceOf(Response::class, $response);
         $this->assertStringContainsString('SECULT', $response->getContent());
     }
 
     public function testControllerListMethodDirectly(): void
     {
-        $controller = self::getContainer()->get(SpaceWebController::class);
-        $controller->setContainer(self::getContainer());
         $request = new Request();
         $request->attributes->set('_route', 'web_space_list');
         $requestStack = self::getContainer()->get('request_stack');
         $requestStack->push($request);
-        $response = $controller->list($request);
+        $response = $this->controller->list($request);
         $this->assertInstanceOf(Response::class, $response);
         $this->assertStringContainsString('space-card', $response->getContent());
         $requestStack->pop();
