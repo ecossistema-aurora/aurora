@@ -39,3 +39,9 @@
         </div>
     </section>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/space/opening-hours.js') }}"></script>
+{% endblock %}
+
