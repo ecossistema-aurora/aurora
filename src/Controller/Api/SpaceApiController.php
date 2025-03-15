@@ -6,6 +6,7 @@ namespace App\Controller\Api;
 
 use App\Helper\EntityIdNormalizerHelper;
 use App\Service\Interface\SpaceServiceInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ class SpaceApiController extends AbstractApiController
 {
     public function __construct(
         private readonly SpaceServiceInterface $service,
+        private readonly LoggerInterface $logger,
     ) {
     }
 
@@ -33,9 +35,19 @@ class SpaceApiController extends AbstractApiController
         return $this->json($space, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 
-    public function list(): JsonResponse
+    public function list(Request $request): JsonResponse
     {
-        return $this->json($this->service->list(), context: [
+        $params = $request->query->all();
+
+        $timeStart = microtime(true);
+
+        $spaces = $this->service->list(params: $params);
+
+        $timeEnd = microtime(true);
+
+        $this->logger->info('The time is '.$timeEnd - $timeStart);
+
+        return $this->json($spaces, context: [
             'groups' => 'space.get',
             AbstractNormalizer::CALLBACKS => [
                 'parent' => [EntityIdNormalizerHelper::class, 'normalizeEntityId'],
