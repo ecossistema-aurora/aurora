@@ -48,4 +48,53 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
 
         return $query->getResult();
     }
+
+    public function findByFilters(array $filters, array $orderBy, int $limit): array
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->orderBy('s.createdAt', $orderBy['createdAt'])
+            ->setMaxResults($limit);
+
+        $filterMappings = [
+            'name' => [
+                'condition' => fn ($qb, $value) => $qb->andWhere('s.name LIKE :name')->setParameter('name', "%$value%"),
+            ],
+            'spaceType' => [
+                'join' => ['s.spaceType', 'st'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('st.id = :spaceTypeId')->setParameter('spaceTypeId', $value),
+            ],
+            'accessibilities' => [
+                'join' => ['s.accessibilities', 'a'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('a.id = :accessibilityId')->setParameter('accessibilityId', $value),
+            ],
+            'activityAreas' => [
+                'join' => ['s.activityAreas', 'aa'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('aa.id = :activityAreaId')->setParameter('activityAreaId', $value),
+            ],
+            'tags' => [
+                'join' => ['s.tags', 't'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('t.id = :tagId')->setParameter('tagId', $value),
+            ],
+            'address' => [
+                'join' => ['s.address', 'ad'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('ad.city = :city')->setParameter('city', $value),
+            ],
+        ];
+
+        foreach ($filters as $key => $value) {
+            if (true === empty($value)) {
+                continue;
+            }
+
+            $map = $filterMappings[$key];
+
+            if (is_array($map) && isset($map['join'])) {
+                $qb->join($map['join'][0], $map['join'][1]);
+            }
+
+            $map['condition']($qb, $value);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }
