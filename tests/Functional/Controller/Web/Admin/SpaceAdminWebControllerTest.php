@@ -88,6 +88,10 @@ class SpaceAdminWebControllerTest extends AbstractAdminWebTestCase
             'name' => 'Space World',
             'maxCapacity' => 33,
             'isAccessible' => true,
+            'extraFields' => [
+                'areasOfActivity' => ['Educação', 'Saúde'],
+                'tags' => ['Inovação', 'Tecnologia'],
+            ],
         ];
 
         $this->client->request(Request::METHOD_POST, $createUrl, $formData);
@@ -104,7 +108,6 @@ class SpaceAdminWebControllerTest extends AbstractAdminWebTestCase
         $request = $this->client->request(Request::METHOD_GET, $createUrl);
 
         $form = $request->selectButton('Criar e Publicar')->form([]);
-
         $this->client->submit($form);
 
         $this->assertSelectorTextContains('.toast-body', 'The provided data violates one or more constraints.');
