@@ -641,6 +641,8 @@ view:
     message:
       deleted: The event has been deleted
       without_initiative: No initiatives linked to this event
+      created: The event has been created
+      updated: The event has been updated
     not_set_datetime: Date and time not set
     quantity:
       finished: Completed Events

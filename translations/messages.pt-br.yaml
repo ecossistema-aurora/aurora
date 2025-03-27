@@ -638,6 +638,8 @@ view:
     message:
       deleted: O Evento foi excluído
       without_initiative: Nenhuma iniciativa vinculada a este evento
+      created: O Evento foi criado
+      updated: O Evento foi atualizado
     not_set_datetime: Data e hora não definidas
     quantity:
       finished: Eventos Finalizados
