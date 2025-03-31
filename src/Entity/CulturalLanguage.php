@@ -16,15 +16,15 @@ class CulturalLanguage extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['event.get', 'event.get.item'])]
+    #[Groups(['cultural-language.get', 'cultural-language.get.item', 'event.get', 'event.get.item'])]
     private Uuid $id;
 
     #[ORM\Column(type: Types::STRING, length: 50)]
-    #[Groups(['event.get', 'event.get.item'])]
+    #[Groups(['cultural-language.get', 'cultural-language.get.item', 'event.get', 'event.get.item'])]
     private string $name;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    #[Groups(['event.get', 'event.get.item'])]
+    #[Groups(['cultural-language.get', 'cultural-language.get.item', 'event.get', 'event.get.item'])]
     private ?string $description = null;
 
     public function getId(): Uuid

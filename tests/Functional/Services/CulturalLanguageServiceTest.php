@@ -25,6 +25,38 @@ class CulturalLanguageServiceTest extends KernelTestCase
         $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
     }
 
+    public function testCreateCulturalLanguage(): void
+    {
+        $data = [
+            'id' => Uuid::v4()->toRfc4122(),
+            'name' => 'Test Language',
+            'description' => 'Test description',
+        ];
+
+        $this->service->create($data);
+
+        $culturalLanguage = $this->entityManager->find(CulturalLanguage::class, Uuid::v4()->fromRfc4122($data['id']));
+
+        self::assertNotNull($culturalLanguage);
+    }
+
+    public function testUpdateCulturalLanguage(): void
+    {
+        $culturalLanguageId = Uuid::fromString(CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_5);
+
+        $data = [
+            'name' => 'Updated Language',
+            'description' => 'Updated description',
+        ];
+
+        $this->service->update($culturalLanguageId, $data);
+
+        $culturalLanguage = $this->entityManager->find(CulturalLanguage::class, $culturalLanguageId);
+
+        self::assertEquals($data['name'], $culturalLanguage->getName());
+        self::assertEquals($data['description'], $culturalLanguage->getDescription());
+    }
+
     public function testGetCulturalLanguage(): void
     {
         $id = Uuid::fromString(CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1);
