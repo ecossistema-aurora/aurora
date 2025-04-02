@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Space;
 use App\Enum\EntityEnum;
 use App\Repository\Interface\SpaceRepositoryInterface;
+use Doctrine\DBAL\ParameterType;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -65,10 +66,6 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
         $filterMappings = $this->getFilterMappings();
 
         foreach ($filters as $key => $value) {
-            if (true === empty($value)) {
-                continue;
-            }
-
             $map = $filterMappings[$key];
 
             if (true === isset($map['join'])) {
@@ -87,6 +84,9 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
         return [
             'name' => [
                 'condition' => fn ($qb, $value) => $qb->andWhere('s.name LIKE :name')->setParameter('name', "%$value%"),
+            ],
+            'isDraft' => [
+                'condition' => fn ($qb, $value) => $qb->andWhere('s.isDraft = :isDraft')->setParameter('isDraft', $value, ParameterType::BOOLEAN),
             ],
             'spaceType' => [
                 'join' => ['s.spaceType', 'st'],
