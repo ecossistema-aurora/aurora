@@ -66,6 +66,10 @@ class Space extends AbstractEntity
     #[Groups(['space.get', 'space.get.item'])]
     private bool $isAccessible;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    #[Groups(['space.get', 'space.get.item'])]
+    private bool $isDraft = true;
+
     #[ORM\OneToOne(targetEntity: SpaceAddress::class, mappedBy: 'owner', cascade: ['persist', 'remove'])]
     #[Groups(['space.get', 'space.get.item'])]
     private ?SpaceAddress $address = null;
@@ -239,7 +243,7 @@ class Space extends AbstractEntity
         $this->maxCapacity = $maxCapacity;
     }
 
-    public function getIsAccessible(): bool
+    public function isAccessible(): bool
     {
         return $this->isAccessible;
     }
@@ -247,6 +251,16 @@ class Space extends AbstractEntity
     public function setIsAccessible(bool $isAccessible): void
     {
         $this->isAccessible = $isAccessible;
+    }
+
+    public function isDraft(): bool
+    {
+        return $this->isDraft;
+    }
+
+    public function setIsDraft(bool $isDraft): void
+    {
+        $this->isDraft = $isDraft;
     }
 
     public function setCreatedBy(Agent $createdBy): void
@@ -437,6 +451,7 @@ class Space extends AbstractEntity
             'phoneNumber' => $this->phoneNumber,
             'maxCapacity' => $this->maxCapacity,
             'isAccessible' => $this->isAccessible,
+            'isDraft' => $this->isDraft,
             'createdBy' => $this->createdBy->getId()->toRfc4122(),
             'parent' => $this->parent?->getId()->toRfc4122(),
             'address' => $this->address?->toArray(),

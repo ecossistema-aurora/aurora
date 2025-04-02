@@ -38,6 +38,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
     public function testCanCreateWithPartialRequestBody(): void
     {
         $requestBody = SpaceTestFixtures::partial();
+        $requestBody['isDraft'] = true;
 
         $client = static::apiClient();
 
@@ -61,6 +62,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'phoneNumber' => null,
             'maxCapacity' => 100,
             'isAccessible' => true,
+            'isDraft' => true,
             'address' => null,
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
@@ -74,7 +76,8 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'email' => $space->getParent()->getEmail(),
                 'phoneNumber' => $space->getParent()->getPhoneNumber(),
                 'maxCapacity' => $space->getParent()->getMaxCapacity(),
-                'isAccessible' => $space->getParent()->getIsAccessible(),
+                'isAccessible' => $space->getParent()->isAccessible(),
+                'isDraft' => $space->getParent()->isDraft(),
                 'address' => $space->getParent()->getAddress(),
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
@@ -169,7 +172,8 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'email' => $space->getEmail(),
             'phoneNumber' => $space->getPhoneNumber(),
             'maxCapacity' => $space->getMaxCapacity(),
-            'isAccessible' => $space->getIsAccessible(),
+            'isAccessible' => $space->isAccessible(),
+            'isDraft' => false,
             'address' => $space->getAddress(),
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
@@ -183,7 +187,8 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'email' => $space->getParent()->getEmail(),
                 'phoneNumber' => $space->getParent()->getPhoneNumber(),
                 'maxCapacity' => $space->getParent()->getMaxCapacity(),
-                'isAccessible' => $space->getParent()->getIsAccessible(),
+                'isAccessible' => $space->getParent()->isAccessible(),
+                'isDraft' => false,
                 'address' => $space->getParent()->getAddress(),
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
@@ -428,7 +433,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertCount(count(SpaceFixtures::SPACES), json_decode($response));
+        $this->assertCount(9, json_decode($response));
 
         /** @var Space $space */
         $space = $client->getContainer()->get(EntityManagerInterface::class)
@@ -439,7 +444,8 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'name' => 'SECULT',
             'shortDescription' => $space->getShortDescription(),
             'image' => $space->getImage(),
-            'isAccessible' => $space->getIsAccessible(),
+            'isAccessible' => $space->isAccessible(),
+            'isDraft' => false,
             'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
@@ -523,7 +529,8 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'email' => $space->getEmail(),
             'phoneNumber' => $space->getPhoneNumber(),
             'maxCapacity' => $space->getMaxCapacity(),
-            'isAccessible' => $space->getIsAccessible(),
+            'isAccessible' => $space->isAccessible(),
+            'isDraft' => false,
             'address' => null,
             'createdBy' => [
                 'id' => '84a5b3d1-a7a4-49a6-aff8-902a325f97f9',
@@ -540,6 +547,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'phoneNumber' => $space->getParent()->getPhoneNumber(),
                 'maxCapacity' => 100,
                 'isAccessible' => true,
+                'isDraft' => false,
                 'address' => [
                     'id' => 'b8636a9e-3906-4751-b4a9-7a24995813aa',
                     'street' => 'Avenida das Oliveiras',
@@ -724,7 +732,8 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'email' => $space->getEmail(),
             'phoneNumber' => $space->getPhoneNumber(),
             'maxCapacity' => $space->getMaxCapacity(),
-            'isAccessible' => $space->getIsAccessible(),
+            'isAccessible' => $space->isAccessible(),
+            'isDraft' => false,
             'address' => [
                 'id' => 'fd64752a-c7ed-44ff-b092-44076dea4b4c',
                 'street' => 'Avenida Central',
@@ -747,6 +756,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'phoneNumber' => $space->getParent()->getPhoneNumber(),
                 'maxCapacity' => 100,
                 'isAccessible' => true,
+                'isDraft' => false,
                 'address' => null,
                 'createdBy' => [
                     'id' => AgentFixtures::AGENT_ID_1,
@@ -886,6 +896,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'phoneNumber' => $space->getPhoneNumber(),
             'maxCapacity' => 100,
             'isAccessible' => true,
+            'isDraft' => false,
             'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
@@ -1080,6 +1091,12 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'requestBody' => array_merge($requestBody, ['isAccessible' => 'invalid']),
                 'expectedErrors' => [
                     ['field' => 'isAccessible', 'message' => 'This value should be of type boolean.'],
+                ],
+            ],
+            'isDraft should be boolean' => [
+                'requestBody' => array_merge($requestBody, ['isDraft' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'isDraft', 'message' => 'This value should be of type boolean.'],
                 ],
             ],
         ];

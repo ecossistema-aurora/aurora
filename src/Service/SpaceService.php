@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\SpaceDto;
+use App\DTO\SpaceFilterDto;
 use App\Entity\Agent;
 use App\Entity\Space;
 use App\Enum\EntityEnum;
@@ -99,6 +100,8 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
     public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
+        $filters = $this->validateInput($params, SpaceFilterDto::class);
+
         if (true === array_key_exists('associationWith', $params)) {
             return $this->repository->findByNameAndEntityAssociation(
                 name: $params['name'] ?? null,
@@ -108,7 +111,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         }
 
         return $this->repository->findByFilters(
-            filters: $params,
+            filters: $filters,
             orderBy: ['createdAt' => $order],
             limit: $limit
         );

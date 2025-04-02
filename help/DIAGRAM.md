@@ -123,13 +123,26 @@ direction BT
        agent_id  /* (DC2Type:uuid) */ uuid
     }
     class space {
-       varchar(100) name
-       created_by_id  /* (DC2Type:uuid) */ uuid
-       parent_id  /* (DC2Type:uuid) */ uuid
-       created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
-       timestamp(0) updated_at
-       timestamp(0) deleted_at
-       id  /* (DC2Type:uuid) */ uuid
+        varchar(100) name
+        varchar(255) image
+        varchar(255) short_description
+        text long_description
+        varchar(255) cover_image
+        varchar(255) site
+        varchar(255) email
+        varchar(20) phone_number
+        integer max_capacity
+        boolean is_accessible
+        social_networks json
+        extra_fields json
+        boolean is_draft
+        space_type_id /* (DC2Type:uuid) */ uuid
+        created_by_id  /* (DC2Type:uuid) */ uuid
+        parent_id  /* (DC2Type:uuid) */ uuid
+        created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
+        timestamp(0) updated_at
+        timestamp(0) deleted_at
+        id  /* (DC2Type:uuid) */ uuid
     }
     class phase_reviewers {
        phase_id  /* (DC2Type:uuid) */ uuid

@@ -88,7 +88,7 @@ city_id: City ID
 city_code: City Code
 check: Check
 claim-ownership: Claim Ownership
-clean_filter: Clean Filter
+clean_filter: Clean Filters
 close: Close
 closes_at: Closes at
 close_registration: Registration closed
@@ -482,6 +482,8 @@ start_now: Start Now
 start_date: Start date
 state: State
 status: Status
+status_draft: Draft
+status_published: Published
 street: Street
 suggestions: Suggestions
 subscribe: Subscribe
