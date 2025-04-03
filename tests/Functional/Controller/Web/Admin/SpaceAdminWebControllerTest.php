@@ -40,8 +40,9 @@ class SpaceAdminWebControllerTest extends AbstractAdminWebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', $this->translator->trans('my_spaces'));
         $this->assertSelectorTextContains('tr  th:nth-of-type(1)', $this->translator->trans('name'));
-        $this->assertSelectorTextContains('tr  th:nth-of-type(2)', $this->translator->trans('created_at'));
-        $this->assertSelectorTextContains('tr  th:nth-of-type(5)', $this->translator->trans('actions'));
+        $this->assertSelectorTextContains('tr  th:nth-of-type(2)', $this->translator->trans('status'));
+        $this->assertSelectorTextContains('tr  th:nth-of-type(3)', $this->translator->trans('created_at'));
+        $this->assertSelectorTextContains('tr  th:nth-of-type(6)', $this->translator->trans('actions'));
     }
 
     public function testControllerListMethodDirectly(): void
@@ -109,7 +110,7 @@ class SpaceAdminWebControllerTest extends AbstractAdminWebTestCase
 
         $request = $this->client->request(Request::METHOD_GET, $createUrl);
 
-        $form = $request->selectButton('Criar e Publicar')->form([]);
+        $form = $request->selectButton('Criar em Rascunho')->form([]);
 
         $this->client->submit($form);
 
