@@ -6,11 +6,13 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\SpaceTimeline;
 use App\DocumentService\InitiativeTimelineDocumentService;
+use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -27,6 +29,7 @@ class InitiativeAdminController extends AbstractAdminController
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(): Response
     {
         $agents = $this->agentService->findBy();
@@ -38,6 +41,7 @@ class InitiativeAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function store(Request $request): Response
     {
         $this->validCsrfToken(self::CREATE_FORM_ID, $request);
@@ -73,6 +77,7 @@ class InitiativeAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_initiative_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $initiatives = $this->service->findBy();
@@ -84,6 +89,10 @@ class InitiativeAdminController extends AbstractAdminController
 
     public function remove(?Uuid $id): Response
     {
+        $initiative = $this->service->get($id);
+
+        $this->denyAccessUnlessGranted('remove', $initiative);
+
         $this->service->remove($id);
 
         $this->addFlash('success', 'Initiative removed');
@@ -93,10 +102,14 @@ class InitiativeAdminController extends AbstractAdminController
 
     public function timeline(Uuid $id): Response
     {
+        $initiative = $this->service->get($id);
+
+        $this->denyAccessUnlessGranted('get', $initiative);
+
         $events = $this->documentService->getEventsByEntityId($id);
 
         return $this->render('initiative/timeline.html.twig', [
-            'initiative' => $this->service->get($id),
+            'initiative' => $initiative,
             'events' => $events,
         ]);
     }
@@ -104,6 +117,8 @@ class InitiativeAdminController extends AbstractAdminController
     public function edit(Uuid $id): Response
     {
         $initiative = $this->service->get($id);
+
+        $this->denyAccessUnlessGranted('edit', $initiative);
 
         return $this->render('initiative/edit.html.twig', [
             'initiative' => $initiative,

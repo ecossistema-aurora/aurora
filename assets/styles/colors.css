@@ -17,7 +17,7 @@
     --bg-all: #e0e0e0;
     --snow-mist: #F7F7F7;
     --medium-gray: #666;
-    --deep-teal: #117C83;
+    --deep-teal: #17459E;
     --bg-icon-circle: #1976d2;
     --bg-initiative: #8E46B4;
     --faq-color: #FFD699;
@@ -39,4 +39,12 @@
     --graphite: #8A8A8A;
     --cloud-gray: #CCCCCC;
     --border-gray: #757575;
+    --bs-primary: #17459E !important;
+    --bs-primary-hover: #133a87 !important;
+    --bs-primary-rgb: 23, 69, 158;
+    --bs-primary-hover-rgb: 18, 54, 124;
+    --bs-link-color-rgb: var(--bs-primary-rgb);
+    --bs-link-hover-color-rgb: var(--bs-primary-hover-rgb);
+    --bs-link-color: var(--bs-primary);
+    --bs-link-hover-color: var(--bs-primary-hover);
 }

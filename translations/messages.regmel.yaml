@@ -1,0 +1,1144 @@
+actions_in_priority_territory: Haverão ações da iniciativa em algum território prioritário?
+add: Adicionar
+add_occurrence: Adicionar Ocorrência
+address_complement: Complemento
+address_data: Dados de endereço
+add_alternative_address: Adicionar endereço alternativo
+add_cover_image: Adicionar imagem de capa
+add_opening_hours: Adicionar horário de funcionamento
+add_phase: Adicionar Fase
+add_specific_objective: Adicionar Objetivo Específico
+adapted_bathroom: Banheiro adaptado
+account_confirmation: Confirmar conta
+account_confirmed: Conta confirmada
+account_privacy: Conta e Privacidade
+account_settings: Configurações da conta do usuário
+access: Acessar
+accessibility: Acessibilidade
+access_main_agent: Acesse agente principal
+access_ramp: Rampas de acesso
+accountability: Prestações de Conta
+accompany: Acompanhar
+accepted: Aceito
+action: Ação
+actions: Ações
+activity: Atividade
+active: Ativo
+activity_area: Área de atuação
+activity_created: Área de atuação foi criada
+activity_deleted: Área de atuação foi excluída
+activity_updated: Área de atuação foi atualizado
+area_of_activity: Área de Atuação
+activity_area_register: Criar nova Área de Atuação
+architectural_accessibility: Acessibilidade Arquitetônica
+accept_terms: Aceite os termos
+address: Endereço
+administration: Administração
+agent: Agente
+agents: Agentes
+agent_name: Nome do Agente
+answer: Resposta
+age_rating: Classificação etária
+ages_rating:
+    all: Livre
+    ten: 10 anos
+    twelve: 12 anos
+    fourteen: 14 anos
+    sixteen: 16 anos
+    eighteen: 18 anos
+agent_information: Informações do Agente
+all: Tudo
+all_cities: Todas as cidades
+all_regions: Todas as regiões
+all_states: Todos os estados
+all_types: Todos os tipos
+all_status: Todos os status
+allow_free_linking: Permitir livre vinculação com
+allowed: Com permissão
+admin_options: Opções do Administrador
+add_archive: Adicione
+archive: Arquivar
+architectural: Arquitetônica
+architectural_accessibility_offers: Oferece acessibilidade física
+archives: Arquivos
+archived: Arquivados
+archive_project: Arquivo do Projeto
+areas_of_expertise: Áreas de Atuação
+areas_of_interest: Áreas de interesse
+areas_information: Informações da Área
+areas_intervention: Áreas de intervenção
+areas_polygon: Área estimada da poligonal
+analysis: Período de Análise
+auditory: Auditiva
+auth: Autenticação
+available_name: Nome não disponível
+available_type: Tipo não informado
+available_description: Descrição não disponível
+available_address: Endereço não informado
+asian: Amarelo
+apply_filter: Aplicar Filtros
+attachments_and_links: Anexos e links
+attitudinal_accessibility: Acessibilidade atitudinal
+audio_description: Áudio descrição
+awaiting: Aguardando
+awaiting_confirmation: Aguardando Confirmar Conta
+
+back: Voltar
+birth_date: Data de nascimento
+black: Preta
+blocked: Bloqueado
+
+calendar: Calendário
+cancel: Cancelar
+capacity_accessibility: Capacidade e Acessibilidade
+category: Categoria
+change_details: Detalhes das Mudanças
+changed_password: A sua senha foi alterada
+cep: CEP
+city: Cidade
+city_id: ID da cidade
+city_code: Código da cidade
+cisgender: Cisgênero
+check: Conferir
+claim-ownership: Reivindicar Propriedade
+clean_filter: Limpar todos os filtros
+close: Fechar
+closes_at: Fecha às
+close_registration: Inscrições encerradas
+click_here: Clique aqui
+connections: Conexões
+confirm: Confirmar
+confirm_password: Confirmar senha
+confirm_user: Confirmar Usuário
+continue: Continuar
+contribute: Contribua
+control_panel: Painel de Controle
+completed: Finalizados
+coming_soon: Em breve
+cover_image: Imagem de capa
+copy_id: Copiar ID
+cpf: CPF
+cnpj: CNPJ
+configure: Configurar
+create: Criar
+create_and_publish: Criar e Publicar
+create_in_draft: Criar em Rascunho
+create_account: Faça sua Inscrição
+create_company: Empresa criada com sucesso!
+create_municipality: Município criado com sucesso!
+created_at: Criado em
+created_by: Criado por
+created_in: Criado em
+chain: Corrente
+change_email: Alterar email
+change_password: Alterar Senha
+communicational_accessibility: Acessibilidade comunicacional
+contact: Contato
+contacts: Contatos
+companies: Empresas
+company: Empresa
+company_name: Razão Social
+company_data: Dados da Empresa/OSC
+company_register: Cadastrar uma Empresa/OSC
+company_created: Empresa/OSC criada com sucesso. Veja no seu email o link para confirmar sua conta.
+cost_household: Custo médio por domicílio
+cultural_language: Linguagem cultural
+cultural_languages: Linguagens culturais
+
+date: Data
+date_created: Data de criação
+dashboard: Painel de Controle
+datetime: Data e hora
+describe: Descreva
+device_description: Navegador {browser} em um dispositivo {operationalSystem}
+draft: Em rascunho
+delete: Excluir
+details: Detalhes
+deleted: Excluídos
+description: Descrição
+device: Dispositivo
+discover: Descubra
+documents: Termos de Adesão
+does_not_expire: não expira
+download_all_terms: Baixar todos os termos
+downloadable-files: Arquivos para download
+download_archive: Baixar arquivo KML/KMZ/SHP
+organization_duplicate: Este município já foi credenciado. Entre em contato com %s para mais informações.
+
+edit: Editar
+edit_event: Editar Evento
+edit_faq: Editar FAQ
+edit_initiative: Editar Iniciativa
+edit_seals: Editar Selos
+edit_space: Editar Espaços
+edit_activity_area: Editar Área de Atuação
+edit_data: Editar dados
+edit_municipality: Editar Município
+edit_company: Editar Empresa/OSC
+email: Email
+entity_banner: Banner da Entidade
+entity: Entidade
+enter_event: Digite o nome do evento
+enter_initiative: Digite o nome da iniciativa
+enter_opportunity: Digite o nome da oportunidade
+enter_organization: Digite o nome do Município
+enter_space: Digite o nome do espaço
+entry_fee: Taxa de Inscrição
+end_date: Data de término
+event: Evento
+events: Eventos
+events_month_year: Eventos de {month} de {year}
+event_types:
+  in_person: Presencial
+  online: Online
+  hybrid: Híbrido
+everybody: Todos
+evidences: Evidências
+elderly_person: Pessoa idosa
+execution_period: Período de execução
+explore_repository: Conheça o repositório
+export_csv: Exportar CSV
+extra_fields: Campos extras
+export_project_file: Baixar Arquivos Geográficos
+export_map_file: Baixar Áreas Poligonais
+elevator: Elevador
+estimated_polygon: Área estimada da poligonal
+
+faq: FaQ
+file: Anexar arquivo
+filter: Filtros
+field: Campo
+financial: Financeiro
+first_name: Nome
+last_name: Sobrenome
+feminine: Feminino
+functions: Gerenciar funções
+fundamental: Fundamental
+future_registration: Inscrições futuras
+full_name: Nome completo
+free: Grátis
+form: Formulário
+from: De
+from_to: Para
+from_to_date: Até
+
+gallery: Galeria
+gender: Selecione o Gênero
+general_data: Dados gerais
+general_information: Informações gerais
+general_objective: Objetivo Geral
+general_objective_description: Descrição do Objetivo Geral
+global_proposal: Valor Global da Proposta
+
+happening_now: Acontecendo agora
+help: Ajuda
+help_privacy: Ajuda e privacidade
+home: Início
+how_measures_will_be_implemented: Como essas medidas de acessibilidades serão implementadas ou disponibilizadas de acordo com o projeto proposto
+
+identification_number: Número identificador
+illustration: Ilustração
+image: Imagem
+images: Imagens
+image_gallery: Adicionar fotos na galeria
+indicators: Indicadores
+indigenous: Indígena
+initiative: Iniciativa
+initiative_data: Dados da Iniciativa
+initiatives: Iniciativas
+in_progress: Em andamento
+input_search: Busque por palavras-chave
+inscriptions: Inscrições
+introduction: Apresentação
+inactive: Inativo
+invite_accept: Convite aceito, Veja no seu email o link para confirmar sua conta,
+invite_invalid: Convite invalido
+invite_sent: Convite enviado
+invite_to_municipality: Convite para município
+invite_to_company: Convite para empresa
+invite_not_belongs_to_you: Esse convite não pertence a você
+this_member_belongs_to_organization: Esse membro pertence a organização
+is_itinerant: É agente itinerante?
+is-accessible: O espaço é acessível?
+invalid_credentials: E-mail ou senha incorretos
+invite_created: Cadastro realizado com sucesso. Veja no seu email o link para confirmar sua conta.
+Invite was accepted: Convite foi aceito
+Invite was sent: Convite foi enviado
+information_location: Informações de localização
+improvement_municipality: O município possui experiência com programas e/ou iniciativas de melhorias habitacionais?
+
+join_terms: Termos de Adesão
+
+language: Idioma
+lastname: Sobrenome
+last_login: Último Login
+last_updated: Última atualização
+libras: Libras
+linked_with: Vinculado com
+list: Lista
+link: Adicionar link
+link_description: Descrição do link
+links: Links
+local: Local
+locate_yourself: Localize-se
+location: Localização
+login: Entrar
+login-account: Entrar na minha conta
+logo: Logo
+logout: Sair
+long_description: Descrição longa
+lgpd_modal: Política de Privacidade e Proteção de Dados (LGPD)
+legal_information: Informações legais
+
+map: Mapa
+management: Gerenciamento de Entidades
+manager_name: Administrador SNP
+mandatory_fields: Campos marcados com asterisco são de preenchimento obrigatório.
+masculine: Masculino
+maroons: Quilombola
+maximum_capacity: Capacidade máxima de pessoas
+max-capacity: Capacidade máxima do espaço
+max_capacity: Capacidade máxima
+mark_as_read: Marcar como lida
+mei: MEI (CNPJ do MEI)
+menu: Menu do Painel de Controle
+medium: Médio
+member_details: Detalhes do membro
+message: Mensagem
+months: meses
+most_recent: Mais Recente
+municipality: Município
+municipality_found: Município não encontrado
+municipality_created: Município criado com sucesso. Veja no seu email o link para confirmar sua conta.
+my_account: Minha Conta
+my_agents: Meus Agentes Promotores
+my_apps: Meus Aplicativos
+my_events: Meus Eventos
+my_faqs: Minhas FAQs
+my_initiatives: Minhas Iniciativas
+my_opportunities: Meus Credenciamentos
+my_organizations: Meus Municípios
+my_profile: Meu Perfil
+my_spaces: Meus Espaços
+my_subscriptions: Minhas Inscrições
+my_reviews: Minhas Avaliações
+my_municipalities: Meus Municípios
+modified_by: Modificado por
+
+name: Nome
+name_space: Nome do espaço
+name_event: Nome do evento
+name_opportunity: Nome da oportunidade
+name_organization: Nome do Município
+name_initiative: Nome da iniciativa
+name_phases: Nome da fase
+neighborhood: Bairro
+next: Próximo
+new_phase: Nova Fase
+notifications: Notificações
+no: Não
+no_inform: Não Informar
+no_phase: Nenhuma fase disponível
+no_site: Sem Site
+no_type: Sem Tipo
+no_address: Sem endereço
+no_title: Sem título
+no_description: Sem descrição
+no_image: Imagem não disponível
+no_languages: Nenhum idioma cadastrado
+no_cultural_languages: Nenhuma linguagem cultural cadastrada.
+no_areas: Nenhuma área cadastrada
+no_accessibility: Nenhuma acessibilidade registrada
+no_seals: Nenhum selo registrado
+none_area_specified: Nenhuma área especificada
+no_data_found: Nenhum dado encontrado
+not_informed: Não informado
+not_sent: Não enviadas
+notice: EDITAL
+notice2: Aviso
+no_records_found: Nenhum registro encontrado
+number_address: Número
+number_households: Número de domicílios
+
+of: de
+offers_architectural_accessibility: Oferece acessibilidade física
+official_events: Eventos Oficiais
+official_spaces: Espaços Oficiais
+official_registration: Editais oficiais
+old: antigo
+oldest: Mais Antigo
+order: Ordenar por
+organization: Município
+other_options: Outras Opções
+opened_registrations: Inscrições abertas
+opens_at: Abre às
+opening-hours: Horário de funcionamento
+opportunity: Oportunidade
+opportunities: Oportunidades
+organizations: Municípios
+organization_data: Dados do Município
+organization_register: Cadastrar um Município
+orientation: Selecione a Orientação Sexual
+other_files: Outros arquivos
+other_information: Outras informações
+organization_with_profit: Organização com fins lucrativos
+organization_without_profit: Organização sem fins lucrativos
+owner: Proprietário
+
+pardo: Pardo
+paid: Pago
+people: Pessoas
+people_capacity: Capacidade de pessoas
+period: Período
+permissions: Permissões
+portfolio: Portfólio
+previous: Anterior
+privacy: Privacidade
+profile: Perfil
+provided_violates: Os dados fornecidos violam uma ou mais restrições.
+password: Senha
+password_strength: Força da senha
+password_rules:  A senha deve conter pelo menos 8 caracteres, incluindo 1 letra maiúscula, 1 minúscula, 1 número e 1 caractere especial.
+participants: Participantes
+personal_data: Dados pessoais
+person_disabled: Pessoa com Deficiência
+presentation_information: Informações de apresentação
+postgraduate: Pós-graduação
+phone: Telefone
+phone_for_information: Telefone para informações
+photo: Foto
+phase: Fase
+phases: Fases
+phase_name: Nome da fase
+phase_description: Descrição da fase
+phase_success: Fase criada com sucesso
+phase_error: Erro ao criar a fase
+phase_timeline: Timeline da fase
+physical: Física
+physical_accessibility: Recursos de acessibilidade física
+position: Cargo
+postal_code: CEP
+private_email: Email privado
+private_phone: Telefone privado (com DDD)
+profile_picture: Foto de Perfil
+profile_of_public: Perfil do Público
+projects: Projetos
+project_value: Valor do projeto
+project_information: Informações do Projeto
+promotion: Divulgação
+promotion_strategy: Estratégia de divulgação
+proponent_information: Informações do proponente
+proposals: Propostas
+public: Público
+public_data_notice: Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+public_email: Email público
+public_information: Informações públicas
+public_phone: Telefone Público
+published: Publicados
+published-by: Publicado por
+plhis: O município possui Plano Local de Habitação de Interesse Social (PLHIS)?
+
+question_register: Cadastrar Pergunta
+question: Pergunta
+
+riverside: Ribeirinha
+recent_registrations: Inscrições recentes
+recently_modified: Modificados recentemente
+reference_point: Complemento ou ponto de referência
+register: Cadastro
+region: Região
+registration_date: Data de inscrição
+registration_info: Informações sobre a inscrição
+related-agents: Agentes Relacionados
+required_field: Este campo é obrigatório.
+report: Denúncia
+responsible_agent: Agente Responsável
+reset: Redefinir
+reset_password: Redefinir Senha
+read_notifications: Notificações Lidas
+new_registration_notification: Uma nova organização foi credenciada
+resend_term_notification: Um novo termo de adesão foi enviado
+results: Resultados
+roles: Perfis
+ROLE_USER: Usuário Padrão
+ROLE_COMPANY: Administrador de Empresa
+ROLE_MUNICIPALITY: Administrador de Município
+ROLE_MANAGER: Gestor
+ROLE_ADMIN: Administrador Geral
+ROLE_SNP: Administrador SNP
+rejected: Rejeitado
+
+selection: Seleção
+
+tags: Tags
+term: Termo
+terms: Termos
+term_form: Termo de Adesão
+term_version: Versão dos Termos
+term_status: Status dos Termos
+term_approved: Termo de adesão aprovado
+term_rejected: Termo de adesão reprovado
+term_updated_at: Última atualização do termo de adesão
+title: Titulo
+transsexual: Transexual
+transvestite: Travesti
+theater: Teatro
+The resource was created: A entidade foi criada
+The resource was updated: A entidade foi atualizada
+The resource was deleted: A entidade foi excluída
+password.too_weak: A senha é muito fraca. Use pelo menos 8 caracteres, incluindo números e letras.
+to: até
+type: Tipo
+type_here: Digite aqui
+type_agent: Tipo de agente
+type_opportunity: Tipo da oportunidade
+type_initiative: Tipo da iniciativa
+type_organization: Tipo do Município
+type_space: Tipo do espaço
+total_value: Valor total
+
+user: Usuário
+users: Usuários
+user_cpf: CPF do Usuário
+user_data: Dados do Usuário
+user_email: Email do Usuário
+user_name: Nome do Usuário
+user_password: Senha do Usuário
+user_position: Cargo do Usuário
+user_information: Informações do Usuário
+user_edit_data: Edição de dados do usuário
+unread_notifications: Notificações Não Lidas
+user_associated: Usuário sem agente associado
+updated_at: Atualizado em
+
+view_all: Ver todas
+view_file: ver arquivo
+video: vídeo
+visualization: Visual
+view_changes: Visualizar alterações
+
+save: Salvar
+save_and_publish: Salvar e Publicar
+save_draft: Salvar como rascunho
+save_share: Salvar e Compartilhar
+savings: Poupança
+share: Compartilhar
+short_presentation: Apresentação Curta
+seals: Selos
+seals_name: Nome do Selo
+seals_description: Descrição do Selo
+search: Buscar
+select_bank: Selecione o banco
+select_education: Selecione a sua Escolaridade
+select_state: Selecione o Estado
+select_municipality: Selecione o Município
+select_race: Selecione a Raça/Cor
+select_day: Selecione o dia
+select: Selecione
+select_agent: Selecione o agente
+seal_name: Nome do Selo
+send: Enviar
+send_message: Enviar mensagem
+sent: Enviadas
+see_all: ver tudo
+see_how: Visualizar como
+see_more: Ver mais
+see_phase: Ver fase
+short_description: Descrição curta
+showing: Exibindo
+site: Site
+social_media: Redes sociais
+sort_by: Ordenar por
+social_name: Nome Social
+space: Espaço
+space_type: Tipo de Espaço
+spaces: Espaços
+specific_objective: Objetivo Específico
+specific_objective_description: Descrição do Objetivo Específico
+specify_priority_territory: Especifique o território prioritário
+special_handrail: Corrimão especial
+start_now: Comece agora
+start_date: Data de início
+state: Estado
+status: Status
+statuses: Todos os status
+street: Logradouro
+subscribe: Inscreva-se
+subsites: Subsites
+suggestions: Sugestões
+
+your_name: Digite seu nome
+your_question: Escreva sua pergunta
+
+higher: Superior
+
+welcome: Olá
+welcome_reset_password: Ative sua conta redefinindo a senha
+week_days: Dias da semana
+where: Onde
+white: Branca
+work_plan: Plano de trabalho
+what_mean: O que significa?
+
+yes: Sim
+your_notifications: Você não tem novas notificações
+
+#months
+January: Janeiro
+February: Fevereiro
+March: Março
+April: Abril
+May: Maio
+June: Junho
+July: Julho
+August: Agosto
+September: Setembro
+October: Outubro
+November: Novembro
+December: Dezembro
+
+#days
+sunday: Domingo
+monday: Segunda-feira
+tuesday: Terça-feira
+wednesday: Quarta-feira
+thursday: Quinta-feira
+friday: Sexta-feira
+saturday: Sábado
+
+#components
+
+accept-policies:
+  accept-all: Aceitar todos
+  description: Para criar o seu perfil é necessário ler e aceitar os termos, políticas e autorizações para utilização da plataforma, que serão encaminhados a você por e-mail. Ao aceitar, você estará concordando com todos.
+  image: Autorização de Uso de Imagem
+  privacy: Política de privacidade
+  terms: Termos e condições de uso
+  title: Aceite de políticas
+
+modal_confirm_remove:
+  message: Esta ação é irreversível, tem certeza que deseja continuar?
+
+footer:
+  and_developed: utilizando a tecnologia
+  contact_support: ''
+  control_panel: Painel de controle
+  help: Precisa de ajuda?
+  image_authorization: Autorização de uso de imagem
+  notices_opportunities: Editais e Oportunidades
+  platform_created: Plataforma desenvolvida pela
+  privacy_policy: Termos de uso e Política de privacidade
+  send_email: Envie um email para
+  visit_repository: visite o repositório
+
+table:
+  type_a_keyword: Digite uma palavra-chave...
+  no_records_found: Nenhum registro encontrado
+  error: Ocorreu um erro ao buscar os dados
+
+#pages
+view:
+  user:
+    create: Criar Usuário
+    message:
+      created: O usuário foi criado com sucesso
+      updated: O usuário foi atualizado
+      confirmed: O usuário foi confirmado
+      not_confirmed: Não foi possível confirmar o usuário
+      confirm_question: Deseja confirmar este usuário?
+
+  faq:
+    description: Perguntas Frequentes
+    answer_1: Aqui você encontra informações sobre como participar e acompanhar resultados.
+    answer_2: Aqui você encontra informações sobre como criar sua conta.
+    answer_3: Aqui você encontra informações sobre como participar e acompanhar resultados.
+    categories: Confira todas as dúvidas mais frequentes agrupadas em categorias disponíveis para que você possa consultar.
+    illustration: Ilustração
+    looking: Não encontrou o que procurava?
+    question_1: Inscrições em Editais e Oportunidades?
+    question_2: Como se cadastrar?
+    question_3: Inscrições em Editais e Oportunidades
+    title: Está com dúvidas?
+    send: Ou envie um email para
+    subtitle: Veja nossas dúvidas frequentes
+    support: para falar com nossa equipe de suporte por chat.
+    message:
+      deleted: A pergunta foi excluída
+      created: A pergunta foi criada com sucesso
+      updated: A pergunta foi atualizada
+
+  faq_edit:
+    description_faq: Descrição da FAQ que pode ser editada.
+    found_faq: Nenhuma FAQ encontrada.
+
+  agent:
+    access: Acessar agente
+    create: Criar um agente
+    message:
+      deleted: O Agente foi excluído
+      created: Novo Agente criado
+    quantity:
+      total: Agentes Encontrados
+      culture: Agentes Culturais
+      inactive: Agentes Inativos
+      last_days: Registrados nos últimos 7 dias
+    areas_of_expertise: Áreas de Atuação
+    collective_agents: Agentes Coletivos
+    individual_agents: Agentes Individuais
+
+  agent_profile:
+    organizations_of: Municípios de
+    initiative_photo: Foto da Iniciativa
+    space_photo: Foto do Espaço
+    event_photo: Foto do Evento
+    organization_photo: Foto do Município
+    profile_change_history: Histórico de alterações do perfil
+    report: Denunciar
+    roles_in_culture: Funções na Cultura
+    view_opportunities: Ver Oportunidades
+    no_registrations_message: Nenhuma inscrição encontrada.
+
+  agent_create:
+    creation_individual_agent: Criação de agente individual
+    agent_information: Informações do Agente
+    mandatory_fields_message: Os campos marcados com asterisco são de preenchimento obrigatório. Os dados inseridos abaixo serão exibidos para todos os usuários.
+    add_cover_image: Adicionar Imagem à Capa
+    add_profile_image: imagem de perfil
+    agent_name: Nome do Agente
+    add_new: Adicionar nova
+    short_bio: Mini bio
+    inform_your_role_in_culture: Informe sua função na cultura
+    add_social_media: Adicionar redes sociais
+    personal_data: Dados pessoais
+    personal_data_warning: Não se preocupe, esses dados não serão exibidos publicamente
+    social_name: Nome Social
+    public_email: Email público
+    private_phone_1: Telefone privado 1 com DDD
+    private_phone_2: Telefone privado 2 com DDD
+    complement_or_reference_point: Complemento ou ponto de referência
+    public_location: Localização pública
+    public_location_info: Marque o campo acima para tornar o endereço público ou deixe desmarcado para manter o endereço privado.
+    administered_by: Administrado por
+    related_agents: Agentes Relacionados
+    add_new_agent_group: Adicionar novo grupo de agentes
+    add_group: Adicionar grupo
+    error_length: O campo deve ter entre {min} e {max} caracteres.
+
+  authentication:
+    error:
+      already_logged_in: Você já está logado.
+      age_rating_valid: Você deve selecionar uma classificação etária válida.
+      email_in_use: Já existe um usuário com o email informado.
+      error_message: Ocorreu um erro ao tentar criar a conta.
+      first_name_length: O nome deve ter entre 2 e 50 caracteres.
+      invalid_email: Insira um email válido com até 100 caracteres.
+      invalid_password: A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, símbolos e números.
+      last_name_length: O sobrenome deve ter entre 2 e 50 caracteres.
+      password_mismatch: As senhas não correspondem.
+      cpf_invalid: Insira um CPF válido.
+      cnpj_invalid: Insira um CNPJ válido.
+      phone_invalid: Insira um número de telefone válido.
+      account_not_confirmed: Conta não confirmada
+
+    forgot_password: Esqueci minha senha
+    paragraph: Entre com a sua conta
+
+    forgot:
+      forgot_your_password: Esqueceu a sua senha?
+      paragraph: Informe seu e-mail cadastrado, enviaremos as instruções de redefinição de senha.
+      success: Sua senha foi redefinida com sucesso!
+      link_sent_to_email: Link de recuperação enviado ao e-mail!
+
+    password_reset:
+      define_your_new_password: Defina sua nova senha.
+
+    register:
+      opportunity_type: Tipo de Credenciamento
+      no_opportunities: Não existe nenhum credenciamento disponivel no momento
+      create_account: Criar conta
+      paragraph: Siga os passos para completar o seu cadastro na plataforma
+      password_info_1: A senha deve ter
+      password_info_2: 8 caracteres, um número, um caractere especial (! @ \# $ & *), pelo menos uma letra maiúscula uma minúscula
+
+      profile:
+        add_other_area: Adicionar
+        creation: Criação do Perfil
+        creation_info: Para finalizar o seu cadastro, é necessário criar seu Perfil de Agente Cultural. Um Agente Cultural é qualquer pessoa que tenha envolvimento com a área da cultura. Este perfil será público e integrará o Mapa da Cultura brasileira, onde será possível acessar informações e projetos culturais relacionados. Dê um nome, faça uma breve descrição sobre sua relação com a cultura e selecione suas principais áreas de atuação, para completar o seu cadastro. Será possível editar as informações posteriormente.
+        description: Uma breve descrição sobre você.
+        name_info: As pessoas irão encontrar você por esse nome.
+        select_areas: Selecione pelo menos uma área de atuação
+
+  entities:
+    change_history: histórico de alterações
+    report: denunciar
+    message:
+      required_fields: Preencha todos os campos obrigatórios.
+
+  event:
+    access: Acessar evento
+    create_event:
+      create: Criar um evento
+      description: Crie um evento com informações básicas e de forma rápida.
+      error:
+        user_not_logged: Para criar um evento é necessário estar logado.
+      short_bio: Adicione uma breve descrição do evento.
+    edit:
+      subtitle: Subtítulo do evento
+      add_occurrence_details: Adicione data, hora e local da ocorrência do seu evento. Você pode criar várias ocorrências com informações diferentes. Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+      event_date_time_location: Data, hora e local do evento
+      event_information: Informações sobre o evento
+    format_datetime: d/m/Y \à\s h:i:s
+    id: ID do evento
+    message:
+      deleted: O Evento foi excluído
+      without_initiative: Nenhuma iniciativa vinculada a este evento
+      created: O Evento foi criado
+      updated: O Evento foi atualizado
+    not_set_datetime: Data e hora não definidas
+    quantity:
+      finished: Eventos Finalizados
+      last_days: Registrados nos últimos 7 dias
+      opened: Eventos em Andamento
+      total: Eventos Encontrados
+
+  homepage:
+    add_events: Coloque seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Plataforma Minha Casa Melhor você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.
+    api_info: Você pode usar a API para acessar os dados públicos no nosso banco de dados e utilizá-los para desenvolver aplicações externas. Além disso, também é possível contribuir com o software livre Plataforma Minha Casa Melhor direto no GitHub.
+    check_opportunities: Confira as Oportunidades
+    cultural_scene: Fique por dentro de tudo que está acontecendo no cenário cultural do Ceará!
+    contribute_Plataforma Minha Casa Melhor: Contribua com o Plataforma Minha Casa Melhor
+    discover_places: Descubra os lugares em que as atividades culturais acontecem. E aproveite para cadastrar o seu espaço no radar artístico e cultural.
+    entities: O que você encontra aqui no
+    find_initiatives: Encontre leis de fomento, convocatórias, mostras e editais de seu interesse ou publique suas iniciativas para toda a comunidade.
+    find_nearby: Encontre as atividades que estão próximas a você.
+    free_software_info: Sabia que a Plataforma Minha Casa Melhor é um software livre?
+    register_access: Faça a sua inscrição e acesse os resultados de editais, oficinas, prêmios e concursos. Você também pode criar o seu próprio formulário e divulgar uma oportunidade.
+    register_artists: Conheça ou cadastre artistas, pessoas gestoras e produtoras, grupos, coletivos, bandas, instituições e empresas da cena artística e cultural da região.
+    registration_info: ''
+    registration_not_allowed_logged_in: Não é possível realizar o cadastro enquanto estiver logado.
+    search_calendar: Pesquise o calendário de atividades culturais que estão acontecendo na sua região. Ou crie e divulgue seus eventos gratuitamente na plataforma.
+    subtitle: Um novo amanhecer para a gestão e para o fomento cultural.
+    header_text: Encontre cultura em cada canto da cidade e promova a sua própria cultura. Participe da produção artística do seu território com uma plataforma livre, gratuita e colaborativa.
+    title: Boas vindas, você chegou na Plataforma Minha Casa Melhor!
+    discover_open_notice: Conheça editais, oficinas, prêmios e concursos mais recentes e com inscrições abertas no momento.
+
+  initiative:
+    access: Acessar Iniciativa
+    create: Criar uma iniciativa
+    id: ID da iniciativa
+    link_platform_space: Vincular à um espaço da plataforma
+    linked_parent: Este projeto está à iniciativa
+    message:
+      created: A Iniciativa foi criada com sucesso
+      deleted: A Iniciativa foi excluída
+    project_linked_program: Este projeto está vinculado ao programa programa-nome e foi selecionado por meio da oportunidade oportunidade-nome.
+    quantity:
+      total: Iniciativas Encontradas
+      finished: Iniciativas Finalizadas
+      opened: Iniciativas em Andamento
+      last_days: Registradas nos últimos 7 dias
+    period: Período da iniciativa
+    priority_audience_profiles: Perfis de público prioritário
+    register_new_location: Cadastrar um local
+    target_public_profile: Perfil do público a ser atingido pelo projeto
+    type_of: Tipo de iniciativa
+    where_initiative_executed: locais onde a iniciativa será executada
+
+  my-opportunity:
+    title_opportunity: PNAB - Fomento à Execução de Ações Culturais
+
+  management:
+    management_of: Gestão de
+    info: Nesta seção você visualiza e gerência seu perfil de usuário e outros selos criados.
+
+  opportunity:
+    access: Acessar oportunidade
+    create: Criar oportunidade
+    description: Nesta seção você pode adicionar e gerenciar as Oportunidades criadas por você.
+    error:
+      agent: Deve associar um agente responsável
+      areas_of_interest: Deve conter pelo menos uma área de interesse
+      entity: Vincule a oportunidade a uma entidade
+      opportunity_type: Selecione o tipo da oportunidade
+      title: O título deve ter entre 2 e 100 caracteres
+    general_info:
+      modality_and_purpose:
+        title: Modalidade e Objeto do Fomento
+        description: Informe o propósito principal deste edital, descrevendo o que será apoiado ou financiado com base nos objetivos e resultados esperados.
+        modality:
+          label: Modalidade de Fomento
+          description: Modalidade de apoio a execução de ações culturais tipo projetos, que prevê ação futura no campo artístico-cultural e a apresentação de resultados e/ou prestação de contas
+        object: Objeto de Fomento
+      start_date:
+        title: Data de início
+        description: Informe a data de início do seu edital.
+      eligible_participants:
+        title: Quem poderá participar
+        description: Selecione abaixo os tipos de pessoa e os Municípios que poderão participar da oportunidade.
+      number_of_proposals:
+        title: Quantidade de propostas
+        description: Informe a estimativa de propostas que serão selecionadas e os números de inscrições por agente.
+        selected:
+          label: Previsão de propostas selecionadas
+          description: Informe a previsão de propostas que serão selecionadas nessa oportunidade.
+        inscriptions_per_agent:
+          label: Limite de inscrições por agente
+          description: Informe a quantidade máxima de inscrições que um mesmo agente pode submeter nessa oportunidade.
+        selected_per_agent:
+          label: Propostas selecionadas por agente
+          description: Informe o máximo de propostas que poderão ser selecionadas por agente nessa oportunidade.
+      attachments:
+        description: Anexe abaixo termo de adesão do Edital preenchido, analisado e validado pelo setor jurídico local e os seus respectivos anexos. Após publicada a oportunidade esses documentos ficarão públicos e disponíveis para download.
+        label: Termos de Adesão da Oportunidade
+      grant_amount:
+        title: Valor do Edital
+        description: Essa oportunidade irá trabalhar com recursos financeiros?
+      cultural_categories:
+        title: Categorias Culturais
+        description: Você pode configurar um grupo de categorias para organizar as inscrições da sua oportunidade. Selecione um Grupo de Categorias pré-definidas para garantir indicadores mais consistentes, ou configure outras categorias de sua escolha.
+      geographic_distribution:
+        title: Distribuição de vagas por território
+        description: Configure a distribuição de vagas com base em diferentes divisões territoriais.
+    id: ID da oportunidade
+    inscriptions_and_results: Inscrições e Resultados
+    labels:
+      choose_type: Selecione o tipo da oportunidade
+      choose_entity: Vincule a oportunidade a uma entidade
+    message:
+      deleted: A Oportunidade foi excluída
+      created: A oportunidade foi criada com sucesso
+      updated: A oportunidade foi atualizada com sucesso
+    people: Pessoas
+    period: Período da oportunidade
+    phases: Fases
+    public_info:
+      presentation_info:
+        title: Informações de apresentação
+      attachments:
+        add_another_link: Adicionar outro link
+        add_another_video: Adicionar outro vídeo
+        link_name: Descrição do link
+        other_files: Outros arquivos
+        url: Link (URL)
+        video_name: Descrição do vídeo
+    quantity:
+      total: Oportunidades Encontradas
+      finished: Oportunidades Finalizadas
+      opened: Oportunidades em Andamento
+      last_days: Registradas nos últimos 7 dias
+    type_of: Tipo de oportunidade
+    modal_confirm_registration: Deseja realizar a inscrição?
+    registration_not_logged: Por favor, faça login ou cadastre-se antes de se inscrever em uma oportunidade
+    registration_success: Inscrição realizada com sucesso
+    registration_duplicated: Você já está inscrito nesta oportunidade
+    registration_unauthorized: Você não pode se inscrever em uma oportunidade que você criou
+
+  opportunity_admin:
+    inscriptions:
+      status:
+        active: Ativo
+        inactive: Inativo
+      see_inscription: Ver Inscrição
+
+  organization:
+    access: Acessar Município
+    date: Município foi criado em
+    message:
+      updated: O Município foi atualizado
+      deleted: O Município foi excluído
+      created: O município foi criado com sucesso
+      deleted_member: O membro foi excluído
+    quantity:
+      total: Municípios Encontrados
+      culture: Municípios Ativos
+      inactive: Municípios Inativos
+      last_days: Registrados nos últimos 7 dias
+    cnpj: CNPJ
+    phone: Telefone
+    email: Email
+    accept_terms: Aceito os Termos e condições de uso
+    accept_privacy: Aceito a Política de Privacidade
+    accept_image: Autorizo o Uso de Imagem
+    file_part1: Fazer upload do
+    file_part2: assinado conforme previsto no edital
+    download_form_model: Termo de Adesão ao Programa
+    pdf_advice: O formato do arquivo deve ser PDF
+    site: Site
+
+  company:
+    access: Acessar Empresa
+    date: Empresa foi criada em
+    message:
+      updated: A empresa foi atualizada
+      deleted: A empresa foi excluída
+      created: O empresa foi criada com sucesso
+    quantity:
+      total: Empresas Encontradas
+      culture: Empresas Ativas
+      inactive: Empresas Inativas
+      last_days: Registradas nos últimos 7 dias
+    name: Razão Social
+    cnpj: CNPJ
+    phone: Telefone
+    email: Email
+    framework: Enquadramento
+    site: Site
+    regime: Regime
+    accept_terms: Aceito os termos de adesão
+    user_data: Dados do Representante
+
+  success:
+    successfully: Seu cadastro foi criado com sucesso!
+    access_registration: Acesse seu e-mail de cadastro para confirmar a criação da sua conta no Mapas Culturais.
+
+  question:
+    characters: Máximo de 500 caracteres
+
+  space:
+    access: Acessar espaço
+    create: Criar espaço
+    message:
+      deleted: O Espaço foi excluído
+      created: Novo Espaço criado
+      updated: O Espaço foi atualizado
+    quantity:
+      total: Espaços Encontrados
+      finished: Espaços Fechados
+      opened: Espaços Abertos
+      last_days: Registrados nos últimos {days} dias
+    picture: Foto do Espaço
+    no_spaces_found: Nenhum espaço encontrado
+
+  space-edit:
+    edit-space: Edição de Espaço
+
+  space_type:
+    create: Criar Tipo de Espaço
+    edit: Editar Tipo de Espaço
+    message:
+      created: O Tipo de Espaço foi criado
+      updated: O Tipo de Espaço foi atualizado
+
+  registration:
+    available: Recursos abertos e disponíveis
+    data: Coleta de dados
+    merit: Avaliação de mérito
+    title-card: PNAB - Fomento à Execução de Ações Culturais
+    section: Esta seção você pode adicionar ou gerenciar as suas inscrições.
+    hour: 00/00/0000 até 00/00/0000
+
+  registration-space:
+    add_files: Adicionar arquivos para download
+    add_new: Adicionar Nova
+    add_image: Adicionar Imagem de Capa
+    add-perfil_image: Adicionar imagem de perfil
+    add_social: Adicionar redes sociais
+    bank: Tipo da conta bancária para pagamentos
+    bank_brazil: Banco do Brasil
+    bank_account: Número da conta bancária para pagamentos
+    bank_second: Caixa Econômica
+    bank_payments: Agência bancária para pagamentos
+    bank_third: Bradesco
+    bank_fourth: Itaú
+    bank_fifth: Santander
+    bank_verification: Dígito verificador da conta bancária
+    bank_number: Número do banco para pagamentos
+    check_address: Marque o campo acima para tornar o endereço público ou deixe desmarcado para manter o endereço privado.
+    data_notice: Não se preocupe, esses dados não serão exibidos publicamente
+    data-not_public: Os dados inseridos abaixo serão registrados apenas no sistema e não serão exibidos publicamente
+    data_public: Os dados inseridos abaixo assim como as informações de apresentação também são exibidos publicamente
+    data_sensitive: Dados pessoais sensíveis
+    fieldes_space: Os campos marcados com
+    fieldes_continuity: são de preenchimento obrigatório. Os dados inseridos abaixo serão exibidos para todos os usuários.
+    presentation: Informações de Apresentação
+    payments: Número do banco para pagamentos
+    report_role: Informe sua função na cultura
+    traditional: Comunidades tradicionais
+    traditional_find: Não encontrou sua comunidade Tradicional
+
+  seal:
+    awarded_by: Selo atribuído por
+    certificate-seal-validity: Validade do Certificado do Selo
+    create: Criar selo
+    creator: Criador do selo
+    date_of_receipt_of_the: Data de recebimento do selo
+    expired: selo expirado
+    message:
+      deleted: O selo foi excluído
+      updated: O selo foi atualizado
+      created: O selo foi criado
+    status:
+      active: Ativo
+      inactive: Inativo
+    seal-picture: Foto do Selo
+    validity: Validade do selo
+
+  tag:
+    create: Criar Tag
+    edit: Editar Tag
+    message:
+      updated: A Tag foi atualizada
+      created: A Tag foi criada
+      deleted: A Tag foi excluída
+
+  architectural_accessibility:
+    create: Criar Acessibilidade Arquitetônica
+    edit: Editar Acessibilidade Arquitetônica
+    message:
+      updated: A Acessibilidade Arquitetônica foi atualizada
+      created: A Acessibilidade Arquitetônica foi criada
+      deleted: A Acessibilidade Arquitetônica foi excluída
+
+  not-found:
+    error-404: Error 404
+    error-text_first: Ops, página não encontrada.
+    error-text_second: Essa página não existe mais ou mudou de endereço.
+    error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Plataforma Minha Casa Melhor.
+    error-homepage: Voltar para a página inicial
+    error-image: Imagem de dúvida
+
+  phase:
+    out_of_period: Fora do prazo de inscrição
+    text_out_of_period: Infelizmente, o período de inscrição não está disponível no momento. Por favor, aguarde o próximo oficio.
+
+proposal:
+  status:
+    sent: Enviada
+    no_municipality: Sem Adesão do Município
+  add_out_of_period: Não é possível enviar uma nova proposta, pois o prazo está fora do período permitido.
+  out_of_period: Fora do prazo para envio de propostas
+  text_out_of_period: Infelizmente, o período de envio de propostas não está disponível no momento. Por favor, aguarde o próximo oficio.
+
+document:
+  title: Termo de Adesão
+  status:
+    approved: Aprovado
+    rejected: Reprovado
+    awaiting: Aguardando
+
+csv:
+  header:
+    id: Identificador
+    region: Região
+    state: Estado
+    created_by: Criado por
+    city: Município
+    company_name: Nome da Empresa
+    company_cnpj: CNPJ da Empresa
+    company_phone: Telefone da Empresa
+    map_file: Arquivo da Área Poligonal
+    project_file: Arquivo do Projeto
+    houses_quantity: Quantidade de Domicílios
+    total_area: Área Total
+    total_value: Valor Global da Proposta
+    proposal_status: Status da Proposta
+    intervention_area_name: Nome da Área de Intervenção
+    proposal_type: Tipo de Proposta
+    proposal_date: Data da Proposta
+    proposal_update_date: Data de Modificação
+
+  info:
+    not_modified: Não modificado desde a criação
+
+error:
+  invalid_entity: Entidade inválida. Esperado uma instância de Initiative.

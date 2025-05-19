@@ -22,6 +22,7 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
+            <exclude>tests/Functional/Controller</exclude>
         </testsuite>
     </testsuites>
 

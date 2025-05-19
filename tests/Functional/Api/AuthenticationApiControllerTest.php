@@ -37,6 +37,28 @@ class AuthenticationApiControllerTest extends AbstractApiTestCase
         self::assertSame($requestBody['username'], $responseArray['user']);
     }
 
+    public function testCannotLoginIfWaitingActivation(): void
+    {
+        $requestBody = [
+            'username' => 'abnercarvalho@example.com',
+            'password' => UserFixtures::DEFAULT_PASSWORD,
+        ];
+
+        $client = self::createClient();
+
+        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'CONTENT_TYPE' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+
+        $responseArray = self::getCurrentResponseArray();
+
+        self::assertSame($responseArray['error_message'], 'error_general');
+        self::assertSame($responseArray['error_details']['description'], 'Your account is not activated, please contact the administrator or verify your email.');
+    }
+
     public function testCannotLogin(): void
     {
         $requestBody = [

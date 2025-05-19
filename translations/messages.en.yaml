@@ -9,6 +9,8 @@ add_opening_hours: Add Opening Hours
 add_phase: Add Phase
 add_specific_objective: Add Specific Objective
 adapted_bathroom: Adapted bathroom
+account_confirmation: Account confirmation
+account_confirmed: Cuenta confirmada
 account_privacy: Account and Privacy
 account_settings: User Account Settings
 access: Access
@@ -17,6 +19,7 @@ access_main_agent: Access the main agent
 access_ramp: Ramp access
 accountability: Accountability
 accompany: To accompany
+accepted: Accepted
 action: Action
 actions: Actions
 activity: Activity
@@ -67,6 +70,7 @@ apply_filter: Apply Filters
 attachments_and_links: Attachemnts and Links
 attitudinal_accessibility: Attitudinal Accessibility
 audio_description: Audio Description
+awaiting: Awaiting
 
 back: Back
 birth_date: Birth Date
@@ -80,6 +84,8 @@ change_details: Change Details
 cep: CEP
 cisgender: Cisgender
 city: City
+city_id: City ID
+city_code: City Code
 check: Check
 claim-ownership: Claim Ownership
 clean_filter: Clean Filter
@@ -141,6 +147,7 @@ edit_initiative: Edit Initiative
 edit_seals: Edit Seals
 edit_space: Edit Space
 edit_activity_area: Edit Area of Activity
+edit_data: Edit Data
 email: Email
 entity_banner: Entity Banner
 entity: Entity
@@ -163,6 +170,7 @@ evidences: Evidences
 elderly_person: Elderly Person
 execution_period: Execution Period
 explore_repository: Explore Repository
+extra_fields: Extra Fields
 elevator: Elevator
 
 faq: FaQ
@@ -177,6 +185,7 @@ functions: Manage functions
 fundamental: Elementary
 future_registration: Future registrations
 full_name: Full Name
+form: Form
 from: From
 from_to: To
 from_to_date: To
@@ -213,6 +222,8 @@ introduction: Introduction
 inactive: Inactive
 is_itinerant: Is it an itinerant agent?
 is-accessible: Is the space accessible?
+Invite was accepted: Invite was accepted
+Invite was sent: Invite was sent
 
 language: Language
 lastname: Last Name
@@ -269,6 +280,7 @@ name_organization: Organization name
 name_initiative: Nome gives initiative
 name_phases: Phase name
 neighborhood: Neighborhood
+next: Next
 new_phase: New phase
 notifications: Notifications
 no: No
@@ -293,6 +305,7 @@ notice: PUBLIC NOTICE
 no_records_found: No records found
 number_address: Number
 
+of: of
 offers_architectural_accessibility: Offers physical accessibility
 official_events: Official Events
 official_spaces: Official Spaces
@@ -312,6 +325,7 @@ organization_register: Create an Organization
 orientation: Select the Sexual Orientation
 other_files: Other files
 other_information: Other information
+owner: Owner
 
 pardo: Mixed Race
 paid: Paid
@@ -320,6 +334,7 @@ people_capacity: People Capacity
 period: Period
 permissions: Permissions
 portfolio: Portfolio
+previous: Previous
 privacy: Privacy
 profile: Profile
 password: Password
@@ -369,14 +384,20 @@ reference_point: Complement or reference point
 register: Register
 registration_date: Registration Date
 registration_info: Information about registration
+region: Region
 related-agents: Related Agents
 required_field: Required Field
 report: Report
+results: Results
+rejected: Rejected
 
 responsible_agent: Responsible Agent
 tags: Tags
 term: Term
 terms: Terms
+term_form: Terms of Use
+term_version: Terms of Use Version
+term_status: Terms of Use Status
 transsexual: Transsexual
 transvestite: Transvestite
 title: Title
@@ -397,6 +418,7 @@ total_value: Total Value
 user: User
 user_name: User Name
 users: Users
+updated_at: Updated at
 
 view_all: View All
 view_file: view file
@@ -422,6 +444,7 @@ see_how: See How
 see_more: See More
 see_phase: See phase
 short_description: Short description
+showing: Showing
 select_bank: Select the bank
 select_state: Select the State
 select_municipality: Select the Municipality
@@ -510,6 +533,11 @@ footer:
   agents: My Agents
   spaces: My Spaces
   visit_repository: visit the repository
+
+table:
+  type_a_keyword: Type a keyword...
+  no_records_found: No records found
+  error: An error occurred while fetching data
 
 #pages
 view:
@@ -602,7 +630,9 @@ view:
       last_name_length: The last name must be between 2 and 50 characters.
       password_mismatch: The passwords do not match.
       cpf_invalid: Please enter a valid CPF.
+      cnpj_invalid: Please enter a valid CNPJ.
       phone_invalid: Please enter a valid phone number.
+      account_not_confirmed: Account not confirmed
 
     forgot_password: Forgot my password
     paragraph: Log in with your account

@@ -40,7 +40,7 @@ admin_opportunity_phase:
 
 admin_organization:
   resource: 'admin/organization.yaml'
-  prefix: /painel/organizacoes
+  prefix: /painel/municipios
   name_prefix: admin_organization_
 
 admin_registration:

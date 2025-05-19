@@ -5,8 +5,11 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     app.migrations.odm: 'migrations-odm'
-    app.dir.storage: '%env(resolve:STORAGE_IMAGES_DIR)%'
+    app.dir.storage: '%env(resolve:STORAGE_DIR)%'
     app.url.storage: '%env(resolve:STORAGE_BASE_URL)%'
+    app.dir.storage.images: '%env(resolve:STORAGE_IMAGES_DIR)%'
+    app.url.storage.images: '%env(resolve:STORAGE_IMAGES_BASE_URL)%'
+    app.email.address: '%env(EMAIL_ADDRESS)%'
 
 imports:
     - { resource: directories.yaml }
@@ -29,8 +32,15 @@ services:
     App\Controller\:
         resource: '../src/Controller/'
         tags: [ 'controller.service_arguments' ]
+
+    App\Regmel\Controller\:
+        resource: '../src/Regmel/Controller/'
+        tags: [ 'controller.service_arguments' ]
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Repository\Interface\OrganizationRepositoryInterface: '@App\Repository\OrganizationRepository'
+    App\Repository\Interface\MunicipalityRepositoryInterface: '@App\Regmel\Repository\MunicipalityRepository'
 
     App\Service\FileService:
         arguments:

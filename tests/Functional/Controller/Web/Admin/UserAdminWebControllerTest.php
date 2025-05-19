@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller\Web\Admin;
 
 use App\Controller\Web\Admin\UserAdminController;
+use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\UserFixtures;
 use App\Tests\AbstractAdminWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,5 +90,81 @@ class UserAdminWebControllerTest extends AbstractAdminWebTestCase
         $this->client->request(Request::METHOD_GET, $accountPrivacyUrl);
 
         $this->assertResponseRedirects('/login', Response::HTTP_FOUND);
+    }
+
+    public function testEditUserProfilePageRenderHTMLWithSuccess(): void
+    {
+        $editUrl = $this->router->generate('admin_user_edit_profile', [
+            'id' => Uuid::fromString(UserFixtures::USER_ID_3),
+        ]);
+
+        $this->client->request(Request::METHOD_GET, $editUrl);
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testEditUserProfileRedirectsToLoginWhenUserNotFound(): void
+    {
+        $this->client->request(Request::METHOD_GET, '/logout');
+
+        $editUrl = $this->router->generate('admin_user_edit_profile', [
+            'id' => Uuid::v4()->toRfc4122(),
+        ]);
+
+        $this->client->request(Request::METHOD_GET, $editUrl);
+
+        $this->assertResponseRedirects($this->router->generate('web_auth_login'), Response::HTTP_FOUND);
+    }
+
+    public function testEditUserProfileWithFormData(): void
+    {
+        $editUrl = $this->router->generate('admin_user_edit_profile', [
+            'id' => UserFixtures::USER_ID_1,
+        ]);
+        $request = $this->client->request(Request::METHOD_GET, $editUrl);
+
+        $token = $request->filter('input[name="token"]')->attr('value');
+
+        $formData = [
+            'token' => $token,
+            'firstname' => 'Francisco',
+            'lastname' => 'Alessandro Feitoza',
+            'socialName' => 'Alessandro Feitoza',
+            'email' => 'alessandrofeitoza@example.com',
+            'password' => 'Aurora@2024',
+            'agent' => Uuid::fromString(AgentFixtures::AGENT_ID_1),
+            'name' => 'Alessandro',
+            'short_description' => 'Desenvolvedor e evangelista de Software',
+            'long_description' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
+            'cargo' => 'Desenvolvedor Backend',
+            'cpf' => '795.319.940-80',
+        ];
+
+        $this->client->request(Request::METHOD_POST, $editUrl, $formData);
+
+        $this->assertSelectorTextContains('.toast-body', $this->translator->trans('view.user.message.updated'));
+    }
+
+    public function testEditUserProfileWithInvalidFormData(): void
+    {
+        $editUrl = $this->router->generate('admin_user_edit_profile', [
+            'id' => UserFixtures::USER_ID_3,
+        ]);
+        $request = $this->client->request(Request::METHOD_GET, $editUrl);
+
+        $token = $request->filter('input[name="token"]')->attr('value');
+
+        $formData = [
+            'token' => $token,
+            'firstname' => '',
+            'lastname' => '',
+            'socialName' => '',
+            'email' => 'invalid-email',
+            'password' => '',
+        ];
+
+        $this->client->request(Request::METHOD_POST, $editUrl, $formData);
+
+        $this->assertSelectorTextContains('.toast-body', 'The provided data violates one or more constraints.');
     }
 }

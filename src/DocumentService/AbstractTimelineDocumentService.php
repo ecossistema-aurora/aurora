@@ -20,9 +20,9 @@ abstract class AbstractTimelineDocumentService implements TimelineDocumentServic
     protected DocumentRepository $documentRepository;
 
     public function __construct(
-        private readonly DocumentManager $documentManager,
-        private readonly string $documentClass,
-        private readonly UserServiceInterface $userService
+        protected readonly DocumentManager $documentManager,
+        protected readonly string $documentClass,
+        protected readonly UserServiceInterface $userService
     ) {
         $this->documentRepository = $this->documentManager->getRepository(
             $this->documentClass

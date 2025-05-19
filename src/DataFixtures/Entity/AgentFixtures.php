@@ -42,6 +42,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'alessandro@example.com',
                 'instagram' => '@alessandro',
+                'cargo' => 'Desenvolvedor Backend',
+                'cpf' => '795.319.940-80',
             ],
             'user' => UserFixtures::USER_ID_1,
             'socialNetworks' => [
@@ -63,6 +65,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'henrique@example.com',
                 'instagram' => '@henrique',
+                'cargo' => 'Desenvolvedor Frontend',
+                'cpf' => '728.941.446-28',
             ],
             'user' => UserFixtures::USER_ID_2,
             'socialNetworks' => [
@@ -83,6 +87,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
+                'cargo' => 'Desenvolvedora Frontend',
+                'cpf' => '123.456.789-00',
             ],
             'user' => UserFixtures::USER_ID_3,
             'socialNetworks' => [
@@ -103,6 +109,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'sara@example.com',
                 'instagram' => '@sara',
+                'cargo' => 'Engenheira de Software',
+                'cpf' => '987.654.321-00',
             ],
             'user' => UserFixtures::USER_ID_4,
             'socialNetworks' => [
@@ -123,6 +131,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'talyson@example.com',
                 'instagram' => '@talyson',
+                'cargo' => 'Desenvolvedor Backend',
+                'cpf' => '456.789.123-00',
             ],
             'user' => UserFixtures::USER_ID_5,
             'socialNetworks' => [
@@ -143,6 +153,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'raquel@example.com',
                 'instagram' => '@raquel',
+                'cargo' => 'Produtora Cultural',
+                'cpf' => '321.654.987-00',
             ],
             'user' => UserFixtures::USER_ID_6,
             'createdAt' => '2024-08-10T11:26:00+00:00',
@@ -160,6 +172,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'lucas@example.com',
                 'instagram' => '@lucas',
+                'cargo' => 'Músico',
+                'cpf' => '654.321.987-00',
             ],
             'user' => UserFixtures::USER_ID_7,
             'createdAt' => '2024-08-11T15:54:00+00:00',
@@ -177,6 +191,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'maria@example.com',
                 'instagram' => '@maria',
+                'cargo' => 'Pesquisadora',
+                'cpf' => '789.123.456-00',
             ],
             'user' => UserFixtures::USER_ID_8,
             'createdAt' => '2024-08-12T14:24:00+00:00',
@@ -194,6 +210,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'abner@example.com',
                 'instagram' => '@abner',
+                'cargo' => 'Cineasta',
+                'cpf' => '159.753.486-00',
             ],
             'user' => UserFixtures::USER_ID_9,
             'createdAt' => '2024-08-13T20:25:00+00:00',
@@ -211,6 +229,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'paulo@example.com',
                 'instagram' => '@paulo',
+                'cargo' => 'Teólogo',
+                'cpf' => '951.753.852-00',
             ],
             'user' => UserFixtures::USER_ID_10,
             'createdAt' => '2024-08-14T10:00:00+00:00',
@@ -227,6 +247,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'feitozo.capoeira@example.com',
                 'instagram' => '@feitozo.capoeira',
+                'cargo' => 'Capoeirista',
+                'cpf' => '123.456.789-00',
             ],
             'user' => UserFixtures::USER_ID_10,
             'createdAt' => '2024-08-14T10:00:00+00:00',
@@ -247,6 +269,8 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'alessandro@example.com',
                 'instagram' => '@alessandro',
+                'cargo' => 'Desenvolvedor Backend',
+                'cpf' => '795.319.940-80',
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:37:00+00:00',

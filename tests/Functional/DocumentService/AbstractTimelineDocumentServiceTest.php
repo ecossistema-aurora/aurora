@@ -53,15 +53,15 @@ final class AbstractTimelineDocumentServiceTest extends KernelTestCase
         $this->assertEquals($events[0]['device'], 'unknown');
         $this->assertEquals($events[0]['platform'], 'unknown');
         $this->assertEmpty($events[0]['from']);
-        $this->assertEquals($events[0]['to']['name'], 'PHP sem Rapadura');
+        $this->assertEquals($events[0]['to']['name'], 'Fortaleza');
 
         $this->assertEquals($events[1]['resourceId'], OrganizationFixtures::ORGANIZATION_ID_1);
         $this->assertEquals($events[1]['title'], 'The resource was updated');
         $this->assertEquals($events[1]['priority'], 0);
         $this->assertEquals($events[1]['device'], 'unknown');
         $this->assertEquals($events[1]['platform'], 'unknown');
-        $this->assertEquals($events[1]['from']['name'], 'PHP sem Rapadura');
-        $this->assertEquals($events[1]['to']['name'], 'PHP com Rapadura');
+        $this->assertEquals($events[1]['from']['name'], null);
+        $this->assertEquals($events[1]['to']['name'], 'Fortaleza');
     }
 
     public function testGetEventsByEntityIdWhenDoesNotExistEvents(): void

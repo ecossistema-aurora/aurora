@@ -27,6 +27,7 @@ final class StateEntityTest extends KernelTestCase
         $this->assertNotEmpty($state->getId());
         $this->assertEquals('Acre', $state->getName());
         $this->assertEquals('AC', $state->getAcronym());
+        $this->assertEquals('Norte', $state->getRegion());
         $this->assertInstanceOf(City::class, $state->getCapital());
 
         $arrayData = $state->toArray();
@@ -35,6 +36,7 @@ final class StateEntityTest extends KernelTestCase
             'name' => 'Acre',
             'acronym' => 'AC',
             'capital' => '99ce2c19-78e4-4e25-bc33-4b69cc7603bd',
+            'region' => 'Norte',
         ];
 
         $this->assertEquals($expectedArray, $arrayData);

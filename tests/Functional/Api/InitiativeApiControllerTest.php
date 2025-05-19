@@ -41,6 +41,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
             ],
+            'organizationFrom' => null,
+            'organizationTo' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -68,6 +70,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
             ],
+            'organizationFrom' => null,
+            'organizationTo' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -146,6 +150,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
             'image' => null,
             'parent' => null,
             'space' => null,
+            'organizationFrom' => null,
+            'organizationTo' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => null,
             'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -176,6 +182,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
                 'name' => 'Raízes e Tradições',
                 'image' => $initiative->getParent()->getImage(),
                 'space' => null,
+                'organizationFrom' => null,
+                'organizationTo' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
                     'culturalLanguage' => 'Cultural',
@@ -192,6 +200,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
             'space' => [
                 'id' => $requestBody['space'],
             ],
+            'organizationFrom' => null,
+            'organizationTo' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => $requestBody['extraFields'],
             'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -363,6 +373,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
                 'name' => 'Raízes e Tradições',
                 'image' => $initiative->getParent()->getImage(),
                 'space' => null,
+                'organizationFrom' => null,
+                'organizationTo' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
                     'culturalLanguage' => 'Cultural',
@@ -379,6 +391,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
             ],
+            'organizationFrom' => null,
+            'organizationTo' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => $requestBody['extraFields'],
             'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -499,6 +513,8 @@ class InitiativeApiControllerTest extends AbstractApiTestCase
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
             ],
+            'organizationFrom' => null,
+            'organizationTo' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],

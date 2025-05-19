@@ -1,0 +1,55 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %} {{ 'Login'|trans}} {% endblock %}
+
+{% block content %}
+    <div class="toast-container p-3 top-0 start-50 translate-middle-x">
+        {% if error ?? false %}
+            <div class="toast danger snackbar" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
+                <div class="d-flex">
+                    <span class="icon material-icons align-self-start">check_circle</span>
+                    <div class="toast-body">
+                        {{ error.messageKey|trans }}
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <section class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-5">
+                <div class="card card-body mt-3 mb-5">
+                    <p class="mb-0">
+                        <span class="fs-3 fw-bold">{{ 'welcome'|trans }}!</span>
+                        <br>
+                        {{ 'view.authentication.paragraph'|trans }}.
+                        <br>
+                        Após ser autentica será aceita sua participação ao município.
+                    </p>
+                    <hr>
+                    <form method="post">
+                        <input type="hidden" name="token" value="{{ csrf_token('form_id') }}">
+
+                        <input type="hidden" name="type" value="login">
+
+                        <label for="email">{{ 'email'|trans }}</label>
+                        <input data-cy="email" class="form-control mb-3" type="text" name="email" id="email">
+
+                        <label for="password">{{ 'password'|trans }}</label>
+                        <input data-cy="password" class="form-control mb-3" type="password" name="password" id="password">
+
+                        <button data-cy="submit" class="btn btn-primary w-100">
+                            {{ 'login'|trans }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('js/snackbar.js') }}"></script>
+{% endblock %}

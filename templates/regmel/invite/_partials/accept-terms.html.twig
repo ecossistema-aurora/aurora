@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-12 d-flex flex-column gap-2 mb-3">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="acceptTerms" name="acceptTerms" required>
+            <label for="acceptTerms" class="form-check-label"><a href="#" data-bs-toggle="modal" data-bs-target="#modalLGPD">{{ 'view.organization.accept_terms' | trans }}</a></label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="acceptTerms" name="acceptPrivacy" required>
+            <label for="acceptTerms" class="form-check-label"><a href="#" data-bs-toggle="modal" data-bs-target="#modalPrivacy">{{ 'view.organization.accept_privacy' | trans }}</a></label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="acceptTerms" name="acceptImage" required>
+            <label for="acceptTerms" class="form-check-label"><a href="#" data-bs-toggle="modal" data-bs-target="#modalImageAuthorization">{{ 'view.organization.accept_image' | trans }}</a></label>
+        </div>
+    </div>
+</div>
+
+{% include "regmel/invite/_partials/modal-about-program.html.twig" %}
+{% include "regmel/_components/modal-lgpd.html.twig" %}
+{% include "regmel/_components/modal-privacy.html.twig" %}
+{% include "regmel/_components/modal-image-authorization.html.twig" %}

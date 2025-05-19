@@ -299,6 +299,20 @@ class Agent extends AbstractEntity
         $this->deletedAt = $deletedAt;
     }
 
+    public function createFromUser(User $user): Agent
+    {
+        $this->setUser($user);
+        $this->setCreatedAt(new DateTimeImmutable());
+        $this->setName($user->getName());
+        $this->setImage($user->getImage());
+        $this->setMain(true);
+        $this->shortBio = '';
+        $this->longBio = '';
+        $this->culture = false;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [

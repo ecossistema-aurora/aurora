@@ -287,6 +287,8 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'extraFields' => [
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
+                'cargo' => 'Desenvolvedora Frontend',
+                'cpf' => '123.456.789-00',
             ],
             'user' => ['id' => UserFixtures::USER_ID_3],
             'organizations' => [],
@@ -471,6 +473,8 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'extraFields' => [
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
+                'cargo' => 'Desenvolvedora Frontend',
+                'cpf' => '123.456.789-00',
             ],
             'user' => ['id' => UserFixtures::USER_ID_3],
             'organizations' => [],

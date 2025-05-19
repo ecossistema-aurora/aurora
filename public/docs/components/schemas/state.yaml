@@ -23,3 +23,12 @@ properties:
         type: string
         maxLength: 100
         description: "Nome da capital"
+  region:
+    type: string
+    enum:
+      - Norte
+      - Nordeste
+      - Centro-Oeste
+      - Sudeste
+      - Sul
+    description: "Região do estado"

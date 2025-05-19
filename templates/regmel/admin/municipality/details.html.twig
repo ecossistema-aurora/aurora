@@ -1,0 +1,415 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}{{ 'control_panel'|trans }} - {{ 'organizations'|trans }} - {{ 'municipality'|trans }}{% endblock %}
+
+{% block content %}
+    {% include '_components/modal-confirm-remove.html.twig' %}
+
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+        {% include '_components/modal-confirm-remove.html.twig' %}
+
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body shadow">
+                        <div class="d-flex justify-content-between">
+                            <h2>{{ 'municipality'|trans }} - {{ municipality.name }}-{{ municipality.extraFields.state }}</h2>
+                        </div>
+
+                        <hr>
+                        {% if municipality.extraFields['term_status'] == 'rejected' %}
+                            <div class="alert alert-danger">
+                                <strong>Status do Termo de Adesão:</strong>
+                                RECUSADO
+                                <hr>
+                                <em>Motivo: {{ municipality.extraFields.term_reason }}</em>
+                            </div>
+                        {% elseif municipality.extraFields['term_status'] == 'approved' %}
+                            <div class="alert alert-success">
+                                <strong>Status do Termo de Adesão:</strong>
+                                ACEITO
+                                <hr>
+                                <em>Motivo: {{ municipality.extraFields.term_reason }}</em>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <strong>Status do Termo de Adesão:</strong>
+                                AGUARDANDO
+                            </div>
+                        {% endif %}
+                        <hr>
+
+                        <ul class="nav nav-tabs" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <div class="d-flex align-items-center">
+                                    <a class="centered-icon-text nav-link active" id="pills-info-tab" data-bs-toggle="pill" href="#pills-info" role="tab" aria-controls="pills-info" aria-selected="true">
+                                        <i class="material-icons">description</i>
+                                        <span class="ms-2 font-title">Informações</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <div class="d-flex align-items-center">
+                                    <a class="centered-icon-text nav-link" id="pills-proposal-tab" data-bs-toggle="pill" href="#pills-proposal" role="tab" aria-controls="pills-info" aria-selected="true">
+                                        <i class="material-icons">list</i>
+                                        <span class="ms-2 font-title">Propostas</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <div class="d-flex align-items-center">
+                                    <a class="centered-icon-text nav-link" id="pills-members-tab" data-bs-toggle="pill" href="#pills-members" role="tab" aria-controls="pills-members" aria-selected="false">
+                                        <i class="material-icons">groups</i>
+                                        <span class="ms-2 font-title">Membros</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <div class="d-flex align-items-center">
+                                    <a class="centered-icon-text nav-link" id="pills-files-tab" data-bs-toggle="pill" href="#pills-files" role="tab" aria-controls="pills-map" aria-selected="false">
+                                        <i class="material-icons">picture_as_pdf</i>
+                                        <span class="ms-2 font-title">Termo de Adesão</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <div class="d-flex align-items-center">
+                                    <a class="centered-icon-text nav-link" id="pills-timeline-tab" data-bs-toggle="pill" href="#pills-timeline" role="tab" aria-controls="pills-map" aria-selected="false">
+                                        <i class="material-icons">schedule</i>
+                                        <span class="ms-2 font-title">Linha do tempo</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+
+                            <div class="tab-pane fade show active" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab" tabindex="0">
+                                <div class="bd-callout bd-callout-secondary">
+                                    <p>
+                                        <strong>CNPJ: </strong>{{ municipality.extraFields.cnpj ?? '' }}
+                                    </p>
+                                    <p>
+                                        <strong>Email: </strong>{{ municipality.extraFields.email ?? '' }}
+                                    </p>
+                                    <p>
+                                        <strong>Site: </strong>{{ municipality.extraFields.site ?? '' }}
+                                    </p>
+                                    <p>
+                                        <strong>Telefone: </strong>{{ municipality.extraFields.telefone ?? '' }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Possui experiência habitacional: </strong>
+                                        {% if 'hasHousingExperience' in municipality.extraFields %}
+                                            {{ municipality.extraFields.hasHousingExperience ? 'Sim' : 'Não' }}
+                                        {% endif %}
+                                    </p>
+                                    <p>
+                                        <strong>Possui PLHIS: </strong>
+                                        {% if 'hasPlhis' in municipality.extraFields %}
+                                            {{ municipality.extraFields.hasPlhis ? 'Sim' : 'Não' }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="pills-proposal" role="tabpanel" aria-labelledby="pills-proposal-tab" tabindex="0">
+                                <div class="modal fade" id="modalAgreement" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form id="proposalStatusForm" method="post">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Anuência</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-4">
+                                                        <label class="form-label fw-bold">Status *</label>
+                                                        <div class="d-flex gap-4">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="status" id="statusAgreement" value="Anuída" required>
+                                                                <label class="form-check-label" for="statusAgreement">
+                                                                    <i class="bi bi-check-circle-fill text-success me-2"></i>Anuída
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="status" id="statusNotAgreement" value="Não Anuída" required>
+                                                                <label class="form-check-label" for="statusNotAgreement">
+                                                                    <i class="bi bi-x-circle-fill text-danger me-2"></i>Não Anuída
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-text">Selecione uma opção obrigatória</div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="reasonText" class="form-label fw-bold">Motivo *</label>
+                                                        <textarea name="reason" id="reasonText" class="form-control" rows="4"
+                                                                  placeholder="Descreva o motivo da sua decisão..." required></textarea>
+                                                        <div class="form-text">Mínimo de 20 caracteres</div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                    <button type="submit" class="btn btn-primary">Submeter</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="modalConfirmation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="">Status</label>
+                                                <select name="" id="" class="form-control mb-3">
+                                                    <option value="">-- Selecione --</option>
+                                                    <option value="">Aprovado</option>
+                                                    <option value="">Reprovado</option>
+                                                </select>
+
+                                                <label for="">Motivo</label>
+                                                <textarea name="" id=""
+                                                          class="form-control"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="js-grid table table-hover table-striped mt-3">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Titulo</th>
+                                            <th>Empresa/OSC</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for proposal in proposals %}
+                                        <tr>
+                                            <td>{{ proposal.name }}</td>
+                                            <td>{{ proposal.organizationFrom.name }}</td>
+                                            <td>
+                                                {% set status = proposal.extraFields.status ?? 'Enviada'  %}
+                                                {% set badgeClass = ({
+                                                    'Sem Adesão do Município': 'bg-dark text-white',
+                                                    'Enviada':                 'bg-warning',
+                                                    'Recebida':                'bg-info',
+                                                    'Anuída':                  'bg-success',
+                                                    'Não Anuída':              'bg-danger text-white',
+                                                    'Selecionada':             'bg-success',
+                                                    'Não Selecionada':         'bg-danger text-white',
+                                                }[status] ?? 'bg-dark') %}
+                                                <span class="badge {{ badgeClass }} text-dark">
+                                        {{ status }}
+                                    </span>
+                                            </td>
+                                            <td>
+                                                <button
+                                                        class="btn btn-outline-info btn-sm"
+                                                        data-proposal='{{ {
+                                                            id: proposal.id,
+                                                            name: proposal.name,
+                                                            created_at: proposal.createdAt|date('d/m/Y'),
+                                                            created_by: proposal.createdBy.name,
+                                                            company: proposal.organizationFrom.name,
+                                                            area_option: env.aurora.proposals.area_characteristics[proposal.extraFields.area_characteristic] ?? '',
+                                                            price_per_house: env.aurora.variables.price_per_household ?? 1,
+                                                            ...proposal.extraFields
+                                                        }|json_encode|e('html_attr') }}'
+                                                        onClick="modalProposalDetails(this)"
+                                                >
+                                                    Ver Proposta
+                                                </button>
+                                                {% if is_granted('ROLE_MUNICIPALITY') and proposal.extraFields.status == 'Recebida' %}
+                                                    <a  onclick="openAgreementModal('{{ municipality.id }}', '{{ proposal.id }}')"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalAgreement"
+                                                        href="#"
+                                                        class="btn btn-outline-success btn-sm">
+                                                        Anuir
+                                                    </a>
+                                                {% endif %}
+                                                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalConfirmation" class="btn btn-outline-success btn-sm">Avaliar</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade pt-3" id="pills-members" role="tabpanel" aria-labelledby="pills-members-tab" tabindex="0">
+                                <div class="modal fade" id="modalInvite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Convidar agente</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ path('admin_regmel_municipality_invite_agent', {id: municipality.id}) }}" method="post">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="name" class="mb-1">{{ 'name'|trans }}</label>
+                                                        <input type="text" class="form-control" id="name" name="name" data-cy="name" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="email" class="mb-1">{{ 'email'|trans }}</label>
+                                                        <input type="text" class="form-control" id="email" name="email" data-cy="email" required>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                    <button type="submit" class="btn btn-primary">Convidar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {% if app.user.agents.first.id == createdById %}
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalInvite" class="btn btn-outline-success btn-sm">Convidar</a>
+                                {% endif %}
+
+                                <table class="js-grid table table-hover table-striped mt-3">
+                                    <thead class="table-dark">
+                                    <tr>
+                                        <th>Nome</th>
+                                        {% if app.user.agents.first.id == createdById %}
+                                        <th> Ações </th>
+                                        {% endif %}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for agent in municipality.agents %}
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0);"
+                                                   class="view-member"
+                                                   data-info='{{ {
+                                                       name: agent.name,
+                                                       email: agent.extraFields.email ?? '',
+                                                       cpf: agent.extraFields.cpf ?? '',
+                                                       cargo: agent.extraFields.cargo ?? '',
+                                                       telefone: agent.extraFields.telefone ?? '',
+                                                       extraFields: agent.extraFields ?? {}
+                                                   }|json_encode|e('html_attr') }}'>
+                                                    {{ agent.name }}
+                                                    {% if agent.id == createdById %}
+                                                        <span class="badge bg-primary ms-2">Criador</span>
+                                                    {% endif %}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {% if app.user.agents.first.id == createdById and agent.id != createdById %}
+                                                    <button
+                                                            data-cy="remove-{{ loop.index }}"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalRemoveConfirm"
+                                                            onclick="confirmRemove(this)"
+                                                            data-href="{{ path(
+                                                                'admin_regmel_municipality_remove',
+                                                                {
+                                                                    municipalityId: municipality.id,
+                                                                    agentId: agent.id
+                                                                }
+                                                            ) }}"
+                                                            class="btn btn-outline-danger btn-sm"
+                                                    >
+                                                        {{ 'delete'|trans }}
+                                                    </button>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade pt-3" id="pills-files" role="tabpanel" aria-labelledby="pills-files-tab" tabindex="0">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="modal fade" id="modalResendTerm" tabindex="-1" aria-labelledby="" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Enviar termo de adesão do municipio</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="{{ path('admin_regmel_municipality_upload_term', {id: municipality.id}) }}" method="post" enctype="multipart/form-data">
+                                                    <div class="modal-body">
+                                                        <input class="form-control" type="file" id="joinForm" name="joinForm" accept="application/pdf" required>
+                                                        <div class="form-text">
+                                                            {{ 'view.organization.pdf_advice' | trans}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if  municipality.extraFields['term_status'] != 'approved' %}
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#modalResendTerm" class="btn btn-outline-success btn-sm">Reenviar</a>
+                                    {% endif %}
+                                </div>
+
+                                <a href="{{ path('regmel_municipality_document_file', {id: municipality.id}) }}" target="_blank">
+                                    {{ municipality.extraFields.form }}
+                                </a>
+                            </div>
+                            <div class="tab-pane fade pt-3" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab" tabindex="0">
+                                {% include "regmel/admin/municipality/timeline.html.twig" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="memberDetailsModal" tabindex="-1" aria-labelledby="memberDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberDetailsModalLabel">{{ 'member_details' | trans }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                    <div id="member-details-content">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'close' | trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "regmel/_components/modal-proposal.html.twig" %}
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('js/modal-timeline.js') }}"></script>
+    <script type="module" src="{{ asset('js/regmel/modal-member-details.js') }}"></script>
+    <script src="{{ asset('js/modal-confirm-remove.js') }}"></script>
+    <script src="{{ asset('js/modal-proposal-details.js') }}"></script>
+    <script type="module" src="{{ asset('js/grid-init.js') }}"></script>
+
+    <script>
+        function openAgreementModal(municipalityId, proposalId) {
+            const form = document.getElementById('proposalStatusForm');
+            form.action = `/painel/admin/municipios/${municipalityId}/propostas/${proposalId}/status`;
+        }
+    </script>
+{% endblock %}

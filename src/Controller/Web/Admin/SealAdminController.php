@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\SealServiceInterface;
 use DateTime;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -27,6 +29,7 @@ class SealAdminController extends AbstractAdminController
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $seals = $this->sealService->list();
@@ -36,6 +39,7 @@ class SealAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function getOne(int $id): Response
     {
         $seal = [
@@ -49,6 +53,7 @@ class SealAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function add(Request $request): Response
     {
         if ('POST' !== $request->getMethod()) {
@@ -83,6 +88,7 @@ class SealAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_seal_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $this->sealService->remove($id);
@@ -92,6 +98,7 @@ class SealAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_seal_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function edit(string $id, Request $request): Response
     {
         try {

@@ -1,9 +1,10 @@
 framework:
-    default_locale: pt-br
+    default_locale: regmel
     translator:
         default_path: '%kernel.project_dir%/translations'
         fallbacks:
-            - en
+            - regmel
             - pt-br
+            - en
             - es
         providers:

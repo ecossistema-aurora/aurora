@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\Agent;
 use App\Entity\User;
+use App\Enum\UserStatusEnum;
 use App\Tests\AbstractApiTestCase;
 use DateTime;
 use DateTimeImmutable;
@@ -20,7 +21,7 @@ class UserEntityTest extends AbstractApiTestCase
 
         $this->assertCount(0, $user->getAgents());
         $this->assertNull($user->getLastLogin());
-        $this->assertTrue($user->isActive());
+        $this->assertFalse($user->isActive());
 
         $id = Uuid::v4();
         $firstname = 'Fulano';
@@ -83,6 +84,7 @@ class UserEntityTest extends AbstractApiTestCase
             'socialName' => $socialName,
             'email' => $email,
             'image' => $image,
+            'status' => UserStatusEnum::AWAITING_CONFIRMATION->value,
             'createdAt' => $createdAt->format('Y-m-d H:i:s'),
             'updatedAt' => $updatedAt->format('Y-m-d H:i:s'),
             'deletedAt' => $deletedAt->format('Y-m-d H:i:s'),

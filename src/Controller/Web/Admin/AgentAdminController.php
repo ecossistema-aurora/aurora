@@ -7,6 +7,7 @@ namespace App\Controller\Web\Admin;
 use App\Document\AgentTimeline;
 use App\DocumentService\AgentTimelineDocumentService;
 use App\Enum\FlashMessageTypeEnum;
+use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use Exception;
@@ -15,6 +16,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -34,6 +36,7 @@ class AgentAdminController extends AbstractAdminController
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(UserInterface $user): Response
     {
         $agents = $this->service->findBy();
@@ -46,6 +49,7 @@ class AgentAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
@@ -87,16 +91,24 @@ class AgentAdminController extends AbstractAdminController
 
     public function timeline(?Uuid $id): Response
     {
+        $agent = $this->service->get($id);
+
+        $this->denyAccessUnlessGranted('get', $agent);
+
         $events = $this->documentService->getEventsByEntityId($id);
 
         return $this->render('agent/timeline.html.twig', [
-            'agent' => $this->service->get($id),
+            'agent' => $agent,
             'events' => $events,
         ]);
     }
 
     public function remove(?Uuid $id): Response
     {
+        $agent = $this->service->get($id);
+
+        $this->denyAccessUnlessGranted('remove', $agent);
+
         $this->service->remove($id);
 
         $this->addFlash('success', 'view.agent.message.deleted');

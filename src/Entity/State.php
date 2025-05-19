@@ -31,6 +31,10 @@ class State extends AbstractEntity
     #[Groups(['state.get'])]
     public readonly City $capital;
 
+    #[ORM\Column(type: 'string', nullable: false)]
+    #[Groups(['state.get'])]
+    public string $region;
+
     public function getId(): Uuid
     {
         return $this->id;
@@ -51,6 +55,16 @@ class State extends AbstractEntity
         return $this->capital;
     }
 
+    public function getRegion(): string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): void
+    {
+        $this->region = $region;
+    }
+
     public function toArray(): array
     {
         return [
@@ -58,6 +72,7 @@ class State extends AbstractEntity
             'name' => $this->name,
             'acronym' => $this->acronym,
             'capital' => $this->capital->getId()->toRfc4122(),
+            'region' => $this->region,
         ];
     }
 }

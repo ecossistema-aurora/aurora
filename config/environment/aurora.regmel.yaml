@@ -1,0 +1,317 @@
+name: Minha Casa Melhor
+author: Secretaria Nacional de Periferias
+
+email:
+  address: snp.gab@cidades.gov.br
+  logo: /img/regmel/regmel-logo.svg
+  rodape: /img/regmel/minha-casa-melhor-rodape.png
+  footer: >
+    Secretaria Nacional de Periferias - Ministério das Cidades
+    <br>
+    Este é um email automático, por favor, não responda.
+
+variables:
+  price_per_household: 45000
+
+visit_repository: false
+logo:
+  horizontal:
+    path: /img/regmel/regmel-logo.svg
+    width: 100px
+  vertical:
+    path: /img/regmel/regmel-logo.svg
+    width: 200px
+register:
+  any: false
+proposals:
+  area_characteristics:
+    option_1: Núcleo urbano regularizado ou em processo de regularização fundiária, desde que predominantemente de baixa renda, assim declarado pelo Município ou Distrito Federal;
+    option_2: Núcleo urbano informal classificados como área de Regularização Fundiária Urbana de Interesse Social - Reurb-S;
+    option_3: Zona especial de interesse social, conforme o art. 4º, inciso V, alínea "f", da Lei nº 10.257, de 10 de julho de 2001.
+    option_4: 'Se enquadra na excepcionalidade: casos de execução de melhorias destinadas a garantir segurança ou salubridade para preservação de vidas, logo, não há necessidade de que se tenha dado início ao processo de regularização fundiária nem que se caracterize como zona especial de interesse social. Aprovação da proposta condicionada ao ateste do Município ou Distrito Federal de que os potenciais beneficiários são de baixa renda.'
+terms:
+  lgpd:
+    title: Termo de Consentimento para Tratamento de Dados Pessoais (LGPD)
+    text: >
+      Em atendimento à <strong>Lei Geral de Proteção de Dados Pessoais – LGPD (Lei no
+      13.709/2018)</strong>, declaro estar ciente de que os dados fornecidos durante o processo de
+      cadastro e submissão de propostas na plataforma Minha Casa Melhor serão:<br><br>
+      <ul>
+      <li>Coletados, tratados e armazenados pela Secretaria Nacional de Periferias.</li>
+      <li>Utilizados exclusivamente para fins de gestão do edital, análise das propostas,</li>
+      execução do programa e prestação de contas.
+      <li>Acessados apenas por pessoas autorizadas e treinadas.</li>
+      </ul>
+      
+      <strong>Tenho ciência de que:</strong><br>
+      Posso solicitar, a qualquer momento, acesso, correção, anonimização ou exclusão
+      de meus dados pessoais, conforme previsto na LGPD.
+  image_authorization:
+    title: Termo de Consentimento para Uso de Imagem
+    text: >
+      Autorizo, de forma livre, informada e inequívoca, a <strong>Secretaria Nacional de Periferias
+      (SNP)</strong>, vinculada ao <strong>Ministério das Cidades</strong>, a utilizar, reproduzir e divulgar, para fins
+      institucionais, as imagens, vídeos, áudios e materiais gráficos enviados durante o
+      processo de seleção do programa Minha Casa Melhor.
+      <br><br>
+      <strong>Essa autorização é válida para:</strong>
+      <ul>
+        <li>Publicações em websites, redes sociais e relatórios institucionais.</li>
+        <li>Materiais de divulgação de políticas públicas, desde que não haja descontextualização.</li>
+      </ul>
+      A presente autorização é concedida sem limitação temporal e sem qualquer ônus,
+      podendo ser revogada a qualquer tempo mediante solicitação formal.
+  privacy_policy:
+    title: Termos de Uso e Política de Privacidade – Plataforma de Seleção Minha Casa Melhor
+    text: >
+      <p><span class="fw-bold">1.1. Finalidade</span><br>
+      A plataforma é destinada à seleção de propostas no âmbito do programa Minha Casa
+      Melhor, coordenado pela Secretaria Nacional de Periferias (SNP). Ao realizar o cadastro,
+      o usuário declara ciência e concordância com os termos aqui estabelecidos.
+      </p>
+      
+    
+      <p><span class="fw-bold">1.2. Uso da Plataforma</span><br>
+      <ul>
+        <li>A utilização da plataforma é gratuita e restrita a entidades públicas e privadas aptas a participar da seleção pública.</li>
+        <li>É de responsabilidade do usuário o fornecimento de dados verdadeiros, completos e atualizados.</li>
+      </ul>
+      </p>
+      
+      <p><span class="fw-bold">1.3. Tratamento de Dados Pessoais</span><br>
+      Os dados fornecidos (como nome, CPF, CNPJ, cargo, e-mail, telefone, endereço,
+      informações técnicas e documentos anexos) serão utilizados exclusivamente para:
+      <ul>
+        <li>Avaliar e processar as propostas submetidas.</li>
+        <li>Realizar comunicações relativas ao edital.</li>
+        <li>Gerar análises internas e relatórios de gestão.</li>
+      </ul>
+      </p>
+      
+      <p><span class="fw-bold">1.4. Compartilhamento de Dados</span><br>
+      Os dados poderão ser compartilhados apenas com:
+      <ul>
+        <li>Órgãos públicos parceiros.</li>
+        <li>Equipes técnicas da SNP envolvidas na seleção e gestão do programa.</li>
+      </ul>
+      </p>
+      
+      <p><span class="fw-bold">1.5. Segurança e Responsabilidade</span><br>
+      A SNP adota medidas técnicas e administrativas para garantir a segurança das
+      informações. O usuário é responsável pela veracidade dos dados inseridos.
+      </p>
+      
+      <p><span class="fw-bold">1.6. Aceite</span>
+      Li e aceito os Termos de Uso e a Política de Privacidade da plataforma Minha Casa Melhor.
+      </p>
+modules:
+  organizations: Municípios
+  agents: Agentes Promotores
+  opportunities: Credenciamento
+  events:
+  spaces:
+  initiatives:
+
+navbar:
+
+dropdown:
+  control_panel:
+    title: 'control_panel'
+    enabled: true
+    items:
+      - text: 'control_panel'
+        icon: 'touch_app'
+        route: 'admin_dashboard'
+
+  management:
+    title: 'management'
+    enabled: true
+    items:
+#      - text: 'agents'
+#        icon: 'group'
+#        route: 'admin_agent_list'
+#      - text: 'opportunities'
+#        icon: 'lightbulb'
+#        route: 'admin_opportunity_list'
+#      - text: 'organizations'
+#        icon: 'corporate_fare'
+#        route: 'admin_organization_list'
+
+
+dashboard:
+  cards:
+    municipalities:
+      csv: true
+      acl: ['ROLE_MUNICIPALITY', 'ROLE_ADMIN', 'ROLE_MANAGER']
+      title: Municípios
+      subtitle: Municípios
+      icon: place
+      color: "#F59E00"
+      action:
+        text: search
+        route: admin_regmel_municipality_list
+      total_key: totalCities
+    documents:
+      download: true
+      acl: ['ROLE_MUNICIPALITY', 'ROLE_ADMIN', 'ROLE_MANAGER']
+      title: Termos de Adesão
+      subtitle: Termos de adesão para Aprovação
+      icon: description
+      color: "#8e7cc3"
+      action:
+        text: search
+        route: admin_regmel_municipality_list
+      total_key: totalCities
+    proposals:
+      csv: true
+      acl: ['ROLE_MUNICIPALITY']
+      title: Propostas
+      subtitle: Propostas
+      icon: check_circle
+      color: "#F59E00"
+      action:
+        text: search
+        route: admin_regmel_municipality_list
+      total_key: totalCities
+    opportunities:
+      acl: ['ROLE_ADMIN', 'ROLE_MANAGER']
+      title: Credenciamentos
+      subtitle: Credenciamentos
+      icon: lightbulb
+      color: "#E70DCB"
+      action:
+        text: search
+        route: admin_opportunity_list
+      total_key: totalOpportunities
+    companies:
+      csv: true
+      acl: ['ROLE_COMPANY', 'ROLE_ADMIN', 'ROLE_MANAGER']
+      title: Empresas/OSCs
+      subtitle: Empresas/OSCs
+      icon: corporate_fare
+      color: "#6A5ACD"
+      action:
+        text: search
+        route: admin_regmel_company_list
+      total_key: totalCompanies
+    users:
+      acl: ['ROLE_ADMIN', 'ROLE_MANAGER']
+      title: Usuários
+      subtitle: Usuários
+      icon: person
+      color: "#ff3300"
+      action:
+        text: search
+        route: admin_user_list
+      total_key: totalUsers
+  inscriptions_area: false
+
+sidebar:
+  dashboard:
+    title: menu
+    items:
+      admin_dashboard:
+        acl:
+          - ROLE_USER
+        icon: dashboard
+        text: control_panel
+        color: text-info
+
+      admin_registration_list:
+        acl: []
+        icon: app_registration
+        text: my_subscriptions
+
+      admin_opportunity_list:
+        acl: [ROLE_ADMIN, ROLE_MANAGER]
+        icon: diversity_2
+        text: Credenciamentos
+
+      admin_review_list:
+        acl: []
+        icon: manage_search
+        text: my_reviews
+
+      admin_agent_list:
+        acl: []
+        icon: people
+        text: Agentes Promotores
+
+      admin_initiative_list:
+        acl: []
+        icon: article
+        text: Propostas
+
+      admin_regmel_company_list:
+        acl: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_COMPANY']
+        icon: business
+        text: Empresas/OSC
+
+      admin_regmel_municipality_list:
+        acl: ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_MUNICIPALITY']
+        icon: location_city
+        text: Municípios
+
+      admin_regmel_municipality_document_list:
+        acl: ['ROLE_ADMIN', 'ROLE_MANAGER']
+        icon: description
+        text: Termos de Adesão
+
+      admin_regmel_proposal_list:
+        acl: ['ROLE_ADMIN', 'ROLE_MANAGER']
+        icon: cases
+        text: Propostas
+
+      admin_user_list:
+        acl: ['ROLE_ADMIN']
+        icon: manage_accounts
+        text: users
+
+      admin_faq_list:
+        acl: ['ROLE_ADMIN']
+        icon: quiz
+        text: faq
+
+homepage:
+  sections:
+    header:
+      enabled: false
+      title: Minha Casa Melhor
+      subtitle: subtitulo aqui
+      action:
+        route: regmel_about
+        title: SAIBA MAIS
+      description: descricao aqui
+      background: bg-dark
+      image: img/regmel.svg
+      image_width: 70%
+    banner:
+      enabled: true
+      image: /img/regmel/minha-casa-melhor-banner.svg
+    register:
+      enabled: true
+      color: "#1c8230"
+      options:
+        municipio:
+          title: Município
+          route: regmel_register_city
+        empresa:
+          title: Empresa/OSC
+          route: regmel_register_company
+    opportunities:
+      enabled: false
+    modules:
+      enabled: false
+    happen_now:
+      enabled: false
+    maps:
+      enabled: false
+      background: bg-dark
+      color: text-light
+    contribute:
+      enabled: false
+    footer:
+      discover: false
+      control_panel: false
+      help: false
+      social_network: false

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Api;
 
 use App\Service\Interface\UserServiceInterface;
+use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,5 +30,28 @@ class UserApiController extends AbstractApiController
         $user = $this->service->update($id, $request->toArray());
 
         return $this->json($user, context: ['groups' => 'user.get']);
+    }
+
+    public function exists(Request $request): JsonResponse
+    {
+        $email = $request->query->get('email');
+
+        if (!$email) {
+            return $this->json(
+                ['error' => 'email não informado.'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        try {
+            $user = $this->service->findOneBy(['email' => $email]);
+            $exists = null !== $user;
+        } catch (Exception) {
+            $exists = false;
+        }
+
+        return $this->json([
+            'exists' => $exists,
+        ]);
     }
 }

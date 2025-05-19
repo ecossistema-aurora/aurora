@@ -29,6 +29,6 @@ class HomepageWebControllerTest extends AbstractWebTestCase
         $this->client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', $this->translator->trans('view.homepage.title'));
+        $this->assertSelectorTextContains('h1', 'Mapa das Periferias');
     }
 }

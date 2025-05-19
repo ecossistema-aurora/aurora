@@ -38,6 +38,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
             'description' => null,
+            'type' => 'Empresa',
             'image' => null,
             'agents' => [],
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -66,6 +67,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
             'description' => 'Test Organization',
+            'type' => 'Empresa',
             'image' => null,
             'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -103,8 +105,6 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                 'expectedErrors' => [
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
-                    ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
-                    ['field' => 'owner', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -180,8 +180,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
 
         $this->assertJsonContains([
             'id' => OrganizationFixtures::ORGANIZATION_ID_1,
-            'name' => 'PHP com Rapadura',
-            'description' => 'Comunidade de devs PHP do Estado do Ceará',
+            'name' => 'Fortaleza',
+            'description' => 'Municipio de Fortaleza, Capital do Ceará',
+            'type' => 'Municipio',
             'image' => $organization->getImage(),
             'agents' => [],
             'owner' => [
@@ -212,8 +213,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseBodySame([
             'id' => OrganizationFixtures::ORGANIZATION_ID_3,
-            'name' => 'Devs do Sertão',
-            'description' => 'Grupo de devs que se reúnem velas veredas do sertão',
+            'name' => 'Alto Santo',
+            'description' => 'Município de Alto Santo, no Ceará',
+            'type' => 'Municipio',
             'image' => $organization->getImage(),
             'agents' => [],
             'owner' => [
@@ -222,7 +224,15 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
-            'extraFields' => [],
+            'extraFields' => [
+                'cnpj' => '00.000.000/0001-03',
+                'email' => 'altosanto@example.com',
+                'phone' => '(85) 99999-0003',
+                'tipo' => 'OSC',
+                'companyName' => 'Razão Social Alto Santo',
+                'site' => 'https://www.altosanto.ce.gov.br',
+                'cityId' => 'b2ba1218-d357-4152-8621-45d629436ce1',
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -289,6 +299,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'id' => OrganizationFixtures::ORGANIZATION_ID_4,
             'name' => $requestBody['name'],
             'description' => $requestBody['description'],
+            'type' => 'Empresa',
             'image' => $organization->getImage(),
             'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -417,8 +428,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseBodySame([
             'id' => OrganizationFixtures::ORGANIZATION_ID_10,
-            'name' => 'Banda de Forró tô nem veno',
-            'description' => 'Banda de forró formada com pessoas de baixa ou nenhuma visão',
+            'name' => 'Indaiatuba',
+            'description' => 'Municipio de Indaiatuba-SP',
+            'type' => 'Municipio',
             'image' => $organization->getImage(),
             'agents' => [],
             'owner' => [
@@ -427,7 +439,15 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
-            'extraFields' => [],
+            'extraFields' => [
+                'cnpj' => '00.000.000/0001-10',
+                'email' => 'indaiatuba@example.com',
+                'phone' => '(85) 99999-0010',
+                'tipo' => 'OSC',
+                'companyName' => 'Razão Social Indaiatuba',
+                'site' => 'https://www.indaiatuba.sp.gov.br',
+                'cityId' => 'ee246666-c1a9-4880-872a-3299b094bc06',
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

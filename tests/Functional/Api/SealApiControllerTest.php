@@ -287,7 +287,7 @@ class SealApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertCount(2, json_decode($response));
+        $this->assertCount(10, json_decode($response));
 
         /* @var Seal $seal */
         $seal = $client->getContainer()->get(EntityManagerInterface::class)

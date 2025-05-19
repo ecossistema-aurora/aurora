@@ -6,6 +6,7 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\EventTimeline;
 use App\DocumentService\EventTimelineDocumentService;
+use App\Enum\UserRolesEnum;
 use App\Service\Interface\CulturalLanguageServiceInterface;
 use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\TagServiceInterface;
@@ -13,6 +14,7 @@ use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use TypeError;
@@ -34,6 +36,7 @@ class EventAdminController extends AbstractAdminController
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $events = $this->service->findBy();
@@ -53,6 +56,7 @@ class EventAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);
@@ -62,6 +66,7 @@ class EventAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_event_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod('POST')) {
@@ -109,6 +114,7 @@ class EventAdminController extends AbstractAdminController
         return $this->list();
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function edit(Uuid $id, Request $request): Response
     {
         try {

@@ -1,0 +1,58 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %} {{ 'company_register'|trans }} {% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="row mb-3">
+            <a href="{{ path('web_home_homepage') }}" class="nav-link text-primary">
+                <i class="material-icons align-middle">arrow_back</i>
+                {{ 'back'|trans }}
+            </a>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 col-lg-8 col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="fw-bold fs-3">{{ 'company_register'|trans }}</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
+
+                            <label for="opportunity">{{ 'view.authentication.register.opportunity_type'|trans }}</label>
+                            <select name="opportunity" id="opportunity" required class="form-select mt-1 mb-3">
+                                {% for opportunity in opportunities %}
+                                    <option value="{{ opportunity.id }}">{{ opportunity.name }}</option>
+                                {% else %}
+                                    <option selected disabled value="">{{ 'view.authentication.register.no_opportunities'|trans }}</option>
+                                {% endfor %}
+                            </select>
+                            <hr>
+
+                            {% include "regmel/register/_partials/company-data.html.twig" %}
+
+                            {% include "regmel/register/_partials/company-user-data.html.twig" %}
+
+                            {% include "regmel/register/_partials/accept-terms.html.twig" %}
+
+                            <div class="alert alert-danger d-none" id="error-message"></div>
+
+                            <div class="btn-form-group">
+                                <button class="btn btn-primary" type="submit">
+                                    {{ 'save' | trans }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_javascripts %}
+    <script type="module" src="{{ asset('js/regmel/register.js') }}"></script>
+{% endblock %}

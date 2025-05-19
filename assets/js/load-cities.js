@@ -1,25 +1,53 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const stateSelect = document.getElementById("state");
-    const citySelect = document.getElementById("address");
-    const token = document.getElementById("filter-sidebar").getAttribute("token");
+import TomSelect from 'tom-select';
+import 'tom-select/dist/css/tom-select.default.min.css';
 
-    stateSelect.addEventListener("change", function () {
-        const stateId = this.value;
-        citySelect.innerHTML = `<option value="">${citySelect.getAttribute("data-placeholder") || "Selecione"}</option>`;
+document.addEventListener('DOMContentLoaded', () => {
+    const stateElement  = document.getElementById('state');
+    const cityElement   = document.getElementById('city');
 
-        if (!stateId) return;
+    stateElement.classList.remove('form-select');
+    cityElement .classList.remove('form-select');
 
-        fetch(`/api/states/${stateId}/cities`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then(res => res.json())
-            .then(cities => {
-                cities.forEach(city => {
-                    citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
-                });
-            })
-            .catch(error => console.error('Error fetching cities:', error));
+    const stateSelect = new TomSelect(stateElement, {
+        create: false,
+        sortField: { field: 'text', direction: 'asc' },
+        placeholder: stateElement.dataset.placeholder || 'Selecione',
+        allowEmptyOption: false,
     });
+
+    const citySelect = new TomSelect(cityElement, {
+        create: false,
+        sortField: { field: 'text', direction: 'asc' },
+        placeholder: cityElement.dataset.placeholder || 'Selecione',
+        allowEmptyOption: false,
+    });
+
+    const fetchData = url =>
+        fetch(url)
+            .then(res => res.ok ? res.json() : [])
+            .catch(() => []);
+
+    const clearCities = () => {
+        citySelect.clearOptions();
+        citySelect.clear(true);
+    };
+
+    stateSelect.on('change', async value => {
+        clearCities();
+        if (!value) return;
+
+        const cities = await fetchData(
+            `/api/states/${encodeURIComponent(value)}/cities`
+        );
+
+        cities.forEach(c => {
+            citySelect.addOption({ value: c.id, text: c.name });
+        });
+        citySelect.refreshOptions(false);
+    });
+
+    const initialState = stateSelect.getValue();
+    if (initialState) {
+        stateSelect.fire('change', initialState);
+    }
 });

@@ -1,0 +1,49 @@
+<div class="modal fade" id="modalDocument" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalDocumentTitle"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="min-height: 600px;" id="modalDocumentBody">
+            </div>
+            <div class="modal-footer d-block">
+                <form id="documentDecisionForm" action="" method="post">
+                    <input type="hidden" id="docId" name="docId" value="">
+                    <input type="hidden" id="approved" name="approved" value="false">
+
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="text" name="reason" placeholder="Informe o Motivo" class="form-control" required>
+                        </div>
+                        <div class="col-4 text-end">
+                            <button type="button" class="btn btn-danger" data-target="#confirmDocDecision" onclick="confirmDecision(this, false)">Recusar</button>
+                            <button type="button" class="btn btn-primary" data-target="#confirmDocDecision" onclick="confirmDecision(this)">Aprovar</button>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="confirmDocDecision" data-bs-backdrop="false">
+                        <div class="modal-backdrop show"></div>
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="confirmDecisionTitle">Recusar</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p id="confirmDecisionQuestion">Você tem certeza que deseja recusar o documento?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    <button id="confirmDecisionButton" type="submit" class="btn btn-primary">Aprovar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <p id="termInfo" class="d-none">{{ 'term_updated_at'|trans }}: <span id="termUpdatedAt"></span></p>
+            </div>
+        </div>
+    </div>
+</div>

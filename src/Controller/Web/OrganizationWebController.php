@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Enum\OrganizationTypeEnum;
 use App\Service\Interface\OrganizationServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,8 @@ class OrganizationWebController extends AbstractWebController
     {
         $filters = $request->query->all();
         $filters = $this->getOrderParam($filters);
+
+        $filters['filters']['type'] = OrganizationTypeEnum::MUNICIPIO->value;
 
         $organizations = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalOrganizations = count($organizations);

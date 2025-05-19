@@ -15,23 +15,23 @@ class OrganizationWebControllerTest extends AbstractWebTestCase
 {
     public function testListRouteRendersHTMLSuccessfully(): void
     {
-        $this->client->request('GET', '/organizacoes');
+        $this->client->request('GET', '/municipios');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('.dashboard-card');
     }
 
     public function testGetOneRouteNotFound(): void
     {
-        $this->client->request('GET', '/organizacoes/'.Uuid::v4()->toRfc4122());
+        $this->client->request('GET', '/municipios/'.Uuid::v4()->toRfc4122());
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testGetOneRouteForExistingOrganization(): void
     {
         $existingUuid = OrganizationFixtures::ORGANIZATION_ID_1;
-        $this->client->request('GET', '/organizacoes/'.$existingUuid);
+        $this->client->request('GET', '/municipios/'.$existingUuid);
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'PHP com Rapadura');
+        $this->assertSelectorTextContains('h1', 'Fortaleza');
     }
 
     public function testControllerGetOneMethodDirectly(): void
@@ -41,7 +41,7 @@ class OrganizationWebControllerTest extends AbstractWebTestCase
 
         $response = $controller->getOne(Uuid::fromString(OrganizationFixtures::ORGANIZATION_ID_1));
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertStringContainsString('PHP com Rapadura', $response->getContent());
+        $this->assertStringContainsString('Fortaleza', $response->getContent());
     }
 
     public function testControllerListMethodDirectly(): void
@@ -56,7 +56,7 @@ class OrganizationWebControllerTest extends AbstractWebTestCase
 
         $response = $controller->list($request);
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertStringContainsString('Organizações Encontradas', $response->getContent());
+        $this->assertStringContainsString('Municípios Encontrados', $response->getContent());
 
         $requestStack->pop();
     }

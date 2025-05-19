@@ -1,0 +1,177 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'control_panel'|trans }} - {{ 'cities'|trans }}
+{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body shadow">
+                        <div class="row justify-content-between">
+                            <div class="col">
+                                <h2>
+                                    {{ 'organizations'|trans }} - {{ 'documents'|trans }}
+                                </h2>
+                            </div>
+
+                            <div class="col text-end">
+                                <a href="{{ path('admin_regmel_municipality_document_download') }}"
+                                   class="btn btn-secondary">
+                                    {{ 'download_all_terms'|trans }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') %}
+                            {% include 'regmel/_components/list-filters.html.twig' %}
+                        {% endif %}
+
+                        <table class="js-grid table table-hover table-striped">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>{{ 'name'|trans }}</th>
+                                <th>{{ 'document.title'|trans }}</th>
+                                <th>{{ 'updated_at'|trans }}</th>
+                                <th>{{ 'status'|trans }}</th>
+                                <th>{{ 'actions'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for municipality in municipalities %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('admin_regmel_municipality_details', {id: municipality.id}) }}">
+                                            {{ municipality.name }} - {{ municipality.extraFields.state }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a onclick="openDocumentModal('{{ municipality.name }}', '{{ municipality.id }}', '{{ municipality.extraFields.term_status }}', '{{ municipality.extraFields.term_updated_at ?? '' }}')"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#modalDocument"
+                                           href="#">
+                                            {{ municipality.extraFields.form }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ municipality.updatedAt
+                                        ? municipality.updatedAt.format('d/m/Y H:i:s')
+                                        : municipality.createdAt.format('d/m/Y H:i:s') }}
+                                    </td>
+                                    <td>
+                                        {% set status = municipality.extraFields.term_status ?? 'awaiting' %}
+                                        {% set badgeClass = {
+                                            'awaiting': 'bg-warning',
+                                            'approved': 'bg-success text-white',
+                                            'rejected': 'bg-danger text-white'
+                                        }[status] %}
+                                        <span class="badge {{ badgeClass }} text-dark text-uppercase">
+                                                {% if status == 'awaiting' %}
+                                                    {{ 'awaiting'|trans }}
+                                                {% elseif status == 'approved' %}
+                                                    {{ 'accepted'|trans }}
+                                                {% elseif status == 'rejected' %}
+                                                    {{ 'rejected'|trans }}
+                                                {% else %}
+                                                    {{ 'unknown'|trans }}
+                                                {% endif %}
+                                            </span>
+                                    </td>
+                                    <td style="position: relative;">
+                                        <div class="dropdown">
+                                            <button
+                                                    class="btn btn-outline-warning btn-sm dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenu{{ municipality.id }}"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                    style="--bs-dropdown-min-width: 0; width: auto;"
+                                            >
+                                                {{ 'actions'|trans }}
+                                            </button>
+                                            <ul
+                                                    class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="dropdownMenu{{ municipality.id }}"
+                                                    style="--bs-dropdown-min-width: 0; width: auto;"
+                                            >
+                                                <li>
+                                                    <a
+                                                            href="#"
+                                                            class="dropdown-item edit-organization"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalEditOrganization"
+                                                            data-id="{{ municipality.id }}"
+                                                            data-token="{{ token }}"
+                                                    >
+                                                        {{ 'edit'|trans }}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center">{{ 'table.no_records_found'|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'regmel/admin/municipality/_partials/modal-document.html.twig' %}
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('js/grid-init.js') }}"></script>
+    <script src="{{ asset('js/modal-confirm-documentation.js') }}"></script>
+    <script src="{{ asset('js/form-utils.js') }}"></script>
+    <script type="module" src="{{ asset('js/load-filters.js') }}"></script>
+
+    <script>
+        function openDocumentModal(organizationName, organizationId, status, termUpdatedAt) {
+            const form = document.getElementById('documentDecisionForm');
+            const termInfo = document.getElementById('termInfo');
+            document.getElementById('termUpdatedAt').innerHTML = termUpdatedAt;
+
+            if ('awaiting' !== status) {
+                form.classList.add('d-none');
+                termInfo.classList.remove('d-none');
+            } else {
+                termInfo.classList.add('d-none');
+                form.classList.remove('d-none');
+            }
+
+            document.getElementById('docId').value = organizationId;
+            form.action = `/painel/admin/municipios/${organizationId}/document/decision`;
+
+            document.getElementById('modalDocumentTitle').innerHTML =
+                'Documento - ' + organizationName;
+            document.getElementById('modalDocumentBody').innerHTML = `
+                <object style="min-height: 600px;"
+                        data="/painel/admin/municipios/${organizationId}/oficio"
+                        type="application/pdf"
+                        width="100%"
+                        height="100%">
+                    <p>
+                        Caso o documento não esteja visível,
+                        <a href="/painel/admin/municipios/${organizationId}/oficio">
+                            clique aqui para acessar o PDF!
+                        </a>
+                    </p>
+                </object>
+            `;
+        }
+    </script>
+{% endblock %}

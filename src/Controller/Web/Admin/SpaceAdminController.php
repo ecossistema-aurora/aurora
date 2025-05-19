@@ -6,6 +6,7 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\SpaceTimeline;
 use App\DocumentService\SpaceTimelineDocumentService;
+use App\Enum\UserRolesEnum;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
@@ -15,6 +16,7 @@ use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use TypeError;
@@ -40,6 +42,7 @@ class SpaceAdminController extends AbstractAdminController
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $spaces = $this->service->findBy();
@@ -49,6 +52,7 @@ class SpaceAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);
@@ -58,6 +62,7 @@ class SpaceAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_space_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
@@ -95,6 +100,7 @@ class SpaceAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_space_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
@@ -105,6 +111,7 @@ class SpaceAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function edit(Uuid $id, Request $request): Response
     {
         try {

@@ -29,6 +29,18 @@ class StateApiController extends AbstractApiController
         ]);
     }
 
+    public function listByRegion(string $region): JsonResponse
+    {
+        return $this->json($this->stateService->findBy([
+            'region' => $region,
+        ]), context: [
+            'groups' => 'state.get',
+            AbstractNormalizer::CALLBACKS => [
+                'parent' => [EntityIdNormalizerHelper::class, 'normalizeEntityId'],
+            ],
+        ]);
+    }
+
     public function listCitiesByState(string $state): JsonResponse
     {
         $state = $this->stateService->findOneBy(['id' => Uuid::fromString($state)]);

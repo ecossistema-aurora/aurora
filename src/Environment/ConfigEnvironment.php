@@ -13,6 +13,10 @@ class ConfigEnvironment
         $dirname = dirname(__DIR__, 2).'/config/environment';
         $filename = "{$dirname}/aurora.yaml";
 
+        if (true === file_exists("{$dirname}/aurora.regmel.yaml")) {
+            $filename = "{$dirname}/aurora.regmel.yaml";
+        }
+
         if (true === file_exists("{$dirname}/aurora.local.yaml")) {
             $filename = "{$dirname}/aurora.local.yaml";
         }
@@ -22,5 +26,12 @@ class ConfigEnvironment
         }
 
         return Yaml::parseFile($filename);
+    }
+
+    public static function isRegmel(): bool
+    {
+        $dirname = dirname(__DIR__, 2).'/config/environment';
+
+        return file_exists("{$dirname}/aurora.regmel.yaml");
     }
 }

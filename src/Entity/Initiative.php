@@ -43,6 +43,16 @@ class Initiative extends AbstractEntity
     #[Groups('initiative.get')]
     private ?Space $space = null;
 
+    #[ORM\ManyToOne(targetEntity: Organization::class)]
+    #[ORM\JoinColumn(name: 'organization_from_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups('initiative.get')]
+    private ?Organization $organizationFrom = null;
+
+    #[ORM\ManyToOne(targetEntity: Organization::class)]
+    #[ORM\JoinColumn(name: 'organization_to_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups('initiative.get')]
+    private ?Organization $organizationTo = null;
+
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     #[Groups('initiative.get')]
@@ -123,6 +133,26 @@ class Initiative extends AbstractEntity
     public function setSpace(?Space $space): void
     {
         $this->space = $space;
+    }
+
+    public function getOrganizationFrom(): ?Organization
+    {
+        return $this->organizationFrom;
+    }
+
+    public function setOrganizationFrom(?Organization $organization): void
+    {
+        $this->organizationFrom = $organization;
+    }
+
+    public function getOrganizationTo(): ?Organization
+    {
+        return $this->organizationTo;
+    }
+
+    public function setOrganizationTo(?Organization $organization): void
+    {
+        $this->organizationTo = $organization;
     }
 
     public function getCreatedBy(): Agent

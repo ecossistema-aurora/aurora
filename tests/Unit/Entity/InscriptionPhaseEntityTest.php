@@ -52,8 +52,10 @@ final class InscriptionPhaseEntityTest extends AbstractApiTestCase
         $this->assertEquals([
             'id' => $id->toRfc4122(),
             'agent' => $agentId,
+            'organization' => null,
             'phase' => $phaseId,
             'status' => $status,
+            'extraFields' => null,
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt->format(DateFormatHelper::DEFAULT_FORMAT),
