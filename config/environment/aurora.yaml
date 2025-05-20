@@ -1,6 +1,13 @@
 name: Aurora
 author: SECULT Ceará
-email: suporteaurora@email.com
+email:
+  address: suporteaurora@email.com
+  logo: /img/regmel/regmel-logo.svg
+  rodape: /img/regmel/minha-casa-melhor-rodape.png
+  footer: >
+    Secretaria Nacional de Periferias - Ministério das Cidades
+    <br>
+    Este é um email automático, por favor, não responda.
 visit_repository: true
 logo:
   horizontal:
