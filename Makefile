@@ -57,6 +57,11 @@ install_frontend:
 compile_frontend: reset
 	docker compose exec -T php bash -c "php bin/console asset-map:compile"
 
+# Abre uma instância gráfica do cypress
+open_cypress: load_fixtures
+	xhost +local:
+	CYPRESS_MODE=open docker compose --profile tests up
+
 # Executa as fixtures de dados e os testes de front-end
 tests_front: guard-not-prod
 	make demo-regmel
