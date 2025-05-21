@@ -69,14 +69,16 @@ services:
       - tests
     environment:
       - CYPRESS_BASE_URL=http://nginx
-      - :80
+      - DISPLAY=${DISPLAY}
+      - CYPRESS_MODE=${CYPRESS_MODE:-run}
     depends_on:
       - nginx
       - php
     entrypoint: [ '/bin/sh', '-c' ]
-    command: ['npm install && cypress run']
+    command: ['npm install && cypress $$CYPRESS_MODE']
     volumes:
       - .:/cy
+      - /tmp/.X11-unix:/tmp/.X11-unix
     working_dir: /cy
     networks:
       - regmel_network
