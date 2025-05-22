@@ -64,14 +64,10 @@ open_cypress: load_fixtures
 
 # Executa as fixtures de dados e os testes de front-end
 tests_front: guard-not-prod
-	make demo-regmel
-	sed -i 's/default_locale: regmel/default_locale: pt-br/' config/packages/translation.yaml
-	sed -i 's/municipios/organizacoes/' config/routes/web.yaml
-	sed -i 's/municipios/organizacoes/' config/routes/admin.yaml
+	if [ "$(fixtures)" != "no" ]; then \
+		make load_fixtures;\
+	fi;
 	docker compose up cypress
-	sed -i 's/default_locale: pt-br/default_locale: regmel/' config/packages/translation.yaml
-	sed -i 's/organizacoes/municipios/' config/routes/web.yaml
-	sed -i 's/organizacoes/municipios/' config/routes/admin.yaml
 
 # Executa as fixtures de dados e os testes de back-end
 tests_back:	guard-not-prod
