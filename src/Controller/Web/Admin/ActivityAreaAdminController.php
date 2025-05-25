@@ -18,9 +18,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ActivityAreaAdminController extends AbstractAdminController
 {
-    public const VIEW_LIST = '_admin/activity-area/list.html.twig';
-    public const VIEW_ADD = '_admin/activity-area/create.html.twig';
-    public const VIEW_EDIT = '_admin/activity-area/edit.html.twig';
+    public const VIEW_LIST = 'activity-area/list.html.twig';
+    public const VIEW_ADD = 'activity-area/create.html.twig';
+    public const VIEW_EDIT = 'activity-area/edit.html.twig';
 
     public const CREATE_FORM_ID = 'add-activity-area';
     public const EDIT_FORM_ID = 'edit-activity-area';
