@@ -7,16 +7,23 @@ describe('Painel de Controle - Página de timeline das Oportunidades', () => {
     it('Garante que a página de timeline existe e que exibe os detalhes corretamente', () => {
         cy.visit('painel/oportunidades/');
 
-        cy.get('tbody > :nth-child(10)').contains('Timeline').click({force: true});
+        cy.get('table > tbody').contains('tr', 'Credenciamento de Quadrilhas Juninas - São João do Nordeste').as('row');
+        cy.get('@row').should('be.visible');
+    
+        cy.get('@row').find('[data-column-id="ações"]').contains('Timeline').should('not.be.visible');
+        cy.get('@row').find('[data-column-id="ações"]').contains('Ações').click();
+        cy.get('@row').find('[data-column-id="ações"]').contains('Timeline').click();
 
         cy.get('h2').contains('Oportunidade - Credenciamento de Quadrilhas Juninas - São João do Nordeste - Timeline').should('be.visible');
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
-        cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
-        cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
-        cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
-        cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible');
 
-        cy.get(':nth-child(1) > :nth-child(5) > .btn').click();
+        cy.get('tbody > :nth-child(1)').as('firstLine');
+        cy.get('@firstLine').find('[data-column-id="titulo"]').contains('A entidade foi criada').should('be.visible');
+        cy.get('@firstLine').find('[data-column-id="criadoEm"]').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
+        cy.get('@firstLine').find('[data-column-id="dispositivo"]').contains('unknown').should('be.visible');
+        cy.get('@firstLine').find('[data-column-id="ações"]').contains('.btn', 'Detalhes').should('be.visible');
+
+        cy.get('@firstLine').contains('Detalhes').click();
         cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De');
         cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para');
         cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('N/A');

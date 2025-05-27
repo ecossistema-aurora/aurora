@@ -5,13 +5,13 @@ describe('Acessar Fases de uma Oportunidade', () => {
         cy.contains('Henrique').click();
         cy.contains('Minhas Oportunidades').click();
         cy.url().should('include', '/painel/oportunidades');
-        cy.contains('Chamada para Oficinas de Artesanato - Feira de Cultura Popular').click();
+        cy.contains('Credenciamento de Quadrilhas Juninas - São João do Nordeste').click();
         cy.url().should('include', '/painel/oportunidades');
         cy.contains('Fases').click();
 
         cy.get('#phases').within(() => {
             cy.contains('Fase de submissão').should('be.visible');
-            cy.contains('Fase de documentos').should('be.visible');
+            cy.contains('Fase de documentação').should('be.visible');
         });
     });
 });
