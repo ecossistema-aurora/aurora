@@ -8,19 +8,20 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
     it('Garante que a página de listar Oportunidades existe e funciona', () => {
         cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
 
-        cy.contains('Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').should('be.visible');
-        
-        // TODO: regmel
-        // cy.contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('not.exist');
+        cy.get('table > tbody').contains('tr', 'Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').as('row');
+        cy.get('@row').should('be.visible');
 
-        cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
-    
-        cy.get('[data-cy="remove-1"]').contains('Excluir').click();
-    
+        cy.get('@row').find('[data-column-id="ações"]').contains('Excluir').should('not.be.visible');
+        cy.get('@row').find('[data-column-id="ações"]').contains('Ações').click();
+
+        cy.get('@row')
+            .find('[data-column-id="ações"]')
+            .contains('Excluir')
+            .click();
+
         cy.contains('Confirmar').click();
 
-        // TODO: regmel
-        // cy.contains('Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').should('not.exist');
+        cy.contains('Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').should('not.exist');
         cy.get('.success.snackbar').contains('A Oportunidade foi excluída').should('be.visible');
     });
 })

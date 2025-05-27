@@ -3,7 +3,13 @@ describe('Pagina de edição de Oportunidade', () => {
         cy.viewport(1920, 1080);
         cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
         cy.visit('/painel/oportunidades/');
-        cy.get('tr:contains("Titulo da oportunidade para o teste")').contains('Editar').click();
+
+        cy.get('table > tbody').contains('tr', 'Chamada para Oficinas de Teatro de Rua - Encontro de Artes Cênicas Nordestinas').as('row');
+        cy.get('@row').should('be.visible');
+
+        cy.get('@row').find('[data-column-id="ações"]').contains('Editar').should('not.be.visible');
+        cy.get('@row').find('[data-column-id="ações"]').contains('Ações').click();
+        cy.get('@row').find('[data-column-id="ações"]').contains('Editar').click();
 
         Cypress.on('uncaught:exception', (err) => {
             if (err.message.includes('i.createPopper is not a function')) {
@@ -15,7 +21,7 @@ describe('Pagina de edição de Oportunidade', () => {
     it('Garante que a página de edição existe', () => {
         cy.url().should('to.match', /\/painel\/oportunidades\/(....................................)\/editar$/gm);
 
-        cy.contains('Titulo da oportunidade para o teste').should('exist');
+        cy.contains('Chamada para Oficinas de Teatro de Rua - Encontro de Artes Cênicas Nordestinas').should('exist');
     });
 
     describe('Garante aba "Informações gerais"', () => {
