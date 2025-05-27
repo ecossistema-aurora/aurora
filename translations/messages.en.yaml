@@ -222,6 +222,7 @@ introduction: Introduction
 inactive: Inactive
 is_itinerant: Is it an itinerant agent?
 is-accessible: Is the space accessible?
+invalid_credentials: E-mail or password invalid
 Invite was accepted: Invite was accepted
 Invite was sent: Invite was sent
 

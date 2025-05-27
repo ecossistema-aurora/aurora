@@ -221,6 +221,7 @@ introduction: Presentación
 inactive: Inactivo
 is_itinerant: ¿Es agente itinerante?
 is-accessible: ¿El espacio es accesible?
+invalid_credentials: E-mail o contraseña inválidos
 Invite was accepted: Invitación aceptada
 Invite was sent: Invitación enviada
 
