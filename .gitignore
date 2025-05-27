@@ -45,6 +45,7 @@ coverage.xml
 /var/cache/
 /var/log/
 /var/tmp/
+/var/translations/
 ###< ux-translator ###
 
 ###> league/flysystem-bundle ###
