@@ -8,7 +8,7 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
     it('Garante que a página de listar Oportunidades existe e funciona', () => {
         cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
 
-        cy.get('table > tbody').contains('tr', 'Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').as('row');
+        cy.get('table > tbody').contains('tr', 'Convocatória para Mostra de Filmes Nordestinos - Cine Nordeste').as('row');
         cy.get('@row').should('be.visible');
 
         cy.get('@row').find('[data-column-id="ações"]').contains('Excluir').should('not.be.visible');
@@ -21,7 +21,7 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
 
         cy.contains('Confirmar').click();
 
-        cy.contains('Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').should('not.exist');
+        cy.contains('Convocatória para Mostra de Filmes Nordestinos - Cine Nordeste').should('not.exist');
         cy.get('.success.snackbar').contains('A Oportunidade foi excluída').should('be.visible');
     });
 })
