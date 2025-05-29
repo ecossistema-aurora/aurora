@@ -35,7 +35,7 @@ web_opportunity:
 
 web_organization:
   resource: 'web/organization.yaml'
-  prefix: /municipios
+  prefix: /organizacoes
   name_prefix: web_organization_
 
 web_faq:
