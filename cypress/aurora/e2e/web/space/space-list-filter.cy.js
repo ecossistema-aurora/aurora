@@ -52,7 +52,7 @@ describe('Página de Lista de Espaços', () => {
 
     it('Garante que filtrar por estado funciona', () => {
         cy.get('#open-filter').click();
-        cy.get('#state').select('Ceará');
+        cy.get('#state').select('Ceará', {force: true});
         cy.get('#apply-filters').click();
 
         cy.get('.align-items-end > .fw-bold').contains('3 Espaços Encontrados').should('be.visible');
@@ -61,8 +61,16 @@ describe('Página de Lista de Espaços', () => {
 
     it('Garante que filtrar por cidade funciona', () => {
         cy.get('#open-filter').click();
-        cy.get('#state').select('Ceará');
-        cy.get('#city').select('Nova Russas');
+
+        cy.get('#state-ts-control').click();
+        cy.contains('.ts-dropdown .option', 'Ceará').click();
+
+        cy.get('#city-ts-control')
+            .click()
+            .type('Nova Russas', { delay: 200 });
+
+        cy.get('#city-opt-123.option.active').click();
+
         cy.get('#apply-filters').click();
 
         cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
