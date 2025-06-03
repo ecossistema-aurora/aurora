@@ -19,7 +19,7 @@ interface AccountEventServiceInterface
 
     public function resetPassword(string $token, Request $request): void;
 
-    public function sendResetPasswordEmail(string $email): void;
+    public function sendResetPasswordEmail(string $email, bool $isNewUser = false): void;
 
     public function notifyManagerOfNewRegistration(
         string $userName,

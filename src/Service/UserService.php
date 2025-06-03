@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\UserDto;
 use App\Entity\Agent;
 use App\Entity\User;
-use App\Enum\UserRolesEnum;
 use App\Enum\UserStatusEnum;
 use App\Exception\User\UserResourceNotFoundException;
 use App\Repository\Interface\UserRepositoryInterface;
@@ -77,12 +76,6 @@ readonly class UserService extends AbstractEntityService implements UserServiceI
         } catch (Exception $exception) {
             $this->repository->rollback();
             throw $exception;
-        }
-
-        if ($this->security->isGranted(UserRolesEnum::ROLE_ADMIN->value)) {
-            $this->accountEventService->sendResetPasswordEmail($userObj->getEmail(), isNewUser: true);
-        } else {
-            $this->accountEventService->sendConfirmationEmail($userObj);
         }
 
         return $userObj;
