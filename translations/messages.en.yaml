@@ -634,6 +634,7 @@ view:
       cnpj_invalid: Please enter a valid CNPJ.
       phone_invalid: Please enter a valid phone number.
       account_not_confirmed: Account not confirmed
+      email_not_sent: Confirmation email not sent
 
     forgot_password: Forgot my password
     paragraph: Log in with your account

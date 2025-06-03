@@ -12,6 +12,7 @@ use App\Enum\UserRolesEnum;
 use App\Exception\User\UserResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Security\PasswordHasher;
+use App\Service\Interface\AccountEventServiceInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use Exception;
@@ -40,6 +41,7 @@ class UserAdminController extends AbstractAdminController
         private JWTTokenManagerInterface $jwtManager,
         private readonly TranslatorInterface $translator,
         private readonly Security $security,
+        private readonly AccountEventServiceInterface $accountEventService,
     ) {
     }
 
@@ -73,7 +75,7 @@ class UserAdminController extends AbstractAdminController
         $errors = [];
 
         try {
-            $this->service->create([
+            $user = $this->service->create([
                 'id' => Uuid::v4(),
                 'firstname' => $request->get('firstname'),
                 'lastname' => $request->get('lastname'),
@@ -106,6 +108,12 @@ class UserAdminController extends AbstractAdminController
                 'errors' => $errors,
                 'form_id' => self::CREATE_FORM_ID,
             ]);
+        }
+
+        try {
+            $this->accountEventService->sendResetPasswordEmail($user->getEmail(), isNewUser: true);
+        } catch (Exception $exception) {
+            $this->addFlash('error', 'view.authentication.error.email_not_sent');
         }
 
         return $this->redirectToRoute('admin_user_list');
