@@ -40,7 +40,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Municipio de Fortaleza, Capital do Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
-            'agents' => [],
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -97,6 +99,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Município de Alto Santo, no Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'owner' => AgentFixtures::AGENT_ID_3,
+            'agents' => [
+                AgentFixtures::AGENT_ID_3,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -123,6 +128,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Recife, Pernambuco',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -149,6 +157,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Parambu-CE',
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'owner' => AgentFixtures::AGENT_ID_3,
+            'agents' => [
+                AgentFixtures::AGENT_ID_3,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -175,6 +186,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Cidade de Russas, Municipio no Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'owner' => AgentFixtures::AGENT_ID_2,
+            'agents' => [
+                AgentFixtures::AGENT_ID_2,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -201,6 +215,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Municipio de Mamanguape-PB, não confundir com Maranguape-CE',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -227,6 +244,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Municipio de Maranguape-CE',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -253,6 +273,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Municipio de Arneiros, no sertão cearense',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => self::ORGANIZATION_ID_8,
             'space' => null,
             'extraFields' => [
@@ -279,6 +302,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Municipio de Indaiatuba-SP',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => self::ORGANIZATION_ID_9,
             'space' => null,
             'extraFields' => [
@@ -305,7 +331,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Organização do tipo EMPRESA para testes do painel',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
-            'agents' => [],
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => null,
             'space' => null,
             'extraFields' => [
@@ -333,7 +361,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'description' => 'Municipio de Fortaleza, Capital do Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
-            'agents' => [],
+            'agents' => [
+                AgentFixtures::AGENT_ID_1,
+            ],
             'parent' => null,
             'space' => null,
             'createdAt' => '2024-07-10T11:30:00+00:00',

@@ -254,6 +254,13 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_2],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_4],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_7],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_8],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_9],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_10],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_11],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:37:00+00:00',
@@ -291,7 +298,10 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 'cpf' => '123.456.789-00',
             ],
             'user' => ['id' => UserFixtures::USER_ID_3],
-            'organizations' => [],
+            'organizations' => [
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_3],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_5],
+            ],
             'addresses' => [
                 [
                     'id' => '425bdb7a-1ea2-41b5-bcb8-3511ef8f750a',
@@ -477,7 +487,10 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 'cpf' => '123.456.789-00',
             ],
             'user' => ['id' => UserFixtures::USER_ID_3],
-            'organizations' => [],
+            'organizations' => [
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_3],
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_5],
+            ],
             'addresses' => [
                 [
                     'id' => AddressFixtures::ADDRESS_ID_3,
