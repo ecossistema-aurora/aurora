@@ -33,7 +33,11 @@
                             <tbody>
                             {% for item in organizations %}
                                 <tr>
-                                    <td><a href="#">{{ item.name }}</a></td>
+                                    <td>
+                                        <a href="{{ path('admin_organization_get', {id: item.id}) }}">
+                                            {{ item.name }}
+                                        </a>
+                                    </td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>
