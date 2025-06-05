@@ -184,7 +184,11 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'description' => 'Municipio de Fortaleza, Capital do Ceará',
             'type' => 'Municipio',
             'image' => $organization->getImage(),
-            'agents' => [],
+            'agents' => [
+                [
+                    'id' => AgentFixtures::AGENT_ID_1,
+                ],
+            ],
             'owner' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -217,7 +221,11 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'description' => 'Município de Alto Santo, no Ceará',
             'type' => 'Municipio',
             'image' => $organization->getImage(),
-            'agents' => [],
+            'agents' => [
+                [
+                    'id' => AgentFixtures::AGENT_ID_3,
+                ],
+            ],
             'owner' => [
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
@@ -432,7 +440,11 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'description' => 'Municipio de Indaiatuba-SP',
             'type' => 'Municipio',
             'image' => $organization->getImage(),
-            'agents' => [],
+            'agents' => [
+                [
+                    'id' => AgentFixtures::AGENT_ID_1,
+                ],
+            ],
             'owner' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],

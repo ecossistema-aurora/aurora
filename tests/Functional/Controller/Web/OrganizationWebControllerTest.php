@@ -15,21 +15,21 @@ class OrganizationWebControllerTest extends AbstractWebTestCase
 {
     public function testListRouteRendersHTMLSuccessfully(): void
     {
-        $this->client->request('GET', '/municipios');
+        $this->client->request('GET', '/organizacoes');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('.dashboard-card');
     }
 
     public function testGetOneRouteNotFound(): void
     {
-        $this->client->request('GET', '/municipios/'.Uuid::v4()->toRfc4122());
+        $this->client->request('GET', '/organizacoes/'.Uuid::v4()->toRfc4122());
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testGetOneRouteForExistingOrganization(): void
     {
         $existingUuid = OrganizationFixtures::ORGANIZATION_ID_1;
-        $this->client->request('GET', '/municipios/'.$existingUuid);
+        $this->client->request('GET', '/organizacoes/'.$existingUuid);
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Fortaleza');
     }

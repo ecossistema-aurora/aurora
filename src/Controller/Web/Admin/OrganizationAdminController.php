@@ -47,6 +47,28 @@ class OrganizationAdminController extends AbstractAdminController
     }
 
     #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function getOne(Uuid $id): Response
+    {
+        $organization = $this->service->findOneBy([
+            'id' => $id,
+        ]);
+
+        if (null === $organization) {
+            throw $this->createNotFoundException($this->translator->trans('organization_found'));
+        }
+
+        $createdById = $organization->getCreatedBy()->getId()->toRfc4122();
+
+        $events = $this->documentService->getAllEventsByOrganizationId($id);
+
+        return $this->render('_admin/organization/one.html.twig', [
+            'organization' => $organization,
+            'events' => $events,
+            'createdById' => $createdById,
+        ], parentPath: '');
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function add(Request $request, ValidatorInterface $validator): Response
     {
         if ('POST' !== $request->getMethod()) {
