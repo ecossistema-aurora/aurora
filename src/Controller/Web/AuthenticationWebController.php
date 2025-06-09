@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web;
 
 use App\Exception\ValidatorException;
+use App\Service\Interface\AccountEventServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
@@ -24,6 +25,7 @@ class AuthenticationWebController extends AbstractWebController
         private readonly TranslatorInterface $translator,
         private readonly UserServiceInterface $userService,
         private readonly Security $security,
+        private readonly AccountEventServiceInterface $accountEventService,
     ) {
     }
 
@@ -73,7 +75,7 @@ class AuthenticationWebController extends AbstractWebController
         $phone = str_replace(['(', ')', '-', ' '], '', $request->request->get('phone'));
 
         try {
-            $this->userService->create([
+            $user = $this->userService->create([
                 'id' => Uuid::v4(),
                 'firstname' => $firstName,
                 'lastname' => $lastName,
@@ -82,8 +84,6 @@ class AuthenticationWebController extends AbstractWebController
                 'cpf' => $cpf,
                 'phone' => $phone,
             ]);
-
-            return $this->render('authentication/register_success.html.twig');
         } catch (UniqueConstraintViolationException $exception) {
             $error = $this->translator->trans('view.authentication.error.email_in_use');
         } catch (ValidatorException $exception) {
@@ -95,9 +95,19 @@ class AuthenticationWebController extends AbstractWebController
             $error = $this->translator->trans('view.authentication.error.error_message').$exception->getMessage();
         }
 
-        return $this->render('authentication/register.html.twig', [
-            'error' => $error,
-            'form_id' => self::REGISTER_FORM_ID,
-        ]);
+        if (null !== $error) {
+            return $this->render('authentication/register.html.twig', [
+                'error' => $error,
+                'form_id' => self::REGISTER_FORM_ID,
+            ]);
+        }
+
+        try {
+            $this->accountEventService->sendConfirmationEmail($user);
+        } catch (Exception $exception) {
+            $this->addFlash('error', 'view.authentication.error.email_not_sent');
+        }
+
+        return $this->render('authentication/register_success.html.twig');
     }
 }

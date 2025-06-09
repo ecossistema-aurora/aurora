@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Log\Interface\EmailLoggerInterface;
+use App\Service\Interface\AccountEventServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,13 +16,21 @@ use Symfony\Component\Uid\Uuid;
 class UserApiController extends AbstractApiController
 {
     public function __construct(
-        private readonly UserServiceInterface $service
+        private readonly UserServiceInterface $service,
+        private readonly AccountEventServiceInterface $accountEventService,
+        private readonly EmailLoggerInterface $logger,
     ) {
     }
 
     public function create(Request $request): JsonResponse
     {
         $user = $this->service->create($request->toArray());
+
+        try {
+            $this->accountEventService->sendConfirmationEmail($user);
+        } catch (Exception $e) {
+            $this->logger->logEmailNotSent($user->getEmail(), $e->getMessage());
+        }
 
         return $this->json($user, status: Response::HTTP_CREATED, context: ['groups' => 'user.get']);
     }

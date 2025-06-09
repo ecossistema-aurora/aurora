@@ -632,6 +632,7 @@ view:
       cnpj_invalid: Insira um CNPJ válido.
       phone_invalid: Insira um número de telefone válido.
       account_not_confirmed: Conta não confirmada
+      email_not_sent: Ocorreu um erro ao enviar o email de confirmação.
 
     forgot_password: Esqueci minha senha
     paragraph: Entre com a sua conta
