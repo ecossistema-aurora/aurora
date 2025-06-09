@@ -110,6 +110,7 @@ cpf: CPF
 cnpj: CNPJ (MEI)
 configure: Configurar
 create: Criar
+creator: Criador
 create_and_publish: Criar e Publicar
 create_in_draft: Criar em Rascunho
 create_account: Crie sua conta
@@ -222,6 +223,10 @@ inactive: Inativo
 is_itinerant: É agente itinerante?
 is-accessible: O espaço é acessível?
 invalid_credentials: E-mail ou senha incorretos
+informations: Informações
+invite: Convite
+invite_sent: Convite enviado
+invite_to_organization: Convite para organização
 Invite was accepted: Convite foi aceito
 Invite was sent: Convite foi enviado
 
@@ -255,6 +260,7 @@ max_capacity: Capacidade máxima
 mei: MEI (CNPJ do MEI)
 menu: Menu do Painel de Controle
 medium: Médio
+members: Membros
 months: meses
 most_recent: Mais Recente
 municipality: Município
@@ -398,6 +404,8 @@ term_form: Termo de Uso
 term_version: Versão dos Termos
 term_status: Status dos Termos
 title: Titulo
+timeline: Linha do tempo
+this_member_already_belongs_to_organization: Esse membro já pertence a organização
 transsexual: Transexual
 transvestite: Travesti
 theater: Teatro
@@ -413,6 +421,8 @@ type_initiative: Tipo da iniciativa
 type_organization: Tipo da organização
 type_space: Tipo do espaço
 total_value: Valor total
+to_invite: Convidar
+to_invite_agent: Convidar agente
 
 user: Usuário
 user_name: Nome do Usuário

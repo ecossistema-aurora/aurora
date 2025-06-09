@@ -109,6 +109,7 @@ copy_again: Failed to copy ID. Try again.
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Create
+creator: Creator
 create_and_publish: Create and Publish
 create_in_draft: Create in Draft
 create_account: Create Account
@@ -223,6 +224,10 @@ inactive: Inactive
 is_itinerant: Is it an itinerant agent?
 is-accessible: Is the space accessible?
 invalid_credentials: E-mail or password invalid
+informations: Informations
+invite: Invite
+invite_sent: Invite send
+invite_to_organization: Invite to organization
 Invite was accepted: Invite was accepted
 Invite was sent: Invite was sent
 
@@ -256,6 +261,7 @@ max_capacity: Maximum capacity
 mei: MEI (CNPJ of MEI)
 menu: Control Panel Menu
 medium: High School
+members: Members
 months: months
 most_recent: Most Recent
 municipality: Municipality
@@ -402,6 +408,8 @@ term_status: Terms of Use Status
 transsexual: Transsexual
 transvestite: Transvestite
 title: Title
+timeline: Timeline
+this_member_already_belongs_to_organization: This member already belongs to organization
 theater: Theater
 The resource was created: The entity was created
 The resource was updated: The entity was updated
@@ -415,6 +423,8 @@ type_organization: Organization Type
 type_initiative: Type of initiative
 type_space: Space type
 total_value: Total Value
+to_invite: Invite
+to_invite_agent: Invite agent
 
 user: User
 user_name: User Name

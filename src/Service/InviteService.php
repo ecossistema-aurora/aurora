@@ -57,7 +57,7 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         );
     }
 
-    public function create(Organization $organization, string $name, string $email): Invite
+    public function send(Organization $organization, string $name, string $email): Invite
     {
         $agent = $this->agentService->getMainAgentByEmail($email);
 
@@ -77,23 +77,15 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
 
         $this->repository->save($invite);
 
-        $organizationType = $organization->getType();
-
-        $acceptInviteUrl = match ($organizationType) {
-            OrganizationTypeEnum::MUNICIPIO->value => 'accept_municipality_invitation',
-            OrganizationTypeEnum::EMPRESA->value => 'accept_company_invitation',
-        };
-
-        $confirmationUrl = $this->urlGenerator->generate($acceptInviteUrl, ['token' => $invite->getToken()], UrlGeneratorInterface::ABSOLUTE_URL);
-
-        $subject = match ($organizationType) {
-            OrganizationTypeEnum::EMPRESA->value => 'invite_to_company',
-            OrganizationTypeEnum::MUNICIPIO->value => 'invite_to_municipality',
-        };
+        $confirmationUrl = $this->urlGenerator->generate(
+            'admin_organization_invite_accept',
+            ['id' => $organization->getId(), 'invite' => $invite->getToken()],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
 
         $this->emailService->sendTemplatedEmail(
             [$email],
-            $this->translator->trans($subject),
+            $this->translator->trans('invite_to_organization'),
             '_emails/agent-invitation.html.twig',
             [
                 'name' => $name,
@@ -107,7 +99,7 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         return $this->repository->save($invite);
     }
 
-    public function confirm(Invite $invite, User $user): void
+    public function accept(Invite $invite, User $user): void
     {
         $agent = $this->userService->getMainAgent($user);
 

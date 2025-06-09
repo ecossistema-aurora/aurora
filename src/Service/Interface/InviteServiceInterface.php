@@ -11,9 +11,9 @@ use Symfony\Component\Uid\Uuid;
 
 interface InviteServiceInterface
 {
-    public function create(Organization $organization, string $name, string $email): Invite;
+    public function send(Organization $organization, string $name, string $email): Invite;
 
-    public function confirm(Invite $invite, User $user): void;
+    public function accept(Invite $invite, User $user): void;
 
     public function get(Uuid $id): Invite;
 

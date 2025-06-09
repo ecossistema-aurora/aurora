@@ -22,3 +22,8 @@ timeline:
   path: /{id}/timeline
   controller: App\Controller\Web\Admin\OrganizationAdminController::timeline
   methods: ['GET']
+
+invite:
+  resource: 'invite.yaml'
+  prefix: /{id}/convites
+  name_prefix: invite_

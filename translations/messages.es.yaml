@@ -109,6 +109,7 @@ copy_again: Error al copiar ID. Tente nuevamente.
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Crear
+creator: Creador
 create_and_publish: Crear y publicar
 create_in_draft: Crear en borrador
 create_account: Crear Cuenta
@@ -222,6 +223,10 @@ inactive: Inactivo
 is_itinerant: ¿Es agente itinerante?
 is-accessible: ¿El espacio es accesible?
 invalid_credentials: E-mail o contraseña inválidos
+informations: Información
+invite: Invitación
+invite_sent: Invitación enviada
+invite_to_organization: Invitación a organización
 Invite was accepted: Invitación aceptada
 Invite was sent: Invitación enviada
 
@@ -255,6 +260,7 @@ max_capacity: Capacidad máxima
 mei: MEI (CNPJ del MEI)
 menu: Menú del Panel de Control
 medium: Secundario
+members: Miembros
 months: meses
 most_recent: Más Reciente
 municipality: Municipio
@@ -399,6 +405,8 @@ term_form: Término de Uso
 term_version: Versión de los Términos
 term_status: Estado de los Términos
 title: Título
+timeline: Línea de tiempo
+this_member_already_belongs_to_organization: Este miembro ya pertenece a la organización
 transsexual: Transexual
 transvestite: Travesti
 theater: Teatro
@@ -414,6 +422,8 @@ type_initiative: Tipo de iniciativa
 type_organization: Tipo de organización
 type_space: Tipo de espacio
 total_value: Valor total
+to_invite: Invitar
+to_invite_agent: Invitar a un agente
 
 user: Usuario
 user_name: Nombre de usuario
