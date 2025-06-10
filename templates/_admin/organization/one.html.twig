@@ -22,7 +22,7 @@
                                 <div class="d-flex align-items-center">
                                     <a class="centered-icon-text nav-link active" id="pills-info-tab" data-bs-toggle="pill" href="#pills-info" role="tab" aria-controls="pills-info" aria-selected="true">
                                         <i class="material-icons">description</i>
-                                        <span class="ms-2 font-title">Informações</span>
+                                        <span class="ms-2 font-title">{{ 'informations'|trans }}</span>
                                     </a>
                                 </div>
                             </li>
@@ -30,7 +30,7 @@
                                 <div class="d-flex align-items-center">
                                     <a class="centered-icon-text nav-link" id="pills-members-tab" data-bs-toggle="pill" href="#pills-members" role="tab" aria-controls="pills-members" aria-selected="false">
                                         <i class="material-icons">groups</i>
-                                        <span class="ms-2 font-title">Membros</span>
+                                        <span class="ms-2 font-title">{{ 'members'|trans }}</span>
                                     </a>
                                 </div>
                             </li>
@@ -38,7 +38,7 @@
                                 <div class="d-flex align-items-center">
                                     <a class="centered-icon-text nav-link" id="pills-timeline-tab" data-bs-toggle="pill" href="#pills-timeline" role="tab" aria-controls="pills-map" aria-selected="false">
                                         <i class="material-icons">schedule</i>
-                                        <span class="ms-2 font-title">Linha do tempo</span>
+                                        <span class="ms-2 font-title">{{ 'timeline'|trans }}</span>
                                     </a>
                                 </div>
                             </li>
@@ -65,10 +65,10 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Convidar agente</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ 'to_invite_agent'|trans }}</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="{{ path('admin_organization_get', {id: organization.id}) }}" method="post">
+                                            <form action="{{ path('admin_organization_invite_send', {id: organization.id}) }}" method="post">
                                                 <div class="modal-body">
                                                     <div class="mb-3">
                                                         <label for="name" class="mb-1">{{ 'name'|trans }}</label>
@@ -80,8 +80,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                                    <button type="submit" class="btn btn-primary">Convidar</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'close'|trans }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ 'to_invite'|trans }}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -89,15 +89,15 @@
                                 </div>
 
                                 {% if app.user.agents.first.id == createdById %}
-                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalInvite" class="btn btn-outline-success btn-sm">Convidar</a>
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#modalInvite" class="btn btn-outline-success btn-sm">{{ 'to_invite'|trans }}</a>
                                 {% endif %}
 
                                 <table class="js-grid table table-hover table-striped mt-3">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Nome</th>
+                                            <th>{{ 'name'|trans }}</th>
                                             {% if app.user.agents.first.id == createdById %}
-                                            <th> Ações </th>
+                                            <th>{{ 'actions'|trans }}</th>
                                             {% endif %}
                                         </tr>
                                     </thead>
@@ -108,7 +108,7 @@
                                                 <a>
                                                     {{ agent.name }}
                                                     {% if agent.id == createdById %}
-                                                        <span class="badge bg-primary ms-2">Criador</span>
+                                                        <span class="badge bg-primary ms-2">{{ 'creator'|trans }}</span>
                                                     {% endif %}
                                                 </a>
                                             </td>
