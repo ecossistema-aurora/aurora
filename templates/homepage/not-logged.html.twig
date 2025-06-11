@@ -51,7 +51,7 @@
                         {% set options = env.aurora.homepage.sections.register.options ?? [] %}
 
                         {% if not has_active_option %}
-                            <h1 class="fw-bold mt-4">{{ 'view.phase.out_of_period'|trans }}</h1>
+                            <h1 class="fw-bold mt-4">{{ 'create_register'|trans }}</h1>
                         {% else %}
                             <h1 class="fw-bold mt-4">{{ 'create_account'|trans }}</h1>
                         {% endif %}
