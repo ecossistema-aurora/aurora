@@ -27,6 +27,7 @@
                             <thead class="table-dark">
                             <tr>
                                 <th>{{ 'name'|trans }}</th>
+                                <th>{{ 'status'|trans }}</th>
                                 <th>{{ 'created_at'|trans }}</th>
                                 <th></th>
                                 <th></th>
@@ -37,6 +38,12 @@
                             {% for item in spaces %}
                                 <tr>
                                     <td><a href="#">{{ item.name }}</a></td>
+                                    <td>
+                                        {{ (item.isDraft ?
+                                        '<span class="text-success">%s</span>'|format('status_published'|trans) :
+                                        '<span class="text-warning">%s</span>'|format('status_draft'|trans))|raw
+                                        }}
+                                    </td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>
