@@ -192,6 +192,8 @@ from: de
 from_to: A
 from_to_date: A
 free: Gratis
+forgot_password: Olvidé mi contraseña
+forgot_paragraph: Introduzca su dirección de correo electrónico registrada para recibir un enlace de restablecimiento de contraseña.
 
 gallery: Galería
 gender: Seleccione el Género

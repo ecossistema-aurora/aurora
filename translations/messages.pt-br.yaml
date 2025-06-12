@@ -192,6 +192,8 @@ form: Formulário
 from: De
 from_to: Para
 from_to_date: Até
+forgot_password: Esqueci minha senha
+forgot_paragraph: Digite o endereço de e-mail cadastrado para receber um link de redefinição de senha.
 
 gallery: Galeria
 gender: Selecione o Gênero
