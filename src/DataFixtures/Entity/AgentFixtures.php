@@ -33,7 +33,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     public const array AGENTS = [
         [
             'id' => self::AGENT_ID_1,
-            'main' => false,
+            'main' => true,
             'name' => 'Feitoza',
             'image' => null,
             'shortBio' => 'Desenvolvedor e evangelista de Software',
@@ -56,7 +56,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_2,
-            'main' => false,
+            'main' => true,
             'name' => 'Henrique',
             'image' => null,
             'shortBio' => 'Desenvolvedor, pesquisador e evangelista cristão',
@@ -78,7 +78,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_3,
-            'main' => false,
+            'main' => true,
             'name' => 'Anna Kelly',
             'image' => null,
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
@@ -100,7 +100,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_4,
-            'main' => false,
+            'main' => true,
             'name' => 'Sara Jennifer',
             'image' => null,
             'shortBio' => 'Engenheira de software e defensora de código aberto',
@@ -122,7 +122,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_5,
-            'main' => false,
+            'main' => true,
             'name' => 'Talyson',
             'image' => null,
             'shortBio' => 'Desenvolvedor backend e especialista em segurança',
@@ -144,7 +144,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_6,
-            'main' => false,
+            'main' => true,
             'name' => 'Raquel',
             'image' => null,
             'shortBio' => 'Produtora cultural e curadora de eventos',
@@ -163,7 +163,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_7,
-            'main' => false,
+            'main' => true,
             'name' => 'Lucas',
             'image' => null,
             'shortBio' => 'Músico e produtor cultural',
@@ -182,7 +182,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_8,
-            'main' => false,
+            'main' => true,
             'name' => 'Maria',
             'image' => null,
             'shortBio' => 'Pesquisadora e escritora',
@@ -201,7 +201,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_9,
-            'main' => false,
+            'main' => true,
             'name' => 'Abner',
             'image' => null,
             'shortBio' => 'Cineasta e documentarista',
@@ -220,7 +220,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_10,
-            'main' => false,
+            'main' => true,
             'name' => 'Paulo',
             'image' => null,
             'shortBio' => 'Formado em teológia pela UFC',
@@ -239,6 +239,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_11,
+            'main' => false,
             'name' => 'Feitozo',
             'image' => null,
             'shortBio' => 'Capoeirista',
@@ -260,7 +261,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     public const array AGENTS_UPDATED = [
         [
             'id' => self::AGENT_ID_1,
-            'main' => false,
+            'main' => true,
             'name' => 'Alessandro',
             'image' => null,
             'shortBio' => 'Desenvolvedor e evangelista de Software',
