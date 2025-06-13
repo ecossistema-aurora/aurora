@@ -397,6 +397,12 @@ report: Denúncia
 responsible_agent: Agente Responsável
 results: Resultados
 rejected: Rejeitados
+roles: Papéis
+role.admin: Administrador
+role.manager: Gerente
+role.support: Suporte
+role.municipal_admin: Administrador Municipal
+role.company_admin: Administrador da Empresa
 
 tags: Tags
 term: Termo

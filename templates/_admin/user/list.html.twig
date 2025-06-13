@@ -35,7 +35,7 @@
                                     <th>{{ 'image'|trans }}</th>
                                     <th>{{ 'status'|trans }}</th>
                                     <th>{{ 'created_at'|trans }}</th>
-                                    <th>{{ 'roles'|trans }}</th>
+                                    <th>{{ 'roles'|trans }}</th> {# <<< Esta linha já está correta no Twig #}
                                     <th>{{ 'actions'|trans }}</th>
                                 </tr>
                                 </thead>
@@ -91,9 +91,11 @@
                                         <td>
                                             {% for role in item.roles %}
                                                 {% if role != 'ROLE_USER' %}
+                                                    {% set translation_key = 'role.' ~ (role|slice(5)|lower) %}
+
                                                     <span class="badge {{ role_color_map[role]|default('bg-secondary') }} me-1">
-                                                            {{ 'role'|trans }}
-                                                        </span>
+                                                             {{ translation_key|trans }} {# <<< Esta linha já está correta no Twig #}
+                                                     </span>
                                                 {% endif %}
                                             {% endfor %}
                                         </td>

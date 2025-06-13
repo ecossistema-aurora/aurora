@@ -398,6 +398,12 @@ report: Reportar
 responsible_agent: Agente Responsable
 results: Resultados
 rejected: Rechazado
+roles: Papeles
+role.admin: Administrador
+role.manager: Gerente
+role.support: Soporte
+role.municipal_admin: Administrador Municipal
+role.company_admin: Administrador de la Empresa
 
 tags: Etiquetas
 term: Término
