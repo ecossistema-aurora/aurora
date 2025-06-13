@@ -408,6 +408,12 @@ reset: Redefinir
 reset_password: Redefinir Senha
 results: Resultados
 rejected: Rejeitados
+roles: Papéis
+role.admin: Administrador
+role.manager: Gerente
+role.support: Suporte
+role.municipal_admin: Administrador Municipal
+role.company_admin: Administrador da Empresa
 read_notifications: Notificações lidas
 
 tags: Tags
