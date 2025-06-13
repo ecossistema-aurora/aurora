@@ -3,7 +3,3 @@ send:
   controller: App\Controller\Web\Admin\InviteAdminController::send
   methods: ['POST']
 
-accept:
-  path: /{invite}/aceitar
-  controller: App\Controller\Web\Admin\InviteAdminController::accept
-  methods: ['POST']
