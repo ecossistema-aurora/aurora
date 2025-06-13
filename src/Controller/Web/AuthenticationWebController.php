@@ -6,6 +6,7 @@ namespace App\Controller\Web;
 
 use App\Exception\ValidatorException;
 use App\Service\Interface\AccountEventServiceInterface;
+use App\Service\Interface\InviteServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
@@ -26,6 +27,7 @@ class AuthenticationWebController extends AbstractWebController
         private readonly UserServiceInterface $userService,
         private readonly Security $security,
         private readonly AccountEventServiceInterface $accountEventService,
+        private readonly InviteServiceInterface $inviteService,
     ) {
     }
 
@@ -84,7 +86,7 @@ class AuthenticationWebController extends AbstractWebController
                 'cpf' => $cpf,
                 'phone' => $phone,
             ]);
-        } catch (UniqueConstraintViolationException $exception) {
+        } catch (UniqueConstraintViolationException) {
             $error = $this->translator->trans('view.authentication.error.email_in_use');
         } catch (ValidatorException $exception) {
             $violations = $exception->getConstraintViolationList();
@@ -104,8 +106,19 @@ class AuthenticationWebController extends AbstractWebController
 
         try {
             $this->accountEventService->sendConfirmationEmail($user);
-        } catch (Exception $exception) {
+        } catch (Exception) {
             $this->addFlash('error', 'view.authentication.error.email_not_sent');
+        }
+
+        $targetPath = $request->request->get('_target_path');
+
+        if (null !== $targetPath) {
+            preg_match('/\/convites\/([^\/]+)/', $targetPath, $matches);
+            $inviteId = $matches[1] ?? null;
+
+            $this->inviteService->updateGuest(Uuid::fromString($inviteId), $user);
+
+            return $this->redirect($targetPath);
         }
 
         return $this->render('authentication/register_success.html.twig');
