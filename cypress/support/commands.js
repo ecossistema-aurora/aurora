@@ -31,3 +31,29 @@ Cypress.Commands.add('login', (email, password) => {
     cy.get('[data-cy="password"]').type(password);
     cy.get('[data-cy="submit"]').click();
 });
+
+Cypress.Commands.add('gerarCPF', (formatado = true) => {
+    const numeros = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10));
+
+    function calcDigito(baseArray) {
+        const pesoInicial = baseArray.length + 1;
+        const soma = baseArray.reduce(
+            (acc, num, idx) => acc + num * (pesoInicial - idx),
+            0
+        );
+        const resto = soma % 11;
+        return resto < 2 ? 0 : 11 - resto;
+    }
+
+    const digito1 = calcDigito(numeros);
+    const digito2 = calcDigito([...numeros, digito1]);
+
+    const cpfArray = [...numeros, digito1, digito2];
+    const cpf = cpfArray.join('');
+
+    if (formatado) {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    }
+
+    return cpf;
+});

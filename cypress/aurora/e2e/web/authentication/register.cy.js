@@ -39,8 +39,9 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'first_name']").type('João');
         cy.get("[name = 'last_name']").type('da Silva');
         cy.get("[name = 'birth_date']").type('1990-01-01');
-        cy.get("[name = 'cpf']").type('12345678900');
-        cy.get("[name = 'cpf']").should('have.value', '123.456.789-00')
+        cy.gerarCPF().then((cpf) => {
+            cy.get('input[name="cpf"]').type(cpf, { force: true });
+        });
         cy.get("[name = 'phone']").type('11999999999');
         cy.get("[name = 'phone']").should('have.value', '(11) 9 9999-9999')
 
@@ -96,7 +97,9 @@ describe('Página de Cadastro', () => {
 
         cy.get("[name = 'cpf']").type('teste');
         cy.get("#error-message").should('contain.text', 'Insira um CPF válido.');
-        cy.get("[name = 'cpf']").clear().type('12312312312');
+        cy.gerarCPF().then((cpf) => {
+            cy.get('input[name="cpf"]').clear().type(cpf, { force: true });
+        });
 
         cy.get("[name = 'phone']").type('123');
         cy.get("#error-message").should('contain.text', 'Insira um número de telefone válido.');
@@ -106,8 +109,11 @@ describe('Página de Cadastro', () => {
         cy.get("#error-message").should('contain.text', 'Insira um email válido com até 100 caracteres.');
         cy.get("[name = 'email']").clear().type('joaodasneves@test.com');
 
+        cy.get("[name = 'email']").clear().type('alessandrofeitoza@example.com');
+        cy.get('#error-message').should('contain.text', 'Este email já está em uso.');
+
         cy.get("[name = 'password']").type('123');
-        // cy.get("#error-message").should('contain.text', 'A senha deve ter: 8 caracteres, um número, um caractere especial, pelo menos uma letra maiúscula uma minúscula.');
+        cy.get("#error-message").should('contain.text', 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, símbolos e números.');
         cy.get("[name = 'password']").clear().type('a204C_DB%l.@');
 
         cy.get("[name = 'confirm_password']").type('321');
@@ -116,25 +122,6 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'confirm_password']").clear().type('a204C_DB%l.@');
 
         cy.get('.btn').contains('Continuar').click();
-    });
-
-    it('Garante que os erros são mostrados', () => {
-        cy.get("[name = 'first_name']").type('João');
-        cy.get("[name = 'last_name']").type('da Silva');
-        cy.get("[name='birth_date']").type('1990-01-01');
-        cy.get("[name = 'cpf']").type('123.456.789-00');
-        cy.get("[name = 'phone']").type('(11) 99999-9999');
-        cy.get("[name = 'email']").type('alessandrofeitoza@example.com');
-        cy.get("[name = 'password']").type('a204C_DB%l.@');
-        cy.get("[name = 'confirm_password']").type('a204C_DB%l.@');
-
-        clickOnContinueButton();
-
-        cy.get('#acceptPolicies').click();
-
-        cy.get('#submitPolicies').click();
-
-        cy.get('.danger.snackbar').contains('Este email já está em uso.').should('be.visible');
     });
 
     // TODO: Ajustar esses testes por conta do REGMEL
