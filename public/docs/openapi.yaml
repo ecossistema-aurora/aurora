@@ -12,6 +12,7 @@ info:
     - Faqs
     - Fases
     - Iniciativas
+    - Linguagem cultural
     - Oportunidades
     - Organizações
     - Selos
@@ -59,6 +60,8 @@ tags:
     description: Endpoints relacionados às faqs
   - name: Fases
     description: Endpoints relacionados às fases
+  - name: Linguagem cultural
+    description: Endpoints relacionados a linguagem cultural
   - name: Oportunidades
     description: Endpoints relacionados às oportunidades
   - name: Organizações
@@ -84,6 +87,10 @@ paths:
     $ref: './components/paths/architectural-accessibility/Collection.yaml'
   /architectural-accessibilities/{id}:
     $ref: './components/paths/architectural-accessibility/Item.yaml'
+  /cultural-languages:
+    $ref: './components/paths/cultural-language/Collection.yaml'
+  /cultural-languages/{id}:
+    $ref: './components/paths/cultural-language/Item.yaml'
   /events:
     $ref: './components/paths/event/Collection.yaml'
   /events/{id}:
@@ -170,6 +177,8 @@ components:
       $ref: './components/schemas/architectural-accessibility.yaml'
     City:
       $ref: './components/schemas/city.yaml'
+    CulturalLanguage:
+      $ref: './components/schemas/cultural-language.yaml'
     Event:
       $ref: './components/schemas/event.yaml'
     Faq:

@@ -26,6 +26,12 @@ api_auth:
   prefix: /api
   name_prefix: api_auth_
 
+api_cultural_language:
+  resource: 'api/cultural-language.yaml'
+  prefix: /api/cultural-languages
+  name_prefix: api_cultural_language_
+  trailing_slash_on_root: false
+
 api_events:
   resource: 'api/event.yaml'
   prefix: /api/events
