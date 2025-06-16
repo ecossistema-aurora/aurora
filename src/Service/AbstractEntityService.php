@@ -104,7 +104,7 @@ abstract readonly class AbstractEntityService
         ]);
     }
 
-    public function validateInput(array $data, string $dtoClass, string $group): array
+    public function validateInput(array $data, string $dtoClass, string $group = 'Default'): array
     {
         $dto = $this->denormalizeDto($data, $dtoClass);
         $violations = $this->validator->validate($dto, groups: $group);

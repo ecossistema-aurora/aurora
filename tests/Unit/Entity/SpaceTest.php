@@ -113,6 +113,7 @@ class SpaceTest extends AbstractApiTestCase
         $space->setPhoneNumber('+55 85 99999-9999');
         $space->setMaxCapacity(500);
         $space->setIsAccessible(true);
+        $space->setIsDraft(false);
 
         $space->setCreatedBy($agent);
         $space->setParent($spaceParent);
@@ -137,7 +138,8 @@ class SpaceTest extends AbstractApiTestCase
         $this->assertEquals('contato@casadocantador.com.br', $space->getEmail());
         $this->assertEquals('+55 85 99999-9999', $space->getPhoneNumber());
         $this->assertEquals(500, $space->getMaxCapacity());
-        $this->assertTrue($space->getIsAccessible());
+        $this->assertTrue($space->isAccessible());
+        $this->assertFalse($space->isDraft());
 
         $this->assertCount(2, $space->getActivityAreas());
         $this->assertContains($activityArea1, $space->getActivityAreas());
@@ -198,6 +200,7 @@ class SpaceTest extends AbstractApiTestCase
             'phoneNumber' => '+55 85 99999-9999',
             'maxCapacity' => 500,
             'isAccessible' => true,
+            'isDraft' => false,
             'createdBy' => '95f91eb5-cb62-4a7b-b677-8486d2a0763a',
             'parent' => '8e3e976d-0fc0-443e-bdd2-2b4d83da004f',
             'address' => $spaceAddress->toArray(),

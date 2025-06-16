@@ -481,6 +481,8 @@ start_now: Comenzar Ahora
 start_date: Fecha de inicio
 state: Estado
 status: Status
+status_draft: Borrador
+status_published: Publicado
 suggestions: Sugerencias
 subscribe: Suscribir
 subsites: Subsitios

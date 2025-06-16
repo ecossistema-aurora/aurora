@@ -480,6 +480,8 @@ start_now: Comece agora
 start_date: Data de início
 state: Estado
 status: Status
+status_draft: Rascunho
+status_published: Publicado
 street: Logradouro
 subscribe: Inscreva-se
 subsites: Subsites

@@ -43,6 +43,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Instituição Cultural',
                 'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
@@ -85,6 +86,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Centro Cultural',
                 'description' => 'O Sítio das Artes é um espaço dedicado à promoção de atividades culturais e oficinas artísticas, com uma vasta programação para todas as idades.',
@@ -125,6 +127,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'parent' => self::SPACE_ID_2,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Galeria de Arte',
                 'description' => 'A Galeria Caatinga é especializada em exposições de artistas regionais, com foco na arte nordestina e obras inspiradas pela fauna e flora do sertão.',
@@ -166,6 +169,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_3,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Centro de Literatura',
                 'description' => 'O Recanto do Cordel é um ponto de encontro para escritores e leitores de literatura de cordel, com eventos de declamação e oficinas.',
@@ -206,6 +210,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_3,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Centro Musical',
                 'description' => 'O Ritmos do Mundo promove eventos musicais de várias partes do mundo, com foco na diversidade e na fusão de estilos.',
@@ -247,6 +252,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_3,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Museu',
                 'description' => 'A Casa do Sertão é um museu dedicado à história e cultura do sertão nordestino, com exposições interativas e oficinas educativas.',
@@ -288,6 +294,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_6,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Centro de Música',
                 'description' => 'A Vila do Baião é um espaço dedicado à preservação e promoção do forró e de outros ritmos nordestinos, com aulas, ensaios e apresentações.',
@@ -330,6 +337,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Centro Cultural',
                 'description' => 'O Centro Cultural Asa Branca oferece uma programação diversificada com exposições, apresentações teatrais e oficinas de arte.',
@@ -373,6 +381,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
+            'isDraft' => false,
             'extraFields' => [
                 'type' => 'Centro de Capoeira',
                 'description' => 'A Casa da Capoeira é um espaço onde são realizadas aulas, rodas de capoeira e eventos culturais ligados à arte e história da capoeira.',
@@ -412,6 +421,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'isAccessible' => true,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
+            'isDraft' => true,
             'extraFields' => [
                 'type' => 'Complexo Cultural',
                 'description' => 'O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.',
