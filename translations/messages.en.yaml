@@ -192,6 +192,8 @@ from: From
 from_to: To
 from_to_date: To
 free: Free
+forgot_password: Forgot Password
+forgot_paragraph: Enter your registered email address to receive a password reset link.
 
 gallery: Gallery
 gender: Select the Gender
