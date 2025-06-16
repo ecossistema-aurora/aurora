@@ -251,6 +251,7 @@ login-account: Iniciar sesión en mi cuenta
 logo: Logo
 logout: Salir
 long_description: Descripción larga
+login_registration: No es posible registrarse si la sesión está iniciada.
 
 map: Mapa
 management: Gerenciamiento de Entidades
