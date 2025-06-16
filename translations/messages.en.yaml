@@ -252,6 +252,7 @@ login-account: Log in to my account
 logo: Logo
 logout: Logout
 long_description: Long description
+login_registration: You cannot register while logged in.
 
 map: Map
 management: Management of Entities

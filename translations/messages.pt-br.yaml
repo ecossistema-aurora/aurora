@@ -251,6 +251,7 @@ login-account: Entrar na minha conta
 logo: Logo
 logout: Sair
 long_description: Descrição longa
+login_registration: Você não pode se cadastrar enquanto estiver logado.
 
 map: Mapa
 management: Gerenciamento de Entidades
