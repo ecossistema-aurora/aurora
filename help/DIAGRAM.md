@@ -37,6 +37,22 @@ direction BT
        parent_id  /* (DC2Type:uuid) */ uuid
        created_by_id  /* (DC2Type:uuid) */ uuid
        varchar(100) name
+       json extra_fields
+       varchar(255) image
+       varchar(255) cover_image
+       varchar(255) subtitle
+       varchar(255) short_description
+       text long_description
+       smallint type
+       timestamp(0) end_date
+       varchar(255) site
+       varchar(20) phone_number
+       integer max_capacity
+       smallint accessible_audio
+       smallint accessible_libras
+       boolean free
+       jsonb social_networks
+       boolean draft
        created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
        timestamp(0) updated_at
        timestamp(0) deleted_at

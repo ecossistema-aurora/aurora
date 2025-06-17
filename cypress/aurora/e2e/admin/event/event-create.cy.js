@@ -39,7 +39,7 @@ describe('Pagina de Cadastrar Eventos', () => {
         cy.get('#end-date').type('2025-03-10');
         cy.get('#max-capacity').type('100');
 
-        cy.contains('button', 'Criar e Publicar').click();
+        cy.contains('button', 'Criar em Rascunho').click();
 
         cy.wait(100);
 

@@ -20,8 +20,8 @@
                             <thead class="table-dark">
                             <tr>
                                 <th>{{ 'name'|trans }}</th>
+                                <th>{{ 'status'|trans }}</th>
                                 <th>{{ 'created_at'|trans }}</th>
-                                <th></th>
                                 <th></th>
                                 <th>{{ 'actions'|trans }}</th>
                             </tr>
@@ -30,8 +30,13 @@
                             {% for item in events %}
                                 <tr>
                                     <td><a href="{{ path('web_event_show', {id: item.id}) }}">{{ item.name }}</a></td>
+                                    <td>
+                                        {{ (item.draft
+                                            ? '<span class="text-warning">%s</span>'|format('status_draft'|trans)
+                                            : '<span class="text-success">%s</span>'|format('status_published'|trans))|raw
+                                        }}
+                                    </td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
-                                    <td></td>
                                     <td></td>
                                     <td>
                                         <a href="{{ path('admin_event_timeline', {id: item.id}) }}" class="btn btn-outline-info btn-sm">{{ 'Timeline'|trans }}</a>

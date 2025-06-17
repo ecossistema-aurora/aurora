@@ -67,6 +67,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
             ],
@@ -123,6 +124,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_5,
@@ -163,6 +165,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
             ],
@@ -200,6 +203,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_7,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_8,
@@ -243,6 +247,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
@@ -286,6 +291,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_8,
@@ -324,6 +330,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
@@ -364,6 +371,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => false,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
@@ -409,6 +417,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => false,
+            'draft' => true,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
             ],
@@ -447,6 +456,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
             ],
@@ -485,6 +495,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'draft' => false,
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,

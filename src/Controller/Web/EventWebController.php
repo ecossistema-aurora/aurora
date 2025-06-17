@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Request\Query\Filters;
 use App\Service\Interface\EventServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,16 +20,18 @@ class EventWebController extends AbstractWebController
     ) {
     }
 
-    public function list(Request $request): Response
+    public function list(Filters $filters, Request $request): Response
     {
-        $filters = $request->query->all();
-
-        $filters = $this->getOrderParam($filters);
-
-        $events = $this->service->list(params: $filters['filters'], order: $filters['order']);
+        $events = $this->service->list(
+            params: array_merge(
+                $filters->toArray(),
+                ['draft' => false],
+                $request->query->all()
+            )
+        );
         $totalEvents = count($events);
 
-        $days = $request->get('days', 7);
+        $days = $filters->toArray()['days'] ?? 7;
         $recentEvents = $this->service->countRecentRecords($days);
 
         $dashboard = [
