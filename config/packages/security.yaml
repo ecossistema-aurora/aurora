@@ -35,6 +35,7 @@ security:
             form_login:
                 login_path: web_auth_login
                 check_path: web_auth_login
+                failure_handler: App\Security\LoginFailureHandler
                 username_parameter: email
                 password_parameter: password
                 default_target_path: admin_dashboard
