@@ -232,10 +232,12 @@ informations: Informações
 invite: Convite
 invite_sent: Convite enviado
 invite_expired: O convite expirou
+invite_accept: Convite aceito
 invite_to_organization: Convite para organização
 invite_not_belongs_to_you: O convite não pertence a você
 Invite was accepted: Convite foi aceito
 Invite was sent: Convite foi enviado
+invalid_identifier: Identificador inválido
 
 language: Idioma
 lastname: Sobrenome
@@ -655,6 +657,7 @@ view:
 
   authentication:
     error:
+      an_error_occurred_during_login: Ocorreu um erro durante o login.
       already_logged_in: Você já está logado.
       age_rating_valid: Você deve selecionar uma classificação etária válida.
       email_in_use: Este email já está em uso.
@@ -669,6 +672,7 @@ view:
       phone_invalid: Insira um número de telefone válido.
       account_not_confirmed: Conta não confirmada
       email_not_sent: Ocorreu um erro ao enviar o email de confirmação.
+      invite_is_not_for_this_email: O convite não é para esse email.
 
     forgot_password: Esqueci minha senha
     paragraph: Entre com a sua conta

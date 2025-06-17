@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ExceptionResolver;
+namespace App\Resolver\ExceptionResolver;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Request;

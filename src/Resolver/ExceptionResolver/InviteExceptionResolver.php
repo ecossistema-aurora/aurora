@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ExceptionResolver;
+namespace App\Resolver\ExceptionResolver;
 
 use App\Exception\Invite\InviteIsExpiredException;
 use App\Exception\Invite\InviteIsNotThisUserException;

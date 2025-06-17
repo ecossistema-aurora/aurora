@@ -25,8 +25,8 @@ class Invite
     #[ORM\JoinColumn(name: 'organization_id', nullable: false)]
     private Organization $host;
 
-    #[ORM\Column(type: UuidType::NAME, unique: true)]
-    private Uuid $token;
+    #[ORM\Column]
+    private string $email;
 
     #[ORM\Column]
     private DateTimeImmutable $expirationAt;
@@ -61,14 +61,14 @@ class Invite
         $this->host = $host;
     }
 
-    public function getToken(): Uuid
+    public function getEmail(): string
     {
-        return $this->token;
+        return $this->email;
     }
 
-    public function setToken(Uuid $token): void
+    public function setEmail(string $email): void
     {
-        $this->token = $token;
+        $this->email = $email;
     }
 
     public function getExpirationAt(): DateTimeImmutable
