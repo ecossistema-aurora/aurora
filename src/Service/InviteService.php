@@ -69,13 +69,12 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         }
 
         $expirationAt = new DateTimeImmutable(self::TIME_TO_EXPIRATION);
-        $token = Uuid::v4();
 
         $invite = new Invite();
         $invite->setId(Uuid::v4());
         $invite->setGuest($agent);
         $invite->setHost($organization);
-        $invite->setToken($token);
+        $invite->setEmail($email);
         $invite->setExpirationAt($expirationAt);
 
         $this->repository->save($invite);
@@ -127,7 +126,7 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
             }
 
             try {
-                $this->userService->findOneBy(['email' => $invite->getGuest()?->getUser()->getEmail()]);
+                $this->userService->findOneBy(['email' => $invite->getEmail()]);
             } catch (UserResourceNotFoundException) {
                 throw new UserNotFoundException();
             }
@@ -168,5 +167,16 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         $agent = $user->getAgents()->first();
         $invite->setGuest($agent);
         $this->repository->save($invite);
+    }
+
+    public function get(Uuid $inviteId): Invite
+    {
+        $invite = $this->repository->find($inviteId);
+
+        if (null === $invite) {
+            throw new InviteResourceNotFoundException();
+        }
+
+        return $invite;
     }
 }

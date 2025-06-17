@@ -76,6 +76,23 @@ class AuthenticationWebController extends AbstractWebController
         $cpf = str_replace(['.', '-'], '', $request->request->get('cpf'));
         $phone = str_replace(['(', ')', '-', ' '], '', $request->request->get('phone'));
 
+        $targetPath = $request->request->get('_target_path');
+
+        if (null !== $targetPath) {
+            preg_match('/\/convites\/([^\/]+)/', $targetPath, $matches);
+            $inviteId = $matches[1] ?? null;
+
+            Uuid::isValid($inviteId);
+
+            $invite = $this->inviteService->get(Uuid::fromString($inviteId));
+
+            if ($invite->getEmail() !== $email) {
+                $this->addFlash('error', $this->translator->trans('view.authentication.error.invite_is_not_for_this_email'));
+
+                return $this->redirect($targetPath);
+            }
+        }
+
         try {
             $user = $this->userService->create([
                 'id' => Uuid::v4(),
@@ -109,8 +126,6 @@ class AuthenticationWebController extends AbstractWebController
         } catch (Exception) {
             $this->addFlash('error', 'view.authentication.error.email_not_sent');
         }
-
-        $targetPath = $request->request->get('_target_path');
 
         if (null !== $targetPath) {
             preg_match('/\/convites\/([^\/]+)/', $targetPath, $matches);

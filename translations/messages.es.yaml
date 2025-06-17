@@ -660,6 +660,7 @@ view:
       phone_invalid: Por favor, introduzca un número de teléfono válido.
       account_not_confirmed: Cuenta no confirmada
       email_not_sent: No se pudo enviar el correo electrónico de confirmación.
+      invite_is_not_for_this_email: La invitación no es para este email.
 
     forgot_password: Olvidé mi Contraseña
     paragraph: Inicia sesión con tu cuenta

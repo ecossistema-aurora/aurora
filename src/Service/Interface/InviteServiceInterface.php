@@ -16,4 +16,6 @@ interface InviteServiceInterface
     public function accept(Uuid $organizationId, Uuid $inviteId, ?User $user): void;
 
     public function updateGuest(Uuid $inviteId, User $user): void;
+
+    public function get(Uuid $inviteId): Invite;
 }

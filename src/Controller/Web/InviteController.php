@@ -10,7 +10,7 @@ use App\Exception\Invite\InviteIsNotForYou;
 use App\Exception\UnauthorizedException;
 use App\Service\Interface\InviteServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use PHPUnit\Exception;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;

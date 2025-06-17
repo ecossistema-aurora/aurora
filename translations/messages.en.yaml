@@ -657,6 +657,7 @@ view:
       phone_invalid: Please enter a valid phone number.
       account_not_confirmed: Account not confirmed
       email_not_sent: Confirmation email not sent
+      invite_is_not_for_this_email: Invite is not for this email.
 
     forgot_password: Forgot my password
     paragraph: Log in with your account

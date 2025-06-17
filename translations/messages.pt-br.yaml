@@ -655,6 +655,7 @@ view:
       phone_invalid: Insira um número de telefone válido.
       account_not_confirmed: Conta não confirmada
       email_not_sent: Ocorreu um erro ao enviar o email de confirmação.
+      invite_is_not_for_this_email: O convite não é para esse email.
 
     forgot_password: Esqueci minha senha
     paragraph: Entre com a sua conta
