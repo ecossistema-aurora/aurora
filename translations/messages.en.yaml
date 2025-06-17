@@ -267,6 +267,7 @@ menu: Control Panel Menu
 medium: High School
 members: Members
 months: months
+message: Message
 most_recent: Most Recent
 municipality: Municipality
 my_account: My Account
@@ -401,6 +402,7 @@ required_field: Required Field
 report: Report
 results: Results
 rejected: Rejected
+read_notifications: Read Notifications
 
 responsible_agent: Responsible Agent
 tags: Tags
@@ -434,6 +436,7 @@ user: User
 user_name: User Name
 users: Users
 updated_at: Updated at
+unread_notifications: Unread Notifications
 
 view_all: View All
 view_file: view file
