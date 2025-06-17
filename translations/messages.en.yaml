@@ -232,11 +232,13 @@ invalid_credentials: E-mail or password invalid
 informations: Informations
 invite: Invite
 invite_sent: Invite send
+invite_accept: Invite accept
 invite_expired: Invite expired
 invite_to_organization: Invite to organization
 invite_not_belongs_to_you: Invite not belongs to you
 Invite was accepted: Invite was accepted
 Invite was sent: Invite was sent
+invalid_identifier: Invalid identifier
 
 language: Language
 lastname: Last Name
@@ -657,6 +659,7 @@ view:
 
   authentication:
     error:
+      an_error_occurred_during_login: An error occurred during login.
       already_logged_in: You are already logged in.
       age_rating_valid: You must select a valid age rating.
       email_in_use: This email is already in use.
@@ -671,6 +674,7 @@ view:
       phone_invalid: Please enter a valid phone number.
       account_not_confirmed: Account not confirmed
       email_not_sent: Confirmation email not sent
+      invite_is_not_for_this_email: Invite is not for this email.
 
     forgot_password: Forgot my password
     paragraph: Log in with your account

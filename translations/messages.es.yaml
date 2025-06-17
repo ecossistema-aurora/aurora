@@ -232,10 +232,12 @@ informations: Información
 invite: Invitación
 invite_sent: Invitación enviada
 invite_expired: Invitación caducada
+invite_accept: Invitación aceptada
 invite_to_organization: Invitación a organización
 invite_not_belongs_to_you: La invitación no le pertenece
 Invite was accepted: Invitación aceptada
 Invite was sent: Invitación enviada
+invalid_identifier: Identificador no válido
 
 language: Idioma
 lastname: Apellido
@@ -657,9 +659,9 @@ view:
     add_group: Añadir Grupo
     error_length: El campo debe tener entre {min} y {max} caracteres.
 
-
   authentication:
     error:
+      an_error_occurred_during_login: Se ha producido un error al iniciar sesión.
       already_logged_in: Ya has iniciado sesión.
       age_rating_valid: Debes seleccionar una clasificación de edad válida.
       email_in_use: Este correo electrónico ya está en uso.
@@ -674,6 +676,7 @@ view:
       phone_invalid: Por favor, introduzca un número de teléfono válido.
       account_not_confirmed: Cuenta no confirmada
       email_not_sent: No se pudo enviar el correo electrónico de confirmación.
+      invite_is_not_for_this_email: La invitación no es para este email.
 
     forgot_password: Olvidé mi Contraseña
     paragraph: Inicia sesión con tu cuenta

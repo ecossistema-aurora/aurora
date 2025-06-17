@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Entity\Invite;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AccountEventServiceInterface;
 use App\Service\Interface\InviteServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
+use InvalidArgumentException;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,6 +79,8 @@ class AuthenticationWebController extends AbstractWebController
         $phone = str_replace(['(', ')', '-', ' '], '', $request->request->get('phone'));
 
         try {
+            $invite = $this->validateInvite($request, $email);
+
             $user = $this->userService->create([
                 'id' => Uuid::v4(),
                 'firstname' => $firstName,
@@ -93,6 +97,10 @@ class AuthenticationWebController extends AbstractWebController
             if ($violations->count() > 0) {
                 $error = $violations->get(0)->getMessage();
             }
+        } catch (InvalidArgumentException $exception) {
+            $this->addFlash('error', $exception->getMessage());
+
+            return $this->redirect($request->request->get('_target_path'));
         } catch (Exception $exception) {
             $error = $this->translator->trans('view.authentication.error.error_message').$exception->getMessage();
         }
@@ -110,17 +118,39 @@ class AuthenticationWebController extends AbstractWebController
             $this->addFlash('error', 'view.authentication.error.email_not_sent');
         }
 
-        $targetPath = $request->request->get('_target_path');
+        if (null !== $invite) {
+            $this->inviteService->updateGuest($invite->getId(), $user);
 
-        if (null !== $targetPath) {
-            preg_match('/\/convites\/([^\/]+)/', $targetPath, $matches);
-            $inviteId = $matches[1] ?? null;
-
-            $this->inviteService->updateGuest(Uuid::fromString($inviteId), $user);
-
-            return $this->redirect($targetPath);
+            return $this->redirect($request->request->get('_target_path'));
         }
 
         return $this->render('authentication/register_success.html.twig');
+    }
+
+    private function validateInvite(Request $request, string $email): ?Invite
+    {
+        $targetPath = $request->request->get('_target_path');
+        if (!$targetPath) {
+            return null;
+        }
+
+        $inviteId = $this->extractInviteId($targetPath);
+        if (!Uuid::isValid($inviteId)) {
+            throw new InvalidArgumentException($this->translator->trans('invalid_identifier'));
+        }
+
+        $invite = $this->inviteService->get(Uuid::fromString($inviteId));
+        if ($invite->getEmail() !== $email) {
+            throw new InvalidArgumentException($this->translator->trans('view.authentication.error.invite_is_not_for_this_email'));
+        }
+
+        return $invite;
+    }
+
+    private function extractInviteId(string $targetPath): ?string
+    {
+        preg_match('/\/convites\/([^\/]+)/', $targetPath, $matches);
+
+        return $matches[1] ?? null;
     }
 }
