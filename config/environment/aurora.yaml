@@ -267,6 +267,10 @@ sidebar:
         acl: ['ROLE_USER']
         icon: accessibility
         text: architectural_accessibility
+      admin_cultural_language_list:
+        acl: ['ROLE_USER']
+        icon: language
+        text: cultural_language
 
 homepage:
   sections:

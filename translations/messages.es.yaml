@@ -681,6 +681,13 @@ view:
         name_info: Las personas te encontrarán por este nombre.
         select_areas: Selecciona al menos una área de actuación
 
+  cultural_language:
+    create: Crear Lengua Cultural
+    message:
+      created: La lengua cultural ha sido creada
+      edited: La lengua cultural ha sido editada
+      deleted: La lengua cultural ha sido eliminada
+
   entities:
     change_history: historia de cambios
     report: quejar
