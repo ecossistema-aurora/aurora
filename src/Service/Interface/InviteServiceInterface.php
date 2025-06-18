@@ -13,9 +13,9 @@ interface InviteServiceInterface
 {
     public function send(Organization $organization, string $name, string $email): Invite;
 
-    public function accept(Invite $invite, User $user): void;
+    public function accept(Uuid $organizationId, Uuid $inviteId, ?User $user): void;
 
-    public function get(Uuid $id): Invite;
+    public function updateGuest(Uuid $inviteId, User $user): void;
 
-    public function findOneBy(array $params = []): ?Invite;
+    public function get(Uuid $inviteId): Invite;
 }

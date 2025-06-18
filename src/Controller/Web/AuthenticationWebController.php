@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Entity\Invite;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AccountEventServiceInterface;
+use App\Service\Interface\InviteServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
+use InvalidArgumentException;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +29,7 @@ class AuthenticationWebController extends AbstractWebController
         private readonly UserServiceInterface $userService,
         private readonly Security $security,
         private readonly AccountEventServiceInterface $accountEventService,
+        private readonly InviteServiceInterface $inviteService,
     ) {
     }
 
@@ -75,6 +79,8 @@ class AuthenticationWebController extends AbstractWebController
         $phone = str_replace(['(', ')', '-', ' '], '', $request->request->get('phone'));
 
         try {
+            $invite = $this->validateInvite($request, $email);
+
             $user = $this->userService->create([
                 'id' => Uuid::v4(),
                 'firstname' => $firstName,
@@ -84,13 +90,17 @@ class AuthenticationWebController extends AbstractWebController
                 'cpf' => $cpf,
                 'phone' => $phone,
             ]);
-        } catch (UniqueConstraintViolationException $exception) {
+        } catch (UniqueConstraintViolationException) {
             $error = $this->translator->trans('view.authentication.error.email_in_use');
         } catch (ValidatorException $exception) {
             $violations = $exception->getConstraintViolationList();
             if ($violations->count() > 0) {
                 $error = $violations->get(0)->getMessage();
             }
+        } catch (InvalidArgumentException $exception) {
+            $this->addFlash('error', $exception->getMessage());
+
+            return $this->redirect($request->request->get('_target_path'));
         } catch (Exception $exception) {
             $error = $this->translator->trans('view.authentication.error.error_message').$exception->getMessage();
         }
@@ -104,10 +114,44 @@ class AuthenticationWebController extends AbstractWebController
 
         try {
             $this->accountEventService->sendConfirmationEmail($user);
-        } catch (Exception $exception) {
+        } catch (Exception) {
             $this->addFlash('error', 'view.authentication.error.email_not_sent');
         }
 
+        if (null !== $invite) {
+            $this->inviteService->updateGuest($invite->getId(), $user);
+            $this->inviteService->accept($invite->getHost()->getId(), $invite->getId(), $user);
+
+            return $this->redirect($request->request->get('_target_path'));
+        }
+
         return $this->render('authentication/register_success.html.twig');
+    }
+
+    private function validateInvite(Request $request, string $email): ?Invite
+    {
+        $targetPath = $request->request->get('_target_path');
+        if (!$targetPath) {
+            return null;
+        }
+
+        $inviteId = $this->extractInviteId($targetPath);
+        if (!Uuid::isValid($inviteId)) {
+            throw new InvalidArgumentException($this->translator->trans('invalid_identifier'));
+        }
+
+        $invite = $this->inviteService->get(Uuid::fromString($inviteId));
+        if ($invite->getEmail() !== $email) {
+            throw new InvalidArgumentException($this->translator->trans('view.authentication.error.invite_is_not_for_this_email'));
+        }
+
+        return $invite;
+    }
+
+    private function extractInviteId(string $targetPath): ?string
+    {
+        preg_match('/\/convites\/([^\/]+)/', $targetPath, $matches);
+
+        return $matches[1] ?? null;
     }
 }
