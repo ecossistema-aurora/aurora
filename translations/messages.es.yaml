@@ -230,10 +230,12 @@ informations: Información
 invite: Invitación
 invite_sent: Invitación enviada
 invite_expired: Invitación caducada
+invite_accept: Invitación aceptada
 invite_to_organization: Invitación a organización
 invite_not_belongs_to_you: La invitación no le pertenece
 Invite was accepted: Invitación aceptada
 Invite was sent: Invitación enviada
+invalid_identifier: Identificador no válido
 
 language: Idioma
 lastname: Apellido

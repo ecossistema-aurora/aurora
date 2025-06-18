@@ -230,11 +230,13 @@ invalid_credentials: E-mail or password invalid
 informations: Informations
 invite: Invite
 invite_sent: Invite send
+invite_accept: Invite accept
 invite_expired: Invite expired
 invite_to_organization: Invite to organization
 invite_not_belongs_to_you: Invite not belongs to you
 Invite was accepted: Invite was accepted
 Invite was sent: Invite was sent
+invalid_identifier: Invalid identifier
 
 language: Language
 lastname: Last Name
