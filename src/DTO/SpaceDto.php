@@ -98,15 +98,12 @@ class SpaceDto
     public mixed $phoneNumber = null;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
-        new NotNull(groups: [self::UPDATE]),
         new Type('integer', groups: [self::CREATE, self::UPDATE]),
-        new Range(min: 1, groups: [self::CREATE, self::UPDATE]),
+        new Range(min: 1, groups: [self::UPDATE]),
     ])]
     public mixed $maxCapacity;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
         new NotNull(groups: [self::UPDATE]),
         new Type(Types::BOOLEAN, groups: [self::CREATE, self::UPDATE]),
     ])]

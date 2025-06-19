@@ -297,8 +297,6 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
-                    ['field' => 'maxCapacity', 'message' => 'This value should not be blank.'],
-                    ['field' => 'isAccessible', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -407,12 +405,6 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'requestBody' => array_merge($requestBody, ['maxCapacity' => 'invalid']),
                 'expectedErrors' => [
                     ['field' => 'maxCapacity', 'message' => 'This value should be of type integer.'],
-                ],
-            ],
-            'maxCapacity should be at least 1' => [
-                'requestBody' => array_merge($requestBody, ['maxCapacity' => 0]),
-                'expectedErrors' => [
-                    ['field' => 'maxCapacity', 'message' => 'This value should be 1 or more.'],
                 ],
             ],
             'isAccessible should be boolean' => [
