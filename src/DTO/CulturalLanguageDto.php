@@ -19,7 +19,7 @@ final class CulturalLanguageDto
     public const string UPDATE = 'update';
 
     #[Sequentially([new NotBlank(), new Uuid()], groups: [self::CREATE])]
-    public string $id;
+    public mixed $id;
 
     #[Sequentially([
         new NotBlank(),
