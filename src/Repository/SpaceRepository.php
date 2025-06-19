@@ -9,6 +9,7 @@ use App\Enum\EntityEnum;
 use App\Repository\Interface\SpaceRepositoryInterface;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 class SpaceRepository extends AbstractRepository implements SpaceRepositoryInterface
@@ -61,7 +62,7 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
         return $qb->getQuery()->getResult();
     }
 
-    private function applyFilters($qb, array $filters): void
+    private function applyFilters(QueryBuilder $qb, array $filters): void
     {
         $filterMappings = $this->getFilterMappings();
 

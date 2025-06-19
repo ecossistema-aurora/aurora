@@ -55,6 +55,7 @@ class EventEntityTest extends TestCase
         $accessibleAudio = AccessibilityInfoEnum::YES->value;
         $accessibleLibras = AccessibilityInfoEnum::YES->value;
         $isFree = true;
+        $draft = false;
         $culturalLanguages = new ArrayCollection([
             new CulturalLanguage(),
             new CulturalLanguage(),
@@ -86,6 +87,7 @@ class EventEntityTest extends TestCase
         $event->setAccessibleAudio($accessibleAudio);
         $event->setAccessibleLibras($accessibleLibras);
         $event->setFree($isFree);
+        $event->setDraft($draft);
         $event->setCulturalLanguages($culturalLanguages);
         $event->setCreatedAt($createdAt);
         $event->setUpdatedAt($updatedAt);
@@ -114,6 +116,7 @@ class EventEntityTest extends TestCase
         $this->assertSame($accessibleAudio, $event->getAccessibleAudio());
         $this->assertSame($accessibleLibras, $event->getAccessibleLibras());
         $this->assertSame($isFree, $event->isFree());
+        $this->assertSame($draft, $event->isDraft());
         $this->assertSame($culturalLanguages, $event->getCulturalLanguages());
         $this->assertSame($createdAt, $event->getCreatedAt());
         $this->assertSame($updatedAt, $event->getUpdatedAt());
@@ -185,6 +188,7 @@ class EventEntityTest extends TestCase
         $accessibleAudio = AccessibilityInfoEnum::YES->value;
         $accessibleLibras = AccessibilityInfoEnum::YES->value;
         $free = true;
+        $draft = true;
 
         $culturalLanguageUuid1 = Uuid::v4();
         $culturalLanguage1 = new CulturalLanguage();
@@ -259,6 +263,7 @@ class EventEntityTest extends TestCase
             'accessibleAudio' => $accessibleAudio,
             'accessibleLibras' => $accessibleLibras,
             'free' => $free,
+            'draft' => $draft,
             'culturalLanguages' => [
                 $culturalLanguage1->toArray(),
             ],

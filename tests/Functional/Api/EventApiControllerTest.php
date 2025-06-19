@@ -65,6 +65,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'draft' => true,
             'culturalLanguages' => [],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -129,6 +130,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'accessibleAudio' => AccessibilityInfoEnum::YES->value,
                 'accessibleLibras' => AccessibilityInfoEnum::YES->value,
                 'free' => false,
+                'draft' => false,
                 'culturalLanguages' => [
                     [
                         'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
@@ -197,6 +199,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'draft' => true,
             'culturalLanguages' => [],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -509,6 +512,12 @@ class EventApiControllerTest extends AbstractApiTestCase
                     ['field' => 'free', 'message' => 'This value should be of type boolean.'],
                 ],
             ],
+            'draft should be boolean' => [
+                'requestBody' => array_merge($requestBody, ['draft' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'draft', 'message' => 'This value should be of type boolean.'],
+                ],
+            ],
         ];
     }
 
@@ -521,7 +530,7 @@ class EventApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertCount(count(EventFixtures::EVENTS), json_decode($response));
+        $this->assertCount(count(EventFixtures::EVENTS) - 1, json_decode($response));
 
         $this->assertJsonContains([
             'id' => EventFixtures::EVENT_ID_1,
@@ -565,6 +574,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'draft' => false,
             'culturalLanguages' => [
                 [
                     'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
@@ -661,6 +671,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
                 'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
                 'free' => true,
+                'draft' => false,
                 'culturalLanguages' => [
                     [
                         'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
@@ -716,6 +727,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 [
                     'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
@@ -840,6 +852,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'accessibleAudio' => AccessibilityInfoEnum::YES->value,
                 'accessibleLibras' => AccessibilityInfoEnum::YES->value,
                 'free' => false,
+                'draft' => false,
                 'culturalLanguages' => [
                     [
                         'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
@@ -899,6 +912,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'draft' => false,
             'culturalLanguages' => [
                 [
                     'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
@@ -1208,6 +1222,12 @@ class EventApiControllerTest extends AbstractApiTestCase
                     ['field' => 'free', 'message' => 'This value should be of type boolean.'],
                 ],
             ],
+            'draft should be boolean' => [
+                'requestBody' => array_merge($requestBody, ['draft' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'draft', 'message' => 'This value should be of type boolean.'],
+                ],
+            ],
         ];
     }
 
@@ -1284,6 +1304,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => false,
+            'draft' => false,
             'culturalLanguages' => [
                 [
                     'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,

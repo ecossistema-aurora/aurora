@@ -125,6 +125,10 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private bool $free = true;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    #[Groups(['event.get', 'event.get.item'])]
+    private bool $draft = true;
+
     #[ORM\ManyToMany(targetEntity: CulturalLanguage::class)]
     #[ORM\JoinTable(name: 'event_cultural_languages')]
     #[Groups(['event.get', 'event.get.item'])]
@@ -421,6 +425,16 @@ class Event extends AbstractEntity
         $this->free = $free;
     }
 
+    public function isDraft(): bool
+    {
+        return $this->draft;
+    }
+
+    public function setDraft(bool $draft): void
+    {
+        $this->draft = $draft;
+    }
+
     public function getSocialNetworks(): array
     {
         return $this->socialNetworks;
@@ -572,6 +586,7 @@ class Event extends AbstractEntity
             'accessibleAudio' => $this->accessibleAudio,
             'accessibleLibras' => $this->accessibleLibras,
             'free' => $this->free,
+            'draft' => $this->draft,
             'culturalLanguages' => $this->culturalLanguages->map(fn ($culturalLanguage) => $culturalLanguage->toArray())->toArray(),
             'socialNetworks' => $this->socialNetworks,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),

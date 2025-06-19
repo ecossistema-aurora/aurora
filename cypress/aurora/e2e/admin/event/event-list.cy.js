@@ -9,7 +9,8 @@ describe('Painel de Controle - Página de listar Eventos', () => {
         cy.get('h2').contains('Meus Eventos').should('be.visible');
 
         cy.get('tbody > tr > :nth-child(1)').contains('Nordeste Literário').should('be.visible');
-        cy.get('tbody > tr > :nth-child(2)').contains('14/08/2024 10:00:00').should('be.visible');
+        cy.get('tbody > tr > :nth-child(2)').contains('Publicado').should('be.visible');
+        cy.get('tbody > tr > :nth-child(3)').contains('14/08/2024 10:00:00').should('be.visible');
 
         // To fix: O evento está sendo excluído mas a linha dele não para de aparecer na tabela
         // cy.get('tr:contains(Músical o vento da Caatinga)').contains('Excluir').click();
