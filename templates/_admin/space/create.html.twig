@@ -23,22 +23,28 @@
 
                         <form action="{{ path('admin_space_create') }}" method="post">
                             <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
+
                             <div class="mb-3">
                                 <label for="name" class="mb-1">{{ 'name'|trans }}</label>
                                 <input type="text" class="form-control" id="name" name="name" data-cy="name">
                             </div>
 
                             <div class="mb-3">
-                                <label for="maxCapacity" class="mb-1">{{ 'max-capacity'|trans }}</label>
-                                <input type="number" class="form-control" id="maxCapacity" name="maxCapacity" min="0">
+                                <label for="createdBy" class="mb-1">{{ 'responsible-agent'|trans }}</label>
+                                <select class="form-select" id="createdBy" name="createdBy">
+                                    {% for agent in agents %}
+                                        <option value="{{ agent.id }}">{{ agent.name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
 
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="isAccessible" name="isAccessible" value="1">
-                                <label class="form-check-label" for="isAccessible">{{ 'is-accessible'|trans }}</label>
+                            <div class="mb-3">
+                                <label for="shortDescription" class="mb-1">{{ 'short_description'|trans }}</label>
+                                <textarea class="form-control" id="shortDescription" name="shortDescription" rows="3"></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_in_draft'|trans }}</button>
+                            <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
+                            <button type="button" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
                             <a href="{{ path('admin_space_list') }}" class="btn">{{ 'cancel'|trans }}</a>
                         </form>
                     </div>
@@ -47,4 +53,3 @@
         </div>
     </section>
 {% endblock %}
-
