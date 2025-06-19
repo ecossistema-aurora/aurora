@@ -70,6 +70,9 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .contains('CEP')
             .should('be.visible');
 
+        cy.get('#cep').type('57600210');
+        cy.get('#cep').blur();
+
         cy.get('.col-md-8 > .form-label')
             .contains('Logradouro')
             .should('be.visible');
@@ -78,11 +81,13 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .contains('Número')
             .should('be.visible');
 
+        cy.get("#no_number").click()
+
         cy.get(':nth-child(2) > .col-md-3 > .form-label')
             .contains('Bairro')
             .should('be.visible');
 
-        cy.get('.col-md-7 > .form-label')
+        cy.get('.col-md-6 > .form-label')
             .contains('Complemento')
             .should('be.visible');
 
@@ -178,5 +183,170 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
         cy.get('.toast')
             .should('be.visible')
             .and('contain', 'O Espaço foi atualizado');
+    });
+});
+describe('Formulário de Endereço - Integração ViaCEP e Validação Completa', () => {
+
+    beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
+        cy.visit('/painel/espacos');
+        cy.contains('Editar').first().click();
+        cy.url().should('include', '/editar');
+
+        cy.get(':nth-child(2) > .accordion-header > .accordion-button')
+            .contains('Dados de endereço')
+            .should('be.visible')
+            .click()
+            .should('have.attr', 'aria-expanded', 'true');
+    });
+    
+    it('1. Deve preencher os campos de endereço, estado e cidade com um CEP válido', () => {
+        cy.get('#cep').type('01001000');
+        cy.get('#cep').blur();
+
+        cy.wait(1000);
+
+        cy.get('#street').should('have.value', 'Praça da Sé');
+        cy.get('#neighborhood').should('have.value', 'Sé');
+        cy.get('#address_complement').should('have.value', 'lado ímpar');
+        cy.get('#number').should('have.value', '');
+        cy.get("#no_number").click()
+        cy.get('#state').parent().find('.ts-control').should('contain.text', 'São Paulo');
+        cy.get('#city').parent().find('.ts-control').should('contain.text', 'São Paulo');
+
+        cy.get('#cep-error-message').should('not.be.visible').and('not.have.text');
+    });
+
+    it('2. Deve exibir mensagem de erro e limpar campos se o CEP não for encontrado', () => {
+        cy.intercept('GET', 'https://viacep.com.br/ws/99999999/json/', {
+            statusCode: 200,
+            body: { erro: true }
+        }).as('getCepNotFound');
+
+        cy.get('#cep').type('99999999');
+        cy.get('#cep').blur();
+
+        cy.wait('@getCepNotFound');
+
+        cy.get('#cep-error-message')
+            .should('be.visible')
+            .and('have.class', 'text-danger')
+            .and('contain.text', 'CEP não encontrado. Por favor, preencha o formulário manualmente.');
+
+        cy.get('#street').should('have.value', '');
+        cy.get('#neighborhood').should('have.value', '');
+        cy.get('#address_complement').should('have.value', '');
+        cy.get('#number').should('have.value', '');
+        cy.get('#state').parent().find('.ts-control').should('contain.text', '');
+        cy.get('#city').parent().find('.ts-control').should('contain.text', '');
+    });
+
+    it('3. Deve exibir mensagem de erro se o CEP for inválido (menos de 8 dígitos)', () => {
+        cy.get('#cep').type('12345');
+        cy.get('#cep').blur();
+
+        cy.get('#cep-error-message')
+            .should('be.visible')
+            .and('have.class', 'text-danger')
+            .and('contain.text', 'Por favor, digite um CEP válido com 8 dígitos.');
+
+        cy.get('#street').should('have.value', '');
+        cy.get('#neighborhood').should('have.value', '');
+        cy.get('#address_complement').should('have.value', '');
+        cy.get('#number').should('have.value', '');
+        cy.get('#state').parent().find('.ts-control').should('contain.text', '');
+        cy.get('#city').parent().find('.ts-control').should('contain.text', '');
+    });
+
+    it('4. Deve exibir mensagem de erro em caso de falha na requisição da API', () => {
+        cy.intercept('GET', 'https://viacep.com.br/ws/00000000/json/', {
+            statusCode: 500,
+            body: { message: 'Internal Server Error' }
+        }).as('getCepApiError');
+
+        cy.get('#cep').type('00000000');
+        cy.get('#cep').blur();
+
+        cy.wait('@getCepApiError');
+
+        cy.get('#cep-error-message')
+            .should('be.visible')
+            .and('have.class', 'text-danger')
+            .and('contain.text', 'Erro ao buscar CEP. Verifique sua conexão ou tente novamente.');
+
+        cy.get('#street').should('have.value', '');
+        cy.get('#neighborhood').should('have.value', '');
+        cy.get('#address_complement').should('have.value', '');
+        cy.get('#number').should('have.value', '');
+        cy.get('#state').parent().find('.ts-control').should('contain.text', '');
+        cy.get('#city').parent().find('.ts-control').should('contain.text', '');
+    });
+
+    it('5. Deve limpar estado/cidade e exibir erro se o retorno do ViaCEP não corresponder às opções do Tom-Select', () => {
+        cy.intercept('GET', 'https://viacep.com.br/ws/99999998/json/', {
+            statusCode: 200,
+            body: {
+                cep: "99999-998",
+                logradouro: "Rua Inexistente Teste",
+                complemento: "Sem complemento",
+                unidade: "",
+                bairro: "Bairro Fictício",
+                ddd: "00",
+                estado: "Estado Inexistente",
+                gia: "",
+                ibge: "0000000",
+                localidade: "Cidade Não Mapeada",
+                regiao: "",
+                siafi: "",
+                uf: "ZZ"
+            }
+        }).as('getCepUnmatchedOptions');
+
+        cy.get('#cep').type('99999998');
+        cy.get('#cep').blur();
+
+        cy.wait('@getCepUnmatchedOptions');
+
+        cy.wait(700);
+
+        cy.get('#street').should('have.value', 'Rua Inexistente Teste');
+        cy.get('#neighborhood').should('have.value', 'Bairro Fictício');
+        cy.get('#address_complement').should('have.value', 'Sem complemento');
+        cy.get('#state').parent().find('.ts-control').should('contain.text', '');
+        cy.get('#city').parent().find('.ts-control').should('contain.text', '');
+
+        cy.get('#cep-error-message')
+            .should('be.visible')
+            .and('have.class', 'text-danger')
+            .and('satisfy', ($el) => {
+                const text = $el.text();
+                return text.includes('Estado não encontrado. Por favor, selecione manualmente.') || text.includes('Cidade não encontrada. Por favor, selecione manualmente.');
+            });
+    });
+
+    it('6. Validação do campo "Número" e checkbox "Sem Número"', () => {
+        // Desabilita e limpa o campo ao marcar "Sem Número"
+        cy.get('#number').type('123').should('have.value', '123');
+        cy.get('#no_number').check();
+        cy.get('#number').should('have.value', '').and('be.disabled');
+        cy.get('#number-error-message').should('not.be.visible').and('not.have.text');
+
+        // Reabilita o campo ao desmarcar "Sem Número" e exibe erro
+        cy.get('#no_number').uncheck();
+        cy.get('#number').should('not.be.disabled');
+        cy.get('#number-error-message')
+            .should('be.visible')
+            .and('contain.text', 'O numero do endereço é obrigatório, por favor, preencha o campo. Caso o seu endereço não possua número, selecione a opção "Sem número".');
+
+        // Limpa erro ao digitar valor
+        cy.get('#number').type('123').blur();
+        cy.get('#number-error-message').should('not.be.visible').and('not.have.text');
+
+        // Não exibe erro se "Sem Número" estiver marcado
+        cy.get('#number').clear();
+        cy.get('#no_number').check();
+        cy.get('#number').should('be.disabled');
+        cy.get('#number-error-message').should('not.be.visible').and('not.have.text');
     });
 });

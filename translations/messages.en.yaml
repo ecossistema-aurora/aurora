@@ -298,6 +298,7 @@ next: Next
 new_phase: New phase
 notifications: Notifications
 no: No
+no_number: No number
 no_inform: Do Not Inform
 no_phase: No phase registered.
 no_site: No Website
@@ -971,3 +972,11 @@ view:
     error-text_third: But don't worry, there are many other pages to discover here at Aurora.
     error-homepage: Back to home page
     error-image: Doubt image
+
+zip_code:
+  invalid: Please enter a valid ZIP code with 8 digits.
+  not_found: ZIP code not found. Please fill out the form manually.
+  number_required: The address number is required, please fill in the field. If your address does not have a number, select the "No number" option.
+  generic_error: Error fetching ZIP code. Check your connection or try again.
+  city_not_found: City not found. Please select manually.
+  state_not_found: State not found. Please select manually.

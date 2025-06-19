@@ -297,6 +297,7 @@ next: Próximo
 new_phase: Nueva fase
 notifications: Notificaciones
 no: No
+no_number: Sin número
 no_inform: No Informar
 no_phase: No se registró ninguna fase.
 no_site: Sin sitio web
@@ -972,3 +973,11 @@ view:
     error-text_third: Pero no te preocupes, hay muchas otras páginas por descubrir aquí en Maps.
     error-homepage: Volver a la página de inicio
     error-image: Imagen de duda
+
+zip_code:
+  invalid: Por favor, ingrese un código postal válido con 8 dígitos.
+  not_found: Código postal no encontrado. Por favor, complete el formulario manualmente.
+  number_required: El número de la dirección es obligatorio, por favor complete el campo. Si su dirección no tiene número, seleccione la opción "Sin número".
+  generic_error: Error al buscar el código postal. Verifique su conexión o intente nuevamente.
+  city_not_found: Ciudad no encontrada. Por favor, seleccione manualmente.
+  state_not_found: Estado no encontrado. Por favor, seleccione manualmente.
