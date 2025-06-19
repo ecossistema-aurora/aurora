@@ -7,10 +7,10 @@ namespace App\Exception\Invite;
 use Exception;
 use Throwable;
 
-class InviteIsNotForYou extends Exception
+class InviteIsExpired extends Exception
 {
     public function __construct(?Throwable $previous = null)
     {
-        parent::__construct('The invite is not for you.', 0, $previous);
+        parent::__construct('The invite is expired.', 0, $previous);
     }
 }

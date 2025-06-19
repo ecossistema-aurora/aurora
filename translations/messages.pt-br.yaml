@@ -229,7 +229,9 @@ invalid_credentials: E-mail ou senha incorretos
 informations: Informações
 invite: Convite
 invite_sent: Convite enviado
+invite_expired: O convite expirou
 invite_to_organization: Convite para organização
+invite_not_belongs_to_you: O convite não pertence a você
 Invite was accepted: Convite foi aceito
 Invite was sent: Convite foi enviado
 
@@ -432,6 +434,7 @@ to_invite_agent: Convidar agente
 
 user: Usuário
 user_name: Nome do Usuário
+user_already_belongs_the_organization: Usuário já pertence a organização
 users: Usuários
 updated_at: Atualizado em
 unread_notifications: Notificações não lidas
@@ -503,6 +506,9 @@ white: Branca
 work_plan: Plano de trabalho
 
 yes: Sim
+
+you_must_login_now: Você deve logar agora
+you_must_register_now: Você deve se registrar agora
 
 #months
 January: Janeiro

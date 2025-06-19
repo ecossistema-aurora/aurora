@@ -7,3 +7,8 @@ getOne:
   path: /{id}
   controller: App\Controller\Web\OrganizationWebController::getOne
   methods: ['GET']
+
+invite:
+  resource: 'invite.yaml'
+  prefix: /{id}/convites
+  name_prefix: invite_

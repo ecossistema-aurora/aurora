@@ -12,19 +12,23 @@ use App\Enum\UserRolesEnum;
 use App\Event\Invite\AcceptInviteEvent;
 use App\Event\Invite\SendInviteEvent;
 use App\Exception\Agent\AgentAlreadyMemberException;
+use App\Exception\Invite\InviteIsExpired;
 use App\Exception\Invite\InviteIsNotForYou;
+use App\Exception\Invite\InviteResourceNotFoundException;
+use App\Exception\UnauthorizedException;
+use App\Exception\User\UserResourceNotFoundException;
 use App\Repository\Interface\InviteRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\EmailServiceInterface;
 use App\Service\Interface\InviteServiceInterface;
 use App\Service\Interface\UserServiceInterface;
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -45,7 +49,6 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         private UrlGeneratorInterface $urlGenerator,
         private EmailServiceInterface $emailService,
         private TranslatorInterface $translator,
-        private TokenStorageInterface $tokenStorage,
         private EventDispatcherInterface $eventDispatcher,
     ) {
         parent::__construct(
@@ -78,8 +81,8 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         $this->repository->save($invite);
 
         $confirmationUrl = $this->urlGenerator->generate(
-            'admin_organization_invite_accept',
-            ['id' => $organization->getId(), 'invite' => $invite->getToken()],
+            'web_organization_invite_accept',
+            ['id' => $organization->getId(), 'invite' => $invite->getId()],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
 
@@ -99,8 +102,39 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         return $this->repository->save($invite);
     }
 
-    public function accept(Invite $invite, User $user): void
+    /**
+     * @throws UserNotFoundException
+     * @throws UnauthorizedException
+     * @throws InviteIsNotForYou
+     * @throws InviteIsExpired
+     */
+    public function accept(Uuid $organizationId, Uuid $inviteId, ?User $user): void
     {
+        /* @var Invite $invite */
+        $invite = $this->repository->findOneBy(['id' => $inviteId, 'host' => $organizationId]);
+
+        if (null === $invite) {
+            throw new InviteResourceNotFoundException();
+        }
+
+        if ($invite->getExpirationAt() < new DateTime()) {
+            throw new InviteIsExpired();
+        }
+
+        if (null === $user) {
+            if (null === $invite->getGuest()) {
+                throw new UserNotFoundException();
+            }
+
+            try {
+                $this->userService->findOneBy(['email' => $invite->getGuest()?->getUser()->getEmail()]);
+            } catch (UserResourceNotFoundException) {
+                throw new UserNotFoundException();
+            }
+
+            throw new UnauthorizedException();
+        }
+
         $agent = $this->userService->getMainAgent($user);
 
         $host = $invite->getHost();
@@ -109,6 +143,7 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         $role = match ($host->getType()) {
             OrganizationTypeEnum::EMPRESA->value => UserRolesEnum::ROLE_COMPANY->value,
             OrganizationTypeEnum::MUNICIPIO->value => UserRolesEnum::ROLE_MUNICIPALITY->value,
+            default => UserRolesEnum::ROLE_ADMIN->value,
         };
 
         $user->addRole($role);
@@ -123,30 +158,15 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         $this->entityManager->persist($user);
         $this->entityManager->remove($invite);
 
-        $this->manualLogin($user);
         $this->eventDispatcher->dispatch(new AcceptInviteEvent($invite, $this->security->getUser()), AcceptInviteEvent::class);
         $this->entityManager->flush();
-        $this->manualLogout();
     }
 
-    public function get(Uuid $id): Invite
+    public function updateGuest(Uuid $inviteId, User $user): void
     {
-        return $this->repository->find($id);
-    }
-
-    public function findOneBy(array $params = []): ?Invite
-    {
-        return $this->repository->findOneBy($params);
-    }
-
-    private function manualLogin(User $user): void
-    {
-        $token = new UsernamePasswordToken($user, 'web');
-        $this->tokenStorage->setToken($token);
-    }
-
-    private function manualLogout(): void
-    {
-        $this->tokenStorage->setToken(null);
+        $invite = $this->repository->find($inviteId);
+        $agent = $user->getAgents()->first();
+        $invite->setGuest($agent);
+        $this->repository->save($invite);
     }
 }
