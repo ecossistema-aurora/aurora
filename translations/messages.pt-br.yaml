@@ -266,6 +266,7 @@ menu: Menu do Painel de Controle
 medium: Médio
 members: Membros
 months: meses
+message: Mensagem
 most_recent: Mais Recente
 municipality: Município
 my_account: Minha Conta
@@ -400,6 +401,7 @@ report: Denúncia
 responsible_agent: Agente Responsável
 results: Resultados
 rejected: Rejeitados
+read_notifications: Notificações lidas
 
 tags: Tags
 term: Termo
@@ -432,6 +434,7 @@ user: Usuário
 user_name: Nome do Usuário
 users: Usuários
 updated_at: Atualizado em
+unread_notifications: Notificações não lidas
 
 view_all: Ver todas
 view_file: ver arquivo

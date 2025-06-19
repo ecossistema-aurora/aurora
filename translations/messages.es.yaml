@@ -266,6 +266,7 @@ menu: Menú del Panel de Control
 medium: Secundario
 members: Miembros
 months: meses
+message: Mensaje
 most_recent: Más Reciente
 municipality: Municipio
 my_account: Mi Cuenta
@@ -401,6 +402,7 @@ report: Reportar
 responsible_agent: Agente Responsable
 results: Resultados
 rejected: Rechazado
+read_notifications: Notificaciones leídas
 
 tags: Etiquetas
 term: Término
@@ -433,6 +435,7 @@ user: Usuario
 user_name: Nombre de usuario
 users: Usuarios
 updated_at: Actualizado en
+unread_notifications: Notificaciones no leídas
 
 view_all: Ver Todas
 view_file: ver archivo
