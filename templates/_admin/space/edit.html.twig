@@ -37,7 +37,7 @@
             </div>
 
             {% if error is defined and error %}
-                <div class="alert alert-danger mt-3">
+                <div class="alert alert-danger mt-3" id="error">
                     {{ error }}
                 </div>
             {% endif %}
@@ -47,7 +47,8 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="module" src="{{ asset('js/load-cities.js') }}"></script>
+    <script type="module" src="{{ asset('js/viacep-integration.js') }}"></script>
     <script type="module" src="{{ asset('js/space/opening-hours.js') }}"></script>
     <script type="module" src="{{ asset('js/_components/forms/space-accessibility.js') }}"></script>
 {% endblock %}
-

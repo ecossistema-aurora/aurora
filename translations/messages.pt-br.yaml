@@ -961,3 +961,10 @@ view:
     error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Aurora.
     error-homepage: Voltar para a página inicial
     error-image: Imagem de dúvida
+
+zip_code:
+  invalid: Por favor, digite um CEP válido com 8 dígitos.
+  not_found: CEP não encontrado. Por favor, preencha o formulário manualmente.
+  generic_error: Erro ao buscar CEP. Verifique sua conexão ou tente novamente.
+  city_not_found: Cidade não encontrada. Por favor, selecione manualmente.
+  state_not_found: Estado não encontrado. Por favor, selecione manualmente.
