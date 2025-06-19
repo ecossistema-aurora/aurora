@@ -9,7 +9,9 @@ use App\DocumentService\SpaceTimelineDocumentService;
 use App\Enum\UserRolesEnum;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
+use App\Service\Interface\CityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
+use App\Service\Interface\StateServiceInterface;
 use App\Service\Interface\TagServiceInterface;
 use DateTime;
 use Exception;
@@ -39,6 +41,8 @@ class SpaceAdminController extends AbstractAdminController
         private ArchitecturalAccessibilityServiceInterface $architecturalAccessibilityService,
         private readonly ActivityAreaServiceInterface $activityAreaService,
         private readonly TagServiceInterface $tagService,
+        private readonly StateServiceInterface $stateService,
+        private readonly CityServiceInterface $cityService,
     ) {
     }
 
@@ -126,6 +130,8 @@ class SpaceAdminController extends AbstractAdminController
             $accessibilities = $this->architecturalAccessibilityService->list();
             $activityAreaItems = $this->activityAreaService->list();
             $tagItems = $this->tagService->list();
+            $states = $this->stateService->findBy();
+            $cities = $this->cityService->findBy();
 
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
@@ -133,6 +139,8 @@ class SpaceAdminController extends AbstractAdminController
                 'accessibilities' => $accessibilities,
                 'activityAreaItems' => $activityAreaItems,
                 'tagItems' => $tagItems,
+                'states' => $states,
+                'cities' => $cities,
             ]);
         }
 

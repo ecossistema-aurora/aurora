@@ -48,6 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const initialState = stateSelect.getValue();
     if (initialState) {
-        stateSelect.fire('change', initialState);
+        stateSelect.trigger('change', initialState);
     }
 });
