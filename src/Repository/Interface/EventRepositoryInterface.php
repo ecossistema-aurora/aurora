@@ -11,4 +11,6 @@ interface EventRepositoryInterface
     public function save(Event $event): Event;
 
     public function findByAgent(string $agentId): array;
+
+    public function findByFilters(array $filters, array $orderBy, int $limit): array;
 }

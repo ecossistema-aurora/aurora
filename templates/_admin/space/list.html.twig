@@ -40,8 +40,8 @@
                                     <td><a href="#">{{ item.name }}</a></td>
                                     <td>
                                         {{ (item.isDraft ?
-                                        '<span class="text-success">%s</span>'|format('status_published'|trans) :
-                                        '<span class="text-warning">%s</span>'|format('status_draft'|trans))|raw
+                                            '<span class="text-warning">%s</span>'|format('status_draft'|trans) :
+                                            '<span class="text-success">%s</span>'|format('status_published'|trans))|raw
                                         }}
                                     </td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>

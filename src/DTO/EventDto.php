@@ -15,6 +15,7 @@ use App\Enum\EventTypeEnum;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
+use Doctrine\DBAL\Types\Types;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Choice;
@@ -164,4 +165,10 @@ class EventDto
 
     #[Type('boolean', groups: [self::CREATE, self::UPDATE])]
     public mixed $free;
+
+    #[Sequentially([
+        new NotNull(groups: [self::UPDATE]),
+        new Type(Types::BOOLEAN, groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $draft = true;
 }
