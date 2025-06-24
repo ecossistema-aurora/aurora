@@ -250,7 +250,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'shortBio' => 'Desenvolvedor e evangelista de Software',
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
             'culture' => false,
-            'main' => false,
+            'main' => true,
             'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_2],
@@ -290,7 +290,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',
             'culture' => false,
-            'main' => false,
+            'main' => true,
             'extraFields' => [
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
@@ -479,7 +479,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',
             'culture' => false,
-            'main' => false,
+            'main' => true,
             'extraFields' => [
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',

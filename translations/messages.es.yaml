@@ -229,7 +229,9 @@ invalid_credentials: E-mail o contraseña inválidos
 informations: Información
 invite: Invitación
 invite_sent: Invitación enviada
+invite_expired: Invitación caducada
 invite_to_organization: Invitación a organización
+invite_not_belongs_to_you: La invitación no le pertenece
 Invite was accepted: Invitación aceptada
 Invite was sent: Invitación enviada
 
@@ -433,6 +435,7 @@ to_invite_agent: Invitar a un agente
 
 user: Usuario
 user_name: Nombre de usuario
+user_already_belongs_the_organization: El usuario ya pertenece a la organización
 users: Usuarios
 updated_at: Actualizado en
 unread_notifications: Notificaciones no leídas
@@ -504,6 +507,9 @@ white: Blanca
 work_plan: Plan de trabajo
 
 yes: Si
+
+you_must_login_now: Debe iniciar sesión ahora
+you_must_register_now: Debe inscribirse ahora
 
 #months
 January: Enero

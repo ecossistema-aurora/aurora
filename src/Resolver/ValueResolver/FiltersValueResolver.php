@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ValueResolver;
+namespace App\Resolver\ValueResolver;
 
 use App\Request\Query\Filters;
 use Symfony\Component\HttpFoundation\Request;

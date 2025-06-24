@@ -34,6 +34,10 @@
                         <label for="password">{{ 'password'|trans }}</label>
                         <input data-cy="password" class="form-control mb-3" type="password" name="password" id="password">
 
+                        {% if app.request.query.has('target_path_invite') %}
+                            <input type="hidden" name="_target_path" value="{{ app.request.query.get('target_path_invite') }}">
+                        {% endif %}
+
                         <button data-cy="submit" class="btn btn-primary w-100">
                             {{ 'login'|trans }}
                         </button>
