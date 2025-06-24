@@ -121,6 +121,7 @@ created_in: Criado em
 chain: Corrente
 change_email: Alterar email
 change_password: Alterar Senha
+changed_password: A sua senha foi alterada
 communicational_accessibility: Acessibilidade comunicacional
 contact: Contato
 contacts: Contatos
@@ -138,6 +139,7 @@ details: Detalhes
 deleted: Excluídos
 description: Descrição
 device: Dispositivo
+device_description: Navegador {browser} em um dispositivo {operationalSystem}
 discover: Descubra
 does_not_expire: não expira
 downloadable-files: Arquivos para download
@@ -401,6 +403,8 @@ related-agents: Agentes Relacionados
 required_field: Este campo é obrigatório.
 report: Denúncia
 responsible_agent: Agente Responsável
+reset: Redefinir
+reset_password: Redefinir Senha
 results: Resultados
 rejected: Rejeitados
 read_notifications: Notificações lidas
@@ -661,6 +665,15 @@ view:
 
     forgot_password: Esqueci minha senha
     paragraph: Entre com a sua conta
+
+    forgot:
+      forgot_your_password: Esqueceu a sua senha?
+      paragraph: Informe seu e-mail cadastrado, enviaremos as instruções de redefinição de senha.
+      success: Sua senha foi redefinida com sucesso!
+      link_sent_to_email: Link de recuperação enviado ao e-mail!
+
+    password_reset:
+      define_your_new_password: Defina sua nova senha
 
     register:
       create_account: Criar conta

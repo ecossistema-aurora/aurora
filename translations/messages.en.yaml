@@ -120,6 +120,7 @@ created_in: Created in
 chain: Chain
 change_email: Change email
 change_password: Change password
+changed_password: Password changed
 coming_soon: Coming soon
 communicational_accessibility: Communicational accessibility
 contact: Contact
@@ -138,6 +139,7 @@ deleted: Deleted
 details: Details
 description: Description
 device: Device
+device_description: Browser {browser} on a {operationalSystem} device
 discover: Discover
 does_not_expire: does not expire
 downloadable-files: Downloadable Files
@@ -405,8 +407,10 @@ report: Report
 results: Results
 rejected: Rejected
 read_notifications: Read Notifications
-
 responsible_agent: Responsible Agent
+reset: Reset
+reset_password: Reset Password
+
 tags: Tags
 term: Term
 terms: Terms
@@ -663,6 +667,15 @@ view:
 
     forgot_password: Forgot my password
     paragraph: Log in with your account
+
+    forgot:
+      forgot_your_password: Forgot your password?
+      paragraph: Enter your email address below, and we will send you a link to reset your password.
+      success: Your password has been reset successfully!
+      link_sent_to_email: A link to reset your password has been sent to your email address.
+
+    password_reset:
+      define_your_new_password: Define your new password
 
     register:
       create_account: Create Account

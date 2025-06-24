@@ -120,6 +120,7 @@ created_in: Creado en
 chain: Cadena
 change_email: Cambiar correo electrónico
 change_password: Cambiar la contraseña
+changed_password: Contraseña cambiada
 coming_soon: Muy pronto
 communicational_accessibility: Accesibilidad comunicacional
 contact: Contacto
@@ -138,6 +139,7 @@ details: Detalles
 deleted: Eliminados
 description: Descripción
 device: Dispositivo
+device_description: Navegador {browser} en un dispositivo {operationalSystem}
 discover: Descubrir
 does_not_expire: no caduca
 downloadable-files: Archivos Descargables
@@ -402,6 +404,8 @@ related-agents: Agentes Relacionados
 required_field: Campo obligatorio
 report: Reportar
 responsible_agent: Agente Responsable
+reset: Reiniciar
+reset_password: Restablecer la contraseña
 results: Resultados
 rejected: Rechazado
 read_notifications: Notificaciones leídas
@@ -666,6 +670,15 @@ view:
 
     forgot_password: Olvidé mi Contraseña
     paragraph: Inicia sesión con tu cuenta
+
+    forgot:
+      forgot_your_password: ¿Olvidaste tu contraseña?
+      paragraph: Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+      success: ¡Tu contraseña ha sido restablecida exitosamente!
+      link_sent_to_email: Enlace enviado a tu correo electrónico.
+
+    password_reset:
+      define_your_new_password: Establezca su nueva contraseña
 
     register:
       create_account: Crear Cuenta
