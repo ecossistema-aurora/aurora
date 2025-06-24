@@ -43,4 +43,12 @@ describe('Pagina de Cadastrar Eventos', () => {
 
         cy.contains('Evento Teste');
     });
+
+    it('Garante que a página de listar meus eventos possui um botão de criar evento', () => {
+        cy.visit('/painel');
+        cy.get(':nth-child(8) > :nth-child(2) > .nav-link').should('contain.text', 'Meus Eventos').click();
+        cy.get('.card > .d-flex > div > .btn').should('contain.text', 'Criar').click();
+        cy.url().should('include', '/painel/eventos/adicionar');
+        cy.get('.fw-bold').should('contain.text', 'Criar um evento');
+    });
 });
