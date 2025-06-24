@@ -279,7 +279,6 @@ homepage:
       title:
       subtitle:
       description:
-      background:
       image:
     register:
       enabled: true
