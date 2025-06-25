@@ -678,6 +678,13 @@ view:
         name_info: People will find you by this name.
         select_areas: Select at least one area of activity
 
+  cultural_language:
+    create: Create a Cultural Language
+    message:
+      created: The cultural language has been created
+      edited: The cultural language has been edited
+      deleted: The cultural language has been deleted
+
   entities:
     change_history: change history
     report: report

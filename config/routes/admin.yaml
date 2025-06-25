@@ -102,3 +102,8 @@ admin_architectural_accessibility:
   resource: 'admin/architectural-accessibility.yaml'
   prefix: /painel/admin/acessibilidade
   name_prefix: admin_architectural_accessibility_
+
+admin_cultural_language:
+  resource: 'admin/cultural-language.yaml'
+  prefix: /painel/admin/linguagem-cultural
+  name_prefix: admin_cultural_language_
