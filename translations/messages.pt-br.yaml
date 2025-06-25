@@ -297,6 +297,7 @@ next: Próximo
 new_phase: Nova Fase
 notifications: Notificações
 no: Não
+no_number: Sem número
 no_inform: Não Informar
 no_phase: Nenhuma fase disponível
 no_site: Sem Site
@@ -974,3 +975,11 @@ view:
     error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Aurora.
     error-homepage: Voltar para a página inicial
     error-image: Imagem de dúvida
+
+zip_code:
+  invalid: Por favor, digite um CEP válido com 8 dígitos.
+  not_found: CEP não encontrado. Por favor, preencha o formulário manualmente.
+  number_required: O numero do endereço é obrigatório, por favor, preencha o campo. Caso o seu endereço não possua número, selecione a opção "Sem número".
+  generic_error: Erro ao buscar CEP. Verifique sua conexão ou tente novamente.
+  city_not_found: Cidade não encontrada. Por favor, selecione manualmente.
+  state_not_found: Estado não encontrado. Por favor, selecione manualmente.
