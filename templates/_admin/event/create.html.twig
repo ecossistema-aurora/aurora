@@ -57,20 +57,6 @@
             </div>
 
             <div class="mb-4">
-                <label class="form-label" for="age-rating">{{ 'age_rating'|trans }}</label>
-                <span class="text-danger">*</span>
-                <select class="form-select mt-1" id="age-rating" name="age_rating">
-                    <option selected disabled id="desabilitado">{{ 'select'|trans }}</option>
-                    <option value="livre">{{ 'ages_rating.all'|trans }}</option>
-                    <option value="10">{{ 'ages_rating.ten'|trans }}</option>
-                    <option value="12">{{ 'ages_rating.twelve'|trans }}</option>
-                    <option value="14">{{ 'ages_rating.fourteen'|trans }}</option>
-                    <option value="16">{{ 'ages_rating.sixteen'|trans }}</option>
-                    <option value="18">{{ 'ages_rating.eighteen'|trans }}</option>
-                </select>
-            </div>
-
-            <div class="mb-4">
                 <label class="form-label" for="event-type">{{ 'type'|trans }}</label>
                 <span class="text-danger">*</span>
                 <select class="form-select mt-1" id="event-type" name="type" required>
@@ -82,15 +68,9 @@
             </div>
 
             <div class="mb-4">
-                <label for="end-date" class="form-label"> {{ 'end_date' | trans}} </label>
+                <label for="start_date" class="form-label"> {{ 'start_date' | trans}} </label>
                 <span class="text-danger">*</span>
-                <input type="date" class="form-control" id="end-date" name="end_date" required>
-            </div>
-
-            <div class="mb-4">
-                <label for="max-capacity" class="form-label"> {{ 'max_capacity' | trans}} </label>
-                <span class="text-danger">*</span>
-                <input type="number" min="0" step="1" class="form-control" id="max-capacity" name="max_capacity" required>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
             </div>
 
             <div class="btn-form-group mt-5">
