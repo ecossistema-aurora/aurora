@@ -39,7 +39,7 @@
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td>
-                                        <a href="{{ path('admin_event_timeline', {id: item.id}) }}" class="btn btn-outline-info btn-sm">{{ 'Timeline'|trans }}</a>
+                                        <a href="{{ path('admin_event_timeline', {id: item.id}) }}" class="btn btn-outline-primary btn-sm">{{ 'Timeline'|trans }}</a>
                                         <a href="{{ path('admin_event_edit', {id: item.id}) }}" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
                                         <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_event_remove', {id: item.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
                                     </td>
