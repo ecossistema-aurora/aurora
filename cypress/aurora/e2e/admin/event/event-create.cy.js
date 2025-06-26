@@ -5,7 +5,6 @@ describe('Pagina de Cadastrar Eventos', () => {
         cy.visit('/painel/eventos/adicionar');
 
         Cypress.on('uncaught:exception', (err, runnable) => {
-            // Previne falhas de teste devido a erros não críticos
             if (err.message.includes('createPopper is not a function') || err.message.includes('Cannot read properties of null')) {
                 return false;
             }
@@ -19,7 +18,6 @@ describe('Pagina de Cadastrar Eventos', () => {
         cy.get('form').should('exist').and('be.visible');
 
 
-        //Verifica se as validações dos campos estão funcionando
         cy.visit('/painel/eventos/adicionar');
 
         cy.get('#name').type('E');

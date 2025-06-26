@@ -1,25 +1,22 @@
-describe('Painel de Controle - Página de listar Espaços', () => {
+describe('Página de Cadastrar Espaços', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
+
         cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
-        cy.visit('/painel/espacos');
+
+        cy.visit('/painel/espacos/adicionar');
     });
 
-    it('Garante que a página de Espaços existe', () => {
-        cy.get('h2').contains('Meus Espaços').should('be.visible');
+    it('Deve criar um espaço com sucesso', () => {
+        cy.get('[data-cy="space-form"]').should('exist').and('be.visible');
 
-        cy.contains('Criar').click();
-
-        cy.wait(100);
-
-        cy.get('[data-cy="name"]').type('Espaço teste');
-        cy.get('#maxCapacity').type(100);
-        cy.get('#isAccessible').click();
+        cy.get('[data-cy="name"]').type('Espaço Teste Cypress');
+        cy.get('[data-cy="createdBy"]').select('Alessandro');
+        cy.get('[data-cy="shortDescription"]').type('Descrição de teste do espaço');
 
         cy.get('[data-cy="submit"]').click();
-        cy.wait(100);
 
-        cy.contains('Novo Espaço criado');
-        cy.contains('Espaço teste');
+        cy.url().should('include', '/painel/espacos');
+        cy.contains('Espaço Teste Cypress').should('be.visible');
     });
 });

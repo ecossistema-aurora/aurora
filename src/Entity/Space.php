@@ -58,13 +58,13 @@ class Space extends AbstractEntity
     #[Groups('space.get.item')]
     private ?string $phoneNumber = null;
 
-    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
     #[Groups('space.get.item')]
-    private int $maxCapacity;
+    private ?int $maxCapacity = null;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     #[Groups(['space.get', 'space.get.item'])]
-    private bool $isAccessible;
+    private bool $isAccessible = false;
 
     #[ORM\Column(type: Types::BOOLEAN)]
     #[Groups(['space.get', 'space.get.item'])]

@@ -5,13 +5,6 @@ describe('Criar um espaço e atualizar o dashboard', () => {
         cy.url().should('include', '/');
     });
 
-    Cypress.on('uncaught:exception', (err) => {
-        if (err.message.includes('i.createPopper is not a function')) {
-            console.warn('Erro ignorado do Popper.js:', err.message);
-            return false;
-        }
-    });
-
     it('Deve criar um espaço e verificar se o número de espaços aumentou', () => {
         cy.visit('/espacos');
 
@@ -38,8 +31,8 @@ describe('Criar um espaço e atualizar o dashboard', () => {
         cy.url().should('include', '/painel/espacos/adicionar');
 
         cy.get('input#name').type('Espaço de Teste Cypress');
-        cy.get('input#maxCapacity').type('100');
-        cy.get('input#isAccessible').check();
+        cy.get('[data-cy="createdBy"]').select('Alessandro');
+        cy.get('[data-cy="shortDescription"]').type('Descrição de teste do espaço');
         cy.get('button[data-cy="submit"]').click();
     }
 });

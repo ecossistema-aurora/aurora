@@ -69,24 +69,28 @@ class SpaceAdminController extends AbstractAdminController
     #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
+        $userAgents = $this->security->getUser()->getAgents();
+
         if (false === $request->isMethod(Request::METHOD_POST)) {
             return $this->render(self::VIEW_ADD, [
                 'form_id' => self::CREATE_FORM_ID,
+                'agents' => $userAgents->getValues(),
             ]);
         }
 
         $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $name = $request->request->get('name');
-        $maxCapacity = (int) $request->request->get('maxCapacity');
-        $isAccessible = (bool) $request->request->get('isAccessible');
+        $shortDescription = $request->request->get('shortDescription');
+        $createdBy = $request->request->get('createdBy');
+        $maxCapacity = $request->request->get('maxCapacity');
 
         $space = [
             'id' => Uuid::v4(),
             'name' => $name,
-            'maxCapacity' => $maxCapacity,
-            'isAccessible' => $isAccessible,
-            'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'shortDescription' => $shortDescription,
+            'createdBy' => $createdBy,
+            'maxCapacity' => (int) $maxCapacity,
         ];
 
         try {
@@ -98,6 +102,7 @@ class SpaceAdminController extends AbstractAdminController
             return $this->render(self::VIEW_ADD, [
                 'error' => $exception->getMessage(),
                 'form_id' => self::CREATE_FORM_ID,
+                'agents' => $userAgents->getValues(),
             ]);
         }
 
