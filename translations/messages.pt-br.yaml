@@ -166,9 +166,9 @@ event: Evento
 events: Eventos
 events_month_year: Eventos de {month} de {year}
 event_types:
-  in_person: Presencial
-  online: Online
-  hybrid: Híbrido
+  IN_PERSON: Presencial
+  ONLINE: Online
+  HYBRID: Híbrido
 everybody: Todos
 evidences: Evidências
 elderly_person: Pessoa idosa
