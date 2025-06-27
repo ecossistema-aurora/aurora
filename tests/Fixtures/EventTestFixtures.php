@@ -10,6 +10,7 @@ use App\DataFixtures\Entity\EventFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\DataFixtures\Entity\TagFixtures;
+use App\Enum\EventTypeEnum;
 use Symfony\Component\Uid\Uuid;
 
 class EventTestFixtures implements TestFixtures
@@ -22,7 +23,7 @@ class EventTestFixtures implements TestFixtures
             'agentGroup' => AgentFixtures::AGENT_ID_1,
             'space' => SpaceFixtures::SPACE_ID_1,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
-            'type' => 'hybrid',
+            'type' => EventTypeEnum::HYBRID->value,
             'endDate' => '2025-04-01',
             'maxCapacity' => 5000,
         ];

@@ -232,8 +232,6 @@ class EventApiControllerTest extends AbstractApiTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'type', 'message' => 'This value should not be blank.'],
-                    ['field' => 'endDate', 'message' => 'This value should not be blank.'],
-                    ['field' => 'maxCapacity', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -380,14 +378,14 @@ class EventApiControllerTest extends AbstractApiTestCase
                     ['field' => 'longDescription', 'message' => 'This value should be of type string.'],
                 ],
             ],
-            'type should be a string' => [
-                'requestBody' => array_merge($requestBody, ['type' => 123]),
+            'type should be a integer' => [
+                'requestBody' => array_merge($requestBody, ['type' => 'abc']),
                 'expectedErrors' => [
-                    ['field' => 'type', 'message' => 'This value should be of type string.'],
+                    ['field' => 'type', 'message' => 'This value should be of type integer.'],
                 ],
             ],
             'type should be a valid choice' => [
-                'requestBody' => array_merge($requestBody, ['type' => 'invalid-choice']),
+                'requestBody' => array_merge($requestBody, ['type' => 5]),
                 'expectedErrors' => [
                     ['field' => 'type', 'message' => 'The value you selected is not a valid choice.'],
                 ],
@@ -1090,14 +1088,14 @@ class EventApiControllerTest extends AbstractApiTestCase
                     ['field' => 'longDescription', 'message' => 'This value should be of type string.'],
                 ],
             ],
-            'type should be a string' => [
-                'requestBody' => array_merge($requestBody, ['type' => 123]),
+            'type should be a integer' => [
+                'requestBody' => array_merge($requestBody, ['type' => 'abc']),
                 'expectedErrors' => [
-                    ['field' => 'type', 'message' => 'This value should be of type string.'],
+                    ['field' => 'type', 'message' => 'This value should be of type integer.'],
                 ],
             ],
             'type should be a valid choice' => [
-                'requestBody' => array_merge($requestBody, ['type' => 'invalid-choice']),
+                'requestBody' => array_merge($requestBody, ['type' => 5]),
                 'expectedErrors' => [
                     ['field' => 'type', 'message' => 'The value you selected is not a valid choice.'],
                 ],

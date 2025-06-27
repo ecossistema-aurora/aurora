@@ -107,14 +107,12 @@ class EventDto
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
         new NotNull(groups: [self::UPDATE]),
-        new Type('string', groups: [self::CREATE, self::UPDATE]),
-        new Choice(callback: [EventTypeEnum::class, 'getNames'], groups: [self::CREATE, self::UPDATE]),
+        new Type('integer', groups: [self::CREATE, self::UPDATE]),
+        new Choice(callback: [EventTypeEnum::class, 'getValues'], groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $type;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
-        new NotNull(groups: [self::UPDATE]),
         new Type('string', groups: [self::CREATE, self::UPDATE]),
         new DateTime(format: 'Y-m-d', groups: [self::CREATE, self::UPDATE]),
     ])]
@@ -145,8 +143,6 @@ class EventDto
     public mixed $phoneNumber;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
-        new NotNull(groups: [self::UPDATE]),
         new Type('integer', groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $maxCapacity;

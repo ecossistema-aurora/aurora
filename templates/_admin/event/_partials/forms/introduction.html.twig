@@ -63,9 +63,9 @@
         <span class="text-danger">*</span>
         <select class="form-select mt-1" id="event-type" name="type" required>
             <option selected disabled value="">{{ 'select'|trans }}</option>
-            <option value="in_person">{{ 'event_types.in_person'|trans }}</option>
-            <option value="online">{{ 'event_types.online'|trans }}</option>
-            <option value="hybrid">{{ 'event_types.hybrid'|trans }}</option>
+            {% for type in typeItems %}
+                <option value="{{ type.value }}">{{ ('event_types.' ~ type.name)|trans }}</option>
+            {% endfor %}
         </select>
     </div>
 
