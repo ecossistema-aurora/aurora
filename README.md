@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/secultce/aurora/graph/badge.svg?token=CG2AH922DO)](https://codecov.io/gh/secultce/aurora)
+[![codecov](https://codecov.io/gh/ecossistema-aurora/aurora/graph/badge.svg?token=AVOPV8MSGC)](https://codecov.io/gh/ecossistema-aurora/aurora)
 
 # Estrutura inicial Aurora
 
