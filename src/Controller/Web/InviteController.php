@@ -6,7 +6,7 @@ namespace App\Controller\Web;
 
 use App\Enum\FlashMessageTypeEnum;
 use App\Exception\UnauthorizedException;
-use App\ExceptionResolver\InviteExceptionResolver;
+use App\Resolver\ExceptionResolver\InviteExceptionResolver;
 use App\Service\Interface\InviteServiceInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;

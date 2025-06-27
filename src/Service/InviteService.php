@@ -68,13 +68,12 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         }
 
         $expirationAt = new DateTimeImmutable(self::TIME_TO_EXPIRATION);
-        $token = Uuid::v4();
 
         $invite = new Invite();
         $invite->setId(Uuid::v4());
         $invite->setGuest($agent);
         $invite->setHost($organization);
-        $invite->setToken($token);
+        $invite->setEmail($email);
         $invite->setExpirationAt($expirationAt);
 
         $this->repository->save($invite);
@@ -118,7 +117,7 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
 
         $host = $invite->getHost();
 
-        $user->addRole(UserRolesEnum::ROLE_ORGANIZATION->value);
+        $user->addRole(UserRolesEnum::ROLE_ADMIN->value);
 
         $agent = $this->userService->getMainAgent($user);
         $host->addAgent($agent);
@@ -137,6 +136,11 @@ readonly class InviteService extends AbstractEntityService implements InviteServ
         $agent = $user->getAgents()->first();
         $invite->setGuest($agent);
         $this->repository->save($invite);
+    }
+
+    public function get(Uuid $inviteId): Invite
+    {
+        return $this->repository->find($inviteId);
     }
 
     /**
