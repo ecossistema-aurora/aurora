@@ -6,6 +6,7 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\EventTimeline;
 use App\DocumentService\EventTimelineDocumentService;
+use App\Enum\EventTypeEnum;
 use App\Enum\UserRolesEnum;
 use App\Service\Interface\CulturalLanguageServiceInterface;
 use App\Service\Interface\EventServiceInterface;
@@ -70,8 +71,13 @@ class EventAdminController extends AbstractAdminController
     public function create(Request $request): Response
     {
         if (false === $request->isMethod('POST')) {
+            $culturalLanguageItems = $this->culturalLanguageService->list();
+            $type = EventTypeEnum::cases();
+
             return $this->render(self::VIEW_ADD, [
                 'form_id' => self::CREATE_FORM_ID,
+                'culturalLanguageItems' => $culturalLanguageItems,
+                'typeItems' => $type,
             ]);
         }
 
@@ -79,24 +85,20 @@ class EventAdminController extends AbstractAdminController
 
         $name = $request->request->get('name');
         $description = $request->request->get('description');
-        $ageRating = $request->request->get('age_rating');
-        $culturalLanguage = $request->request->get('cultural_language');
-        $type = $request->request->get('type');
-        $endDate = $request->request->get('end_date');
-        $maxCapacity = (int) $request->request->get('max_capacity');
+        $culturalLanguage = $request->get('culturalLanguage');
+        $type = (int) $request->request->get('type');
+        $startDate = $request->request->get('startDate');
 
         $event = [
             'id' => Uuid::v4(),
             'name' => $name,
             'description' => $description,
             'extraFields' => [
-                'age_rating' => $ageRating,
-                'cultural_language' => $culturalLanguage,
+                'culturalLanguage' => $culturalLanguage,
             ],
             'agentGroup' => null,
             'type' => $type,
-            'endDate' => $endDate,
-            'maxCapacity' => $maxCapacity,
+            'startDate' => $startDate,
         ];
 
         try {
@@ -128,12 +130,14 @@ class EventAdminController extends AbstractAdminController
         if (Request::METHOD_POST !== $request->getMethod()) {
             $culturalLanguageItems = $this->culturalLanguageService->list();
             $tagItems = $this->tagService->list();
+            $type = EventTypeEnum::cases();
 
             return $this->render('event/edit.html.twig', [
                 'event' => $event,
                 'form_id' => self::EDIT_FORM_ID,
                 'culturalLanguageItems' => $culturalLanguageItems,
                 'tagItems' => $tagItems,
+                'typeItems' => $type,
             ]);
         }
 
@@ -142,7 +146,7 @@ class EventAdminController extends AbstractAdminController
         $name = $request->request->get('name');
         $description = $request->request->get('description');
         $ageRating = $request->request->get('age_rating') ?? null;
-        $type = $request->request->get('type');
+        $type = (int) $request->request->get('type');
         $maxCapacity = (int) $request->request->get('max_capacity') ?? null;
         $culturalLanguages = $request->get('culturalLanguages') ?? [];
         $tags = $request->get('tags') ?? [];
