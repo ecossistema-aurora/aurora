@@ -115,18 +115,6 @@ style:
 create-admin-user:
 	docker compose exec -T php bash -c "php bin/console app:create-admin-user"
 
-demo-regmel: guard-not-prod
-	@echo "\n"
-	@echo ">>> Limpando dados residuais na velocidade da luz ✨"
-	@make reset-deep > /dev/null 2>&1
-
-	@echo "\n"
-	@echo ">>> Preparando nave para decolar 🚀"
-	@docker compose exec -T php bash -c "php bin/console app:create-admin-user"
-	@docker compose exec -T php bash -c "php bin/console app:demo-regmel"
-	@echo "\n >>> Tudo pronto, agora é ser feliz dançando 💃 \n"
-
-
 # Gera as chaves de autenticação JWT
 generate_keys:
 	docker compose exec -T php bash -c "php bin/console lexik:jwt:generate-keypair --overwrite -n"
