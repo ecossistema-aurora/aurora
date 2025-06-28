@@ -17,10 +17,9 @@ describe('Painel de Controle - Página de listar Iniciativas', () => {
             .should('be.visible')
             .click();
 
-        // TODO: regmel
-        // cy.get('[data-cy=table-initiative-list] tr > :nth-child(1) > a')
-        //     .contains('AxeZumbi')
-        //     .should('not.exist');
-        // cy.get('.success.snackbar').contains('Initiative removed').should('be.visible');
+        cy.get('[data-cy=table-initiative-list] tr > :nth-child(1) > a')
+            .contains('AxeZumbi')
+            .should('not.exist');
+        cy.get('.success.snackbar').contains('Initiative removed').should('be.visible');
     });
 });

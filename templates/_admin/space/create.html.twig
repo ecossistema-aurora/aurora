@@ -62,23 +62,11 @@
                                 ></textarea>
                             </div>
 
-                            <button
-                                    type="submit"
-                                    class="btn btn-primary me-3"
-                                    data-cy="submit"
-                            >
-                                {{ 'create_and_publish'|trans }}
-                            </button>
-
-                            <button
-                                    type="button"
-                                    class="btn btn-secondary me-3"
-                                    data-cy="draft"
-                            >
+                            <button class="btn btn-secondary me-3" data-cy="submit">
                                 {{ 'create_in_draft'|trans }}
                             </button>
 
-                            <a href="{{ path('admin_space_list') }}" class="btn" data-cy="cancel">
+                            <a href="{{ path('admin_space_list') }}" class="btn btn-link" data-cy="cancel">
                                 {{ 'cancel'|trans }}
                             </a>
                         </form>

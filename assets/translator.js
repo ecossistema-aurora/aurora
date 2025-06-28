@@ -2,7 +2,6 @@ import { trans, getLocale, setLocale, setLocaleFallbacks, throwWhenNotFound } fr
 
 setLocaleFallbacks({
     'pt_br': 'pt-br',
-    'regmel': 'regmel',
     'en': 'en',
     'es': 'es',
 });
