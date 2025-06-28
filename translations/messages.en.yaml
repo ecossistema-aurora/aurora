@@ -407,6 +407,12 @@ required_field: Required Field
 report: Report
 results: Results
 rejected: Rejected
+roles: Roles
+role.admin: Administrator
+role.manager: Manager
+role.support: Support
+role.municipal_admin: Municipal Administrator
+role.company_admin: Company Administrator
 read_notifications: Read Notifications
 responsible_agent: Responsible Agent
 reset: Reset

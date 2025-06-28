@@ -409,6 +409,12 @@ reset: Reiniciar
 reset_password: Restablecer la contraseña
 results: Resultados
 rejected: Rechazado
+roles: Papeles
+role.admin: Administrador
+role.manager: Gerente
+role.support: Soporte
+role.municipal_admin: Administrador Municipal
+role.company_admin: Administrador de la Empresa
 read_notifications: Notificaciones leídas
 
 tags: Etiquetas

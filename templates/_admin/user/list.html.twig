@@ -91,9 +91,11 @@
                                         <td>
                                             {% for role in item.roles %}
                                                 {% if role != 'ROLE_USER' %}
+                                                    {% set translation_key = 'role.' ~ (role|slice(5)|lower) %}
+
                                                     <span class="badge {{ role_color_map[role]|default('bg-secondary') }} me-1">
-                                                            {{ 'role'|trans }}
-                                                        </span>
+                                                             {{ translation_key|trans }}
+                                                     </span>
                                                 {% endif %}
                                             {% endfor %}
                                         </td>
