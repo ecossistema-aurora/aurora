@@ -12,6 +12,7 @@ enum OrganizationTypeEnum: string
 
     case UNDEFINED = 'Undefined';
     case MUNICIPIO = 'Municipio';
+    case COMUNIDADE = 'Comunidade';
     case EMPRESA = 'Empresa';
     case ENTIDADE = 'Entidade';
     case OSC = 'OSC';
