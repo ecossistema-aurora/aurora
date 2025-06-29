@@ -6,7 +6,6 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\OrganizationTimeline;
 use App\DocumentService\OrganizationTimelineDocumentService;
-use App\Enum\OrganizationTypeEnum;
 use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\OrganizationServiceInterface;
@@ -42,7 +41,7 @@ class OrganizationAdminController extends AbstractAdminController
     public function list(): Response
     {
         return $this->renderOrganizationList(
-            $this->service->findBy(['type' => OrganizationTypeEnum::MUNICIPIO->value])
+            $this->service->list()
         );
     }
 

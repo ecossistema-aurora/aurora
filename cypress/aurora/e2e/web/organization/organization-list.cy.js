@@ -48,10 +48,10 @@ describe('Página de Listar de Organizações', () => {
 
     it('Garante que o filtro funciona', () => {
         cy.get('#open-filter').click();
-        cy.get('#organization-name').type('PHPeste');
+        cy.get('#organization-name').type('30praum');
         cy.get('#apply-filters').click();
-        // cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
-        // cy.get('.organization-name').contains('PHPeste').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
+        cy.get('.organization-name').contains('30praum').should('be.visible');
     });
 
     it('Garante que as opções de ordenar funcionam', () => {
