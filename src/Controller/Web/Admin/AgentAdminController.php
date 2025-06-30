@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
-use App\Document\AgentTimeline;
 use App\DocumentService\AgentTimelineDocumentService;
 use App\Enum\FlashMessageTypeEnum;
 use App\Enum\UserRolesEnum;
@@ -24,19 +23,18 @@ class AgentAdminController extends AbstractAdminController
 {
     private const string VIEW_ADD = 'agent/create.html.twig';
 
-    public const CREATE_FORM_ID = 'add-agent';
+    public const string CREATE_FORM_ID = 'add-agent';
 
     public function __construct(
-        private AgentServiceInterface $service,
-        private AgentTimelineDocumentService $documentService,
-        private JWTTokenManagerInterface $jwtManager,
-        private TranslatorInterface $translator,
-        private Security $security,
-        private readonly AgentTimeline $agentTimeline,
+        private readonly AgentServiceInterface $service,
+        private readonly AgentTimelineDocumentService $documentService,
+        private readonly JWTTokenManagerInterface $jwtManager,
+        private readonly TranslatorInterface $translator,
+        private readonly Security $security,
     ) {
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(UserInterface $user): Response
     {
         $agents = $this->service->findBy();
@@ -49,7 +47,7 @@ class AgentAdminController extends AbstractAdminController
         ]);
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
@@ -89,6 +87,7 @@ class AgentAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_agent_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function timeline(?Uuid $id): Response
     {
         $agent = $this->service->get($id);
@@ -103,6 +102,7 @@ class AgentAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $agent = $this->service->get($id);

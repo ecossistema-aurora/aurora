@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
-use App\Document\EventTimeline;
 use App\DocumentService\EventTimelineDocumentService;
 use App\Enum\EventTypeEnum;
 use App\Enum\UserRolesEnum;
@@ -22,22 +21,21 @@ use TypeError;
 
 class EventAdminController extends AbstractAdminController
 {
-    private const VIEW_ADD = 'event/create.html.twig';
-    public const CREATE_FORM_ID = 'add-event';
-    public const EDIT_FORM_ID = 'edit-event';
+    private const string VIEW_ADD = 'event/create.html.twig';
+    public const string CREATE_FORM_ID = 'add-event';
+    public const string EDIT_FORM_ID = 'edit-event';
 
     public function __construct(
-        private EventServiceInterface $service,
+        private readonly EventServiceInterface $service,
         private readonly TranslatorInterface $translator,
         private readonly EventTimelineDocumentService $documentService,
         private readonly Security $security,
-        private readonly EventTimeline $eventTimeline,
         private readonly TagServiceInterface $tagService,
         private readonly CulturalLanguageServiceInterface $culturalLanguageService,
     ) {
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $events = $this->service->findBy();
@@ -47,6 +45,7 @@ class EventAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function timeline(?Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
@@ -57,7 +56,7 @@ class EventAdminController extends AbstractAdminController
         ]);
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);
@@ -67,7 +66,7 @@ class EventAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_event_list');
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod('POST')) {
@@ -116,7 +115,7 @@ class EventAdminController extends AbstractAdminController
         return $this->list();
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function edit(Uuid $id, Request $request): Response
     {
         try {

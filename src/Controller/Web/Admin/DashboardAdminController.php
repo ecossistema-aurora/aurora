@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
-use App\Enum\OrganizationTypeEnum;
+use App\Enum\UserRolesEnum;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
@@ -13,6 +13,7 @@ use App\Service\Interface\OpportunityServiceInterface;
 use App\Service\Interface\OrganizationServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DashboardAdminController extends AbstractAdminController
 {
@@ -27,6 +28,7 @@ class DashboardAdminController extends AbstractAdminController
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function index(): Response
     {
         $user = $this->getUser();
@@ -34,28 +36,18 @@ class DashboardAdminController extends AbstractAdminController
         $createdBy = $this->agentService->getAgentsFromLoggedUser()[0];
 
         $totalAgents = $this->agentService->count($user);
-        $totalUsers = $this->agentService->count();
         $totalOpportunities = $this->opportunityService->count($createdBy);
         $totalEvents = $this->eventService->count($createdBy);
         $totalSpaces = $this->spaceService->count($createdBy);
         $totalOrganizations = $this->organizationService->count($createdBy);
         $totalInitiatives = $this->initiativeService->count($createdBy);
-        $totalCities = count($this->organizationService->findBy([
-            'type' => OrganizationTypeEnum::MUNICIPIO->value,
-        ]));
-        $totalCompanies = count($this->organizationService->findBy([
-            'type' => OrganizationTypeEnum::EMPRESA->value,
-        ]));
 
         $totals = [
-            'totalUsers' => $totalUsers,
             'totalAgents' => $totalAgents,
             'totalOpportunities' => $totalOpportunities,
             'totalEvents' => $totalEvents,
             'totalSpaces' => $totalSpaces,
             'totalInitiatives' => $totalInitiatives,
-            'totalCities' => $totalCities,
-            'totalCompanies' => $totalCompanies,
             'totalOrganizations' => $totalOrganizations,
         ];
 

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
-use App\Document\SpaceTimeline;
 use App\DocumentService\InitiativeTimelineDocumentService;
 use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -18,18 +18,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InitiativeAdminController extends AbstractAdminController
 {
-    public const CREATE_FORM_ID = 'add-initiative';
+    public const string CREATE_FORM_ID = 'add-initiative';
 
     public function __construct(
         private readonly InitiativeServiceInterface $service,
         private readonly InitiativeTimelineDocumentService $documentService,
         private readonly AgentServiceInterface $agentService,
         private readonly TranslatorInterface $translator,
-        private readonly SpaceTimeline $spaceTimeline,
     ) {
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(): Response
     {
         $agents = $this->agentService->findBy();
@@ -41,7 +40,7 @@ class InitiativeAdminController extends AbstractAdminController
         ]);
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function store(Request $request): Response
     {
         $this->validCsrfToken(self::CREATE_FORM_ID, $request);
@@ -77,7 +76,7 @@ class InitiativeAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_initiative_list');
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $initiatives = $this->service->findBy();
@@ -87,6 +86,7 @@ class InitiativeAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $initiative = $this->service->get($id);
@@ -100,6 +100,7 @@ class InitiativeAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_initiative_list');
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function timeline(Uuid $id): Response
     {
         $initiative = $this->service->get($id);
@@ -114,6 +115,7 @@ class InitiativeAdminController extends AbstractAdminController
         ]);
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function edit(Uuid $id): Response
     {
         $initiative = $this->service->get($id);
