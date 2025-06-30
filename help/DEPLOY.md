@@ -1,4 +1,4 @@
-# DEPLOY do Projeto AURORA Regmel
+# DEPLOY do Projeto AURORA
 
 O Makefile automatiza várias etapas do processo de configuração e manutenção do Aurora usando Docker. Porém muitos dos comandos não podem ser executados em produção.
 
@@ -21,13 +21,13 @@ Siga o passo a passo abaixo para fazer o deploy:
 Faça o clone da aplicação
 
 ```shell
-git clone https://github.com/ecossistema-aurora/regmel
+git clone https://github.com/ecossistema-aurora/aurora
 ```
 
 ou 
 
 ```shell
-git clone git@github.com:ecossistema-aurora/regmel.git
+git clone git@github.com:ecossistema-aurora/aurora.git
 ```
 
 ### `branch`
@@ -66,15 +66,6 @@ Precisamos agora criar os bancos de dados, tabelas, dados, instalar dependência
 ```shell
 make setup
 ```
-
-### `regmel`
-
-Para a aplicação REGMEL há um comando que cria um conjunto de dados necessários para o processo de cadastro dos Municipios e Empresas, basta executar:
-
-```shell
-make demo-regmel
-```
-</details>
 
 <details>
 <summary>Pós Instalação (Importante)</summary>
