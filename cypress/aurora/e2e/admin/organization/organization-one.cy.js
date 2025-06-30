@@ -6,7 +6,7 @@ describe('Painel de Controle - Página de listar Organizações', () => {
     });
 
     it('Garante que a página de detalhes de uma organização existe e funciona', () => {
-        cy.get('h2').contains('Organização - Indaiatuba').should('be.visible');
+        cy.get('h2').contains('Organização - Associação Cultural Cearense do Rock').should('be.visible');
         cy.get('#pills-info-tab > .ms-2').contains('Informações').should('be.visible');
         cy.get('#pills-members-tab > .ms-2').contains('Membros').should('be.visible');
         cy.get('#pills-timeline-tab > .ms-2').contains('Linha do tempo').should('be.visible');
