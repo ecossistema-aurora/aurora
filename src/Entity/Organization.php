@@ -77,7 +77,7 @@ class Organization extends AbstractEntity
     #[Groups('organization.get')]
     private ?DateTime $updatedAt = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups('organization.get')]
     private ?DateTime $deletedAt = null;
 
