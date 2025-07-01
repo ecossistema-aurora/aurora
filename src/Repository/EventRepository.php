@@ -77,6 +77,15 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
             'draft' => [
                 'condition' => fn ($qb, $value) => $qb->andWhere('e.draft = :draft')->setParameter('draft', $value, ParameterType::BOOLEAN),
             ],
+            'culturalLanguages' => [
+                'join' => ['e.culturalLanguages', 'cl'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('cl.id = :languageId')->setParameter('languageId', $value),
+            ],
+            'tags' => [
+                'join' => ['e.tags', 't'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('t.id = :tagId')->setParameter('tagId', $value),
+            ],
+            'ageRating' => [],
         ];
     }
 }
