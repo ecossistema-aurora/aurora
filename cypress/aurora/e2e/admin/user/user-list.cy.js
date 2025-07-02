@@ -10,7 +10,6 @@ describe('Painel de Controle - Página de listar Usuários', () => {
 
         cy.get('tbody > tr > :nth-child(1)').contains('Talyson').should('be.visible');
 
-        // Garante que o modal funciona
         cy.get('tbody > :nth-child(1) a[data-bs-target="#modal-photo"]').click();
         cy.get('.modal.fade.show img').should('be.visible');
     });
