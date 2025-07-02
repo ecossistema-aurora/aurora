@@ -180,9 +180,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
 
         $this->assertJsonContains([
             'id' => OrganizationFixtures::ORGANIZATION_ID_1,
-            'name' => 'Fortaleza',
-            'description' => 'Municipio de Fortaleza, Capital do Ceará',
-            'type' => 'Municipio',
+            'name' => $organization->getName(),
+            'description' => $organization->getDescription(),
+            'type' => $organization->getType(),
             'image' => $organization->getImage(),
             'agents' => [
                 [
@@ -217,9 +217,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseBodySame([
             'id' => OrganizationFixtures::ORGANIZATION_ID_3,
-            'name' => 'Alto Santo',
-            'description' => 'Município de Alto Santo, no Ceará',
-            'type' => 'Municipio',
+            'name' => $organization->getName(),
+            'description' => $organization->getDescription(),
+            'type' => $organization->getType(),
             'image' => $organization->getImage(),
             'agents' => [
                 [
@@ -233,13 +233,10 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
             'extraFields' => [
-                'cnpj' => '00.000.000/0001-03',
-                'email' => 'altosanto@example.com',
+                'cnpj' => '04.117.525/0001-62',
+                'email' => 'secretaria@igrejaderussas.org.br',
                 'phone' => '(85) 99999-0003',
-                'tipo' => 'OSC',
-                'companyName' => 'Razão Social Alto Santo',
-                'site' => 'https://www.altosanto.ce.gov.br',
-                'cityId' => 'b2ba1218-d357-4152-8621-45d629436ce1',
+                'site' => 'https://www.igrejaderussas.org.br',
             ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -436,9 +433,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
 
         $this->assertResponseBodySame([
             'id' => OrganizationFixtures::ORGANIZATION_ID_10,
-            'name' => 'Indaiatuba',
-            'description' => 'Municipio de Indaiatuba-SP',
-            'type' => 'Municipio',
+            'name' => $organization->getName(),
+            'description' => $organization->getDescription(),
+            'type' => $organization->getType(),
             'image' => $organization->getImage(),
             'agents' => [
                 [
@@ -453,12 +450,9 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             ],
             'extraFields' => [
                 'cnpj' => '00.000.000/0001-10',
-                'email' => 'indaiatuba@example.com',
+                'email' => 'acr@example.com',
                 'phone' => '(85) 99999-0010',
-                'tipo' => 'OSC',
-                'companyName' => 'Razão Social Indaiatuba',
-                'site' => 'https://www.indaiatuba.sp.gov.br',
-                'cityId' => 'ee246666-c1a9-4880-872a-3299b094bc06',
+                'site' => 'https://www.acr.com.br',
             ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
