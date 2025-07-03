@@ -23,6 +23,7 @@ class OrganizationAdminController extends AbstractAdminController
     public const VIEW_TIMELINE = 'organization/timeline.html.twig';
 
     public const CREATE_FORM_ID = 'add-organization';
+    public const VIEW_EDIT = 'organization/edit.html.twig';
 
     public function __construct(
         private readonly OrganizationServiceInterface $service,
@@ -118,6 +119,19 @@ class OrganizationAdminController extends AbstractAdminController
         return $this->render(self::VIEW_TIMELINE, [
             'organization' => $this->service->get($id),
             'events' => $events,
+        ]);
+    }
+
+    public function edit(Uuid $id): Response
+    {
+        $organization = $this->service->get($id);
+        $agents = $organization->getAgents();
+
+        $this->denyAccessUnlessGranted('edit', $organization);
+
+        return $this->render(self::VIEW_EDIT, [
+            'organization' => $organization,
+            'agents' => $agents,
         ]);
     }
 }
