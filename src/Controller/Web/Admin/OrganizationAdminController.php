@@ -19,9 +19,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class OrganizationAdminController extends AbstractAdminController
 {
     public const string VIEW_ADD = 'organization/add.html.twig';
+    public const string VIEW_EDIT = 'organization/edit.html.twig';
     public const string VIEW_TIMELINE = 'organization/timeline.html.twig';
 
     public const string CREATE_FORM_ID = 'add-organization';
+    public const EDIT_FORM_ID = 'organization-edit';
 
     public function __construct(
         private readonly OrganizationServiceInterface $service,
@@ -117,6 +119,20 @@ class OrganizationAdminController extends AbstractAdminController
         return $this->render(self::VIEW_TIMELINE, [
             'organization' => $this->service->get($id),
             'events' => $events,
+        ]);
+    }
+
+    public function edit(Uuid $id): Response
+    {
+        $organization = $this->service->get($id);
+        $agents = $organization->getAgents();
+
+        $this->denyAccessUnlessGranted('edit', $organization);
+
+        return $this->render(self::VIEW_EDIT, [
+            'organization' => $organization,
+            'agents' => $agents,
+            'form_id' => self::EDIT_FORM_ID,
         ]);
     }
 }
