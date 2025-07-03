@@ -56,6 +56,7 @@ architectural: Arquitetônica
 architectural_accessibility_offers: Oferece acessibilidade física
 archives: Arquivos
 archived: Arquivados
+awaiting_confirmation: Aguardando confirmação
 areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
 analysis: Período de Análise
@@ -127,6 +128,7 @@ contact: Contato
 contacts: Contatos
 cultural_language: Linguagem cultural
 cultural_languages: Linguagens culturais
+confirm_user: Confirmar usuário
 
 date: Data
 date_created: Data de criação
@@ -447,6 +449,7 @@ to_invite_agent: Convidar agente
 
 user: Usuário
 user_name: Nome do Usuário
+user_created: Criar Usuário
 user_already_belongs_the_organization: Usuário já pertence a organização
 users: Usuários
 updated_at: Atualizado em
