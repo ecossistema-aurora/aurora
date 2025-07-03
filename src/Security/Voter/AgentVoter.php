@@ -12,6 +12,7 @@ final class AgentVoter extends AbstractVoter
     protected array $actions = [
         'get',
         'remove',
+        'edit',
     ];
 
     protected string $class = Agent::class;
