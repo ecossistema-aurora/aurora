@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\OrganizationDto;
+use App\Entity\Agent;
 use App\Entity\Organization;
 use App\Enum\OrganizationTypeEnum;
 use App\Exception\Organization\OrganizationResourceNotFoundException;
@@ -53,11 +54,15 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         );
     }
 
-    public function count(): int
+    public function count(?Agent $createdBy = null): int
     {
-        return $this->repository->count(
-            $this->getDefaultParams()
-        );
+        $criteria = $this->getDefaultParams();
+
+        if ($createdBy) {
+            $criteria['createdBy'] = $createdBy;
+        }
+
+        return $this->repository->count($criteria);
     }
 
     public function create(array $organization): Organization

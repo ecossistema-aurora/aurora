@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
-use App\Document\OrganizationTimeline;
 use App\DocumentService\OrganizationTimelineDocumentService;
 use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
@@ -19,25 +18,25 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OrganizationAdminController extends AbstractAdminController
 {
-    public const VIEW_ADD = 'organization/add.html.twig';
-    public const VIEW_TIMELINE = 'organization/timeline.html.twig';
+    public const string VIEW_ADD = 'organization/add.html.twig';
+    public const string VIEW_TIMELINE = 'organization/timeline.html.twig';
 
-    public const CREATE_FORM_ID = 'add-organization';
+    public const string CREATE_FORM_ID = 'add-organization';
 
     public function __construct(
         private readonly OrganizationServiceInterface $service,
         private readonly TranslatorInterface $translator,
         private readonly OrganizationTimelineDocumentService $documentService,
-        private readonly OrganizationTimeline $organizationTimeline,
     ) {
     }
 
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     private function renderOrganizationList(array $organizations, ?array $organization = null, ?string $formId = null, ?string $token = null): Response
     {
         return $this->render('organization/list.html.twig', compact('organizations', 'organization', 'formId', 'token'));
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         return $this->renderOrganizationList(
@@ -45,7 +44,7 @@ class OrganizationAdminController extends AbstractAdminController
         );
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function getOne(Uuid $id): Response
     {
         $organization = $this->service->findOneBy([
@@ -67,7 +66,7 @@ class OrganizationAdminController extends AbstractAdminController
         ], parentPath: '');
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function add(Request $request, ValidatorInterface $validator): Response
     {
         if ('POST' !== $request->getMethod()) {
@@ -100,7 +99,7 @@ class OrganizationAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_organization_list');
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);
@@ -110,7 +109,7 @@ class OrganizationAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_organization_list');
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);

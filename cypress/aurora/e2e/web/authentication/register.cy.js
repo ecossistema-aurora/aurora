@@ -35,7 +35,7 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'confirm_password']").should('exist');
     });
 
-    it('Preenche os inputs, clica em Continuar e faz o aceite de termos', () => {
+    it('Preenche os inputs, clica em continuar e faz o aceite de termos', () => {
         cy.get("[name = 'first_name']").type('João');
         cy.get("[name = 'last_name']").type('da Silva');
         cy.get("[name = 'birth_date']").type('1990-01-01');
@@ -54,18 +54,18 @@ describe('Página de Cadastro', () => {
         cy.get('h4').should('contain.text', 'Aceite de políticas');
         cy.get('p').should('contain.text', 'Para criar o seu perfil é necessário ler e aceitar os termos');
 
-        const politicas = [
+        const politics = [
             { link: 'Termos e condições de uso', modal: '#modalTerms' },
             { link: 'Política de privacidade', modal: '#modalPrivacy' },
             { link: 'Autorização de Uso de Imagem', modal: '#modalImage' }
         ];
 
-        politicas.forEach((politica) => {
-            cy.contains(politica.link).click();
+        politics.forEach((politic) => {
+            cy.contains(politic.link).click();
 
             cy.wait(500);
 
-            cy.get(politica.modal).contains('button', 'Aceitar').click();
+            cy.get(politic.modal).contains('button', 'Aceitar').click();
 
         });
 
@@ -122,6 +122,98 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'confirm_password']").clear().type('a204C_DB%l.@');
 
         cy.get('.btn').contains('Continuar').click();
+    });
+
+
+    it('Registrar um usuário comum e testar o acesso as paǵinas', () => {
+        cy.get("[name = 'first_name']").type('João');
+        cy.get("[name = 'last_name']").type('da Silva');
+        cy.get("[name = 'birth_date']").type('1990-01-01');
+        cy.gerarCPF().then((cpf) => {
+            cy.get('input[name="cpf"]').type(cpf, { force: true });
+        });
+        cy.get("[name = 'phone']").type('11999999999');
+        cy.get("[name = 'phone']").should('have.value', '(11) 9 9999-9999')
+
+        cy.get("[name = 'email']").type('joaodasilva@test.com');
+        cy.get("[name = 'password']").type('a204C_DB%l.@');
+        cy.get("[name = 'confirm_password']").type('a204C_DB%l.@');
+
+        clickOnContinueButton();
+
+        cy.get('h4').should('contain.text', 'Aceite de políticas');
+        cy.get('p').should('contain.text', 'Para criar o seu perfil é necessário ler e aceitar os termos');
+
+        const politics = [
+            { link: 'Termos e condições de uso', modal: '#modalTerms' },
+            { link: 'Política de privacidade', modal: '#modalPrivacy' },
+            { link: 'Autorização de Uso de Imagem', modal: '#modalImage' }
+        ];
+
+        politics.forEach((politic) => {
+            cy.contains(politic.link).click();
+
+            cy.wait(500);
+
+            cy.get(politic.modal).contains('button', 'Aceitar').click();
+        });
+
+        cy.get('#submitPolicies').click();
+
+        cy.wait(500);
+
+        cy.contains('a', 'Entrar').click();
+
+        cy.url().should('include', '/login');
+
+        cy.visit('/login');
+        cy.get('input[name="email"]').type('alessandrofeitoza@example.com');
+        cy.get('input[name="password"]').type('Aurora@2024');
+        cy.get('button[data-cy="submit"]').click();
+        cy.wait(1000);
+
+        cy.get('a').contains('Usuários').click();
+
+        cy.get('input[type="search"]').type('João da Silva');
+
+        cy.get('table tbody tr').contains('awaiting_confirmation').parents('tr').within(() => {
+            cy.contains('confirm_user').click();
+        });
+        cy.get('a[data-modal-button="confirm-link"]').click();
+
+        cy.get('input[type="search"]').type('João da Silva');
+        cy.get('table tbody tr').contains('João da Silva').parents('tr').within(() => {
+            cy.contains('Ativo').should('exist');
+        });
+
+        cy.visit('/logout');
+        cy.visit('/login');
+        cy.get('input[name="email"]').type('joaodasilva@test.com');
+        cy.get('input[name="password"]').type('a204C_DB%l.@');
+        cy.get('button[data-cy="submit"]').click();
+        cy.wait(500);
+
+        cy.get('[data-cy="agents-card-dashboard"] > .align-self-center > .fs-1').contains(1);
+        cy.get('[data-cy="opportunities-card-dashboard"] > .align-self-center > .fs-1').contains(0);
+        cy.get('[data-cy="organizations-card-dashboard"] > .align-self-center > .fs-1').contains(0);
+        cy.get('[data-cy="events-card-dashboard"] > .align-self-center > .fs-1').contains(0);
+        cy.get('[data-cy="spaces-card-dashboard"] > .align-self-center > .fs-1').contains(0);
+        cy.get('[data-cy="initiatives-card-dashboard"] > .align-self-center > .fs-1').contains(0);
+
+        cy.get('a.nav-link[href="/painel/agentes/"]').click();
+        cy.get('h2').contains('Meus Agentes');
+
+        cy.get('a.nav-link[href="/painel/eventos/"]').click();
+        cy.get('h2').contains('Meus Eventos');
+
+        cy.get('a.nav-link[href="/painel/espacos/"]').click();
+        cy.get('h2').contains('Meus Espaços');
+
+        cy.get('a.nav-link[href="/painel/iniciativas/"]').click();
+        cy.get('h2').contains('Minhas Iniciativas');
+
+        cy.get('a.nav-link[href="/painel/organizacoes/"]').click();
+        cy.get('h2').contains('Minhas Organizações');
     });
 
     // TODO: Ajustar esses testes por conta do REGMEL
