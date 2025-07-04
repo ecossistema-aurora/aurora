@@ -10,9 +10,7 @@
     <div class="filter-fields">
         <div class="form-group">
             <label for="period" class="filter-label">{{ 'period' | trans }}</label>
-            <select class="filter-form mb-3" id="period" name="period">
-                <option value="">{{ 'select' | trans }}</option>
-            </select>
+            <input type="date" class="filter-form mb-3" id="period" name="period">
         </div>
 
         <div class="mb-2">
@@ -27,22 +25,31 @@
 
         <div class="form-group">
             <label for="event-language" class="filter-label">{{ 'language' | trans }}</label>
-            <select class="filter-form" id="event-language" name="language">
+            <select class="filter-form" id="event-language" name="culturalLanguages">
                 <option value="">{{ 'select' | trans }}</option>
+                {% for language in languages %}
+                    <option value="{{ language.id }}">{{ language.name }}</option>
+                {% endfor %}
             </select>
         </div>
 
         <div class="form-group">
             <label for="age-rating" class="filter-label">{{ 'age_rating' | trans }}</label>
-            <select class="filter-form" id="age-rating" name="age-rating">
+            <select class="filter-form" id="age-rating" name="ageRating">
                 <option value="">{{ 'select' | trans }}</option>
+                {% for ageRating in ageRatings %}
+                    <option value="{{ ageRating.value }}">{{ ageRating.name }}</option>
+                {% endfor %}
             </select>
         </div>
 
         <div class="form-group">
             <label for="seals" class="filter-label">{{ 'seals' | trans }}</label>
-            <select class="filter-form" id="seals" name="seals">
+            <select class="filter-form" id="seals" name="tags">
                 <option value="">{{ 'select' | trans }}</option>
+                {% for seal in seals %}
+                    <option value="{{ seal.id }}">{{ seal.name }}</option>
+                {% endfor %}
             </select>
         </div>
 
@@ -50,6 +57,9 @@
             <label for="state" class="filter-label">{{ 'state' | trans }}</label>
             <select class="filter-form" id="state" name="state">
                 <option value="">{{ 'select' | trans }}</option>
+                {% for state in states %}
+                    <option value="{{ state.id }}">{{ state.name }}</option>
+                {% endfor %}
             </select>
         </div>
 
@@ -66,3 +76,8 @@
         </div>
     </div>
 </form>
+
+{% block extra_javascripts %}
+    <script type="module" src="{{ asset('js/side-filter.js') }}"></script>
+    <script type="module" src="{{ asset('js/load-cities.js') }}"></script>
+{% endblock %}
