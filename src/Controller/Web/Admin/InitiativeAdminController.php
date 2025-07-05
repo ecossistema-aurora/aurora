@@ -9,7 +9,7 @@ use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
-use Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -86,16 +86,18 @@ class InitiativeAdminController extends AbstractAdminController
         ]);
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
-    public function remove(?Uuid $id): Response
+    public function remove(Request $request, Uuid $id): Response
     {
         $initiative = $this->service->get($id);
 
         $this->denyAccessUnlessGranted('remove', $initiative);
 
         $this->service->remove($id);
+        $this->addFlash('success', 'initiative_remove');
 
-        $this->addFlash('success', 'Initiative removed');
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+        }
 
         return $this->redirectToRoute('admin_initiative_list');
     }

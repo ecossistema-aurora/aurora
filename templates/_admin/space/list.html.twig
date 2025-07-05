@@ -39,11 +39,20 @@
                                 <tr>
                                     <td><a href="#">{{ item.name }}</a></td>
                                     <td>
-                                        {{ (item.isDraft ?
-                                            '<span class="text-warning">%s</span>'|format('status_draft'|trans) :
-                                            '<span class="text-success">%s</span>'|format('status_published'|trans))|raw
-                                        }}
+                                        {% if item.deletedAt %}
+                                            <span
+                                                    class="text-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="{{ item.deletedAt|date('d/m/Y H:i:s') }}">
+                                                    {{ 'status_trashed'|trans }}
+                                            </span>
+                                        {% elseif item.isDraft %}
+                                            <span class="text-warning">{{ 'status_draft'|trans }}</span>
+                                        {% else %}
+                                            <span class="text-success">{{ 'status_published'|trans }}</span>
+                                        {% endif %}
                                     </td>
+
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>

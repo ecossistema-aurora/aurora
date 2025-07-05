@@ -89,7 +89,7 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private ?DateTime $updatedAt = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['agent.get'])]
     private ?DateTime $deletedAt = null;
 

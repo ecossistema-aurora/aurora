@@ -222,6 +222,7 @@ indigenous: Indígena
 initiative: Iniciativa
 initiative_data: Dados da Iniciativa
 initiatives: Iniciativas
+initiative_remove: Iniciativa excluída
 in_progress: Em andamento
 input_search: Busque por palavras-chave
 inscriptions: Inscrições
@@ -504,6 +505,8 @@ start_date: Data de início
 state: Estado
 status: Status
 status_draft: Rascunho
+status_trashed: Na lixeira
+status_create: Criado
 status_published: Publicado
 street: Logradouro
 subscribe: Inscreva-se

@@ -27,6 +27,7 @@
                             <thead class="table-dark">
                             <tr>
                                 <th>{{ 'name'|trans }}</th>
+                                <th>{{ 'status'|trans }}</th>
                                 <th>{{ 'created_at'|trans }}</th>
                                 <th></th>
                                 <th></th>
@@ -37,6 +38,21 @@
                             {% for item in initiatives %}
                                 <tr data-cy="{{ item.id }}">
                                     <td data-cy="name-{{ item.name }}"><a href="{{ path('web_initiative_show', {id: item.id}) }}">{{ item.name }}</a></td>
+                                    <td>
+                                        {% if item.deletedAt %}
+                                            <span
+                                                    class="text-secondary"
+                                                    data-bs-toggle="tooltip"
+                                                    title="{{ item.deletedAt|date('d/m/Y H:i:s') }}"
+                                            >
+                                                    {{ 'status_trashed'|trans }}
+                                            </span>
+                                        {% else %}
+                                            <span class="text-success">
+                                                {{ 'status_published'|trans }}
+                                            </span>
+                                        {% endif %}
+                                    </td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>

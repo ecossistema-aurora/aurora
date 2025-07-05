@@ -1,4 +1,11 @@
-function confirmRemove(event) {
-    const href = event.getAttribute('data-href');
-    document.querySelector('[data-modal-button="confirm-link"]').setAttribute('href', href);
+document.addEventListener('DOMContentLoaded', function() {
+    document
+        .querySelectorAll('[data-bs-toggle="tooltip"]')
+        .forEach(el => new bootstrap.Tooltip(el));
+});
+
+function confirmRemove(triggerButton) {
+    const url = triggerButton.getAttribute('data-href');
+    const confirmLink = document.querySelector('[data-modal-button="confirm-link"]');
+    confirmLink.setAttribute('href', url);
 }

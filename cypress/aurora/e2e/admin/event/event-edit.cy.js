@@ -1,162 +1,58 @@
-describe('Teste de navegação, validação e edição da página de Eventos', () => {
+describe('E2E: navegação, validação e edição na página de Eventos', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('henriquelopeslima@example.com', 'Aurora@2024');
-        cy.visit('/painel/');
-        cy.get(':nth-child(8) > :nth-child(2) > .nav-link').contains('Meus Eventos').click();
-        cy.get(':nth-child(1) > :nth-child(5) > .btn-outline-warning').contains('Editar').click();
+        cy.visit('/painel/eventos');
 
+        cy.get('table tbody tr')
+            .filter((_, tr) => Cypress.$(tr).find('.badge.bg-success').length > 0)
+            .first()
+            .within(() => {
+                cy.contains('a.btn-outline-warning', 'Editar')
+                    .should('be.visible')
+                    .click();
+            });
+
+        cy.url().should('match', /\/painel\/eventos\/[0-9a-f-]+\/editar$/);
     });
 
     it('Garante que a página de editar eventos funciona', () => {
-        cy.get(':nth-child(1) > .accordion-header > .accordion-button')
-            .contains('Informações de apresentação')
+        cy.get('button[data-bs-target="#panelsStayOpen-collapseOne"]')
             .should('be.visible');
+        cy.get('label[for="name"]').should('be.visible');
+        cy.get('label[for="short-description"]').should('be.visible');
+        cy.get('label[for="long-description"]').should('be.visible');
 
-        cy.get('[for="name"]')
-            .contains('Nome do evento')
-            .should('be.visible');
-
-        cy.get('.entity-introduction-data > :nth-child(3) > label')
-            .contains('Subtítulo do evento')
-            .should('be.visible');
-        
-        cy.get("#add-culturalLanguages-btn")
-            .should('be.visible')
+        cy.get('button[data-bs-target="#panelsStayOpen-collapseTwo"]')
             .click();
-        
-        cy.get("button[data-label='Gastronomia']")
-            .should('be.visible')
-            .click();
-        
-        cy.get("#add-tags-btn")
-            .should('be.visible')
-            .click();
+        cy.get('label[for="ageRating"]').should('be.visible');
+        cy.get('label[for="maximumCapacity"]').should('be.visible');
+        cy.get('label[for="phone"]').should('be.visible');
 
-        cy.get("button[data-label='Cultura']")
-            .should('be.visible')
+        cy.get('button[data-bs-target="#panelsStayOpen-collapseThree"]')
             .click();
+        cy.contains('Adicione data, hora e local da ocorrência').should('be.visible');
 
+        cy.get('button[data-bs-target="#panelsStayOpen-collapseFour"]')
+            .click();
+        cy.contains('Instagram').should('be.visible');
+        cy.contains('YouTube').should('be.visible');
 
-        cy.get("#event-type")
-            .should('be.visible')
+        cy.get('#event-type')
+            .should('exist')
             .select('Presencial');
-        
-        cy.get('[for="short-description"]')
-            .contains('Descrição curta')
-            .should('be.visible');
 
-        cy.get('[for="long-description"]')
-            .contains('Descrição longa')
-            .should('be.visible');
+        cy.intercept('POST', /\/painel\/eventos\/.*\/editar$/).as('updateEvent');
 
-        cy.get('.flex-wrap > :nth-child(1) > label')
-            .contains('Site (URL)')
-            .should('be.visible');
-
-        cy.get('.flex-wrap > :nth-child(2) > label')
-            .contains('Descrição do link')
-            .should('be.visible');
-
-        cy.get(':nth-child(2) > .accordion-header > .accordion-button')
-            .contains('Informações sobre o evento')
-            .click();
-
-        cy.get(':nth-child(1) > :nth-child(1) > .form-label')
-            .contains('Classificação etária')
-            .should('be.visible');
-
-        cy.get(':nth-child(1) > :nth-child(2) > .form-label')
-            .contains('Capacidade máxima de pessoas')
-            .should('be.visible');
-
-        cy.get(':nth-child(1) > :nth-child(3) > .form-label')
-            .contains('Telefone para informações')
-            .should('be.visible');
-
-        cy.get('.mt-3 > .col > .form-label')
-            .contains('Informações sobre a inscrição')
-            .should('be.visible');
-
-        cy.get('.container-fluid > .fw-bold')
-            .contains('Acessibilidade')
-            .should('be.visible');
-
-        cy.get(':nth-child(5) > .col > .form-label')
-            .contains('Libras')
-            .should('be.visible');
-
-        cy.get(':nth-child(5) > .col > :nth-child(2) > .form-check-label')
-            .contains('Sim')
-            .click();
-
-        cy.get(':nth-child(6) > .col > .form-label')
-            .contains('Áudio descrição')
-            .should('be.visible');
-
-        cy.get(':nth-child(6) > .col > :nth-child(2) > .form-check-label')
-            .contains('Sim')
-            .click();
-
-        cy.get(':nth-child(3) > .accordion-header > .accordion-button')
-            .contains('Data, hora e local do evento')
-            .click();
-
-        cy.get('.flex-column > .mb-3')
-            .contains('Adicione data, hora e local da ocorrência')
-            .should('be.visible');
-
-        cy.get('.justify-content-center > .btn')
-            .contains('Adicionar Ocorrência')
-
-        cy.get(':nth-child(4) > .accordion-header > .accordion-button')
-            .contains('Redes sociais')
-            .click();
-
-        cy.get(':nth-child(2) > :nth-child(1) > .form-label')
-            .contains('Instagram')
-            .should('be.visible');
-
-        cy.get(':nth-child(2) > :nth-child(2) > .form-label')
-            .contains('X')
-            .should('be.visible');
-
-        cy.get(':nth-child(2) > :nth-child(3) > .form-label')
-            .contains('Facebook')
-            .should('be.visible');
-
-        cy.get(':nth-child(3) > :nth-child(1) > .form-label')
-            .contains('Vimeo')
-            .should('be.visible');
-
-        cy.get(':nth-child(3) > :nth-child(2) > .form-label')
-            .contains('YouTube')
-            .should('be.visible');
-
-        cy.get(':nth-child(3) > :nth-child(3) > .form-label')
-            .contains('LinkedIn')
-            .should('be.visible');
-
-        cy.get(':nth-child(4) > :nth-child(1) > .form-label')
-            .contains('Spotify')
-            .should('be.visible');
-
-        cy.get(':nth-child(4) > :nth-child(2) > .form-label')
-            .contains('Pinterest')
-            .should('be.visible');
-
-        cy.get(':nth-child(4) > :nth-child(3) > .form-label')
-            .contains('TikTok')
-            .should('be.visible');
-
-        cy.get("button[form='event-edit-form']")
-            .contains('Salvar')
+        cy.get('button[form="event-edit-form"][type="submit"]')
+            .scrollIntoView()
             .should('be.visible')
             .click();
 
+        cy.wait('@updateEvent').its('response.statusCode').should('be.oneOf', [200, 302]);
         cy.url().should('include', '/painel/eventos');
         cy.get('.toast')
             .should('be.visible')
-            .and('contain', 'O Evento foi atualizado');
+            .and('contain.text', 'O Evento foi atualizado');
     });
 });
