@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
-use App\Enum\OrganizationTypeEnum;
-use App\Regmel\Service\Interface\RegisterServiceInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
@@ -21,7 +19,6 @@ class HomepageWebController extends AbstractWebController
         private readonly InitiativeServiceInterface $initiativeService,
         private readonly OpportunityServiceInterface $opportunityService,
         private readonly SpaceServiceInterface $spaceService,
-        private readonly RegisterServiceInterface $registerService,
     ) {
     }
 
@@ -33,8 +30,6 @@ class HomepageWebController extends AbstractWebController
             'initiatives' => $this->initiativeService->list(limit: 4),
             'opportunities' => $this->opportunityService->list(limit: 4),
             'spaces' => $this->spaceService->list(limit: 4),
-            'phase_company_active' => $this->registerService->findOpportunityWithActivePhase(OrganizationTypeEnum::EMPRESA->value),
-            'phase_municipality_active' => $this->registerService->findOpportunityWithActivePhase(OrganizationTypeEnum::MUNICIPIO->value),
         ]);
     }
 }
