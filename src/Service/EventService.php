@@ -181,4 +181,12 @@ readonly class EventService extends AbstractEntityService implements EventServic
     {
         return $this->repository->findByAgent($agentId);
     }
+
+    public function togglePublish(Uuid $id): void
+    {
+        $event = $this->get($id);
+        $event->setDraft(!$event->isDraft());
+
+        $this->repository->save($event);
+    }
 }

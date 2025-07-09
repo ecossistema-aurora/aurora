@@ -67,6 +67,14 @@ class EventAdminController extends AbstractAdminController
     }
 
     #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function togglePublish(?Uuid $id): Response
+    {
+        $this->service->togglePublish($id);
+
+        return $this->redirectToRoute('admin_event_list');
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod('POST')) {
