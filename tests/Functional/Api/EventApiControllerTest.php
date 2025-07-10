@@ -56,6 +56,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'shortDescription' => null,
             'longDescription' => null,
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2025-01-16T00:00:00+00:00',
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [],
             'tags' => [],
@@ -108,6 +109,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'shortDescription' => null,
                 'longDescription' => 'Uma descrição mais longa',
                 'type' => EventTypeEnum::ONLINE->value,
+                'startDate' => '2024-07-10T10:00:00+00:00',
                 'endDate' => '2024-09-10T11:30:00+00:00',
                 'activityAreas' => [
                     [
@@ -168,6 +170,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2025-01-16T00:00:00+00:00',
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [
                 [
@@ -232,6 +235,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'type', 'message' => 'This value should not be blank.'],
+                    ['field' => 'startDate', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -550,6 +554,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::ONLINE->value,
+            'startDate' => '2024-07-10T10:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
                 [
@@ -642,6 +647,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'shortDescription' => 'Descrição curta',
                 'longDescription' => 'Uma descrição mais longa',
                 'type' => EventTypeEnum::HYBRID->value,
+                'startDate' => '2024-07-18T10:00:00+00:00',
                 'endDate' => '2024-07-18T11:30:00+00:00',
                 'activityAreas' => [
                     [
@@ -694,6 +700,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2025-08-05T10:30:00+00:00',
             'endDate' => '2024-08-10T18:30:00+00:00',
             'activityAreas' => [
                 [
@@ -828,6 +835,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'shortDescription' => null,
                 'longDescription' => 'Uma descrição mais longa',
                 'type' => EventTypeEnum::ONLINE->value,
+                'startDate' => '2024-07-10T10:00:00+00:00',
                 'endDate' => '2024-09-10T11:30:00+00:00',
                 'activityAreas' => [
                     [
@@ -879,6 +887,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2025-01-16T00:00:00+00:00',
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [
                 [
@@ -1271,6 +1280,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
             'type' => EventTypeEnum::IN_PERSON->value,
+            'startDate' => '2024-08-13T10:00:00+00:00',
             'endDate' => '2024-08-13T11:30:00+00:00',
             'activityAreas' => [
                 [

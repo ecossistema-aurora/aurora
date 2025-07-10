@@ -49,6 +49,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::ONLINE->value,
+            'startDate' => '2024-07-10T10:00:00+00:00',
             'endDate' => '2024-07-11T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -105,6 +106,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::IN_PERSON->value,
+            'startDate' => '2024-09-21T13:00:00-03:00',
             'endDate' => '2024-07-11T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
@@ -150,6 +152,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2024-07-18T10:00:00+00:00',
             'endDate' => '2024-07-18T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
@@ -187,6 +190,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::ONLINE->value,
+            'startDate' => '2024-07-18T10:00:00+00:00',
             'endDate' => '2024-07-18T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_6,
@@ -231,6 +235,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
             'type' => EventTypeEnum::IN_PERSON->value,
+            'startDate' => '2024-07-23T10:00:00+00:00',
             'endDate' => '2024-07-23T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
@@ -275,6 +280,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2025-08-05T10:30:00-03:00',
             'endDate' => '2024-08-10T18:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
@@ -314,6 +320,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
             'type' => EventTypeEnum::ONLINE->value,
+            'startDate' => '2024-08-11T10:00:00+00:00',
             'endDate' => '2024-08-11T18:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
@@ -355,6 +362,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
             'type' => EventTypeEnum::IN_PERSON->value,
+            'startDate' => '2024-08-13T10:00:00+00:00',
             'endDate' => '2024-08-13T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -401,6 +409,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2024-08-13T18:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
@@ -443,6 +452,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::ONLINE->value,
+            'startDate' => '2024-08-14T09:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -482,6 +492,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
             'type' => EventTypeEnum::ONLINE->value,
+            'startDate' => '2024-07-10T10:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
