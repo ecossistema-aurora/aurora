@@ -132,6 +132,7 @@ cultural_language: Cultural language
 cultural_languages: Cultural languages
 confirm_user: Confirm User
 
+data_need_authorization_to_show: The data entered below will not be displayed publicly, except in cases where the "Show Publicly" options are selected.
 date: Date
 date_created: Date created
 datetime: Date and time
@@ -156,6 +157,7 @@ edit_seals: Edit Seals
 edit_space: Edit Space
 edit_activity_area: Edit Area of Activity
 edit_data: Edit Data
+education: Education
 email: Email
 entity_banner: Entity Banner
 entity: Entity
@@ -202,7 +204,7 @@ forgot_password: Forgot Password
 forgot_paragraph: Enter your registered email address to receive a password reset link.
 
 gallery: Gallery
-gender: Select the Gender
+gender: Gender
 general_data: General data
 general_information: General information
 general_objective: General Objective
@@ -345,7 +347,6 @@ opening-hours: Opening Hours
 opportunities: Opportunities
 organizations: Organizations
 organization_register: Create an Organization
-orientation: Select the Sexual Orientation
 other_files: Other files
 other_information: Other information
 owner: Owner
@@ -364,6 +365,7 @@ password: Password
 password_strength: Password Strength
 participants: Participants
 personal_data: Personal Data
+personal_data_legal: Personal Data of Individual
 person_disabled: Person with Disability
 presentation_information: Presentation Information
 phone: Phone
@@ -382,6 +384,7 @@ private_email: Private Email
 private_phone: Private Telephone (with area code)
 profile_picture: Profile Picture
 profile_of_public: Profile of the public
+profile_name: Profile Name
 projects: Projects
 promotion: Promotion
 promotion_strategy: Promotion Strategy
@@ -399,8 +402,9 @@ published: Published
 
 published-by: Publicado por
 question_register: Register Question
-
 question: Question
+
+race: Race/Color
 riverside: Riverside
 recent_registrations: Recent Registrations
 recently_modified: Recently modified
@@ -422,6 +426,8 @@ role.support: Support
 role.municipal_admin: Municipal Administrator
 role.company_admin: Company Administrator
 read_notifications: Read Notifications
+residential_address: Residential Address
+roles_in_culture: Roles in Culture
 responsible_agent: Responsible Agent
 reset: Reset
 reset_password: Reset Password
@@ -484,8 +490,11 @@ see_all: see all
 see_how: See How
 see_more: See More
 see_phase: See phase
+sexual_orientation: Sexual Orientation
+select_sexual_orientation: Select the Sexual Orientation
 short_description: Short description
 showing: Showing
+show_public: Show Publicly
 select_bank: Select the bank
 select_state: Select the State
 select_municipality: Select the Municipality
@@ -663,6 +672,26 @@ view:
     add_new_agent_group: Add New Agent Group
     add_group: Add Group
     error_length: The field must have between {min} and {max} characters.
+
+  agent_edit:
+    agent_edit: Edit {agent}
+    link_platform_space: Link to a platform space
+    register_new_address: Register a new address
+    bank_data: Bank Data
+    account_type: Type of bank account for payments
+    bank_number: Bank number for payments
+    bank_account: Bank account number for payments
+    bank_agency_number: Bank branch number
+    bank_verification: Verification digit
+    add_bank_data: Add other bank data
+    single_income: Individual Income
+    monthly_income: Monthly Income
+    sensitive_data: Sensitive Data
+    profile_data: Profile Data
+    is_disabled: Is a person with a disability?
+    is_indigenous: Do you consider yourself indigenous?
+    is_quilombola: Do you consider yourself quilombola?
+    is_traditional_people: Do you belong to any traditional people or community?
 
   authentication:
     error:

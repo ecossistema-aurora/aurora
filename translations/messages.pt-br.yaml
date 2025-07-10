@@ -132,6 +132,7 @@ cultural_language: Linguagem cultural
 cultural_languages: Linguagens culturais
 confirm_user: Confirmar usuário
 
+data_need_authorization_to_show: Os dados inseridos abaixo não serão exibidos publicamente, exceto os casos em que forem selecionadas as opções "Mostrar Publicamente".
 date: Data
 date_created: Data de criação
 dashboard: Painel de Controle
@@ -156,6 +157,7 @@ edit_seals: Editar Selos
 edit_space: Editar Espaços
 edit_activity_area: Editar Área de Atuação
 edit_data: Editar Dados
+education: Escolaridade
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
@@ -202,7 +204,7 @@ forgot_password: Esqueci minha senha
 forgot_paragraph: Digite o endereço de e-mail cadastrado para receber um link de redefinição de senha.
 
 gallery: Galeria
-gender: Selecione o Gênero
+gender: Gênero
 general_data: Dados gerais
 general_information: Informações gerais
 general_objective: Objetivo Geral
@@ -343,7 +345,6 @@ opportunity: Oportunidade
 opportunities: Oportunidades
 organizations: Organizações
 organization_register: Criar uma Organização
-orientation: Selecione a Orientação Sexual
 other_files: Outros arquivos
 other_information: Outras informações
 owner: Proprietário
@@ -358,10 +359,12 @@ portfolio: Portfólio
 previous: Anterior
 privacy: Privacidade
 profile: Perfil
+profile_name: Nome do Perfil
 password: Senha
 password_strength: Força da senha
 participants: Participantes
 personal_data: Dados pessoais
+personal_data_legal: Dados de Pessoa Física
 person_disabled: Pessoa com Deficiência
 presentation_information: Informações de apresentação
 postgraduate: Pós-graduação
@@ -399,6 +402,7 @@ published-by: Publicado por
 question_register: Cadastrar Pergunta
 question: Pergunta
 
+race: Raça/Cor
 riverside: Ribeirinha
 recent_registrations: Inscrições recentes
 recently_modified: Modificados recentemente
@@ -423,6 +427,8 @@ role.support: Suporte
 role.municipal_admin: Administrador Municipal
 role.company_admin: Administrador da Empresa
 read_notifications: Notificações lidas
+residential_address: Endereço residencial
+roles_in_culture: Função(ões) na Cultura
 
 tags: Tags
 term: Termo
@@ -482,6 +488,8 @@ select_municipality: Selecione o Municipio
 select_race: Selecione a Raça/Cor
 select_day: Selecione o dia
 select: Selecione
+sexual_orientation: Orientação Sexual
+select_sexual_orientation: Selecione a Orientação Sexual
 seal_name: Nome do Selo
 send: Enviar
 send_message: Enviar mensagem
@@ -492,6 +500,7 @@ see_more: Ver mais
 see_phase: Ver fase
 short_description: Descrição curta
 showing: Exibindo
+show_public: Mostrar Publicamente
 site: Site
 social_media: Redes sociais
 sort_by: Ordenar por
@@ -661,6 +670,26 @@ view:
     add_new_agent_group: Adicionar novo grupo de agentes
     add_group: Adicionar grupo
     error_length: O campo deve ter entre {min} e {max} caracteres.
+
+  agent_edit:
+    agent_edit: Edição de {agent}
+    link_platform_space: Vincular à um espaço da plataforma
+    register_new_address: Cadastrar um endereço
+    bank_data: Dados Bancários
+    account_type: Tipo da conta bancária para pagamentos
+    bank_number: Número do banco para pagamentos
+    bank_account: Número da conta bancária para pagamentos
+    bank_agency_number: Número da agência bancária
+    bank_verification: Dígito verificador
+    add_bank_data: adicionar outros dados bancários
+    single_income: Renda Individual
+    monthly_income: Renda mensal
+    sensitive_data: Dados sensíveis
+    profile_data: Dados do perfil
+    is_disabled: É pessoa com deficiência?
+    is_indigenous: Se considera indígena?
+    is_quilombola: Se considera quilombola?
+    is_traditional_people: Pertence a algum povo ou comunidade tradicional?
 
   authentication:
     error:
