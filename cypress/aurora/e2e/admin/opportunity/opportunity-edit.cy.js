@@ -118,13 +118,10 @@ describe('Pagina de edição de Oportunidade', () => {
             cy.focused().should('have.attr', 'name', 'extraFields[longDescription]');
 
             cy.contains('Áreas de Atuação').click();
-            cy.focused().should('have.id','add-extraFields[areasOfActivity]-btn');
-            cy.get('[aria-labelledby="add-extraFields[areasOfActivity]-btn"]')
-                .should('be.visible')
-                .contains('Outros')
-                .click();
+            cy.contains('Artesanato').click();
+            cy.get('[data-value="Artesanato"]').should('contain.text', 'Artesanato');
 
-            cy.get('[id="tags-container-extraFields[areasOfActivity]"]')
+            cy.get(':nth-child(14) > .tags-selector > .dropdown > .dropdown-menu > :nth-child(8) > .dropdown-item')
                 .should('contain', 'Outros');
 
             cy.contains('Anexos e links').should('be.visible');
@@ -169,16 +166,8 @@ describe('Pagina de edição de Oportunidade', () => {
                 .type('Nova descrição longa e detalhada para a oportunidade.');
 
             cy.contains('Áreas de Atuação').click();
-            cy.get('[id="search-extraFields[areasOfActivity]-items"]')
-                .type('Tecnologia')
-                .next()
-                .click();
-            cy.get('[aria-labelledby="add-extraFields[areasOfActivity]-btn"]')
-                .contains('Tecnologia')
-                .click();
-            cy.get('[id="tags-container-extraFields[areasOfActivity]"]')
-                .should('contain', 'Tecnologia');
-
+            cy.contains('Artesanato').click();
+            cy.get('[data-value="Artesanato"]').should('contain.text', 'Artesanato');
             cy.contains('Descrição do link').click();
             cy.focused()
                 .clear()

@@ -433,6 +433,7 @@ reset: Reset
 reset_password: Reset Password
 
 tags: Tags
+tag_already_exists: Tag already exists
 term: Term
 terms: Terms
 term_form: Terms of Use

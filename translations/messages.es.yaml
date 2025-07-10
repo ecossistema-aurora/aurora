@@ -433,6 +433,7 @@ residential_address: Dirección residencial
 roles_in_culture: Función(es) en la Cultura
 
 tags: Etiquetas
+tag_already_exists: La etiqueta ya existe
 term: Término
 terms: Términos
 term_form: Término de Uso

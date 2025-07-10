@@ -990,6 +990,11 @@ img.card-images__entity-details {
     margin: 2rem 0;
 }
 
+.no-focus-ring:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 @media (min-width: 1400px) {
     .name__entity-details {
         max-width: 755px;

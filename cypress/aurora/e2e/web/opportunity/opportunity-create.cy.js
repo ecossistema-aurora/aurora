@@ -46,7 +46,8 @@ describe('Painel de Controle - Página de criar Oportunidades', () => {
         cy.contains('Áreas de Atuação').click();
         cy.contains('Fotografia').click();
         cy.contains('Áreas de Atuação').click();
-        cy.get('[id="search-extraFields[areasOfActivity]-items"]').type('Pintura').next().click();
+        cy.get('#search-activityAreas-items').click().type('Pintura');
+        cy.get('.new-tag-item > .dropdown-item').click();
         cy.contains('Pintura').click();
 
         cy.get('button:contains(Criar em Rascunho)')
