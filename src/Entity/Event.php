@@ -89,6 +89,10 @@ class Event extends AbstractEntity
 
     #[ORM\Column]
     #[Groups(['event.get'])]
+    private DateTime $startDate;
+
+    #[ORM\Column]
+    #[Groups(['event.get'])]
     private ?DateTime $endDate = null;
 
     #[ORM\ManyToMany(targetEntity: ActivityArea::class)]
@@ -161,6 +165,7 @@ class Event extends AbstractEntity
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->startDate = new DateTime();
         $this->eventActivities = new ArrayCollection();
         $this->activityAreas = new ArrayCollection();
         $this->tags = new ArrayCollection();
@@ -305,6 +310,16 @@ class Event extends AbstractEntity
     public function setType(int $type): void
     {
         $this->type = $type;
+    }
+
+    public function getStartDate(): ?DateTime
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(?DateTime $startDate): void
+    {
+        $this->startDate = $startDate;
     }
 
     public function getEndDate(): ?DateTime
@@ -577,6 +592,7 @@ class Event extends AbstractEntity
             'shortDescription' => $this->shortDescription,
             'longDescription' => $this->longDescription,
             'type' => $this->type,
+            'startDate' => $this->startDate?->format(DateFormatHelper::DEFAULT_FORMAT),
             'endDate' => $this->endDate?->format(DateFormatHelper::DEFAULT_FORMAT),
             'activityAreas' => $this->activityAreas->map(fn ($activityArea) => $activityArea->toArray())->toArray(),
             'tags' => $this->tags->map(fn ($tag) => $tag->toArray())->toArray(),

@@ -40,6 +40,7 @@ class EventEntityTest extends TestCase
         $shortDescription = 'shortdescription';
         $longDescription = 'longdescription';
         $type = EventTypeEnum::HYBRID->value;
+        $startDate = new DateTime();
         $endDate = new DateTime();
         $activityAreas = new ArrayCollection([
             new ActivityArea(),
@@ -78,6 +79,7 @@ class EventEntityTest extends TestCase
         $event->setShortDescription($shortDescription);
         $event->setLongDescription($longDescription);
         $event->setType($type);
+        $event->setStartDate($startDate);
         $event->setEndDate($endDate);
         $event->setActivityAreas($activityAreas);
         $event->setTags($tags);
@@ -107,6 +109,7 @@ class EventEntityTest extends TestCase
         $this->assertSame($shortDescription, $event->getShortDescription());
         $this->assertSame($longDescription, $event->getLongDescription());
         $this->assertSame($type, $event->getType());
+        $this->assertSame($startDate, $event->getStartDate());
         $this->assertSame($endDate, $event->getEndDate());
         $this->assertSame($activityAreas, $event->getActivityAreas());
         $this->assertSame($tags, $event->getTags());
@@ -164,6 +167,7 @@ class EventEntityTest extends TestCase
         $shortDescription = 'shortdescription';
         $longDescription = 'longdescription';
         $type = EventTypeEnum::HYBRID->value;
+        $startDate = new DateTime();
         $endDate = new DateTime();
 
         $activityAreaUuid1 = Uuid::v4();
@@ -216,6 +220,7 @@ class EventEntityTest extends TestCase
         $event->setShortDescription($shortDescription);
         $event->setLongDescription($longDescription);
         $event->setType($type);
+        $event->setStartDate($startDate);
         $event->setEndDate($endDate);
         $event->addActivityArea($activityArea1);
         $event->addActivityArea($activityArea2);
@@ -250,6 +255,7 @@ class EventEntityTest extends TestCase
             'shortDescription' => $shortDescription,
             'longDescription' => $longDescription,
             'type' => $type,
+            'startDate' => $startDate->format(DateFormatHelper::DEFAULT_FORMAT),
             'endDate' => $endDate->format(DateFormatHelper::DEFAULT_FORMAT),
             'activityAreas' => [
                 $activityArea1->toArray(),

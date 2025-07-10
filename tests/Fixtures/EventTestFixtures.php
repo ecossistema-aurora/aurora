@@ -24,6 +24,7 @@ class EventTestFixtures implements TestFixtures
             'space' => SpaceFixtures::SPACE_ID_1,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
             'type' => EventTypeEnum::HYBRID->value,
+            'startDate' => '2025-01-16',
             'endDate' => '2025-04-01',
             'maxCapacity' => 5000,
         ];

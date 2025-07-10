@@ -113,6 +113,14 @@ class EventDto
     public mixed $type;
 
     #[Sequentially([
+        new NotBlank(groups: [self::CREATE]),
+        new NotNull(groups: [self::UPDATE]),
+        new Type('string', groups: [self::CREATE, self::UPDATE]),
+        new DateTime(format: 'Y-m-d', groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $startDate;
+
+    #[Sequentially([
         new Type('string', groups: [self::CREATE, self::UPDATE]),
         new DateTime(format: 'Y-m-d', groups: [self::CREATE, self::UPDATE]),
     ])]
