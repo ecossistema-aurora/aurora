@@ -1,5 +1,6 @@
 actions_in_priority_territory: Will there be initiative actions in any priority territory?
 add: Add
+add_new: Add New
 add_occurrence: Add Occurrence
 address_complement: Address Complement
 address_data: Address Data
@@ -74,6 +75,7 @@ audio_description: Audio Description
 awaiting: Awaiting
 
 back: Back
+bank_details: Bank Details
 birth_date: Birth Date
 black: Black
 
@@ -389,9 +391,10 @@ project_value: Project value
 project_information: Project Information
 public: Public
 public_data_notice: The data entered below will be displayed to all users on the platform.
+private_data_notice: The data entered below will %no% be displayed publicly, except in cases where the "Show publicly" options are selected.
 public_information: Public Information
 public_email: Public Email
-public_phone: Public Telephone
+public_phone: Public Telephone with DDD
 published: Published
 
 published-by: Publicado por
@@ -403,6 +406,7 @@ recent_registrations: Recent Registrations
 recently_modified: Recently modified
 reference_point: Complement or reference point
 register: Register
+register_address: Register Address
 registration_date: Registration Date
 registration_info: Information about registration
 region: Region
@@ -911,6 +915,23 @@ view:
       culture: Cultural Organizations
       inactive: Inactive Organizations
       last_days: Registered in the last 7 days
+    edit: Edit Organization
+    manage_people: Manage people
+    name: Organization Name
+    add_new: Add New
+    data: Organization Data
+    is_legal_person: Is a legal person?
+    is_itinerant: Is it an itinerant organization?
+    bank_account_type_for_payments: Type of bank account for payments
+    bank_number_for_payments: Bank number for payments
+    bank_account_number: Bank account number
+    check_digit: Check digit
+    branch_number: Bank branch number
+    add_other_bank_details: Add other bank details
+    organization_income: Organization Income
+    annual_revenue: Annual Revenue
+    editing_organization: Editing Organization
+    show_publicly: Show publicly
 
   success:
     successfully: Your registration has been created successfully!

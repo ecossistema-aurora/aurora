@@ -1,5 +1,6 @@
 actions_in_priority_territory: ¿Habrá acciones de iniciativa en algún territorio prioritario?
 add: Añadir
+add_new: Añadir Nuevo
 add_occurrence: Añadir ocurrencia
 address_complement: Complemento
 address_data: Datos de Dirección
@@ -74,6 +75,7 @@ audio_description: Audiodescripción
 awaiting: Esperando
 
 back: Volver
+bank_details: Detalles Bancarios
 birth_date: Fecha de Nacimiento
 black: Negra
 
@@ -388,9 +390,10 @@ project_value: Valor del proyecto
 project_information: Información del proyecto
 public: Público
 public_data_notice: Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
+private_data_notice: Los datos ingresados a continuación %no% se mostrarán públicamente, excepto en los casos en que se seleccionen las opciones "Mostrar públicamente".
 public_email: Correo electrónico público
 public_information: Información pública
-public_phone: telefono publico
+public_phone: telefono publico (con DDD)
 published: Publicados
 published-by: Publicado por
 
@@ -402,6 +405,7 @@ recent_registrations: Inscripciones Recientes
 recently_modified: Modificados recientemente
 reference_point: Complemento o punto de referencia
 register: Registro
+register_address: Registrar Dirección
 registration_date: Fecha de Inscripción
 registration_info: Información sobre la inscripción
 region: Región
@@ -912,6 +916,23 @@ view:
       culture: Organizaciones Culturales
       inactive: Organizaciones Inactivas
       last_days: Registradas en los últimos 7 días
+    edit: Editar Organización
+    manage_people: Administrar personas
+    name: Nome da Organização
+    add_new: Añadir Nueva
+    data: Datos de la Organización
+    is_legal_person: ¿Es una persona jurídica?
+    is_itinerant: ¿Es itinerante?
+    bank_account_type_for_payments: Tipo de cuenta bancaria para pagos
+    bank_number_for_payments: Número del banco para pagos
+    bank_account_number: Número de la cuenta bancaria
+    check_digit: Dígito verificador
+    branch_number: Número de la agencia bancaria
+    add_other_bank_details: Añadir otros datos bancarios
+    organization_income: Ingresos de la organización
+    annual_revenue: Ingresos anuales
+    editing_organization: Editando
+    show_publicly: Mostrar públicamente
 
   success:
     successfully: ¡Su registro ha sido creado exitosamente!

@@ -700,13 +700,16 @@ img.card-images__entity-details {
 .execution-period label,
 .contacts label,
 .initiative-data label,
-.event-information label{
+.event-information label,
+.organization-edit label {
     font-weight: bold;
     margin-top: 1.3rem;
 }
 
 .initiative-data .initiative-radio,
-.event-information .form-check-label {
+.event-information .form-check-label,
+.organization-edit .form-check-label,
+.organization-edit input[type="checkbox"]{
     font-weight: normal;
     margin-top: 0;
 }
@@ -726,14 +729,17 @@ img.card-images__entity-details {
 .initiative-data textarea,
 .initiative-data select,
 .event-information input,
-.event-information select {
+.event-information select,
+.organization-edit input,
+.organization-edit select{
     border: 1px solid var(--border-gray);
     margin-top: 0.625rem;
     padding: 0.7rem;
 }
 
 .initiative-data .initiative-input-radio,
-.event-information input[type="radio"] {
+.event-information input[type="radio"],
+.organization-edit input[type="radio"] {
     margin-top: 0.24rem;
     padding: 0;
 }
@@ -978,6 +984,10 @@ img.card-images__entity-details {
 #confirmDocDecision .modal-dialog {
     position: relative;
     z-index: 1060;
+}
+
+.hr {
+    margin: 2rem 0;
 }
 
 @media (min-width: 1400px) {

@@ -1,5 +1,6 @@
 actions_in_priority_territory: Haverão ações da iniciativa em algum território prioritário?
 add: Adicionar
+add_new: Adicionar nova
 add_occurrence: Adicionar Ocorrência
 address_complement: Complemento
 address_data: Dados de endereço
@@ -74,6 +75,7 @@ awaiting: Aguardando
 audio_description: Áudio descrição
 
 back: Voltar
+bank_details: Dados bancários
 birth_date: Data de nascimento
 black: Preta
 
@@ -387,9 +389,10 @@ promotion: Divulgação
 promotion_strategy: Estratégia de divulgação
 public: Público
 public_data_notice: Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+private_data_notice: Os dados inseridos abaixo %no% serão exibidos publicamente, exceto nos casos em que forem selecionadas as opções "Mostrar publicamente".
 public_email: Email público
 public_information: Informações públicas
-public_phone: Telefone Público
+public_phone: Telefone Público (com DDD)
 published: Publicados
 published-by: Publicado por
 
@@ -401,6 +404,7 @@ recent_registrations: Inscrições recentes
 recently_modified: Modificados recentemente
 reference_point: Complemento ou ponto de referência
 register: Cadastro
+register_address: Cadastrar Endereço
 registration_date: Data de inscrição
 registration_info: Informações sobre a inscrição
 region: Região
@@ -891,6 +895,23 @@ view:
       culture: Organizações Culturais
       inactive: Organizações Inativos
       last_days: Registrados nos últimos 7 dias
+    edit: Editar Organização
+    manage_people: Gerenciar pessoas
+    name: Nome da Organização
+    add_new: Adicionar nova
+    data: Dados da organização
+    is_legal_person: É pessoa jurídica?
+    is_itinerant: É itinerante?
+    bank_account_type_for_payments: Tipo de conta bancária para pagamentos
+    bank_number_for_payments: Número do banco para pagamentos
+    bank_account_number: Número da conta bancária
+    check_digit: Dígito verificador
+    branch_number: Número da agência bancária
+    add_other_bank_details: Adicionar outros dados bancários
+    organization_income: Renda da organização
+    annual_revenue: Faturamento anual
+    editing_organization: Edição de
+    show_publicly: Mostrar publicamente
 
   success:
     successfully: Seu cadastro foi criado com sucesso!
