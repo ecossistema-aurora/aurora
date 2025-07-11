@@ -39,6 +39,7 @@ add_archive: Añadir
 administration: Administración
 agent: Agente
 agents: Agentes
+agent_information: Información del Agente
 age_rating: Clasificación por Edad
 ages_rating:
   all: Libre
@@ -400,6 +401,7 @@ public_phone: telefono publico (con DDD)
 published: Publicados
 publish: Publicar
 published-by: Publicado por
+position: Posición
 
 question_register: Registrar Pregunta
 question: Pregunta
@@ -464,6 +466,8 @@ user: Usuario
 user_name: Nombre de usuario
 user_created: Crear usuario
 user_already_belongs_the_organization: El usuario ya pertenece a la organización
+user_edit_data: Editar usuario
+user_information: Información del usuario
 users: Usuarios
 updated_at: Actualizado en
 unread_notifications: Notificaciones no leídas
@@ -494,6 +498,7 @@ select_municipality: Seleccione el Municipio
 select_race: Seleccione la Raza/Color
 select_education: Seleccione su Nivel Educativo
 select_day: Seleccione el Día
+select_agent: Seleccione el Agente
 see_all: ver todo
 see_how: Ver Cómo
 see_more: Ver Más
