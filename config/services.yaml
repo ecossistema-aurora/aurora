@@ -33,14 +33,7 @@ services:
         resource: '../src/Controller/'
         tags: [ 'controller.service_arguments' ]
 
-    App\Regmel\Controller\:
-        resource: '../src/Regmel/Controller/'
-        tags: [ 'controller.service_arguments' ]
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-
     App\Repository\Interface\OrganizationRepositoryInterface: '@App\Repository\OrganizationRepository'
-    App\Repository\Interface\MunicipalityRepositoryInterface: '@App\Regmel\Repository\MunicipalityRepository'
 
     App\Service\FileService:
         arguments:
