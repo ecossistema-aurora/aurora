@@ -398,6 +398,7 @@ public_email: Correo electrónico público
 public_information: Información pública
 public_phone: telefono publico (con DDD)
 published: Publicados
+publish: Publicar
 published-by: Publicado por
 
 question_register: Registrar Pregunta
@@ -465,6 +466,7 @@ user_already_belongs_the_organization: El usuario ya pertenece a la organizació
 users: Usuarios
 updated_at: Actualizado en
 unread_notifications: Notificaciones no leídas
+unpublish: Despublicar
 
 view_all: Ver Todas
 view_file: ver archivo
@@ -575,6 +577,9 @@ accept-policies:
 
 modal_confirm_remove:
   message: Esta acción es irreversible, ¿estás seguro de que quieres continuar?
+
+modal_confirm_toggle_publish:
+  message: ¿Estás seguro de que quieres continuar?
 
 footer:
   and_developed: y desarrollado por

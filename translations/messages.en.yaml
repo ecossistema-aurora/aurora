@@ -399,7 +399,7 @@ public_information: Public Information
 public_email: Public Email
 public_phone: Public Telephone with DDD
 published: Published
-
+publish: Publish
 published-by: Publicado por
 question_register: Register Question
 question: Question
@@ -466,6 +466,7 @@ user_already_belongs_the_organization: User already belongs the organization
 users: Users
 updated_at: Updated at
 unread_notifications: Unread Notifications
+unpublish: Unpublish
 
 view_all: View All
 view_file: view file
@@ -573,6 +574,9 @@ accept-policies:
 
 modal_confirm_remove:
   message: This action is irreversible, are you sure you want to continue?
+
+modal_confirm_toggle_publish:
+  message: Are you sure you want to continue?
 
 footer:
   and_developed: and developed by

@@ -5,7 +5,7 @@ describe('Painel de Controle - Página de listar Eventos', () => {
         cy.visit('/painel/eventos');
     });
 
-    it('Garante que os eventos estejam visíveis e que é possivel remover um', () => {
+    it('Garante que os eventos estejam visíveis e que é possível remover um', () => {
         cy.get('h2').contains('Meus Eventos').should('be.visible');
 
         cy.get('tbody > tr > :nth-child(1)').contains('Nordeste Literário').should('be.visible');
@@ -18,5 +18,35 @@ describe('Painel de Controle - Página de listar Eventos', () => {
 
         // cy.get('.table').should('not.contain', 'Músical o vento da Caatinga');
         // cy.get('.success.snackbar').contains('O Evento foi excluído').should('be.visible');
+    });
+
+    it('Garante que é possível publicar e despublicar um evento', () => {
+        cy.contains('td:first-child', 'Cultura em ação')
+            .parent('tr')
+            .within(() => {
+                cy.get('td:last-child').contains('button', 'Publicar').click();
+            });
+
+        cy.get('[data-modal-button="confirm-link-toggle-publish"]').click();
+
+        cy.contains('td:first-child', 'Cultura em ação')
+            .parent('tr')
+            .within(() => {
+                cy.get('td:last-child').contains('button', 'Despublicar').should('be.visible');
+            });
+
+        cy.contains('td:first-child', 'Festival da Rapadura')
+            .parent('tr')
+            .within(() => {
+                cy.get('td:last-child').contains('button', 'Despublicar').click();
+            });
+
+        cy.get('[data-modal-button="confirm-link-toggle-publish"]').click();
+
+        cy.contains('td:first-child', 'Festival da Rapadura')
+            .parent('tr')
+            .within(() => {
+                cy.get('td:last-child').contains('button', 'Publicar').should('be.visible');
+            });
     });
 })
