@@ -63,7 +63,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'maxCapacity' => 100,
             'isAccessible' => true,
             'isDraft' => true,
-            'address' => null,
+            'address' => $space->getAddress(),
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
                 'id' => $requestBody['parent'],
@@ -438,7 +438,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'image' => $space->getImage(),
             'isAccessible' => $space->isAccessible(),
             'isDraft' => false,
-            'address' => null,
+            'address' => $space->getAddress(),
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -523,7 +523,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'maxCapacity' => $space->getMaxCapacity(),
             'isAccessible' => $space->isAccessible(),
             'isDraft' => false,
-            'address' => null,
+            'address' => $space->getAddress(),
             'createdBy' => [
                 'id' => '84a5b3d1-a7a4-49a6-aff8-902a325f97f9',
             ],
@@ -540,15 +540,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'maxCapacity' => 100,
                 'isAccessible' => true,
                 'isDraft' => false,
-                'address' => [
-                    'id' => 'b8636a9e-3906-4751-b4a9-7a24995813aa',
-                    'street' => 'Avenida das Oliveiras',
-                    'number' => 'S/N',
-                    'neighborhood' => 'Jardins',
-                    'complement' => null,
-                    'city' => [],
-                    'zipcode' => '60300100',
-                ],
+                'address' => $space->getAddress(),
                 'createdBy' => [
                     'id' => '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566',
                 ],
@@ -726,15 +718,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'maxCapacity' => $space->getMaxCapacity(),
             'isAccessible' => $space->isAccessible(),
             'isDraft' => false,
-            'address' => [
-                'id' => 'fd64752a-c7ed-44ff-b092-44076dea4b4c',
-                'street' => 'Avenida Central',
-                'number' => '456',
-                'neighborhood' => 'Centro',
-                'complement' => 'Sala 302',
-                'city' => [],
-                'zipcode' => '30003210',
-            ],
+            'address' => $space->getAddress(),
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'parent' => [
                 'id' => SpaceFixtures::SPACE_ID_1,
@@ -749,7 +733,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'maxCapacity' => 100,
                 'isAccessible' => true,
                 'isDraft' => false,
-                'address' => null,
+                'address' => $space->getParent()->getAddress(),
                 'createdBy' => [
                     'id' => AgentFixtures::AGENT_ID_1,
                 ],
@@ -889,7 +873,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'maxCapacity' => 100,
             'isAccessible' => true,
             'isDraft' => false,
-            'address' => null,
+            'address' => $space->getAddress(),
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
