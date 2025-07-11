@@ -38,6 +38,7 @@ administration: Administração
 agent: Agente
 agents: Agentes
 agent_name: Nome do Agente
+agent_information: Informações do Agente
 answer: Resposta
 age_rating: Classificação etária
 ages_rating:
@@ -399,6 +400,7 @@ public_phone: Telefone Público (com DDD)
 published: Publicados
 publish: Publicar
 published-by: Publicado por
+position: Posição
 
 question_register: Cadastrar Pergunta
 question: Pergunta
@@ -463,6 +465,8 @@ user: Usuário
 user_name: Nome do Usuário
 user_created: Criar Usuário
 user_already_belongs_the_organization: Usuário já pertence a organização
+user_edit_data: Editar Usuário
+user_information: Informações do Usuário
 users: Usuários
 updated_at: Atualizado em
 unread_notifications: Notificações não lidas
@@ -490,6 +494,7 @@ select_state: Selecione o Estado
 select_municipality: Selecione o Municipio
 select_race: Selecione a Raça/Cor
 select_day: Selecione o dia
+select_agent: Selecione o Agente
 select: Selecione
 sexual_orientation: Orientação Sexual
 select_sexual_orientation: Selecione a Orientação Sexual
