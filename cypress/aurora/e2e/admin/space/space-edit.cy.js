@@ -65,7 +65,7 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
     it ('Garante que o filtro de tags funciona corretamente', () => {
         cy.get('#add-activityAreas-btn').click();
         cy.get('#search-activityAreas-items').click().type('Cinema');
-        cy.get(':nth-child(3) > .tags-selector > .dropdown > .dropdown-menu > #span-message > .tags-selector-error').should('contain.text', 'Já existe uma tag com esse nome');
+        cy.get('#span-message-activityAreas > .tags-selector-error').should('contain.text', 'Já existe uma tag com esse nome');
         cy.get('#search-activityAreas-items').clear().type('        ');
         cy.get(':nth-child(3) > .tags-selector > .dropdown > .dropdown-menu > .new-tag-item > .dropdown-item > span').should('not.be.visible');
     });

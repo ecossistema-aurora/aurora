@@ -12,7 +12,7 @@ function initializeTagSelector(selector) {
     const newTagItem = selector.querySelector('.new-tag-item');
     const newTagButton = newTagItem.querySelector('button');
     const newTagSpan = newTagButton.querySelector('span')
-    const errorMessage = document.getElementById('span-message');
+    const errorMessage = document.getElementById(`span-message-${inputName}`);
 
     const addTag = (label, value) => {
         if (!label || !label.trim()) return;
@@ -49,42 +49,51 @@ function initializeTagSelector(selector) {
     };
 
     const handleFilter = () => {
-        const query = searchInput.value.toLowerCase().trim();
+        const query = searchInput.value.trim();
+        const queryLowerCase = query.toLowerCase();
         const allOptions = dropdownMenu.querySelectorAll('li > button[data-value]');
-        let exactMatchFound = false;
+        let exactMatchInList = false;
 
         allOptions.forEach(button => {
             const label = button.dataset.label.toLowerCase();
             const parentLi = button.parentElement;
-
-            const isVisible = label.includes(query);
+            const isVisible = label.includes(queryLowerCase);
             parentLi.style.display = isVisible ? 'block' : 'none';
-
-            if (isVisible && label === query) {
-                exactMatchFound = true;
+            if (isVisible && label === queryLowerCase) {
+                exactMatchInList = true;
             }
         });
 
-        const alreadySelected = !!tagsContainer.querySelector(`.area-tag[data-value="${searchInput.value.trim()}"]`);
-        const canShowNewTagButton = query && !exactMatchFound && !alreadySelected;
+        const existingTags = Array.from(tagsContainer.querySelectorAll('.area-tag'));
+        const isAlreadySelected = existingTags.some(tag => tag.dataset.value.toLowerCase() === queryLowerCase);
 
+        errorMessage.classList.add('d-none');
         newTagItem.classList.add('d-none');
 
-        if (exactMatchFound && searchInput.value.trim()) {
+        if (!query) return;
+
+        if (isAlreadySelected || exactMatchInList) {
             errorMessage.classList.remove('d-none');
             return;
         }
-        
-        errorMessage.classList.add('d-none');
 
-        if (canShowNewTagButton) {
-            newTagSpan.textContent = `Adicionar "${searchInput.value.trim()}"`;
-            newTagItem.classList.remove('d-none');
-            errorMessage.classList.add('d-none');
-        }
+        newTagSpan.textContent = `Adicionar "${query}"`;
+        newTagItem.classList.remove('d-none');
     };
 
     searchInput.addEventListener('input', handleFilter);
+
+    searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+
+            if (!newTagItem.classList.contains('d-none')) {
+                const newLabel = searchInput.value.trim();
+                addTag(newLabel, newLabel);
+                searchInput.focus();
+            }
+        }
+    });
 
     dropdownMenu.addEventListener('click', (event) => {
         const target = event.target;
