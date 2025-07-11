@@ -6,7 +6,6 @@ namespace App\Controller\Web\Admin;
 
 use App\DocumentService\AgentTimelineDocumentService;
 use App\Enum\FlashMessageTypeEnum;
-use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use Exception;
@@ -15,7 +14,6 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -40,7 +38,6 @@ class AgentAdminController extends AbstractAdminController
     public function list(UserInterface $user): Response
     {
         $agents = $this->service->findBy();
-
         $token = $this->jwtManager->create($user);
 
         return $this->render('agent/list.html.twig', [
@@ -49,7 +46,6 @@ class AgentAdminController extends AbstractAdminController
         ]);
     }
 
-    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {

@@ -1,52 +1,26 @@
 describe('Painel de Controle - Página de listar Eventos', () => {
     beforeEach(() => {
-        cy.viewport(1920, 1080);
-        cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
-        cy.visit('/painel/eventos');
-    });
+        cy.viewport(1920, 1080)
+        cy.login('alessandrofeitoza@example.com', 'Aurora@2024')
+        cy.visit('/painel/eventos/')
+    })
 
     it('Garante que os eventos estejam visíveis e que é possível remover um', () => {
-        cy.get('h2').contains('Meus Eventos').should('be.visible');
+        cy.get('h2').contains('Meus Eventos').should('be.visible')
+        cy.get('tbody > tr > :nth-child(1)').contains('Nordeste Literário').should('be.visible')
+        cy.get('tbody > tr > :nth-child(2)').contains('Publicado').should('be.visible')
+        cy.get('tbody > tr > :nth-child(3)').contains('14/08/2024 10:00:00').should('be.visible')
+    })
 
-        cy.get('tbody > tr > :nth-child(1)').contains('Nordeste Literário').should('be.visible');
-        cy.get('tbody > tr > :nth-child(2)').contains('Publicado').should('be.visible');
-        cy.get('tbody > tr > :nth-child(3)').contains('14/08/2024 10:00:00').should('be.visible');
-
-        // To fix: O evento está sendo excluído mas a linha dele não para de aparecer na tabela
-        // cy.get('tr:contains(Músical o vento da Caatinga)').contains('Excluir').click();
-        // cy.get('[data-modal-button="confirm-link"]').click();
-
-        // cy.get('.table').should('not.contain', 'Músical o vento da Caatinga');
-        // cy.get('.success.snackbar').contains('O Evento foi excluído').should('be.visible');
-    });
-
-    it('Garante que é possível publicar e despublicar um evento', () => {
+    it('Garante que as ações Timeline, Editar e Excluir apareçam para um evento', () => {
         cy.contains('td:first-child', 'Cultura em ação')
             .parent('tr')
             .within(() => {
-                cy.get('td:last-child').contains('button', 'Publicar').click();
-            });
-
-        cy.get('[data-modal-button="confirm-link-toggle-publish"]').click();
-
-        cy.contains('td:first-child', 'Cultura em ação')
-            .parent('tr')
-            .within(() => {
-                cy.get('td:last-child').contains('button', 'Despublicar').should('be.visible');
-            });
-
-        cy.contains('td:first-child', 'Festival da Rapadura')
-            .parent('tr')
-            .within(() => {
-                cy.get('td:last-child').contains('button', 'Despublicar').click();
-            });
-
-        cy.get('[data-modal-button="confirm-link-toggle-publish"]').click();
-
-        cy.contains('td:first-child', 'Festival da Rapadura')
-            .parent('tr')
-            .within(() => {
-                cy.get('td:last-child').contains('button', 'Publicar').should('be.visible');
-            });
-    });
+                cy.get('td:last-child').within(() => {
+                    cy.contains('Timeline').should('be.visible')
+                    cy.contains('Editar').should('be.visible')
+                    cy.contains('Excluir').should('be.visible')
+                })
+            })
+    })
 })

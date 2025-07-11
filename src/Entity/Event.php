@@ -152,7 +152,7 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private ?DateTime $updatedAt = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     #[Groups(['event.get'])]
     private ?DateTime $deletedAt = null;
 

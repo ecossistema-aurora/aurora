@@ -1,28 +1,56 @@
-describe('Painel de Controle - Página de timeline das Iniciativas', () => {
+describe('Painel de Controle – Timeline de Iniciativas', () => {
     beforeEach(() => {
-        cy.viewport(1920, 1080);
-        cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
-        cy.visit('painel/iniciativas/');
-    });
+        cy.viewport(1920, 1080)
+        cy.login('alessandrofeitoza@example.com', 'Aurora@2024')
 
-    it('Garante que a página de timeline da Iniciativa existe', () => {
-        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"]').contains('Timeline').click({force: true});
+        cy.visit('/painel/iniciativas')
+        cy.contains('tbody tr', 'Vozes do Sertão')
+            .contains('Timeline')
+            .click()
 
-        cy.get('h2').contains('Iniciativa - Vozes do Sertão - Timeline').should('be.visible');
-        cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
+        cy.url().should('match', /\/painel\/iniciativas\/[0-9a-f\-]+\/timeline$/)
+    })
 
-        cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
-        cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
-        cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
-        cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible')
-    });
+    it('Exibe o cabeçalho e o botão Voltar', () => {
+        cy.get('h2')
+            .should('contain.text', 'Iniciativa - Vozes do Sertão - Timeline')
 
-    it('Garante que o modal com os detalhes da timeline existe', () => {
-        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"] > :nth-child(5) > .btn-outline-primary').click();
-        cy.get(':nth-child(2) > :nth-child(5) > .btn').click();
-        cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De');
-        cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para');
-        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('Voz');
-        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(3)').contains('Vozes do Sertão');
-    });
-});
+        cy.contains('a.btn', 'Voltar')
+            .should('be.visible')
+    })
+
+    it('Lista ambos os eventos com botão Detalhes', () => {
+        cy.get('table.table tbody tr').its('length').should('be.gte', 2)
+
+        cy.contains('tbody tr', 'A entidade foi criada')
+            .within(() => {
+                cy.contains('button', 'Detalhes').should('be.visible')
+            })
+
+        cy.contains('tbody tr', 'A entidade foi atualizada')
+            .within(() => {
+                cy.contains('button', 'Detalhes').should('be.visible')
+            })
+    })
+
+    it('Abre o modal de detalhes do evento de atualização e verifica as colunas "De" e "Para"', () => {
+        cy.contains('tbody tr', 'A entidade foi atualizada')
+            .within(() => cy.contains('button', 'Detalhes').click())
+
+        cy.get('#modal-timeline').should('be.visible')
+
+        cy.get('#modal-timeline .modal-body table thead tr')
+            .within(() => {
+                cy.contains('th', 'De')
+                cy.contains('th', 'Para')
+            })
+
+        cy.get('#modal-timeline-table-body tr')
+            .contains('td', 'Nome')
+            .parent()
+            .within(() => {
+                cy.get('td').eq(1).should('contain.text', 'Voz')
+                cy.get('td').eq(2).should('contain.text', 'Vozes do Sertão')
+            })
+    })
+})
