@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use App\Entity\InscriptionEvent;
 use App\Repository\Interface\EventRepositoryInterface;
+use DateTime;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -42,7 +43,7 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
     public function findByFilters(array $filters, array $orderBy, int $limit): array
     {
         $qb = $this->createQueryBuilder('e')
-            ->orderBy('e.createdAt', $orderBy['createdAt'])
+            ->orderBy('e.'.key($orderBy), current($orderBy))
             ->setMaxResults($limit);
 
         $this->applyFilters($qb, $filters);
@@ -55,12 +56,19 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
         $filterMappings = $this->getFilterMappings();
 
         foreach ($filters as $key => $value) {
+            if (!isset($filterMappings[$key])) {
+                continue;
+            }
+
             $map = $filterMappings[$key];
 
-            if (true === isset($map['join'])) {
+            if (isset($map['join'])) {
                 $joins = is_array($map['join'][0]) ? $map['join'] : [$map['join']];
+
                 foreach ($joins as $join) {
-                    $qb->join($join[0], $join[1]);
+                    if (!in_array($join[1], $qb->getAllAliases())) {
+                        $qb->join($join[0], $join[1]);
+                    }
                 }
             }
 
@@ -72,11 +80,51 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
     {
         return [
             'name' => [
-                'condition' => fn ($qb, $value) => $qb->andWhere('e.name LIKE :name')->setParameter('name', "%$value%"),
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('e.name LIKE :name')->setParameter('name', "%{$value}%"),
             ],
             'draft' => [
-                'condition' => fn ($qb, $value) => $qb->andWhere('e.draft = :draft')->setParameter('draft', $value, ParameterType::BOOLEAN),
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('e.draft = :draft')->setParameter('draft', $value, ParameterType::BOOLEAN),
+            ],
+            'culturalLanguages' => [
+                'join' => ['e.culturalLanguages', 'cl'],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('cl.id = :languageId')->setParameter('languageId', $value),
+            ],
+            'tags' => [
+                'join' => ['e.tags', 't'],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('t.id = :tagId')->setParameter('tagId', $value),
+            ],
+            'state' => [
+                'join' => [['e.space', 'sp'], ['sp.address', 'a'], ['a.city', 'c'], ['c.state', 'st']],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('st.id = :stateId')->setParameter('stateId', $value),
+            ],
+            'city' => [
+                'join' => [['e.space', 'sp'], ['sp.address', 'a'], ['a.city', 'c']],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('c.id = :cityId')->setParameter('cityId', $value),
+            ],
+            'ageRating' => [
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere("JSON_GET_TEXT(e.extraFields, 'ageRating') = :ageRating")
+                    ->setParameter('ageRating', (string) $value),
+            ],
+            'period' => [
+                'condition' => fn (QueryBuilder $qb, $value) => $this->applyPeriodFilter($qb, $value),
             ],
         ];
+    }
+
+    private function applyPeriodFilter(QueryBuilder $qb, mixed $period): void
+    {
+        if (!is_array($period)) {
+            return;
+        }
+
+        if (!empty($period['start']) && !empty($period['end'])) {
+            $start = new DateTime($period['start']);
+            $end = new DateTime($period['end']);
+
+            $qb->andWhere('COALESCE(e.endDate, e.startDate) >= :periodStart')
+                ->andWhere('e.startDate <= :periodEnd')
+                ->setParameter('periodStart', $start)
+                ->setParameter('periodEnd', $end);
+        }
     }
 }

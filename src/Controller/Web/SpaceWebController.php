@@ -39,11 +39,11 @@ class SpaceWebController extends AbstractWebController
 
     public function list(Request $request): Response
     {
-        $filters = $request->query->all();
+        $requestFilters = $request->query->all();
 
-        $filters = $this->getOrderParam($filters);
+        $parsedFilters = $this->getOrderParam($requestFilters);
 
-        $spaces = $this->service->list(params: $filters['filters'], order: $filters['order']);
+        $spaces = $this->service->list(params: $parsedFilters['filters'], order: $parsedFilters['order']);
         $totalSpaces = count($spaces);
 
         $days = $request->get('days', 7);

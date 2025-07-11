@@ -132,4 +132,9 @@ class EventFilterDto
         new Type(Types::BOOLEAN),
     ])]
     public mixed $draft;
+
+    #[Sequentially([
+        new Type(Types::STRING),
+    ])]
+    public mixed $extraFields;
 }

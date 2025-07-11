@@ -19,8 +19,23 @@
             <p class="d-flex align-items-center gap-2 mb-1">
                 <i class="material-icons text-primary">event</i>
                 <strong class="text-dark">
-                    {% set nextOccurrence = event.eventSchedules|sort((a, b) => a.startHour <=> b.startHour)|find(o => o.startHour > "now"|date) %}
-                    {{ nextOccurrence ? nextOccurrence.startHour|date('d/m/Y - H:i') : 'view.event.not_set_datetime' | trans }}
+                    {% set timezone = 'America/Sao_Paulo' %}
+
+                    {% if event.startDate %}
+
+                        {% if event.endDate is null or event.startDate|date('d-m-Y', timezone) == event.endDate|date('d-m-Y', timezone) %}
+                            {{ event.startDate|date('d/m/Y - H:i', timezone) }}
+
+                        {% else %}
+                            {% set startDateFormatted = event.startDate|date('d/m/Y', timezone) %}
+                            {% set endDateFormatted = event.endDate|date('d/m/Y', timezone) %}
+
+                            {{ startDateFormatted }} {{ 'to'|trans }} {{ endDateFormatted }}
+                        {% endif %}
+
+                    {% else %}
+                        {{ 'view.event.not_set_datetime'|trans }}
+                    {% endif %}
                 </strong>
             </p>
 
