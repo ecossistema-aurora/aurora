@@ -432,6 +432,7 @@ residential_address: Endereço residencial
 roles_in_culture: Função(ões) na Cultura
 
 tags: Tags
+tag_already_exists: Já existe uma tag com esse nome
 term: Termo
 terms: Termos
 term_form: Termo de Uso
