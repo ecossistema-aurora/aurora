@@ -13,6 +13,7 @@ module.exports = defineConfig({
       'cypress/aurora/e2e/api/**/*.cy.js',
       'cypress/aurora/e2e/web/agent/*.cy.js',
       'cypress/aurora/e2e/web/authentication/*.cy.js',
+      'cypress/aurora/e2e/admin/space/*.cy.js',
       'cypress/aurora/e2e/web/**/*.cy.js',
       'cypress/aurora/e2e/admin/dashboard/*.cy.js',
       'cypress/aurora/e2e/admin/**/*.cy.js',

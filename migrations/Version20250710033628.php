@@ -16,11 +16,15 @@ final class Version20250710033628 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE event ADD start_date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL');
+        $this->addSql('ALTER TABLE event ADD start_date TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL');
+        $this->addSql('UPDATE event SET start_date = COALESCE(end_date, created_at)');
+        $this->addSql('ALTER TABLE event ALTER COLUMN start_date SET NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE event DROP startDate');
+        $this->addSql('ALTER TABLE event ALTER COLUMN start_date DROP NOT NULL');
+        $this->addSql('UPDATE event SET start_date = NULL');
+        $this->addSql('ALTER TABLE event DROP COLUMN start_date');
     }
 }
