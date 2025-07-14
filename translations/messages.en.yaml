@@ -42,6 +42,7 @@ administration: Administration
 agent: Agent
 agents: Agents
 agent_name: Agent Name
+agent_information: Agent Information
 age_rating: Age Rating
 ages_rating:
   all: Free for all ages
@@ -398,8 +399,10 @@ private_data_notice: The data entered below will %no% be displayed publicly, exc
 public_information: Public Information
 public_email: Public Email
 public_phone: Public Telephone with DDD
-published: Published
 publish: Publish
+published: Published
+position: Position
+
 published-by: Publicado por
 question_register: Register Question
 question: Question
@@ -464,6 +467,8 @@ user: User
 user_name: User Name
 user_created: Create User
 user_already_belongs_the_organization: User already belongs the organization
+user_edit_data: Edit user
+user_information: User Information
 users: Users
 updated_at: Updated at
 unread_notifications: Unread Notifications
@@ -499,6 +504,7 @@ showing: Showing
 show_public: Show Publicly
 select_bank: Select the bank
 select_state: Select the State
+select_agent: Select the Agent
 select_municipality: Select the Municipality
 select_race: Select the Race/Color
 select_education: Select Your Education Level
