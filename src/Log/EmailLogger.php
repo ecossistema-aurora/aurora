@@ -7,9 +7,9 @@ namespace App\Log;
 use App\Log\Interface\EmailLoggerInterface;
 use Psr\Log\LoggerInterface;
 
-final class EmailLogger implements EmailLoggerInterface
+final readonly class EmailLogger implements EmailLoggerInterface
 {
-    public function __construct(private readonly LoggerInterface $logger)
+    public function __construct(private LoggerInterface $logger)
     {
     }
 
