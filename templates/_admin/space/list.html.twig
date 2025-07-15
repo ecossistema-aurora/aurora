@@ -4,6 +4,7 @@
 
 {% block content %}
     {% include '_components/modal-confirm-remove.html.twig' %}
+    {% include '_components/modal-confirm-toggle-publish.html.twig' %}
 
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
@@ -59,6 +60,19 @@
                                             class="btn btn-outline-danger btn-sm"
                                         >
                                             {{ 'delete'|trans }}
+                                        </button>
+                                        {% set isDraft = item.draft %}
+                                        {% set btnClass = isDraft ? 'btn btn-outline-info btn-sm' : 'btn btn-outline-warning btn-sm' %}
+                                        {% set btnText = (isDraft ? 'publish' : 'unpublish')|trans %}
+
+                                        <button
+                                            data-cy="publish-{{ loop.index }}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalTogglePublishConfirm"
+                                            onclick="confirmTogglePublish(this)"
+                                            data-href="{{ path('admin_space_toggle_publish', {id: item.id}) }}"
+                                            class="{{ btnClass }}">
+                                            {{ btnText }}
                                         </button>
                                     </td>
                                 </tr>
