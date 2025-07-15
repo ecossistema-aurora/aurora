@@ -517,6 +517,7 @@ short_presentation: Presentación Corta
 space: Espacio
 space_type: Tipo de Espacio
 spaces: Espacios
+space_type_deleted: Se ha eliminado el tipo de espacio
 specific_objective: Objetivo Específico
 specific_objective_description: Descripción del objetivo específico
 specify_priority_territory: Especifique el territorio prioritario

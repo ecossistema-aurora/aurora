@@ -8,7 +8,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
     });
 
     it('Garante que a página de editar espaços funciona', () => {
-        // Verificação de visibilidade e ações na seção de Informações de apresentação
         cy.get(':nth-child(1) > .accordion-header > .accordion-button')
             .contains('Informações de apresentação')
             .should('be.visible');
@@ -59,7 +58,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .contains('Telefone Público')
             .should('be.visible');
 
-        // Expandir a seção de Dados de endereço e verificar campos
         cy.get(':nth-child(2) > .accordion-header > .accordion-button')
             .contains('Dados de endereço')
             .should('be.visible')
@@ -98,7 +96,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
         cy.get('#state').parent().find('.ts-control').should('contain.text', 'Alagoas');
         cy.get('#city').parent().find('.ts-control').should('contain.text', 'Palmeira dos Índios');
 
-        // Expandir a seção de Capacidade e Acessibilidade e verificar campos
         cy.get(':nth-child(3) > .accordion-header > .accordion-button')
             .contains('Capacidade e Acessibilidade')
             .should('be.visible')
@@ -109,7 +106,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .contains('Capacidade de pessoas')
             .should('be.visible');
 
-        // Expandir a seção de Horário de funcionamento e verificar campos
         cy.get(':nth-child(4) > .accordion-header > .accordion-button')
             .contains('Horário de funcionamento')
             .should('be.visible')
@@ -128,7 +124,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .should('be.visible')
             .and('contain', 'Fecha às');
 
-        // Expandir a seção de Permissões e verificar campos
         cy.get(':nth-child(5) > .accordion-header > .accordion-button')
             .contains('Permissões')
             .should('be.visible')
@@ -155,7 +150,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .contains('Espaços')
             .should('be.visible');
 
-        // Expandir a seção de Redes sociais e verificar campos
         cy.get(':nth-child(6) > .accordion-header > .accordion-button')
             .contains('Redes sociais')
             .should('be.visible')
@@ -170,10 +164,8 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .contains('TikTok')
             .should('be.visible');
 
-        // Submeter o formulário
         cy.get("button[form='space-edit-form']").click();
 
-        // Verificar redirecionamento e mensagem de sucesso
         cy.url().should('include', '/painel/espacos');
         cy.get('.toast')
             .should('be.visible')
@@ -347,24 +339,20 @@ describe('Formulário de Endereço - Integração ViaCEP e Validação Completa'
     });
 
     it('6. Validação do campo "Número" e checkbox "Sem Número"', () => {
-        // Desabilita e limpa o campo ao marcar "Sem Número"
         cy.get('#number').type('123').should('have.value', '123');
         cy.get('#no_number').check();
         cy.get('#number').should('have.value', '').and('be.disabled');
         cy.get('#number-error-message').should('not.be.visible').and('not.have.text');
 
-        // Reabilita o campo ao desmarcar "Sem Número" e exibe erro
         cy.get('#no_number').uncheck();
         cy.get('#number').should('not.be.disabled');
         cy.get('#number-error-message')
             .should('be.visible')
             .and('contain.text', 'O numero do endereço é obrigatório, por favor, preencha o campo. Caso o seu endereço não possua número, selecione a opção "Sem número".');
 
-        // Limpa erro ao digitar valor
         cy.get('#number').type('123').blur();
         cy.get('#number-error-message').should('not.be.visible').and('not.have.text');
 
-        // Não exibe erro se "Sem Número" estiver marcado
         cy.get('#number').clear();
         cy.get('#no_number').check();
         cy.get('#number').should('be.disabled');

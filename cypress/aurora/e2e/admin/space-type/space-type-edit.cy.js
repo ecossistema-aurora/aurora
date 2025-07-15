@@ -3,30 +3,49 @@ describe('Teste para Editar Tipo de Espaço', () => {
         cy.viewport(1920, 1080);
         cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
         cy.visit('/painel');
-        cy.get(':nth-child(8) > .nav-link').contains('Tipo de Espaço').click()
+        cy.get(':nth-child(8) > .nav-link')
+            .contains('Tipo de Espaço')
+            .click();
     });
 
     it('Editar um tipo de espaço existente', () => {
-        cy.get('tbody > :nth-child(1) > :nth-child(3) > .btn').click();
+        cy.get('tbody tr').first().as('linhaAlvo');
 
-        cy.get('[data-cy="name"]').should('exist').and('have.value', 'Casa de Show');
+        cy.get('@linhaAlvo')
+            .find('td')
+            .eq(1)
+            .invoke('text')
+            .then((nomeOriginal) => {
+                cy.get('@linhaAlvo').within(() => {
+                    cy.contains('Editar').click();
+                });
 
-        cy.get('[data-cy="name"]').clear()
-        cy.get('[data-cy="name"]').type('Anfiteatro');
-        cy.get('[type="submit"]').click();
+                cy.get('[data-cy="name"]').should('have.value', nomeOriginal);
 
-        cy.get('.success.snackbar').contains('O Tipo de Espaço foi atualizado').should('be.visible');
+                cy.get('[data-cy="name"]').clear().type('Anfiteatro');
+                cy.get('[data-cy="submit"]').click();
 
-        cy.contains('Anfiteatro').should('be.visible');
+                cy.get('.success.snackbar')
+                    .should('be.visible')
+                    .and('contain', 'O Tipo de Espaço foi atualizado');
+
+                cy.contains('Anfiteatro').should('be.visible');
+            });
     });
 
     it('Tenta editar com um nome inválido', () => {
-        cy.get('tbody > :nth-child(1) > :nth-child(3) > .btn').contains('Editar').click();
+        cy.get('tbody tr').first().within(() => {
+            cy.contains('Editar').click();
+        });
 
-        cy.get('[data-cy="name"]').clear()
-        cy.get('[data-cy="name"]').type('P');
-        cy.get('[type="submit"]').click();
+        cy.get('[data-cy="name"]').clear().type('P');
+        cy.get('[data-cy="submit"]').click();
 
-        cy.get('.danger.snackbar').contains('O valor é muito curto. Deveria de ter 2 caracteres ou mais.').should('be.visible');
+        cy.get('.danger.snackbar')
+            .should('be.visible')
+            .and(
+                'contain',
+                'O valor é muito curto. Deveria de ter 2 caracteres ou mais.'
+            );
     });
 });

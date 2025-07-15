@@ -73,6 +73,20 @@ class SpaceTypeAdminController extends AbstractAdminController
     }
 
     #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function remove(string $id): Response
+    {
+        try {
+            $this->service->remove(Uuid::fromString($id));
+
+            $this->addFlashSuccess($this->translator->trans('space_type_deleted'));
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+        }
+
+        return $this->redirectToRoute('admin_space_type_list');
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_ADMIN->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function edit(Request $request, string $id): Response
     {
         try {

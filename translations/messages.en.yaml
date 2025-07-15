@@ -518,6 +518,7 @@ short_presentation: Short Presentation
 space: Space
 space_type: Space Type
 spaces: Spaces
+space_type_deleted: Space type has been deleted
 specific_objective: Specific Objective
 specific_objective_description: Specific Objective Description
 specify_priority_territory: Specify the priority territory
