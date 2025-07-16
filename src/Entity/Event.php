@@ -400,12 +400,12 @@ class Event extends AbstractEntity
         $this->phoneNumber = $phoneNumber;
     }
 
-    public function getMaxCapacity(): int
+    public function getMaxCapacity(): ?int
     {
         return $this->maxCapacity;
     }
 
-    public function setMaxCapacity(int $maxCapacity): void
+    public function setMaxCapacity(?int $maxCapacity): void
     {
         $this->maxCapacity = $maxCapacity;
     }
