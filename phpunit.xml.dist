@@ -46,6 +46,7 @@
         <report>
             <html outputDirectory="coverage-html"/>
             <clover outputFile="coverage.xml"/>
+            <text outputFile="coverage.txt"/>
         </report>
     </coverage>
 
