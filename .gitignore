@@ -33,6 +33,7 @@ package-lock.json
 ###> phpunit/php-code-coverage ###
 /coverage-html
 coverage.xml
+coverage.txt
 ###< phpunit/php-code-coverage ###
 
 ###> symfony/asset-mapper ###
