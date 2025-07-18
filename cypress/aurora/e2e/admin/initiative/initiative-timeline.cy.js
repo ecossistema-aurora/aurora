@@ -12,13 +12,15 @@ describe('Painel de Controle - Página de timeline das Iniciativas', () => {
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
 
         cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
-        cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
+        cy.get('tbody > tr > :nth-child(2)')
+            .invoke('text')
+            .should('match', /\d{2}/\d{2}/\d{4}/);
         cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
         cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible')
     });
 
     it('Garante que o modal com os detalhes da timeline existe', () => {
-        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"] > :nth-child(5) > .btn-outline-primary').click();
+        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"]').contains('Timeline').click({force: true});
         cy.get(':nth-child(2) > :nth-child(5) > .btn').click();
         cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De');
         cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para');

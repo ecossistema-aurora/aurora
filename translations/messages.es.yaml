@@ -225,6 +225,7 @@ image_gallery: Añadir fotos a la galería
 indicators: Indicadores
 indigenous: Indígena
 initiative: Iniciativa
+initiative_remove: Eliminar Iniciativa
 initiative_data: Datos de la Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
@@ -527,6 +528,8 @@ start_date: Fecha de inicio
 state: Estado
 status: Status
 status_draft: Borrador
+status_trashed: En la basura
+status_create: Crear
 status_published: Publicado
 suggestions: Sugerencias
 subscribe: Suscribir

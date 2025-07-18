@@ -4,8 +4,7 @@ describe('Teste de navegação, validação e edição da página de Eventos', (
         cy.login('henriquelopeslima@example.com', 'Aurora@2024');
         cy.visit('/painel/');
         cy.get(':nth-child(8) > :nth-child(2) > .nav-link').contains('Meus Eventos').click();
-        cy.get(':nth-child(1) > :nth-child(5) > .btn-outline-warning').contains('Editar').click();
-
+        cy.get("html > body > div > main > section > div:nth-of-type(2) > div > div > div > table > tbody > tr:nth-of-type(2) > td:nth-of-type(5) > a:nth-of-type(2)").contains('Editar').click();
     });
 
     it('Garante que a página de editar eventos funciona', () => {

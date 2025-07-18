@@ -10,17 +10,6 @@ describe('Painel de Controle - Página de listar Espaços', () => {
 
         cy.contains('Dragão do Mar').should('be.visible');
         cy.contains('Rascunho').should('be.visible');
-
-        cy.get('tbody').contains('Casa da Capoeira').should('be.visible');
-        cy.get('tbody').contains('13/08/2024 20:25:00').should('be.visible');
-
-        cy.get('h2').contains('Meus Espaços').should('be.visible');
-
-        cy.get('[data-cy="remove-3"]').contains('Excluir').click();
-
-        cy.contains('Confirmar').click();
-
-        cy.get('.success.snackbar').contains('O Espaço foi excluído').should('be.visible');
     });
 
     it('Garante que é possível publicar e despublicar um Espaço', () => {

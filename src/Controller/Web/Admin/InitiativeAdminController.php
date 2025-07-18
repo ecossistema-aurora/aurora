@@ -9,7 +9,6 @@ use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
-use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -94,8 +93,7 @@ class InitiativeAdminController extends AbstractAdminController
         $this->denyAccessUnlessGranted('remove', $initiative);
 
         $this->service->remove($id);
-
-        $this->addFlash('success', 'Initiative removed');
+        $this->addFlash('success', $this->translator->trans('view.initiative.message.deleted'));
 
         return $this->redirectToRoute('admin_initiative_list');
     }
