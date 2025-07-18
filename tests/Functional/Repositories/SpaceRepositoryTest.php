@@ -151,7 +151,7 @@ class SpaceRepositoryTest extends KernelTestCase
 
         $foundSpaces = $this->spaceRepository->findByFilters($filters, $orderBy, $limit);
 
-        $this->assertCount(3, $foundSpaces);
-        $this->assertEquals('Sítio das Artes', $foundSpaces[0]->getName());
+        $this->assertCount(1, $foundSpaces);
+        $this->assertEquals('SECULT', $foundSpaces[0]->getName());
     }
 }
