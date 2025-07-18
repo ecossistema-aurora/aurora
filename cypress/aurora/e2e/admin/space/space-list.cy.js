@@ -22,4 +22,23 @@ describe('Painel de Controle - Página de listar Espaços', () => {
 
         cy.get('.success.snackbar').contains('O Espaço foi excluído').should('be.visible');
     });
+
+    it('Garante que é possível publicar e despublicar um Espaço', () => {
+        cy.get('table').contains('tr', 'Dragão do Mar').within(() => {
+           cy.contains('Rascunho').should('be.visible');
+           cy.contains('button', 'Publicar').click();
+        });
+
+        cy.get('#modalTogglePublishConfirm').contains('Confirmar').click();
+
+        cy.get('table').contains('tr', 'Dragão do Mar').within(() => {
+            cy.contains('Publicado').should('be.visible');
+            cy.contains('button', 'Despublicar').click();
+        });
+
+        cy.get('#modalTogglePublishConfirm .btn-danger').contains('Confirmar').click();
+        cy.get('table').contains('tr', 'Dragão do Mar').within(() => {
+            cy.contains('Rascunho').should('be.visible');
+        });
+    });
 });

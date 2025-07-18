@@ -31,5 +31,5 @@ interface EventServiceInterface
 
     public function findByAgent(string $agentId): array;
 
-    public function togglePublish(Uuid $id);
+    public function togglePublish(Uuid $id): void;
 }

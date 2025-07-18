@@ -180,4 +180,12 @@ class SpaceAdminController extends AbstractAdminController
             ]);
         }
     }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function togglePublish(?Uuid $id): Response
+    {
+        $this->service->togglePublish($id);
+
+        return $this->redirectToRoute('admin_space_list');
+    }
 }

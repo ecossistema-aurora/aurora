@@ -181,4 +181,12 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
         return $space;
     }
+
+    public function togglePublish(Uuid $id): void
+    {
+        $space = $this->get($id);
+        $space->setIsDraft(!$space->isDraft());
+
+        $this->repository->save($space);
+    }
 }
