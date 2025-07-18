@@ -1,23 +1,39 @@
-describe('Painel de Controle - Página de timeline das Organizações', () => {
-    // TODO: Remover quando não for REGMEL
-    // beforeEach(() => {
-    //     cy.viewport(1920, 1080);
-    //     cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
-    //     cy.visit('/painel/organizacoes/bc89ea8d-6ad7-4cb8-92a9-b56ce203c7dd/timeline');
-    // });
-    //
-    // it('Garante que a página de timeline dos espaços existe', () => {
-    //     cy.get('h2').contains('Organizações - PHP com Rapadura - Timeline').should('be.visible');
-    //     cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
-    //
-    //     cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
-    //     cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
-    //     cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
-    //
-    //     cy.get('tbody > :nth-child(2) .btn').contains('Detalhes').click();
-    //     cy.get('.modal-body > .table > thead').contains('De');
-    //     cy.get('.modal-body > .table > thead').contains('Para');
-    //     cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('PHP sem Rapadura');
-    //     cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(3)').contains('PHP com Rapadura');
-    // });
-});
+describe('Painel de Controle – Timeline de Organizações', () => {
+    beforeEach(() => {
+        cy.viewport(1920, 1080)
+
+        cy.login('alessandrofeitoza@example.com', 'Aurora@2024')
+
+        cy.visit('/painel/organizacoes')
+        cy.contains('tbody tr', 'Publicado')
+            .first()
+            .within(() => {
+                cy.contains('Timeline').click()
+            })
+
+        cy.url().should('match', /\/painel\/organizacoes\/[0-9a-f\-]+\/timeline$/)
+    })
+
+    it('Deve abrir o modal de detalhes da timeline', () => {
+        cy.get('tbody tr')
+            .first()
+            .within(() => {
+                cy.contains('Detalhes').click()
+            })
+
+        cy.get('#modal-timeline').should('be.visible')
+
+        cy.get('#modal-timeline .modal-body table thead').within(() => {
+            cy.contains('De').should('be.visible')
+            cy.contains('Para').should('be.visible')
+        })
+
+        cy.get('#modal-timeline-table-body tr')
+            .its('length')
+            .should('be.gte', 1)
+
+        cy.get('#modal-timeline')
+            .find('.btn-close')
+            .click()
+    })
+})
