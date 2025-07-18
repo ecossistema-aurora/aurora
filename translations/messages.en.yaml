@@ -228,6 +228,7 @@ indigenous: Indigenous
 initiative: Initiative
 initiative_data: Initiative Data
 initiatives: Initiatives
+initiative_remove: Remove Initiative
 in_progress: In Progress
 inscriptions: Inscriptions
 input_search: Search for keywords
@@ -529,6 +530,8 @@ state: State
 status: Status
 status_draft: Draft
 status_published: Published
+status_trashed: In the trash
+status_create: Create
 street: Street
 suggestions: Suggestions
 subscribe: Subscribe
