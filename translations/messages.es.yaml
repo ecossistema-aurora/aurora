@@ -41,6 +41,13 @@ agent: Agente
 agents: Agentes
 agent_information: Información del Agente
 age_rating: Clasificación por Edad
+age_rating.free: Libre
+age_rating.10_years: 10 años
+age_rating.12_years: 12 años
+age_rating.14_years: 14 años
+age_rating.16_years: 16 años
+age_rating.18_years: 18 años
+age_rating.not_rated: No clasificado
 ages_rating:
   all: Libre
   ten: 10 años
@@ -315,6 +322,7 @@ no_phase: No se registró ninguna fase.
 no_site: Sin sitio web
 no_type: Sin tipo
 no_address: Sin dirección
+no_tags: Sin etiquetas
 no_title: Intitulado
 no_description: Sin descripción
 no_image: Imagen no disponible

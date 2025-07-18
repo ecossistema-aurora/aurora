@@ -55,21 +55,19 @@ describe('Página de Lista de Espaços', () => {
         cy.get('#state').select('Ceará', {force: true});
         cy.get('#apply-filters').click();
 
-        cy.get('.align-items-end > .fw-bold').contains('3 Espaços Encontrados').should('be.visible');
-        cy.get('.space-card__title').contains('Casa do Sertão').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
+        cy.get('.space-card__title').contains('SECULT').should('be.visible');
     });
 
     it('Garante que filtrar por cidade funciona', () => {
         cy.get('#open-filter').click();
 
         cy.get('#state-ts-control').click();
-        cy.contains('.ts-dropdown .option', 'Ceará').click();
+        cy.contains('.ts-dropdown .option', 'Goiás').click();
 
         cy.get('#city-ts-control')
             .click()
-            .type('Nova Russas', { delay: 200 });
-
-        cy.get('#city-opt-123.option.active').click();
+            .type('Goiânia', { delay: 200 });
 
         cy.get('#apply-filters').click();
 

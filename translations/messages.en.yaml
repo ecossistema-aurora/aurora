@@ -44,6 +44,13 @@ agents: Agents
 agent_name: Agent Name
 agent_information: Agent Information
 age_rating: Age Rating
+age_rating.free: Free
+age_rating.10_years: 10 years
+age_rating.12_years: 12 years
+age_rating.14_years: 14 years
+age_rating.16_years: 16 years
+age_rating.18_years: 18 years
+age_rating.not_rated: Not Rated
 ages_rating:
   all: Free for all ages
   ten: 10 years
@@ -316,6 +323,7 @@ no_phase: No phase registered.
 no_site: No Website
 no_type: No Type
 no_address: No address
+no_tags: No tags
 no_title: Untitled
 no_description: No description
 no_image: Image not available
