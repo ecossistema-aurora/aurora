@@ -41,6 +41,13 @@ agent_name: Nome do Agente
 agent_information: Informações do Agente
 answer: Resposta
 age_rating: Classificação etária
+age_rating.free: Livre
+age_rating.10_years: 10 anos
+age_rating.12_years: 12 anos
+age_rating.14_years: 14 anos
+age_rating.16_years: 16 anos
+age_rating.18_years: 18 anos
+age_rating.not_rated: Não classificado
 ages_rating:
     all: Livre
     ten: 10 anos
@@ -315,6 +322,7 @@ no_phase: Nenhuma fase disponível
 no_site: Sem Site
 no_type: Sem Tipo
 no_address: Sem endereço
+no_tags: Nenhuma tag cadastrada
 no_title: Sem título
 no_description: Sem descrição
 no_image: Imagem não disponível

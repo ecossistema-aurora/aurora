@@ -308,19 +308,19 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'culturalFunction' => [],
             'addresses' => [
                 [
-                    'id' => '425bdb7a-1ea2-41b5-bcb8-3511ef8f750a',
-                    'street' => 'Rua das Flores',
-                    'number' => '123',
-                    'neighborhood' => 'Primavera',
-                    'complement' => 'Bloco A',
+                    'id' => 'b2c3d4e5-f6a7-8901-bcde-ff2345678901',
+                    'street' => 'Rua dos Navegantes',
+                    'number' => '1205',
+                    'neighborhood' => 'Boa Viagem',
+                    'complement' => 'Apto 3',
                     'city' => [
-                        'name' => 'Pedra Branca',
+                        'name' => 'Recife',
                         'state' => [
-                            'name' => 'Ceará',
-                            'acronym' => 'CE',
+                            'name' => 'Pernambuco',
+                            'acronym' => 'PE',
                         ],
                     ],
-                    'zipcode' => '01002000',
+                    'zipcode' => '51020010',
                 ],
             ],
             'socialNetworks' => [
@@ -431,19 +431,19 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'culturalFunction' => [],
             'addresses' => [
                 [
-                    'id' => AddressFixtures::ADDRESS_ID_5,
-                    'street' => 'Travessa do Sol',
-                    'number' => '7',
-                    'neighborhood' => 'Aurora',
-                    'complement' => null,
+                    'id' => AddressFixtures::ADDRESS_ID_13,
+                    'street' => 'Rua 9',
+                    'number' => '303',
+                    'neighborhood' => 'Setor Oeste',
+                    'complement' => 'Sala 12',
                     'city' => [
-                        'name' => 'Brejo Santo',
+                        'name' => 'Goiânia',
                         'state' => [
-                            'name' => 'Ceará',
-                            'acronym' => 'CE',
+                            'name' => 'Goiás',
+                            'acronym' => 'GO',
                         ],
                     ],
-                    'zipcode' => '30330110',
+                    'zipcode' => '74120010',
                 ],
             ],
             'socialNetworks' => [
@@ -499,19 +499,19 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'culturalFunction' => [],
             'addresses' => [
                 [
-                    'id' => AddressFixtures::ADDRESS_ID_3,
-                    'street' => 'Rua das Flores',
-                    'number' => '123',
-                    'neighborhood' => 'Primavera',
-                    'complement' => 'Bloco A',
+                    'id' => 'b2c3d4e5-f6a7-8901-bcde-ff2345678901',
+                    'street' => 'Rua dos Navegantes',
+                    'number' => '1205',
+                    'neighborhood' => 'Boa Viagem',
+                    'complement' => 'Apto 3',
                     'city' => [
-                        'name' => 'Pedra Branca',
+                        'name' => 'Recife',
                         'state' => [
-                            'name' => 'Ceará',
-                            'acronym' => 'CE',
+                            'name' => 'Pernambuco',
+                            'acronym' => 'PE',
                         ],
                     ],
-                    'zipcode' => '01002000',
+                    'zipcode' => '51020010',
                 ],
             ],
             'socialNetworks' => [

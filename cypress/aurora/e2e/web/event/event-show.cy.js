@@ -22,7 +22,7 @@ describe('Página de detalhes do evento', () => {
     it('Garante que os conteúdos das abas existem', () => {
         cy.get('.nav-pills [href="#generalData"]').click();
         cy.get('.tab-content .card__entity-details .card-title__entity-details').contains('Apresentação').should('be.visible');
-        cy.get('.tab-content .card__entity-details [data-cy="event-culturalLanguages"]').should('exist');
+        cy.get('.tab-content .card__entity-details [data-cy="event-cultural-languages"]').should('exist');
         cy.get('.tab-content .card__entity-details [data-cy="event-description"]').should('exist');
         cy.get('.tab-content .card__entity-details .card-title__entity-details').contains('Redes sociais').should('be.visible');
         cy.get('.tab-content .card__entity-details .card-title__entity-details').contains('Outras informações').should('be.visible');

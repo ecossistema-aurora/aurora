@@ -9,6 +9,7 @@ use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Enum\AccessibilityInfoEnum;
+use App\Enum\AgeClassificationEnum;
 use App\Enum\EventFormatEnum;
 use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
@@ -42,7 +43,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'space' => SpaceFixtures::SPACE_ID_3,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
             'parent' => null,
-            'extraFields' => null,
+            'extraFields' => [
+                'ageRating' => AgeClassificationEnum::FREE,
+            ],
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'coverImage' => 'coverimage.jpg',
             'subtitle' => null,
@@ -84,10 +87,11 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'name' => 'PHP com Rapadura 10 anos',
             'image' => null,
             'agentGroup' => null,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_7,
             'initiative' => null,
             'parent' => null,
             'extraFields' => [
+                'ageRating' => AgeClassificationEnum::AGE_16,
                 'subtitle' => 'Aniversário da comunidade 10 anos',
                 'description' => 'Uma festa de tecnologia e inovação',
                 'location' => 'Sertão do Maroto',
@@ -145,6 +149,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_7,
+            'extraFields' => [
+                'ageRating' => AgeClassificationEnum::AGE_18,
+            ],
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'coverImage' => 'coverimage.jpg',
@@ -184,6 +191,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'space' => SpaceFixtures::SPACE_ID_4,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_9,
             'parent' => self::EVENT_ID_3,
+            'extraFields' => [
+                'ageRating' => AgeClassificationEnum::AGE_18,
+            ],
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'coverImage' => 'coverimage.jpg',
             'subtitle' => null,
@@ -221,10 +231,11 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'name' => 'Vozes do Interior',
             'image' => null,
             'agentGroup' => null,
-            'space' => SpaceFixtures::SPACE_ID_4,
+            'space' => SpaceFixtures::SPACE_ID_2,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_5,
             'parent' => self::EVENT_ID_3,
             'extraFields' => [
+                'ageRating' => AgeClassificationEnum::FREE,
                 'subtitle' => 'Vozes do Interior',
                 'description' => 'Vozes do Interior',
                 'occurrences' => ['2024-07-18T20:00:00+00:00'],
@@ -270,6 +281,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'initiative' => InitiativeFixtures::INITIATIVE_ID_10,
             'parent' => self::EVENT_ID_3,
             'extraFields' => [
+                'ageRating' => AgeClassificationEnum::AGE_10,
                 'subtitle' => 'Cores do Sertão',
                 'description' => 'Cores do Sertão',
                 'occurrences' => ['2025-08-05T10:30:00-03:00'],
@@ -353,7 +365,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'name' => 'Festival da Rapadura',
             'image' => null,
             'agentGroup' => null,
-            'space' => SpaceFixtures::SPACE_ID_6,
+            'space' => SpaceFixtures::SPACE_ID_8,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_4,
@@ -398,6 +410,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'initiative' => InitiativeFixtures::INITIATIVE_ID_4,
             'parent' => null,
             'extraFields' => [
+                'ageRating' => AgeClassificationEnum::AGE_12,
                 'subtitle' => 'Cultura em ação',
                 'description' => 'Cultura em ação',
                 'occurrences' => ['2024-08-13T18:00:00+00:00'],
@@ -439,10 +452,11 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'name' => 'Nordeste Literário',
             'image' => null,
             'agentGroup' => null,
-            'space' => SpaceFixtures::SPACE_ID_6,
+            'space' => SpaceFixtures::SPACE_ID_9,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
             'parent' => null,
             'extraFields' => [
+                'ageRating' => AgeClassificationEnum::AGE_14,
                 'subtitle' => 'Nordeste Literário',
                 'occurrences' => ['2024-08-14T09:00:00+00:00'],
             ],

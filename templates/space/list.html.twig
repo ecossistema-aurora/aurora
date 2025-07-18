@@ -31,7 +31,6 @@
         {% include 'space/_partials/tabs/tabs.html.twig' %}
     </section>
 
-    {% if token %}
     <button id="open-filter" class="filter-btn">
         <i class="material-icons">filter_alt</i>
     </button>
@@ -43,13 +42,6 @@
             {% include 'space/_partials/tabs/content-tabs.html.twig' %}
         </div>
     </section>
-    {% else %}
-    <section class="entity-wrapper">
-        <div class="entity-container">
-            {% include 'space/_partials/tabs/content-tabs.html.twig' %}
-        </div>
-    </section>
-    {% endif %}
 {% endblock %}
 
 {% block extra_javascripts %}
