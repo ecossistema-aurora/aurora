@@ -516,6 +516,7 @@ social_name: Nome Social
 space: Espaço
 space_type: Tipo de Espaço
 spaces: Espaços
+space_type_deleted: Tipo de espaço foi deletado
 specific_objective: Objetivo Específico
 specific_objective_description: Descrição do Objetivo Específico
 specify_priority_territory: Especifique o território prioritário
