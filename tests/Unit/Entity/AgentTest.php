@@ -130,6 +130,7 @@ class AgentTest extends TestCase
                 $organization1Uuid->toRfc4122(),
                 $organization2Uuid->toRfc4122(),
             ],
+            'culturalFunction' => [],
             'socialNetworks' => [
                 SocialNetworkEnum::INSTAGRAM->value => 'hello',
             ],

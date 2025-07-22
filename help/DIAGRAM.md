@@ -193,6 +193,10 @@ direction BT
        varchar(100) name
        integer city_code
     }
+    class cultural_function {
+        uuid id
+        varchar(20) name
+    }
 
     city --> state : state_id
     event  -->  agent : created_by_id
@@ -225,6 +229,8 @@ direction BT
     inscription_phase --> phase : phase_id
     inscription_phase_review --> agent : reviewer_id
     inscription_phase_review --> inscription_phase : inscription_phase_id
+    agent_cultural_function --> agent : agent_id
+    agent_cultural_function --> cultural_function : cultural_function_id
 ```
 > Esse diagrama serve como um diagrama de classes.
 
