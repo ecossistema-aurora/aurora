@@ -6,7 +6,7 @@ namespace App\Enum;
 
 use App\Enum\Trait\EnumTrait;
 
-enum EventTypeEnum: int
+enum EventFormatEnum: int
 {
     use EnumTrait;
 
