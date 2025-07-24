@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Enum\AccessibilityInfoEnum;
-use App\Enum\EventTypeEnum;
+use App\Enum\EventFormatEnum;
 use App\Enum\SocialNetworkEnum;
 use App\Helper\DateFormatHelper;
 use App\Repository\EventRepository;
@@ -85,7 +85,12 @@ class Event extends AbstractEntity
 
     #[ORM\Column()]
     #[Groups(['event.get'])]
-    private int $type = EventTypeEnum::IN_PERSON->value;
+    private int $format = EventFormatEnum::IN_PERSON->value;
+
+    #[ORM\ManyToOne(targetEntity: EventType::class)]
+    #[ORM\JoinColumn(name: 'event_type_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['event.get', 'event.get.item'])]
+    private ?EventType $eventType = null;
 
     #[ORM\Column]
     #[Groups(['event.get'])]
@@ -302,14 +307,24 @@ class Event extends AbstractEntity
         $this->longDescription = $longDescription;
     }
 
-    public function getType(): int
+    public function getFormat(): int
     {
-        return $this->type;
+        return $this->format;
     }
 
-    public function setType(int $type): void
+    public function setFormat(int $format): void
     {
-        $this->type = $type;
+        $this->format = $format;
+    }
+
+    public function getEventType(): ?EventType
+    {
+        return $this->eventType;
+    }
+
+    public function setEventType(?EventType $eventType): void
+    {
+        $this->eventType = $eventType;
     }
 
     public function getStartDate(): ?DateTime
@@ -591,7 +606,8 @@ class Event extends AbstractEntity
             'subtitle' => $this->subtitle,
             'shortDescription' => $this->shortDescription,
             'longDescription' => $this->longDescription,
-            'type' => $this->type,
+            'format' => $this->format,
+            'eventType' => $this->eventType?->toArray(),
             'startDate' => $this->startDate?->format(DateFormatHelper::DEFAULT_FORMAT),
             'endDate' => $this->endDate?->format(DateFormatHelper::DEFAULT_FORMAT),
             'activityAreas' => $this->activityAreas->map(fn ($activityArea) => $activityArea->toArray())->toArray(),

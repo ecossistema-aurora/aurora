@@ -11,7 +11,7 @@ use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Entity\Tag;
 use App\Enum\AccessibilityInfoEnum;
-use App\Enum\EventTypeEnum;
+use App\Enum\EventFormatEnum;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
@@ -108,7 +108,7 @@ class EventDto
         new NotBlank(groups: [self::CREATE]),
         new NotNull(groups: [self::UPDATE]),
         new Type('integer', groups: [self::CREATE, self::UPDATE]),
-        new Choice(callback: [EventTypeEnum::class, 'getValues'], groups: [self::CREATE, self::UPDATE]),
+        new Choice(callback: [EventFormatEnum::class, 'getValues'], groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $type;
 

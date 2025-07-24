@@ -9,7 +9,7 @@ use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Enum\AccessibilityInfoEnum;
-use App\Enum\EventTypeEnum;
+use App\Enum\EventFormatEnum;
 use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -48,7 +48,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => null,
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::ONLINE->value,
+            'format' => EventFormatEnum::ONLINE->value,
             'startDate' => '2024-07-10T10:00:00+00:00',
             'endDate' => '2024-07-11T11:30:00+00:00',
             'activityAreas' => [
@@ -105,7 +105,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => null,
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::IN_PERSON->value,
+            'format' => EventFormatEnum::IN_PERSON->value,
             'startDate' => '2024-09-21T13:00:00-03:00',
             'endDate' => '2024-07-11T11:30:00+00:00',
             'activityAreas' => [
@@ -151,7 +151,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => null,
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::HYBRID->value,
             'startDate' => '2024-07-18T10:00:00+00:00',
             'endDate' => '2024-07-18T11:30:00+00:00',
             'activityAreas' => [
@@ -189,7 +189,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => null,
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::ONLINE->value,
+            'format' => EventFormatEnum::ONLINE->value,
             'startDate' => '2024-07-18T10:00:00+00:00',
             'endDate' => '2024-07-18T11:30:00+00:00',
             'activityAreas' => [
@@ -234,7 +234,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
-            'type' => EventTypeEnum::IN_PERSON->value,
+            'format' => EventFormatEnum::IN_PERSON->value,
             'startDate' => '2024-07-23T10:00:00+00:00',
             'endDate' => '2024-07-23T11:30:00+00:00',
             'activityAreas' => [
@@ -279,7 +279,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::HYBRID->value,
             'startDate' => '2025-08-05T10:30:00-03:00',
             'endDate' => '2024-08-10T18:30:00+00:00',
             'activityAreas' => [
@@ -319,7 +319,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
-            'type' => EventTypeEnum::ONLINE->value,
+            'format' => EventFormatEnum::ONLINE->value,
             'startDate' => '2024-08-11T10:00:00+00:00',
             'endDate' => '2024-08-11T18:30:00+00:00',
             'activityAreas' => [
@@ -361,7 +361,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
-            'type' => EventTypeEnum::IN_PERSON->value,
+            'format' => EventFormatEnum::IN_PERSON->value,
             'startDate' => '2024-08-13T10:00:00+00:00',
             'endDate' => '2024-08-13T11:30:00+00:00',
             'activityAreas' => [
@@ -408,7 +408,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::HYBRID->value,
             'startDate' => '2024-08-13T18:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
@@ -451,7 +451,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::ONLINE->value,
+            'format' => EventFormatEnum::ONLINE->value,
             'startDate' => '2024-08-14T09:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
@@ -491,7 +491,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::ONLINE->value,
+            'format' => EventFormatEnum::ONLINE->value,
             'startDate' => '2024-07-10T10:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [

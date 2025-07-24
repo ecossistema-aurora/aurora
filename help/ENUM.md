@@ -196,7 +196,7 @@ Enumera os tipos de estrutura de empresas.
 
 ---
 
-### EventTypeEnum
+### EventFormatEnum
 
 #### Descrição
 Enumera os tipos de eventos.

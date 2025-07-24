@@ -8,12 +8,13 @@ use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\CulturalLanguageFixtures;
 use App\DataFixtures\Entity\EventFixtures;
+use App\DataFixtures\Entity\EventTypeFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Event;
 use App\Enum\AccessibilityInfoEnum;
-use App\Enum\EventTypeEnum;
+use App\Enum\EventFormatEnum;
 use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\EventTestFixtures;
 use App\Tests\Fixtures\ImageTestFixtures;
@@ -55,7 +56,8 @@ class EventApiControllerTest extends AbstractApiTestCase
             'subtitle' => null,
             'shortDescription' => null,
             'longDescription' => null,
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::IN_PERSON->value,
+            'eventType' => null,
             'startDate' => '2025-01-16T00:00:00+00:00',
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [],
@@ -108,7 +110,8 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'subtitle' => 'Subtítulo de exemplo',
                 'shortDescription' => null,
                 'longDescription' => 'Uma descrição mais longa',
-                'type' => EventTypeEnum::ONLINE->value,
+                'format' => EventFormatEnum::ONLINE->value,
+                'eventType' => null,
                 'startDate' => '2024-07-10T10:00:00+00:00',
                 'endDate' => '2024-09-10T11:30:00+00:00',
                 'activityAreas' => [
@@ -169,7 +172,11 @@ class EventApiControllerTest extends AbstractApiTestCase
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::IN_PERSON->value,
+            'eventType' => [
+                'id' => EventTypeFixtures::EVENT_TYPE_ID_1,
+                'name' => 'Show Musical',
+            ],
             'startDate' => '2025-01-16T00:00:00+00:00',
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [
@@ -553,7 +560,8 @@ class EventApiControllerTest extends AbstractApiTestCase
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => null,
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::ONLINE->value,
+            'format' => EventFormatEnum::ONLINE->value,
+            'eventType' => null,
             'startDate' => '2024-07-10T10:00:00+00:00',
             'endDate' => '2024-09-10T11:30:00+00:00',
             'activityAreas' => [
@@ -646,7 +654,8 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'subtitle' => null,
                 'shortDescription' => 'Descrição curta',
                 'longDescription' => 'Uma descrição mais longa',
-                'type' => EventTypeEnum::HYBRID->value,
+                'format' => EventFormatEnum::HYBRID->value,
+                'eventType' => null,
                 'startDate' => '2024-07-18T10:00:00+00:00',
                 'endDate' => '2024-07-18T11:30:00+00:00',
                 'activityAreas' => [
@@ -699,7 +708,8 @@ class EventApiControllerTest extends AbstractApiTestCase
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::HYBRID->value,
+            'eventType' => null,
             'startDate' => '2025-08-05T10:30:00+00:00',
             'endDate' => '2024-08-10T18:30:00+00:00',
             'activityAreas' => [
@@ -834,7 +844,8 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'subtitle' => 'Subtítulo de exemplo',
                 'shortDescription' => null,
                 'longDescription' => 'Uma descrição mais longa',
-                'type' => EventTypeEnum::ONLINE->value,
+                'format' => EventFormatEnum::ONLINE->value,
+                'eventType' => null,
                 'startDate' => '2024-07-10T10:00:00+00:00',
                 'endDate' => '2024-09-10T11:30:00+00:00',
                 'activityAreas' => [
@@ -886,7 +897,11 @@ class EventApiControllerTest extends AbstractApiTestCase
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::HYBRID->value,
+            'format' => EventFormatEnum::HYBRID->value,
+            'eventType' => [
+                'id' => EventTypeFixtures::EVENT_TYPE_ID_1,
+                'name' => 'Show Musical',
+            ],
             'startDate' => '2025-01-16T00:00:00+00:00',
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [
@@ -1279,7 +1294,8 @@ class EventApiControllerTest extends AbstractApiTestCase
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
-            'type' => EventTypeEnum::IN_PERSON->value,
+            'format' => EventFormatEnum::IN_PERSON->value,
+            'eventType' => null,
             'startDate' => '2024-08-13T10:00:00+00:00',
             'endDate' => '2024-08-13T11:30:00+00:00',
             'activityAreas' => [

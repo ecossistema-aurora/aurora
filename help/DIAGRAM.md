@@ -197,6 +197,10 @@ direction BT
         uuid id
         varchar(20) name
     }
+    class event_type {
+        uuid id
+        varchar(20) name
+    }
 
     city --> state : state_id
     event  -->  agent : created_by_id
@@ -231,6 +235,7 @@ direction BT
     inscription_phase_review --> inscription_phase : inscription_phase_id
     agent_cultural_function --> agent : agent_id
     agent_cultural_function --> cultural_function : cultural_function_id
+    event --> event_type : event_type_id
 ```
 > Esse diagrama serve como um diagrama de classes.
 

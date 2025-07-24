@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\DocumentService\EventTimelineDocumentService;
-use App\Enum\EventTypeEnum;
+use App\Enum\EventFormatEnum;
 use App\Enum\UserRolesEnum;
 use App\Service\Interface\CulturalLanguageServiceInterface;
 use App\Service\Interface\EventServiceInterface;
@@ -79,7 +79,7 @@ class EventAdminController extends AbstractAdminController
     {
         if (false === $request->isMethod('POST')) {
             $culturalLanguageItems = $this->culturalLanguageService->list();
-            $type = EventTypeEnum::cases();
+            $type = EventFormatEnum::cases();
 
             return $this->render(self::VIEW_ADD, [
                 'form_id' => self::CREATE_FORM_ID,
@@ -137,7 +137,7 @@ class EventAdminController extends AbstractAdminController
         if (Request::METHOD_POST !== $request->getMethod()) {
             $culturalLanguageItems = $this->culturalLanguageService->list();
             $tagItems = $this->tagService->list();
-            $type = EventTypeEnum::cases();
+            $type = EventFormatEnum::cases();
 
             return $this->render('event/edit.html.twig', [
                 'event' => $event,

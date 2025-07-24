@@ -12,7 +12,7 @@ use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Entity\Tag;
 use App\Enum\AccessibilityInfoEnum;
-use App\Enum\EventTypeEnum;
+use App\Enum\EventFormatEnum;
 use App\Helper\DateFormatHelper;
 use DateTime;
 use DateTimeImmutable;
@@ -39,7 +39,7 @@ class EventEntityTest extends TestCase
         $subtitle = 'subtitle';
         $shortDescription = 'shortdescription';
         $longDescription = 'longdescription';
-        $type = EventTypeEnum::HYBRID->value;
+        $format = EventFormatEnum::HYBRID->value;
         $startDate = new DateTime();
         $endDate = new DateTime();
         $activityAreas = new ArrayCollection([
@@ -78,7 +78,7 @@ class EventEntityTest extends TestCase
         $event->setSubtitle($subtitle);
         $event->setShortDescription($shortDescription);
         $event->setLongDescription($longDescription);
-        $event->setType($type);
+        $event->setFormat($format);
         $event->setStartDate($startDate);
         $event->setEndDate($endDate);
         $event->setActivityAreas($activityAreas);
@@ -108,7 +108,7 @@ class EventEntityTest extends TestCase
         $this->assertSame($subtitle, $event->getSubtitle());
         $this->assertSame($shortDescription, $event->getShortDescription());
         $this->assertSame($longDescription, $event->getLongDescription());
-        $this->assertSame($type, $event->getType());
+        $this->assertSame($format, $event->getFormat());
         $this->assertSame($startDate, $event->getStartDate());
         $this->assertSame($endDate, $event->getEndDate());
         $this->assertSame($activityAreas, $event->getActivityAreas());
@@ -166,7 +166,7 @@ class EventEntityTest extends TestCase
         $subtitle = 'subtitle';
         $shortDescription = 'shortdescription';
         $longDescription = 'longdescription';
-        $type = EventTypeEnum::HYBRID->value;
+        $format = EventFormatEnum::HYBRID->value;
         $startDate = new DateTime();
         $endDate = new DateTime();
 
@@ -219,7 +219,7 @@ class EventEntityTest extends TestCase
         $event->setSubtitle($subtitle);
         $event->setShortDescription($shortDescription);
         $event->setLongDescription($longDescription);
-        $event->setType($type);
+        $event->setFormat($format);
         $event->setStartDate($startDate);
         $event->setEndDate($endDate);
         $event->addActivityArea($activityArea1);
@@ -254,7 +254,7 @@ class EventEntityTest extends TestCase
             'subtitle' => $subtitle,
             'shortDescription' => $shortDescription,
             'longDescription' => $longDescription,
-            'type' => $type,
+            'format' => $format,
             'startDate' => $startDate->format(DateFormatHelper::DEFAULT_FORMAT),
             'endDate' => $endDate->format(DateFormatHelper::DEFAULT_FORMAT),
             'activityAreas' => [
@@ -277,6 +277,7 @@ class EventEntityTest extends TestCase
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
+            'eventType' => null,
         ];
 
         $this->assertEquals($expectedArray, $actualArray);
