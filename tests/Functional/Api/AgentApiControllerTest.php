@@ -59,6 +59,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'extraFields' => null,
             'user' => ['id' => $requestBody['user']],
             'organizations' => [],
+            'culturalFunction' => [],
             'addresses' => null,
             'socialNetworks' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -99,6 +100,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
+            'culturalFunction' => [],
             'addresses' => null,
             'socialNetworks' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -262,6 +264,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_11],
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
+            'culturalFunction' => [],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:37:00+00:00',
             'deletedAt' => null,
@@ -302,6 +305,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_3],
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_5],
             ],
+            'culturalFunction' => [],
             'addresses' => [
                 [
                     'id' => '425bdb7a-1ea2-41b5-bcb8-3511ef8f750a',
@@ -424,6 +428,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
+            'culturalFunction' => [],
             'addresses' => [
                 [
                     'id' => AddressFixtures::ADDRESS_ID_5,
@@ -491,6 +496,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_3],
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_5],
             ],
+            'culturalFunction' => [],
             'addresses' => [
                 [
                     'id' => AddressFixtures::ADDRESS_ID_3,
