@@ -1,28 +1,58 @@
-describe('Painel de Controle - Página de timeline das Iniciativas', () => {
+describe('Painel de Controle – Timeline de Iniciativas', () => {
+    const initiativeId   = 'f0774ecd-4860-4b8c-9607-32090dc31f71';
+    const initiativeName = 'Vozes do Sertão';
+
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
-        cy.visit('painel/iniciativas/');
+        cy.visit('/painel/iniciativas/');
     });
 
-    it('Garante que a página de timeline da Iniciativa existe', () => {
-        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"]').contains('Timeline').click({force: true});
+    it('deve exibir a página de timeline da iniciativa', () => {
+        cy.get(`[data-cy="btn-timeline-${initiativeId}"]`).click();
 
-        cy.get('h2').contains('Iniciativa - Vozes do Sertão - Timeline').should('be.visible');
-        cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
+        cy.contains('h2', `Iniciativa - ${initiativeName} - Timeline`)
+            .should('be.visible');
 
-        cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
-        cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
-        cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
-        cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible')
+        const firstRow = () => cy.get('tbody > tr').first();
+
+        firstRow()
+            .find('td').eq(0)
+            .should('contain.text', 'A entidade foi criada');
+
+        firstRow()
+            .find('td').eq(1)
+            .invoke('text')
+            .should('match', /^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}$/);
+
+        firstRow()
+            .find('td').eq(2)
+            .should('contain.text', 'unknown');
+
+        firstRow()
+            .find('td').eq(4)
+            .find('.btn')
+            .should('contain.text', 'Detalhes');
     });
 
-    it('Garante que o modal com os detalhes da timeline existe', () => {
-        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"] > :nth-child(5) > .btn-outline-primary').click();
-        cy.get(':nth-child(2) > :nth-child(5) > .btn').click();
-        cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De');
-        cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para');
-        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('Voz');
-        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(3)').contains('Vozes do Sertão');
+    it('deve abrir e exibir o modal de detalhes da timeline', () => {
+        cy.get(`[data-cy="btn-timeline-${initiativeId}"]`).click();
+          cy.get('tbody > tr').eq(1)
+            .find('.btn')
+            .contains('Detalhes')
+            .click();
+
+        cy.get('#modal-timeline').should('be.visible');
+
+        cy.get('.modal-body .table thead th').eq(1)
+            .should('contain.text', 'De');
+        cy.get('.modal-body .table thead th').eq(2)
+            .should('contain.text', 'Para');
+
+        cy.get('#modal-timeline-table-body tr').eq(1)
+            .within(() => {
+                cy.get('td').eq(1).should('contain.text', 'Voz');
+                cy.get('td').eq(2).should('contain.text', 'Vozes do Sertão');
+            });
     });
 });

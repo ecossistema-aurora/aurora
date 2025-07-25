@@ -8,9 +8,8 @@ describe('Painel de Controle - Página de listar Organizações', () => {
     it('Garante que a página de listar organizações existe e funciona', () => {
         cy.get('h2').contains('Minhas Organizações').should('be.visible');
 
-        // cy.get('tbody > tr > :nth-child(1)').contains('De RapEnte').should('be.visible');
-        cy.get('tbody >  tr > :nth-child(2)').contains('22/07/2024 16:20:00').should('be.visible');
-
+        cy.get('tbody > tr > :nth-child(1)').contains('PHPeste').should('be.visible');
+        cy.get('tbody >  tr > :nth-child(3)').contains('22/07/2024 16:20:00').should('be.visible');
         //Garante que vai excluir
         cy.get('button[data-cy="remove-2"]').click();
         cy.get('[data-modal-button="confirm-link"]').click();
