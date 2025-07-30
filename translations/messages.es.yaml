@@ -963,6 +963,7 @@ view:
     date: Organización fue creada en
     message:
       deleted: La organización ha sido eliminada
+      deleted_member: El miembro ha sido excluido
     quantity:
       total: Organizaciones Encontradas
       culture: Organizaciones Culturales

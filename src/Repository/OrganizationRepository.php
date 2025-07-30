@@ -130,21 +130,4 @@ class OrganizationRepository extends AbstractRepository implements OrganizationR
 
         return $query->getResult();
     }
-
-    public function findOrganizationByCompanyFilters(string $tipo): array
-    {
-        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
-        $rsm->addRootEntityFromClassMetadata(Organization::class, 'o');
-
-        $sql = <<<SQL
-                SELECT *
-                FROM organization o
-                WHERE o.extra_fields->>'tipo' = :tipo
-            SQL;
-
-        $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
-        $query->setParameter('tipo', $tipo);
-
-        return $query->getResult();
-    }
 }
