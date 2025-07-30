@@ -962,6 +962,7 @@ view:
     date: Organization was created on
     message:
       deleted: The organization has been deleted
+      deleted_member: The member was excluded
     quantity:
       total: Organizations Found
       culture: Cultural Organizations

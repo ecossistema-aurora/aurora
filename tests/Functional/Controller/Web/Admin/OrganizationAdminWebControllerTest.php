@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller\Web\Admin;
 
 use App\Controller\Web\Admin\OrganizationAdminController;
+use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
+use App\DocumentService\OrganizationTimelineDocumentService;
+use App\Service\OrganizationService;
 use App\Tests\AbstractAdminWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +26,14 @@ class OrganizationAdminWebControllerTest extends AbstractAdminWebTestCase
         parent::setUp();
 
         $this->controller = static::getContainer()->get(OrganizationAdminController::class);
+        $service = $this->createMock(OrganizationService::class);
+        $documentService = $this->createMock(OrganizationTimelineDocumentService::class);
+
+        $this->controller = new OrganizationAdminController(
+            $service,
+            $this->translator,
+            $documentService,
+        );
     }
 
     public function testListPageRenderHTMLWithSuccess(): void
@@ -93,5 +104,17 @@ class OrganizationAdminWebControllerTest extends AbstractAdminWebTestCase
         self::expectException(NotFoundHttpException::class);
 
         $this->controller->getOne($id);
+    }
+
+    public function testRemoveAgentMethod(): void
+    {
+        $this->controller->removeAgent(Uuid::fromString(OrganizationFixtures::ORGANIZATION_ID_2), Uuid::fromString(AgentFixtures::AGENT_ID_2));
+
+        $session = self::getContainer()->get('session');
+        $flashBag = $session->getFlashBag();
+
+        self::assertTrue($flashBag->has('success'));
+        self::assertEquals($this->translator->trans('view.organization.message.deleted_member'), $flashBag->get('success')[0]);
+        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
 }

@@ -23,7 +23,7 @@ class OrganizationAdminController extends AbstractAdminController
     public const string VIEW_TIMELINE = 'organization/timeline.html.twig';
 
     public const string CREATE_FORM_ID = 'add-organization';
-    public const EDIT_FORM_ID = 'organization-edit';
+    public const string EDIT_FORM_ID = 'organization-edit';
 
     public function __construct(
         private readonly OrganizationServiceInterface $service,
@@ -109,6 +109,16 @@ class OrganizationAdminController extends AbstractAdminController
         $this->addFlash('success', $this->translator->trans('view.organization.message.deleted'));
 
         return $this->redirectToRoute('admin_organization_list');
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function removeAgent(Uuid $id, Uuid $agentId): Response
+    {
+        $this->service->removeAgent($agentId, $id);
+
+        $this->addFlash('success', $this->translator->trans('view.organization.message.deleted_member'));
+
+        return $this->redirectToRoute('admin_organization_get', ['id' => $id]);
     }
 
     #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]

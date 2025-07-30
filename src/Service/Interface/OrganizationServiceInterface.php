@@ -25,13 +25,11 @@ interface OrganizationServiceInterface
 
     public function remove(Uuid $id): void;
 
+    public function removeAgent(Uuid $agentId, Uuid $organizationId): void;
+
     public function update(Uuid $identifier, array $organization): Organization;
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Organization;
-
-    public function findByMunicipalityFilters(string $region, ?string $state): array;
-
-    public function findByCompanyFilters(string $tipo): array;
 
     public function getCsvHeaders(?string $type): array;
 
