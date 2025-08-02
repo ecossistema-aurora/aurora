@@ -23,13 +23,17 @@ timeline:
   controller: App\Controller\Web\Admin\OrganizationAdminController::timeline
   methods: ['GET']
 
-
 invite:
   resource: 'invite.yaml'
   prefix: /{id}/convites
   name_prefix: invite_
-  
+
 edit:
   path: /{id}/editar
   controller: App\Controller\Web\Admin\OrganizationAdminController::edit
   methods: ['GET', 'POST']
+
+remove_agent:
+  path: /{id}/remove/{agentId}
+  controller: App\Controller\Web\Admin\OrganizationAdminController::removeAgent
+  methods: ['GET']

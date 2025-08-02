@@ -120,7 +120,11 @@
                                                             data-bs-target="#modalRemoveConfirm"
                                                             onclick="confirmRemove(this)"
                                                             data-href="{{ path(
-                                                                'admin_organization_list'
+                                                                'admin_organization_remove_agent',
+                                                                {
+                                                                    id: organization.id,
+                                                                    agentId: agent.id
+                                                                }
                                                             ) }}"
                                                             class="btn btn-outline-danger btn-sm"
                                                     >

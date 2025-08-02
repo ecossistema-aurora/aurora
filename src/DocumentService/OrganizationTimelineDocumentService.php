@@ -14,7 +14,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Uid\Uuid;
 
-final class OrganizationTimelineDocumentService extends AbstractTimelineDocumentService implements TimelineDocumentServiceInterface
+class OrganizationTimelineDocumentService extends AbstractTimelineDocumentService implements TimelineDocumentServiceInterface
 {
     public function __construct(DocumentManager $documentManager, UserServiceInterface $userService, private EntityManagerInterface $entityManager)
     {

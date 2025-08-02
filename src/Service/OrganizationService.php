@@ -179,16 +179,6 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         return $organization;
     }
 
-    public function getMunicipalitiesByAgents(iterable $agents): array
-    {
-        return $this->repository->findMunicipalitiesByAgents($agents);
-    }
-
-    public function getCompaniesByAgents(iterable $agents): array
-    {
-        return $this->repository->findCompaniesByAgents($agents);
-    }
-
     public function removeAgent(Uuid $agentId, Uuid $organizationId): void
     {
         $organization = $this->get($organizationId);
@@ -196,16 +186,6 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
 
         $organization->removeAgent($agent);
         $this->repository->save($organization);
-    }
-
-    public function findByMunicipalityFilters(string $region, ?string $state): array
-    {
-        return $this->repository->findOrganizationByRegionAndState($region, $state);
-    }
-
-    public function findByCompanyFilters(string $tipo): array
-    {
-        return $this->repository->findOrganizationByCompanyFilters($tipo);
     }
 
     public function getCsvHeaders(?string $type): array
