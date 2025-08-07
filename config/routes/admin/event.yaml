@@ -27,3 +27,8 @@ toggle_publish:
   path: /{id}/toggle-publish
   controller: App\Controller\Web\Admin\EventAdminController::togglePublish
   methods: ['GET']
+
+get:
+  path: /{id}
+  controller: App\Controller\Web\Admin\EventAdminController::getOne
+  methods: ['GET']

@@ -24,6 +24,7 @@ accepted: Aceito
 action: Ação
 actions: Ações
 activity: Atividade
+activities: Atividades
 active: Ativo
 activity_area: Área de atuação
 activity_created: Área de atuação foi criada
@@ -432,6 +433,7 @@ reset: Redefinir
 reset_password: Redefinir Senha
 results: Resultados
 rejected: Rejeitados
+refuse: Recusar
 roles: Papéis
 role.admin: Administrador
 role.manager: Gerente
@@ -541,6 +543,7 @@ status_published: Publicado
 street: Logradouro
 subscribe: Inscreva-se
 subsites: Subsites
+subtitle: Subtítulo
 suggestions: Sugestões
 
 your_name: Digite seu nome
