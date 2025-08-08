@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\DTO\InscriptionEventDto;
 use App\Entity\InscriptionEvent;
+use App\Enum\InscriptionEventStatusEnum;
 use App\Exception\InscriptionEvent\AlreadyInscriptionEventException;
 use App\Exception\InscriptionEvent\InscriptionEventResourceNotFoundException;
 use App\Repository\Interface\InscriptionEventRepositoryInterface;
@@ -28,9 +29,9 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         parent::__construct($security, $serializer, $validator);
     }
 
-    public function list(Uuid $eventId, int $limit = 50): array
+    public function list(Uuid $event, int $limit = 50): array
     {
-        return $this->repository->findInscriptionsByEvent($eventId->toRfc4122(), $limit);
+        return $this->repository->findInscriptionsByEvent($event->toRfc4122(), $limit);
     }
 
     public function get(Uuid $event, Uuid $id): InscriptionEvent
@@ -97,5 +98,12 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         $inscriptionEventObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($inscriptionEventObj);
+    }
+
+    public function refuse(Uuid $event, Uuid $id): void
+    {
+        $inscription = $this->get($event, $id);
+        $inscription->setStatus(InscriptionEventStatusEnum::CANCELLED->value);
+        $this->repository->save($inscription);
     }
 }

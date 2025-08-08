@@ -24,6 +24,7 @@ accepted: Accepted
 action: Action
 actions: Actions
 activity: Activity
+activities: Activities
 active: Active
 activity_area: Area of activity
 activity_created: Area of activity was created
@@ -89,6 +90,7 @@ black: Black
 
 calendar: Calendar
 cancel: Cancel
+cancelled: Cancelled
 capacity_accessibility: Capacity and Accessibility
 category: Category
 change_details: Change Details
@@ -108,6 +110,7 @@ connections: Connections
 configure: Configure
 confirm: Confirm
 confirm_password: Confirm Password
+confirmed: Confirmed
 continue: Continue
 contribute: Contribute
 control_panel: Control Panel
@@ -238,6 +241,7 @@ initiatives: Initiatives
 initiative_remove: Remove Initiative
 in_progress: In Progress
 inscriptions: Inscriptions
+inscription_refused: Inscription refused
 input_search: Search for keywords
 introduction: Introduction
 inactive: Inactive
@@ -431,6 +435,7 @@ required_field: Required Field
 report: Report
 results: Results
 rejected: Rejected
+refuse: Refuse
 roles: Roles
 role.admin: Administrator
 role.manager: Manager
@@ -544,6 +549,8 @@ street: Street
 suggestions: Suggestions
 subscribe: Subscribe
 subsites: Subsites
+subtitle: Subtitle
+suspended: Suspended
 your_name: Enter your name
 your_question: Write your question
 

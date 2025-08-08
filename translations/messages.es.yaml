@@ -24,6 +24,7 @@ accepted: Aceptado
 action: Acción
 actions: Acciones
 activity: Actividad
+activities: Actividades
 active: Activo
 activity_area: Área de actividad
 activity_created: Se creó el área de actividad
@@ -89,6 +90,7 @@ black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+cancelled: Cancelado
 capacity_accessibility: Capacidad y Accesibilidad
 category: Categoría
 change_details: Cambiar Detalles
@@ -108,6 +110,7 @@ connections: Conexiones
 configure: Configurar
 confirm: Confirmar
 confirm_password: Confirmar Contraseña
+confirmed: Confirmado
 continue: Continuar
 contribute: Contribuir
 control_panel: Panel de control
@@ -237,6 +240,7 @@ initiative_data: Datos de la Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
 inscriptions: Inscripciones
+inscription_refused: Inscripción rechazada
 input_search: Buscar por palabras clave
 introduction: Presentación
 inactive: Inactivo
@@ -433,6 +437,7 @@ reset: Reiniciar
 reset_password: Restablecer la contraseña
 results: Resultados
 rejected: Rechazado
+refuse: Rechazar
 roles: Papeles
 role.admin: Administrador
 role.manager: Gerente
@@ -542,6 +547,8 @@ status_published: Publicado
 suggestions: Sugerencias
 subscribe: Suscribir
 subsites: Subsitios
+subtitle: Subtítulo
+suspended: Suspenso
 street: Vía Pública
 
 higher: Superior
