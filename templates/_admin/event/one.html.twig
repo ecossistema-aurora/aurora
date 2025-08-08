@@ -7,6 +7,8 @@
         {% include "_components/side-bar.html.twig" %}
         {% include '_components/modal-confirm-remove.html.twig' %}
 
+        {% from '/_admin/event/_partials/macro/inscription-status-badge.twig' import statusBadge %}
+
         <div class="management-content w-100 p-4">
             <div class="row">
                 <div class="col-12">
@@ -135,6 +137,7 @@
                                     <thead class="table-dark">
                                         <tr>
                                             <th>{{ 'name'|trans }}</th>
+                                            <th>{{ 'status'|trans }}</th>
                                             <th>{{ 'created_at'|trans }}</th>
                                             <th>{{ 'actions'|trans }}</th>
                                         </tr>
@@ -142,14 +145,28 @@
                                     <tbody>
                                     {% for inscription in inscriptions %}
                                         <tr>
-                                            <td>
-                                                <span>{{ inscription.agent.name }}</span>
-                                            </td>
+                                            <td>{{ inscription.agent.name }}</td>
+                                            <td>{{ statusBadge(inscription.status) }}</td>
                                             <td>{{ inscription.createdAt.format('d/m/Y H:i:s') }}</td>
                                             <td>
-                                                <button class="btn btn-outline-danger btn-sm">
-                                                    {{ 'refuse'|trans }}
-                                                </button>
+                                                {% if inscription.status != constant('App\\Enum\\InscriptionEventStatusEnum::CANCELLED').value %}
+                                                    <button
+                                                            data-cy="refuse-inscription-{{ loop.index }}"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#modalRemoveConfirm"
+                                                            onclick="confirmRemove(this, '{{ 'refuse'|trans|escape('js') }}')"
+                                                            data-href="{{ path(
+                                                                'admin_event_refuse_inscription',
+                                                                {
+                                                                    id: event.id,
+                                                                    inscription: inscription.id
+                                                                }
+                                                            ) }}"
+                                                            class="btn btn-outline-danger btn-sm"
+                                                    >
+                                                        {{ 'refuse'|trans }}
+                                                    </button>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     {% endfor %}

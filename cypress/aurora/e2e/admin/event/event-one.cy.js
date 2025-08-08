@@ -40,4 +40,34 @@ describe('Painel de Controle - Página de detalhar um evento', () => {
         cy.get('table').contains('Anna Kelly');
         cy.get('table').contains('Henrique');
     });
+
+    it('Garante que conseguimos recusar a participação de um usuário ao evento', () => {
+        cy.get('#pills-inscriptions-tab').click();
+
+        cy.get('tbody tr').first().as('firsLine');
+
+        cy.get('@firsLine').within(() => {
+            cy.get('[data-column-id="nome"]').should('contain', 'Sara Jennifer');
+
+            cy.get('[data-cy^="refuse-inscription-"]').click();
+        });
+
+        cy.get('#modalRemoveConfirm').should('be.visible');
+        cy.contains('a', 'Confirmar').click();
+
+        cy.get('.toast-body')
+            .should('contain', 'Inscrição recusada');
+
+        cy.get('#pills-inscriptions-tab').click();
+
+        cy.get('@firsLine').within(() => {
+            cy.get('[data-column-id="status"] .badge')
+                .should('have.class', 'bg-warning')
+                .and('contain', 'Suspenso');
+        });
+
+        cy.get('@firsLine').within(() => {
+            cy.get('[data-cy^="refuse-inscription-"]').should('not.exist');
+        });
+    });
 })
