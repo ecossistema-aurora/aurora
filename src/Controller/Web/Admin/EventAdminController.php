@@ -206,4 +206,14 @@ class EventAdminController extends AbstractAdminController
             ]);
         }
     }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function refuseInscription(Uuid $id, Uuid $inscription): Response
+    {
+        $this->inscriptionService->refuse($id, $inscription);
+
+        $this->addFlashSuccess($this->translator->trans('inscription_refused'));
+
+        return $this->getOne($id);
+    }
 }

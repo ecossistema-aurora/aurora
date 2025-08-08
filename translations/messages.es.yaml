@@ -90,6 +90,7 @@ black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+cancelled: Cancelado
 capacity_accessibility: Capacidad y Accesibilidad
 category: Categoría
 change_details: Cambiar Detalles
@@ -109,6 +110,7 @@ connections: Conexiones
 configure: Configurar
 confirm: Confirmar
 confirm_password: Confirmar Contraseña
+confirmed: Confirmado
 continue: Continuar
 contribute: Contribuir
 control_panel: Panel de control
@@ -238,6 +240,7 @@ initiative_data: Datos de la Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
 inscriptions: Inscripciones
+inscription_refused: Inscripción rechazada
 input_search: Buscar por palabras clave
 introduction: Presentación
 inactive: Inactivo
@@ -545,6 +548,7 @@ suggestions: Sugerencias
 subscribe: Suscribir
 subsites: Subsitios
 subtitle: Subtítulo
+suspended: Suspenso
 street: Vía Pública
 
 higher: Superior
