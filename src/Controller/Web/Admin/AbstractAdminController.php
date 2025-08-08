@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractAdminController extends AbstractWebController
 {
-    public const ACCESS_DENIED_RESPONSE_CODE = Response::HTTP_NOT_FOUND;
+    public const int ACCESS_DENIED_RESPONSE_CODE = Response::HTTP_NOT_FOUND;
 
     protected function render(string $view, array $parameters = [], ?Response $response = null, string $parentPath = '_admin/'): Response
     {

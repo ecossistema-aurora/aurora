@@ -42,7 +42,7 @@
                                         {% if item.deletedAt %}
                                             <span class="text-secondary">{{ item.name }}</span>
                                         {% else %}
-                                            <a href="{{ path('web_event_show', {id: item.id}) }}">{{ item.name }}</a>
+                                            <a href="{{ path('admin_event_get', {id: item.id}) }}">{{ item.name }}</a>
                                         {% endif %}
                                     </td>
                                     <td>

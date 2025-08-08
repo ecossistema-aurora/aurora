@@ -24,6 +24,7 @@ accepted: Aceptado
 action: Acción
 actions: Acciones
 activity: Actividad
+activities: Actividades
 active: Activo
 activity_area: Área de actividad
 activity_created: Se creó el área de actividad
@@ -433,6 +434,7 @@ reset: Reiniciar
 reset_password: Restablecer la contraseña
 results: Resultados
 rejected: Rechazado
+refuse: Rechazar
 roles: Papeles
 role.admin: Administrador
 role.manager: Gerente
@@ -542,6 +544,7 @@ status_published: Publicado
 suggestions: Sugerencias
 subscribe: Suscribir
 subsites: Subsitios
+subtitle: Subtítulo
 street: Vía Pública
 
 higher: Superior

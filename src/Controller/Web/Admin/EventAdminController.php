@@ -9,6 +9,7 @@ use App\Enum\EventFormatEnum;
 use App\Enum\UserRolesEnum;
 use App\Service\Interface\CulturalLanguageServiceInterface;
 use App\Service\Interface\EventServiceInterface;
+use App\Service\Interface\InscriptionEventServiceInterface;
 use App\Service\Interface\TagServiceInterface;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -27,12 +28,29 @@ class EventAdminController extends AbstractAdminController
 
     public function __construct(
         private readonly EventServiceInterface $service,
+        private readonly InscriptionEventServiceInterface $inscriptionService,
         private readonly TranslatorInterface $translator,
         private readonly EventTimelineDocumentService $documentService,
         private readonly Security $security,
         private readonly TagServiceInterface $tagService,
         private readonly CulturalLanguageServiceInterface $culturalLanguageService,
     ) {
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function getOne(Uuid $id): Response
+    {
+        $event = $this->service->get($id);
+
+        $createdById = $event->getCreatedBy()->getId()->toRfc4122();
+
+        $inscriptions = $this->inscriptionService->list($id);
+
+        return $this->render('_admin/event/one.html.twig', [
+            'event' => $event,
+            'inscriptions' => $inscriptions,
+            'createdById' => $createdById,
+        ], parentPath: '');
     }
 
     #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]

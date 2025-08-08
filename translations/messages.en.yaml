@@ -24,6 +24,7 @@ accepted: Accepted
 action: Action
 actions: Actions
 activity: Activity
+activities: Activities
 active: Active
 activity_area: Area of activity
 activity_created: Area of activity was created
@@ -431,6 +432,7 @@ required_field: Required Field
 report: Report
 results: Results
 rejected: Rejected
+refuse: Refuse
 roles: Roles
 role.admin: Administrator
 role.manager: Manager
@@ -544,6 +546,7 @@ street: Street
 suggestions: Suggestions
 subscribe: Subscribe
 subsites: Subsites
+subtitle: Subtitle
 your_name: Enter your name
 your_question: Write your question
 

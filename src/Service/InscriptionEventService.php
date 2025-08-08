@@ -28,9 +28,9 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         parent::__construct($security, $serializer, $validator);
     }
 
-    public function list(Uuid $eventId, int $limit = 50): array
+    public function list(Uuid $event, int $limit = 50): array
     {
-        return $this->repository->findInscriptionsByEvent($eventId->toRfc4122(), $limit);
+        return $this->repository->findInscriptionsByEvent($event->toRfc4122(), $limit);
     }
 
     public function get(Uuid $event, Uuid $id): InscriptionEvent
