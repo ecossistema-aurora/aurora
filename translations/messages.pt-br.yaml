@@ -90,6 +90,7 @@ black: Preta
 
 calendar: Calendário
 cancel: Cancelar
+cancelled: Cancelado
 capacity_accessibility: Capacidade e Acessibilidade
 category: Categoria
 change_details: Detalhes das Mudanças
@@ -108,6 +109,7 @@ click_here: Clique aqui
 connections: Conexões
 confirm: Confirmar
 confirm_password: Confirmar senha
+confirmed: Confirmado
 continue: Continuar
 contribute: Contribua
 control_panel: Painel de Controle
@@ -239,6 +241,7 @@ initiative_remove: Iniciativa excluída
 in_progress: Em andamento
 input_search: Busque por palavras-chave
 inscriptions: Inscrições
+inscription_refused: Inscrição recusada
 introduction: Apresentação
 inactive: Inativo
 is_itinerant: É agente itinerante?
@@ -544,6 +547,7 @@ street: Logradouro
 subscribe: Inscreva-se
 subsites: Subsites
 subtitle: Subtítulo
+suspended: Suspenso
 suggestions: Sugestões
 
 your_name: Digite seu nome

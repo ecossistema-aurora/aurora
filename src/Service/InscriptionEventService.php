@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\DTO\InscriptionEventDto;
 use App\Entity\InscriptionEvent;
+use App\Enum\InscriptionEventStatusEnum;
 use App\Exception\InscriptionEvent\AlreadyInscriptionEventException;
 use App\Exception\InscriptionEvent\InscriptionEventResourceNotFoundException;
 use App\Repository\Interface\InscriptionEventRepositoryInterface;
@@ -97,5 +98,12 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         $inscriptionEventObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($inscriptionEventObj);
+    }
+
+    public function refuse(Uuid $event, Uuid $id): void
+    {
+        $inscription = $this->get($event, $id);
+        $inscription->setStatus(InscriptionEventStatusEnum::SUSPENDED->value);
+        $this->repository->save($inscription);
     }
 }
