@@ -242,6 +242,7 @@ in_progress: Em andamento
 input_search: Busque por palavras-chave
 inscriptions: Inscrições
 inscription_refused: Inscrição recusada
+inscription_suspended: Inscrição suspensa
 introduction: Apresentação
 inactive: Inativo
 is_itinerant: É agente itinerante?
@@ -547,6 +548,7 @@ street: Logradouro
 subscribe: Inscreva-se
 subsites: Subsites
 subtitle: Subtítulo
+suspend: Suspender
 suspended: Suspenso
 suggestions: Sugestões
 

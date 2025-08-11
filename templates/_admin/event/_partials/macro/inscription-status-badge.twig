@@ -6,6 +6,6 @@
     {% elseif status == constant('App\\Enum\\InscriptionEventStatusEnum::CONFIRMED').value %}
         <span class="badge bg-success">{{ 'confirmed'|trans }}</span>
     {% elseif status == constant('App\\Enum\\InscriptionEventStatusEnum::SUSPENDED').value %}
-        <span class="badge bg-warning">{{ 'suspended'|trans }}</span>
+        <span class="badge bg-warning text-black">{{ 'suspended'|trans }}</span>
     {% endif %}
 {% endmacro %}

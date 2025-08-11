@@ -208,11 +208,11 @@ class EventAdminController extends AbstractAdminController
     }
 
     #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
-    public function refuseInscription(Uuid $id, Uuid $inscription): Response
+    public function suspendInscription(Uuid $id, Uuid $inscription): Response
     {
-        $this->inscriptionService->refuse($id, $inscription);
+        $this->inscriptionService->suspend($id, $inscription);
 
-        $this->addFlashSuccess($this->translator->trans('inscription_refused'));
+        $this->addFlashSuccess($this->translator->trans('inscription_suspended'));
 
         return $this->getOne($id);
     }

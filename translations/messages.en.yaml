@@ -242,6 +242,7 @@ initiative_remove: Remove Initiative
 in_progress: In Progress
 inscriptions: Inscriptions
 inscription_refused: Inscription refused
+inscription_suspended: Inscription suspended
 input_search: Search for keywords
 introduction: Introduction
 inactive: Inactive
@@ -550,6 +551,7 @@ suggestions: Suggestions
 subscribe: Subscribe
 subsites: Subsites
 subtitle: Subtitle
+suspend: Suspend
 suspended: Suspended
 your_name: Enter your name
 your_question: Write your question

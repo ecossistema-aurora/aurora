@@ -241,6 +241,7 @@ initiatives: Iniciativas
 in_progress: En Progreso
 inscriptions: Inscripciones
 inscription_refused: Inscripción rechazada
+inscription_suspended: Inscripción suspensa
 input_search: Buscar por palabras clave
 introduction: Presentación
 inactive: Inactivo
@@ -548,6 +549,7 @@ suggestions: Sugerencias
 subscribe: Suscribir
 subsites: Subsitios
 subtitle: Subtítulo
+suspend: Suspender
 suspended: Suspenso
 street: Vía Pública
 
