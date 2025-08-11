@@ -33,7 +33,7 @@ get:
   controller: App\Controller\Web\Admin\EventAdminController::getOne
   methods: ['GET']
 
-refuse_inscription:
-  path: /{id}/recusar/{inscription}
-  controller: App\Controller\Web\Admin\EventAdminController::refuseInscription
+suspend_inscription:
+  path: /{id}/suspender/{inscription}
+  controller: App\Controller\Web\Admin\EventAdminController::suspendInscription
   methods: ['GET']

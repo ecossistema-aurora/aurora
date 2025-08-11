@@ -49,14 +49,14 @@ describe('Painel de Controle - Página de detalhar um evento', () => {
         cy.get('@firsLine').within(() => {
             cy.get('[data-column-id="nome"]').should('contain', 'Sara Jennifer');
 
-            cy.get('[data-cy^="refuse-inscription-"]').click();
+            cy.get('[data-cy^="suspend-inscription-"]').click();
         });
 
         cy.get('#modalRemoveConfirm').should('be.visible');
         cy.contains('a', 'Confirmar').click();
 
         cy.get('.toast-body')
-            .should('contain', 'Inscrição recusada');
+            .should('contain', 'Inscrição suspensa');
 
         cy.get('#pills-inscriptions-tab').click();
 
@@ -67,7 +67,7 @@ describe('Painel de Controle - Página de detalhar um evento', () => {
         });
 
         cy.get('@firsLine').within(() => {
-            cy.get('[data-cy^="refuse-inscription-"]').should('not.exist');
+            cy.get('[data-cy^="suspend-inscription-"]').should('not.exist');
         });
     });
 })

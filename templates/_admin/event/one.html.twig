@@ -149,14 +149,14 @@
                                             <td>{{ statusBadge(inscription.status) }}</td>
                                             <td>{{ inscription.createdAt.format('d/m/Y H:i:s') }}</td>
                                             <td>
-                                                {% if inscription.status != constant('App\\Enum\\InscriptionEventStatusEnum::CANCELLED').value %}
+                                                {% if inscription.status != constant('App\\Enum\\InscriptionEventStatusEnum::SUSPENDED').value %}
                                                     <button
-                                                            data-cy="refuse-inscription-{{ loop.index }}"
+                                                            data-cy="suspend-inscription-{{ loop.index }}"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#modalRemoveConfirm"
-                                                            onclick="confirmRemove(this, '{{ 'refuse'|trans|escape('js') }}')"
+                                                            onclick="confirmRemove(this, '{{ 'suspend'|trans|escape('js') }}')"
                                                             data-href="{{ path(
-                                                                'admin_event_refuse_inscription',
+                                                                'admin_event_suspend_inscription',
                                                                 {
                                                                     id: event.id,
                                                                     inscription: inscription.id
@@ -164,7 +164,7 @@
                                                             ) }}"
                                                             class="btn btn-outline-danger btn-sm"
                                                     >
-                                                        {{ 'refuse'|trans }}
+                                                        {{ 'suspend'|trans }}
                                                     </button>
                                                 {% endif %}
                                             </td>

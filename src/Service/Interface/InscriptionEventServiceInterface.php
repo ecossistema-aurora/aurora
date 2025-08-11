@@ -17,7 +17,7 @@ interface InscriptionEventServiceInterface
 
     public function remove(Uuid $event, Uuid $id): void;
 
-    public function refuse(Uuid $event, Uuid $id): void;
+    public function suspend(Uuid $event, Uuid $id): void;
 
     public function update(Uuid $event, Uuid $identifier, array $inscriptionEvent): InscriptionEvent;
 }

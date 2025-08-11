@@ -68,12 +68,12 @@ class InscriptionEventServiceTest extends AbstractApiTestCase
         }
     }
 
-    public function testRefuseAnInscription(): void
+    public function testSuspendAnInscription(): void
     {
         $inscription = $this->service->get(Uuid::fromString(EventFixtures::EVENT_ID_1), Uuid::fromString(InscriptionEventFixtures::INSCRIPTION_EVENT_ID_18));
         self::assertEquals($inscription->getStatus(), InscriptionEventStatusEnum::ACTIVE->value, 'The status should be active.');
 
-        $this->service->refuse(Uuid::fromString(EventFixtures::EVENT_ID_1), Uuid::fromString(InscriptionEventFixtures::INSCRIPTION_EVENT_ID_18));
+        $this->service->suspend(Uuid::fromString(EventFixtures::EVENT_ID_1), Uuid::fromString(InscriptionEventFixtures::INSCRIPTION_EVENT_ID_18));
 
         $inscription = $this->service->get(Uuid::fromString(EventFixtures::EVENT_ID_1), Uuid::fromString(InscriptionEventFixtures::INSCRIPTION_EVENT_ID_18));
         self::assertEquals($inscription->getStatus(), InscriptionEventStatusEnum::SUSPENDED->value, 'The status should be suspended.');

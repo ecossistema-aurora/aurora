@@ -100,7 +100,7 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         return $this->repository->save($inscriptionEventObj);
     }
 
-    public function refuse(Uuid $event, Uuid $id): void
+    public function suspend(Uuid $event, Uuid $id): void
     {
         $inscription = $this->get($event, $id);
         $inscription->setStatus(InscriptionEventStatusEnum::SUSPENDED->value);
