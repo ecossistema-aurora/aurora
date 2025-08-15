@@ -149,7 +149,7 @@
                                             <td>{{ statusBadge(inscription.status) }}</td>
                                             <td>{{ inscription.createdAt.format('d/m/Y H:i:s') }}</td>
                                             <td>
-                                                {% if inscription.status != constant('App\\Enum\\InscriptionEventStatusEnum::SUSPENDED').value %}
+                                                {% if inscription.status == constant('App\\Enum\\InscriptionEventStatusEnum::ACTIVE').value %}
                                                     <button
                                                             data-cy="suspend-inscription-{{ loop.index }}"
                                                             data-bs-toggle="modal"
@@ -166,6 +166,19 @@
                                                     >
                                                         {{ 'suspend'|trans }}
                                                     </button>
+                                                    <a
+                                                            data-cy="check-in-inscription-{{ loop.index }}"
+                                                            href="{{ path(
+                                                                'admin_event_check_in_inscription',
+                                                                {
+                                                                    id: event.id,
+                                                                    inscription: inscription.id
+                                                                }
+                                                            ) }}"
+                                                            class="btn btn-outline-success btn-sm"
+                                                    >
+                                                        {{ 'check_in'|trans }}
+                                                    </a>
                                                 {% endif %}
                                             </td>
                                         </tr>

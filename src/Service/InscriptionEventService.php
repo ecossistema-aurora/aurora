@@ -103,7 +103,18 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
     public function suspend(Uuid $event, Uuid $id): void
     {
         $inscription = $this->get($event, $id);
-        $inscription->setStatus(InscriptionEventStatusEnum::SUSPENDED->value);
+        $this->updateStatus($inscription, InscriptionEventStatusEnum::SUSPENDED);
+    }
+
+    public function checkIn(Uuid $event, Uuid $id): void
+    {
+        $inscription = $this->get($event, $id);
+        $this->updateStatus($inscription, InscriptionEventStatusEnum::CONFIRMED);
+    }
+
+    private function updateStatus(InscriptionEvent $inscription, InscriptionEventStatusEnum $statusEnum): void
+    {
+        $inscription->setStatus($statusEnum->value);
         $this->repository->save($inscription);
     }
 }

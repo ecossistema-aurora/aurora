@@ -37,3 +37,8 @@ suspend_inscription:
   path: /{id}/suspender/{inscription}
   controller: App\Controller\Web\Admin\EventAdminController::suspendInscription
   methods: ['GET']
+
+check_in_inscription:
+  path: /{id}/check-in/{inscription}
+  controller: App\Controller\Web\Admin\EventAdminController::checkInInscription
+  methods: ['GET']
