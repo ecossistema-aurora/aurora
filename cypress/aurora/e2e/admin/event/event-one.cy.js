@@ -70,4 +70,31 @@ describe('Painel de Controle - Página de detalhar um evento', () => {
             cy.get('[data-cy^="suspend-inscription-"]').should('not.exist');
         });
     });
+
+    it('Garante que conseguimos realizar check-in de um usuário ao evento', () => {
+        cy.get('#pills-inscriptions-tab').click();
+
+        cy.get('tbody tr').last().as('lastLine');
+
+        cy.get('@lastLine').within(() => {
+            cy.get('[data-column-id="nome"]').should('contain', 'Henrique');
+
+            cy.get('[data-cy^="check-in-inscription-"]').click();
+        });
+
+        cy.get('.toast-body')
+            .should('contain', 'Check In');
+
+        cy.get('#pills-inscriptions-tab').click();
+
+        cy.get('@lastLine').within(() => {
+            cy.get('[data-column-id="status"] .badge')
+                .should('have.class', 'bg-success')
+                .and('contain', 'Confirmado');
+        });
+
+        cy.get('@lastLine').within(() => {
+            cy.get('[data-cy^="check-in-inscription-"]').should('not.exist');
+        });
+    });
 })

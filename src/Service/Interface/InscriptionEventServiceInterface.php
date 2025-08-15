@@ -19,5 +19,7 @@ interface InscriptionEventServiceInterface
 
     public function suspend(Uuid $event, Uuid $id): void;
 
+    public function checkIn(Uuid $event, Uuid $id): void;
+
     public function update(Uuid $event, Uuid $identifier, array $inscriptionEvent): InscriptionEvent;
 }

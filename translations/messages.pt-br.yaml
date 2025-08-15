@@ -142,6 +142,8 @@ contacts: Contatos
 cultural_language: Linguagem cultural
 cultural_languages: Linguagens culturais
 confirm_user: Confirmar usuário
+check_in: Check In
+check_out: Check Out
 
 data_need_authorization_to_show: Os dados inseridos abaixo não serão exibidos publicamente, exceto os casos em que forem selecionadas as opções "Mostrar Publicamente".
 date: Data
