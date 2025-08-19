@@ -97,4 +97,48 @@ describe('Painel de Controle - Página de detalhar um evento', () => {
             cy.get('[data-cy^="check-in-inscription-"]').should('not.exist');
         });
     });
+
+    it('Garante que conseguimos realizar o download das inscrições em XLS', () => {
+        cy.intercept('GET', '**/inscricoes/download/xls').as('downloadXLS');
+
+        cy.get('#pills-inscriptions-tab').click();
+
+        cy.get('#dropdownExportInscriptions').click();
+
+        cy.get('#dropdownExportInscriptions + .dropdown-menu').contains('a', 'XLS').click();
+
+        cy.wait('@downloadXLS', { timeout: 10000 }).then(interception => {
+            const downloadUrl = interception.request.url;
+
+            const fileName = 'inscriptions-Nordeste Literário.xls';
+
+            cy.downloadFile(downloadUrl, 'cypress/downloads', fileName);
+
+            cy.readFile(`cypress/downloads/${fileName}`).should('exist');
+
+            cy.wrap(fileName).should('include', '.xls');
+        });
+    });
+
+    it('Garante que conseguimos realizar o download das inscrições em PDF', () => {
+        cy.intercept('GET', '**/inscricoes/download/pdf*').as('downloadPDF');
+
+        cy.get('#pills-inscriptions-tab').click();
+
+        cy.get('#dropdownExportInscriptions').click();
+
+        cy.get('#dropdownExportInscriptions + .dropdown-menu').contains('a', 'PDF').click();
+
+        cy.wait('@downloadPDF', { timeout: 10000 }).then(interception => {
+            const downloadUrl = interception.request.url;
+
+            const fileName = 'inscriptions-Nordeste Literário.pdf';
+
+            cy.downloadFile(downloadUrl, 'cypress/downloads', fileName);
+
+            cy.readFile(`cypress/downloads/${fileName}`).should('exist');
+
+            cy.wrap(fileName).should('include', '.pdf');
+        });
+    });
 })

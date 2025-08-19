@@ -1,0 +1,4 @@
+download:
+    path: /download/{format}
+    controller: App\Controller\Web\Admin\InscriptionEventController::download
+    methods: [GET]
