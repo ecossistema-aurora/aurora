@@ -29,6 +29,14 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    _instanceof:
+        App\Service\ExporterInscriptions\InscriptionExporterStrategyInterface:
+            tags: ['app.inscription_exporter_strategy']
+
+    App\Service\InscriptionEventExportService:
+        arguments:
+            $strategies: !tagged_iterator app.inscription_exporter_strategy
+
     App\Controller\:
         resource: '../src/Controller/'
         tags: [ 'controller.service_arguments' ]

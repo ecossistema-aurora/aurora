@@ -9,6 +9,7 @@ use App\Enum\EventFormatEnum;
 use App\Enum\SocialNetworkEnum;
 use App\Helper\DateFormatHelper;
 use App\Repository\EventRepository;
+use App\Service\ExporterInscriptions\ExportableSourceInterface;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,7 +21,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
-class Event extends AbstractEntity
+class Event extends AbstractEntity implements ExportableSourceInterface
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
@@ -625,5 +626,10 @@ class Event extends AbstractEntity
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
         ];
+    }
+
+    public function getExportSourceName(): string
+    {
+        return $this->getName();
     }
 }

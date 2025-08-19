@@ -18,6 +18,11 @@ admin_event:
   prefix: /painel/eventos
   name_prefix: admin_event_
 
+admin_event_inscription:
+    resource: 'admin/event-inscription.yaml'
+    prefix: /painel/eventos/{id}/inscricoes
+    name_prefix: admin_event_inscription_
+
 admin_faq:
   resource: 'admin/faq.yaml'
   prefix: /painel/faq

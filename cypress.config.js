@@ -1,4 +1,6 @@
 const { defineConfig } = require("cypress");
+const { downloadFile } = require("cypress-downloadfile/lib/addPlugin");
+
 require('dotenv').config();
 
 module.exports = defineConfig({
@@ -8,6 +10,7 @@ module.exports = defineConfig({
     baseUrl: process.env.CYPRESS_BASE_URL,
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
+        on('task', { downloadFile })
     },
     specPattern: [
       'cypress/aurora/e2e/api/**/*.cy.js',
