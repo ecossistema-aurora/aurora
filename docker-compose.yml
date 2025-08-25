@@ -65,6 +65,7 @@ services:
   cypress:
     container_name: aurora-cypress
     image: cypress/included:14.4.0
+    user: "${CYPRESS_USER:-${UID:-1000}:${GID:-1000}}"
     profiles:
       - tests
     environment:
