@@ -82,6 +82,7 @@ attachments_and_links: Attachemnts and Links
 attitudinal_accessibility: Attitudinal Accessibility
 audio_description: Audio Description
 awaiting: Awaiting
+agent_has_already_signed_up: The agent has already signed up.
 
 back: Back
 bank_details: Bank Details
@@ -243,6 +244,7 @@ initiatives: Initiatives
 initiative_remove: Remove Initiative
 in_progress: In Progress
 inscriptions: Inscriptions
+inscription_realized: Inscription realized
 inscription_refused: Inscription refused
 inscription_suspended: Inscription suspended
 input_search: Search for keywords
@@ -1099,3 +1101,7 @@ zip_code:
   generic_error: Error fetching ZIP code. Check your connection or try again.
   city_not_found: City not found. Please select manually.
   state_not_found: State not found. Please select manually.
+
+#exceptions
+exception:
+  already_inscription_event: You have already registered for the event.

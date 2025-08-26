@@ -54,4 +54,13 @@ describe('Página de detalhes do evento', () => {
         cy.get('.nav-pills > li > a').contains('Videos').should('be.visible');
         cy.get('.nav-pills > li > a').contains('Imagens').should('be.visible');
     });
+
+    it('Garante que é possível se inscrever no evento uma única vez no evento', () => {
+        cy.login('henriquelopeslima@example.com', 'Aurora@2024');
+        cy.visit('/eventos/4b92555b-9f6b-4163-8977-c38af0df36b0');
+        cy.get('button').contains('Inscreva-se').click();
+        cy.get('.toast').should('contain', 'Inscrição realizada');
+        cy.get('button').contains('Inscreva-se').click();
+        cy.get('.toast').should('contain', 'Você já se inscreveu no evento');
+    });
 });
