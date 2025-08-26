@@ -242,6 +242,7 @@ initiative_data: Datos de la Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
 inscriptions: Inscripciones
+inscription_realized: Inscripción realizada
 inscription_refused: Inscripción rechazada
 inscription_suspended: Inscripción suspensa
 input_search: Buscar por palabras clave
@@ -1099,3 +1100,7 @@ zip_code:
   generic_error: Error al buscar el código postal. Verifique su conexión o intente nuevamente.
   city_not_found: Ciudad no encontrada. Por favor, seleccione manualmente.
   state_not_found: Estado no encontrado. Por favor, seleccione manualmente.
+
+#exceptions
+exception:
+  already_inscription_event: Ya te has inscrito en el evento.

@@ -10,6 +10,7 @@ use App\Enum\InscriptionEventStatusEnum;
 use App\Exception\InscriptionEvent\AlreadyInscriptionEventException;
 use App\Exception\InscriptionEvent\InscriptionEventResourceNotFoundException;
 use App\Repository\Interface\InscriptionEventRepositoryInterface;
+use App\Service\Interface\EmailServiceInterface;
 use App\Service\Interface\InscriptionEventServiceInterface;
 use DateTime;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
@@ -17,6 +18,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 readonly class InscriptionEventService extends AbstractEntityService implements InscriptionEventServiceInterface
 {
@@ -25,6 +27,8 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         private readonly SerializerInterface $serializer,
         private readonly ValidatorInterface $validator,
         private readonly InscriptionEventRepositoryInterface $repository,
+        private readonly EmailServiceInterface $emailService,
+        private readonly TranslatorInterface $translator
     ) {
         parent::__construct($security, $serializer, $validator);
     }
@@ -54,7 +58,20 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
         $inscriptionEventObj = $this->serializer->denormalize($inscriptionEventDto, InscriptionEvent::class);
 
         try {
-            return $this->repository->save($inscriptionEventObj);
+            $inscriptionEvent = $this->repository->save($inscriptionEventObj);
+
+            $this->emailService->sendTemplatedEmail(
+                [$this->security->getUser()->getEmail()],
+                $this->translator->trans('account_confirmation'),
+                '_emails/inscription-event/inscription-confirmation.html.twig',
+                [
+                    'firstName' => $this->security->getUser()->getFirstName(),
+                    'eventName' => $inscriptionEvent->getEvent()->getName(),
+                    'protocol' => $inscriptionEvent->getId()->toString(),
+                ]
+            );
+
+            return $inscriptionEvent;
         } catch (UniqueConstraintViolationException) {
             throw new AlreadyInscriptionEventException();
         }

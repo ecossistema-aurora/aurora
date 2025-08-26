@@ -243,6 +243,7 @@ initiative_remove: Iniciativa excluída
 in_progress: Em andamento
 input_search: Busque por palavras-chave
 inscriptions: Inscrições
+inscription_realized: Inscrição realizada
 inscription_refused: Inscrição recusada
 inscription_suspended: Inscrição suspensa
 introduction: Apresentação
@@ -1095,3 +1096,7 @@ zip_code:
   generic_error: Erro ao buscar CEP. Verifique sua conexão ou tente novamente.
   city_not_found: Cidade não encontrada. Por favor, selecione manualmente.
   state_not_found: Estado não encontrado. Por favor, selecione manualmente.
+
+#exceptions
+exception:
+  already_inscription_event: Você já se inscreveu no evento.
