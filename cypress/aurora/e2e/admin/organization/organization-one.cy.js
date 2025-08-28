@@ -3,7 +3,7 @@ describe('Painel de Controle - Página de listar Organizações', () => {
         cy.viewport(1920, 1080);
         cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
         cy.visit('/painel/');
-        cy.get(':nth-child(8) > :nth-child(5) > .nav-link').contains('Minhas Organizações').click();
+        cy.get('.nav > .nav-item').contains('Minhas Organizações').click();
     });
 
     it('Garante que a página de detalhes de uma organização existe e funciona', () => {

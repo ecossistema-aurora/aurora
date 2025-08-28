@@ -8,6 +8,8 @@ use App\Entity\InscriptionEvent;
 
 interface InscriptionEventRepositoryInterface
 {
+    public function findMyInscriptions(string $agent, int $limit): array;
+
     public function findInscriptionsByEvent(string $eventId, int $limit): array;
 
     public function findOneInscriptionEvent(string $inscriptionId, string $eventId): ?InscriptionEvent;

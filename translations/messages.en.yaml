@@ -865,6 +865,13 @@ view:
   my-opportunity:
     title_opportunity: PNAB - Promotion of the Implementation of Cultural Actions
 
+  my_events:
+    subtitle: Manage event inscription
+    happening_now: Happening now
+    past: Past events
+    without_events: No events
+    events_found: Events found
+
   seal:
     awarded_by: Seal awarded by
     certificate-seal-validity: Certificate Seal Validity

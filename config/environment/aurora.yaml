@@ -191,6 +191,14 @@ sidebar:
         icon: payments
         text: accountability
 
+  my_events:
+    title: my_events
+    items:
+      admin_my_event_list:
+        acl: ['ROLE_USER']
+        icon: app_registration
+        text: my_subscriptions
+
   notice_opportunity:
     title: footer.notices_opportunities
     items:
