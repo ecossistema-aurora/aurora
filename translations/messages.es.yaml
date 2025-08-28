@@ -664,6 +664,7 @@ view:
     message:
       deleted: El agente ha sido eliminado
       created: Nuevo agente ha sido creado
+      updated: Agente actualizado
     quantity:
       total: Agentes Encontrados
       culture: Agentes Culturales

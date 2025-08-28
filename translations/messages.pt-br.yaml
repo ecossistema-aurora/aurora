@@ -660,6 +660,7 @@ view:
     message:
       deleted: O Agente foi excluído
       created: Novo Agente criado
+      updated: Agente Atualizado
     quantity:
       total: Agentes Encontrados
       culture: Agentes Culturais

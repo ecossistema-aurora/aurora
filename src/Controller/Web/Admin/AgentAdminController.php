@@ -24,8 +24,8 @@ class AgentAdminController extends AbstractAdminController
     private const string VIEW_ADD = 'agent/create.html.twig';
     private const string VIEW_EDIT = 'agent/edit.html.twig';
 
-    public const CREATE_FORM_ID = 'add-agent';
-    public const EDIT_FORM_ID = 'edit-agent';
+    public const string CREATE_FORM_ID = 'add-agent';
+    public const string EDIT_FORM_ID = 'edit-agent';
 
     public function __construct(
         private readonly AgentServiceInterface $service,
@@ -132,25 +132,25 @@ class AgentAdminController extends AbstractAdminController
         }
 
         $this->validCsrfToken(self::EDIT_FORM_ID, $request);
-
         try {
             $this->service->update($id, [
                 'name' => $request->get('name'),
-                'shortBio' => $request->get('shortBio'),
-                'longBio' => $request->get('longBio'),
+                'shortBio' => $request->request->get('short_description'),
+                'longBio' => $request->request->get('long_description'),
             ]);
 
-            $this->addFlash(FlashMessageTypeEnum::SUCCESS->value, $this->translator->trans('view.agent.message.created'));
+            $this->addFlash(FlashMessageTypeEnum::SUCCESS->value, $this->translator->trans('view.agent.message.updated'));
         } catch (ValidatorException $exception) {
             $errors = $exception->getConstraintViolationList();
         } catch (Exception $exception) {
             $errors = [$exception->getMessage()];
         }
 
-        if (isset($errors) && false === empty($errors)) {
-            return $this->render('agent/edit.html.twig', [
+        if (false === empty($errors)) {
+            return $this->render(self::VIEW_EDIT, [
                 'agent' => $agent,
                 'errors' => $errors,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
 
