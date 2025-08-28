@@ -37,6 +37,15 @@ class InscriptionEventServiceTest extends AbstractApiTestCase
         self::assertInstanceOf(InscriptionEvent::class, $result);
     }
 
+    public function testListMyInscriptionEvent(): void
+    {
+        $result = $this->service->listMyInscriptions();
+        self::assertIsArray($result);
+        foreach ($result as $inscriptionEvent) {
+            self::assertInstanceOf(InscriptionEvent::class, $inscriptionEvent);
+        }
+    }
+
     public function testNotFindAnInscriptionEvent(): void
     {
         self::expectException(InscriptionEventResourceNotFoundException::class);

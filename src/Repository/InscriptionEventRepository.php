@@ -15,6 +15,20 @@ final class InscriptionEventRepository extends AbstractRepository implements Ins
         parent::__construct($registry, InscriptionEvent::class);
     }
 
+    public function findMyInscriptions(string $agent, int $limit): array
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        return $qb->select('ie')
+            ->from(InscriptionEvent::class, 'ie')
+            ->where('ie.agent = :agent')
+            ->setParameter('agent', $agent)
+            ->setMaxResults($limit)
+            ->orderBy('ie.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findInscriptionsByEvent(string $eventId, int $limit): array
     {
         $qb = $this->getEntityManager()->createQueryBuilder();

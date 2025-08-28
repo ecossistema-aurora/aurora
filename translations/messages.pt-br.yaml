@@ -857,6 +857,13 @@ view:
   my-opportunity:
     title_opportunity: PNAB - Fomento à Execução de Ações Culturais
 
+  my_events:
+    subtitle: Gerenciar as inscrições de eventos
+    happening_now: Acontecendo agora
+    past: Passados
+    without_events: Sem eventos
+    events_found: Eventos encontrados
+
   management:
     management_of: Gestão de
     info: Nesta seção você visualiza e gerência seu perfil de usuário e outros selos criados.

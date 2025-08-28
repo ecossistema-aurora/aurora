@@ -88,6 +88,11 @@ admin_my_opportunity:
   prefix: /painel/minhas-oportunidades
   name_prefix: admin_my_opportunity_
 
+admin_my_event:
+  resource: 'admin/my-event-inscription.yaml'
+  prefix: /painel/meus-eventos
+  name_prefix: admin_my_event_
+
 admin_activity_area:
   resource: 'admin/activity-area.yaml'
   prefix: /painel/area-atuacao

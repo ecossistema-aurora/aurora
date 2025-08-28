@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\InscriptionEventDto;
+use App\Entity\Agent;
 use App\Entity\InscriptionEvent;
 use App\Enum\InscriptionEventStatusEnum;
 use App\Exception\InscriptionEvent\AlreadyInscriptionEventException;
@@ -133,5 +134,13 @@ readonly class InscriptionEventService extends AbstractEntityService implements 
     {
         $inscription->setStatus($statusEnum->value);
         $this->repository->save($inscription);
+    }
+
+    public function listMyInscriptions(): array
+    {
+        /* @var Agent $firstAgent */
+        $firstAgent = $this->security->getUser()->getAgents()->first();
+
+        return $this->repository->findMyInscriptions($firstAgent->getId()->toRfc4122(), 50);
     }
 }

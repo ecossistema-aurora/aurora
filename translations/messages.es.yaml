@@ -865,6 +865,13 @@ view:
   my-opportunity:
     title_opportunity: PNAB - Promoción de la Ejecución de Acciones Culturales
 
+  my_events:
+    subtitle: Gestionar inscripciones de eventos
+    happening_now: Sucediendo ahora
+    past: Pasados
+    without_events: Sin eventos
+    events_found: Eventos encontrados
+
   seal:
     awarded_by: Sello otorgado por
     certificate-seal-validity: Certificado de validez del sello
