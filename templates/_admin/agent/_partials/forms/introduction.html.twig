@@ -59,12 +59,12 @@
 
     <div class="mt-4">
         <label for="short-description">{{ 'short_description' | trans }}</label>
-        <textarea class="form-control" id="short-description" name="short_description" placeholder="{{ 'short_description' | trans }}" maxlength="400"></textarea>
+        <textarea class="form-control" id="short-description" name="short_description" placeholder="{{ 'short_description' | trans }}" maxlength="400" required>{{ agent.shortBio }}</textarea>
     </div>
 
     <div class="mt-4">
         <label for="long-description">{{ 'long_description' | trans }}</label>
-        <textarea class="form-control" id="long-description" name="long_description" placeholder="{{ 'long_description' | trans }}"></textarea>
+        <textarea class="form-control" id="long-description" name="long_description" placeholder="{{ 'long_description' | trans }}">{{ agent.longBio }}</textarea>
     </div>
 
     <div class="row mt-4">

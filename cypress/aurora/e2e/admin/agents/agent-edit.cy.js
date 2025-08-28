@@ -425,4 +425,10 @@ describe('Teste de navegação, validação e edição da página de Agentes', (
         cy.get('#tiktok')
             .should('be.visible');
     });
+
+    it('Garantir que se tiver erro no formulário o registro não será editado', () => {
+        cy.get('textarea[name="short_description"]').type('Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)');
+        cy.get('#agent-edit-form').submit();
+        cy.get('.toast-container > :nth-child(1)').contains('O valor é muito longo. Deveria ter 100 caracteres ou menos.');
+    });
 });
