@@ -29,6 +29,10 @@ class Opportunity extends AbstractEntity
     #[Groups('opportunity.get')]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('opportunity.get')]
+    private ?string $description = null;
+
     #[ORM\Column(nullable: true)]
     #[Groups('opportunity.get')]
     private ?string $image = null;
@@ -254,11 +258,22 @@ class Opportunity extends AbstractEntity
         $this->deletedAt = $deletedAt;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
     public function toArray(): array
     {
         return [
             'id' => $this->id?->toRfc4122(),
             'name' => $this->name,
+            'description' => $this->description,
             'parent' => $this->parent?->toArray(),
             'space' => $this->space?->toArray(),
             'initiative' => $this->initiative?->toArray(),

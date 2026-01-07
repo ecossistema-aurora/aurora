@@ -29,7 +29,7 @@
                 <div class="col">
                     <label class="fw-bold mb-2">{{ 'areas_of_expertise' | trans }}</label>
                     <p>
-                        {% for areaOfExpertise in opportunity.extraFields.areasOfActivity %}
+                        {% for areaOfExpertise in opportunity.extraFields.areasOfActivity ?? [] %}
                             <span class="text-opportunity">{{ areaOfExpertise }}</span>{{ loop.last ? '' : ',' }}
                         {% else %}
                             {{ 'not_informed' | trans }}
