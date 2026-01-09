@@ -447,6 +447,9 @@ roles: Papeles
 role.admin: Administrador
 role.manager: Gerente
 role.support: Soporte
+ROLE_ADMIN: Administrador
+ROLE_MANAGER: Gerente
+ROLE_USER: Usuário comum
 role.municipal_admin: Administrador Municipal
 role.company_admin: Administrador de la Empresa
 read_notifications: Notificaciones leídas

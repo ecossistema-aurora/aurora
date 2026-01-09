@@ -59,7 +59,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private string $status = UserStatusEnum::AWAITING_CONFIRMATION->value;
 
     #[ORM\Column(type: 'json')]
-    private array $roles = [];
+    private array $roles = ['ROLE_USER'];
 
     #[ORM\Column]
     #[Groups(['user.get'])]

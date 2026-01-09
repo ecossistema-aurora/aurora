@@ -7,6 +7,7 @@ namespace App\Service;
 use App\DTO\AgentDto;
 use App\Entity\Agent;
 use App\Entity\User;
+use App\Enum\UserRolesEnum;
 use App\Exception\Agent\AgentResourceNotFoundException;
 use App\Exception\Agent\CantRemoveUniqueAgentFromUserException;
 use App\Exception\ValidatorException;
@@ -85,7 +86,10 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
     {
         $userParams = $this->getDefaultParams();
 
-        if (null !== $this->security->getUser()) {
+        if (
+            null !== $this->security->getUser()
+            && false === $this->security->getUser()->isRole(UserRolesEnum::ROLE_ADMIN)
+        ) {
             $user = $this->security->getUser();
             $userParams['user'] = $user;
         }
@@ -137,8 +141,8 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         return [
             'id' => Uuid::v4()->toRfc4122(),
             'name' => "{$user['firstname']} {$user['lastname']}",
-            'shortBio' => 'Agente criado automaticamente',
-            'longBio' => 'Este agente foi criado automaticamente pelo sistema',
+            'shortBio' => '',
+            'longBio' => '',
             'culture' => false,
             'user' => $user['id'],
         ];
