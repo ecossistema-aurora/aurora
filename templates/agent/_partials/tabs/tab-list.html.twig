@@ -15,27 +15,37 @@
             </div>
         </div>
 
-        <div class="agent-card-body">
-            <p class="agent-area">
-                <strong>{{ 'areas_of_expertise' | trans }} (1):</strong>
-                <span class="agent-sub-area">DESENVOLVIMENTO</span>
-            </p>
-            <p class="agent-location">
-                <strong>{{ 'location' | trans }}:</strong> Goiânia (GO)
-            </p>
+        <div class="agent-card-body d-flex justify-content-between">
+            <div>
+                <p class="agent-area">
+                    <strong>{{ 'areas_of_expertise' | trans }}:</strong>
+                    <span class="agent-sub-area">{{ agent.extraFields.cargo ?? 'Não informado'}}</span>
+                </p>
+                {#            <p class="agent-location">#}
+                {#                <strong>{{ 'location' | trans }}:</strong> Goiânia (GO)#}
+                {#            </p>#}
 
-            <div class="entity-seals">
-                <strong>{{ 'seals'| trans }}:</strong>
-                <p class="seal-entity">Avaliador UFPR</p>
-                <p class="seal-entity">Avaliador UFC</p>
-                <p class="seal-entity">Selo Mapas</p>
+                {#            <div class="entity-seals">#}
+                {#                <strong>{{ 'seals'| trans }}:</strong>#}
+                {#                <p class="seal-entity">Avaliador UFPR</p>#}
+                {#                <p class="seal-entity">Avaliador UFC</p>#}
+                {#                <p class="seal-entity">Selo Mapas</p>#}
+                {#            </div>#}
+                <p class="agent-description mb-3">{{ agent.longBio }}</p>
+
+                <p class="agent-area">
+                    <strong>{{ 'last_login' | trans }}:</strong>
+                    <span class="agent-sub-area">{{ agent.user.lastLogin.format('d/m/Y') ?? 'Não informado'}}</span>
+                </p>
             </div>
-            <p class="agent-description">{{ agent.longBio }}</p>
-            <div class="access-profile-container">
-                <a href="{{ path('web_agent_getOne', {'id': agent.id }) }}" class="btn btn-primary list-page__access-btn">
-                    {{ 'view.agent.access' | trans }}
-                </a>
+            <div>
+                <div class="access-profile-container">
+                    <a href="{{ path('web_agent_getOne', {'id': agent.id }) }}" class="btn btn-primary list-page__access-btn">
+                        {{ 'view.agent.access' | trans }}
+                    </a>
+                </div>
             </div>
+
         </div>
     </div>
 

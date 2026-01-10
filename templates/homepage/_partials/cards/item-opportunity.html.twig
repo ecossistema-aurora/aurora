@@ -19,16 +19,21 @@
             </div>
         </div>
     </div>
-    <p class="text-danger fw-bold mt-4">{{ registration_period|default('opened_registrations'|trans) }}</p>
-    <p class="text-muted">{{ description|default('opportunity.description'|trans) }}</p>
-    <h6 class="fw-bold mt-4">{{ 'areas_of_interest'|trans }} ({{ interest_areas_count|default(0) }}):</h6>
-    <p><span class="text-danger fw-bold">{{ interest_areas|default('none_area_specified'|trans) }}</span></p>
-    <h6 class="fw-bold">{{ 'tags'|trans }} ({{ tags_count|default(0) }}):</h6>
-    <p class="text-danger fw-bold">{{ tags|default('none_tag_specified') }}</p>
-    <h6 class="fw-bold">{{ 'seals'|trans }} ({{ badges_count|default(0) }}):</h6>
-    <div class="d-flex">
-        <div class="badge bg-secondary text-white rounded-pill px-2 py-1">{{ badges|default('+0') }}</div>
-    </div>
+    {#    <p class="text-danger fw-bold mt-4">{{ registration_period|default('opened_registrations'|trans) }}</p>#}
+
+    {% if (phases_count != 0) %}
+        <p class="text-danger fw-bold mt-4">Inscrições de {{ phases[0].startDate.format('d/m/Y') }} até {{ phases[0].endDate.format('d/m/Y') }}</p>
+        <p class="text-muted">{{ description|default('Descrição do evento ou oportunidade aqui.') }}</p>
+    {% endif %}
+
+    <h6 class="fw-bold mt-4">{{ 'social_media'|trans }} ({{ social_media_count|default(0) }}):</h6>
+    <p><span class="text-danger fw-bold">{{ social_medias|default('Nenhuma rede social especificada') }}</span></p>
+    <h6 class="fw-bold">{{ 'phases'|trans }} ({{ phases_count|default(0) }}):</h6>
+    {% if (phases_count != 0) %}
+        <p class="text-danger fw-bold">{{ opportunity.phases|map(p => p.name)|join(', ') }}</p>
+    {% else %}
+        <p class="text-danger fw-bold">Nenhuma fase especificada</p>
+    {% endif %}
 
     <div class="row mt-3">
         <div class="col-md position-relative">

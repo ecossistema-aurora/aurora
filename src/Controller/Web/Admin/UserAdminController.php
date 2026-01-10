@@ -136,6 +136,23 @@ class UserAdminController extends AbstractAdminController
         ]);
     }
 
+    public function details(Uuid $id): Response
+    {
+        $user = $this->service->get($id);
+
+        $this->denyAccessUnlessGranted('get', $user);
+
+        $lastLogin = $this->documentService->getLastLoginByUserId($id);
+
+        $agents = $this->agentService->findBy(['user' => $user]);
+
+        return $this->render('user/details.html.twig', [
+            'user' => $user,
+            'lastLogin' => $lastLogin,
+            'agents' => $agents,
+        ]);
+    }
+
     public function accountPrivacy(Uuid $id): Response
     {
         $user = $this->service->get($id);

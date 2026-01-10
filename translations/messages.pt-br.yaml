@@ -446,11 +446,15 @@ roles: Papéis
 role.admin: Administrador
 role.manager: Gerente
 role.support: Suporte
+ROLE_ADMIN: Administrador
+ROLE_MANAGER: Gerente
+ROLE_USER: Usuário comum
 role.municipal_admin: Administrador Municipal
 role.company_admin: Administrador da Empresa
 read_notifications: Notificações lidas
 residential_address: Endereço residencial
 roles_in_culture: Função(ões) na Cultura
+
 
 tags: Tags
 tag_already_exists: Já existe uma tag com esse nome

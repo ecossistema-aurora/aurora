@@ -446,6 +446,9 @@ roles: Roles
 role.admin: Administrator
 role.manager: Manager
 role.support: Support
+ROLE_ADMIN: Administrador
+ROLE_MANAGER: Gerente
+ROLE_USER: Usuário comum
 role.municipal_admin: Municipal Administrator
 role.company_admin: Company Administrator
 read_notifications: Read Notifications
@@ -1101,6 +1104,10 @@ view:
     error-text_third: But don't worry, there are many other pages to discover here at Aurora.
     error-homepage: Back to home page
     error-image: Doubt image
+
+  user:
+    message:
+      updated: Usuário atualizado
 
 zip_code:
   invalid: Please enter a valid ZIP code with 8 digits.
