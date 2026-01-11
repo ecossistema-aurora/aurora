@@ -116,10 +116,10 @@ class OpportunityAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_opportunity_list');
     }
 
-//    #[IsGranted(new Expression('
-//        is_granted("'.UserRolesEnum::ROLE_ADMIN->value.'") or
-//        is_granted("'.UserRolesEnum::ROLE_MANAGER->value.'")
-//    '), statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    // #[IsGranted(new Expression('
+    // is_granted("'.UserRolesEnum::ROLE_ADMIN->value.'") or
+    // is_granted("'.UserRolesEnum::ROLE_MANAGER->value.'")
+    // '), statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function list(): Response
     {
         $opportunities = $this->service->findBy();

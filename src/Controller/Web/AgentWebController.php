@@ -37,8 +37,6 @@ class AgentWebController extends AbstractWebController
             'color' => '#D0A020',
             'items' => [
                 new CardItem(icon: 'person', quantity: $totalAgents, text: 'view.agent.quantity.total'),
-//                new CardItem(icon: 'person', quantity: 30, text: 'view.agent.quantity.culture'),
-//                new CardItem(icon: 'block', quantity: 20, text: 'view.agent.quantity.inactive'),
                 new CardItem(icon: 'today', quantity: $recentAgents, text: $this->translator->trans('view.agent.quantity.last_days', ['{days}' => $days])),
             ],
         ];
