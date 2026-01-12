@@ -74,6 +74,7 @@ readonly class UserService extends AbstractEntityService implements UserServiceI
 
             $userObj->addAgent($agent);
         } catch (Exception $exception) {
+            dd($exception->getMessage());
             $this->repository->rollback();
             throw $exception;
         }

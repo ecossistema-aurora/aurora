@@ -51,6 +51,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'fiscalCode' => '',
             'image' => null,
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
@@ -85,6 +86,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'fiscalCode' => '',
             'image' => null,
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
@@ -133,7 +135,6 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 'expectedErrors' => [
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
-                    ['field' => 'shortBio', 'message' => 'This value should not be blank.'],
                     ['field' => 'user', 'message' => 'This value should not be blank.'],
                 ],
             ],
@@ -248,6 +249,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
         $this->assertJsonContains([
             'id' => AgentFixtures::AGENT_ID_1,
             'name' => 'Alessandro',
+            'fiscalCode' => '',
             'image' => $agent->getImage(),
             'shortBio' => 'Desenvolvedor e evangelista de Software',
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
@@ -289,6 +291,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
         $this->assertResponseBodySame([
             'id' => AgentFixtures::AGENT_ID_3,
             'name' => 'Anna Kelly',
+            'fiscalCode' => '',
             'image' => $agent->getImage(),
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',
@@ -418,6 +421,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
         $this->assertResponseBodySame([
             'id' => AgentFixtures::AGENT_ID_5,
             'name' => $requestBody['name'],
+            'fiscalCode' => '',
             'image' => $agent->getImage(),
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
@@ -480,6 +484,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
         $this->assertResponseBodySame([
             'id' => AgentFixtures::AGENT_ID_3,
             'name' => 'Anna Kelly',
+            'fiscalCode' => '',
             'image' => $agent->getImage(),
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',

@@ -183,7 +183,7 @@ class UserAdminController extends AbstractAdminController
             'email' => $request->request->get('email'),
         ];
 
-        if (null !== $request->request->get('password')) {
+        if (true !== empty($request->request->get('password'))) {
             $userData['password'] = PasswordHasher::hash($request->request->get('password'));
         }
 
