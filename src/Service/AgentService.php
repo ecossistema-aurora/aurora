@@ -73,8 +73,14 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
     public function createFromUser(array $user, ?array $extraFields = null): Agent
     {
         $agent = $this->organizeDefaultAgentData($user);
-        $agent['extraFields'] = $extraFields;
+        $agent['extraFields'] = [...$extraFields ?? [], ...[
+            'phone' => $user['phone'] ?? '',
+        ]];
         $agent['main'] = true;
+
+        if (true === isset($user['cpf'])) {
+            $agent['fiscalCode'] = $user['cpf'];
+        }
         $agent = $this->validateInput($agent, AgentDto::class, AgentDto::CREATE);
 
         $agentObj = $this->serializer->denormalize($agent, Agent::class);

@@ -121,6 +121,7 @@ class AgentTest extends TestCase
         $expectedArray = [
             'id' => $uuid->toRfc4122(),
             'name' => 'Test Agent',
+            'fiscalCode' => '',
             'image' => 'http://example.com/image.jpg',
             'shortBio' => 'Short biography',
             'longBio' => 'Long biography description',

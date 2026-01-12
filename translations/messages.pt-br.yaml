@@ -1009,6 +1009,7 @@ view:
       total: Espaços Encontrados
       finished: Espaços Fechados
       opened: Espaços Abertos
+      accessible: Espaços Accessíveis
       last_days: Registrados nos últimos {days} dias
     picture: Foto do Espaço
     no_spaces_found: Nenhum espaço encontrado

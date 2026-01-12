@@ -30,6 +30,10 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private ?string $name = null;
 
+    #[ORM\Column(length: 30)]
+    #[Groups(['agent.get', 'agent.get.item'])]
+    private ?string $fiscalCode = '';
+
     #[ORM\Column(nullable: true)]
     #[Groups(['agent.get'])]
     private ?string $image = null;
@@ -125,6 +129,16 @@ class Agent extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getFiscalCode(): ?string
+    {
+        return $this->fiscalCode;
+    }
+
+    public function setFiscalCode(?string $fiscalCode): void
+    {
+        $this->fiscalCode = $fiscalCode;
     }
 
     public function getImage(): ?string
@@ -334,6 +348,7 @@ class Agent extends AbstractEntity
         return [
             'id' => $this->id?->toRfc4122(),
             'name' => $this->name,
+            'fiscalCode' => $this->fiscalCode,
             'image' => $this->image,
             'shortBio' => $this->shortBio,
             'longBio' => $this->longBio,
