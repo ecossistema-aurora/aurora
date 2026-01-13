@@ -112,6 +112,7 @@ abstract readonly class AbstractEntityService
     {
         $dto = $this->denormalizeDto($data, $dtoClass);
         $violations = $this->validator->validate($dto, groups: $group);
+
         if ($violations->count() > 0) {
             throw new ValidatorException(violations: $violations);
         }

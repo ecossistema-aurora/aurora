@@ -3,6 +3,7 @@
     <hr>
     <div class="d-flex gap-3 mt-2">
         {% for network, value in space.socialNetworks %}
+            {% if value != '' %}
             <div class="social-media-wrapper">
                 <div class="social-media">
                     <div class="social-link">
@@ -13,6 +14,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
 </section>

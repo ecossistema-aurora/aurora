@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\DocumentService\SpaceTimelineDocumentService;
+use App\Enum\SocialNetworkEnum;
 use App\Enum\UserRolesEnum;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
@@ -12,6 +13,7 @@ use App\Service\Interface\CityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use App\Service\Interface\StateServiceInterface;
 use App\Service\Interface\TagServiceInterface;
+use App\Service\SpaceTypeService;
 use DateTime;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -41,6 +43,7 @@ class SpaceAdminController extends AbstractAdminController
         private readonly TagServiceInterface $tagService,
         private readonly StateServiceInterface $stateService,
         private readonly CityServiceInterface $cityService,
+        private readonly SpaceTypeService $spaceTypeService,
     ) {
     }
 
@@ -134,15 +137,24 @@ class SpaceAdminController extends AbstractAdminController
             $activityAreaItems = $this->activityAreaService->list();
             $tagItems = $this->tagService->list();
             $states = $this->stateService->findBy();
-            $cities = $this->cityService->findBy();
+            $types = $this->spaceTypeService->list();
+
+            $cities = [];
+            if ($space->getAddress()) {
+                $filtersToCities = [
+                    'state' => $space->getAddress()->getCity()->getState()->getId(),
+                ];
+                $cities = $this->cityService->findBy($filtersToCities);
+            }
 
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
+                'types' => $types,
                 'form_id' => self::EDIT_FORM_ID,
                 'accessibilities' => $accessibilities,
                 'activityAreaItems' => $activityAreaItems,
                 'tagItems' => $tagItems,
-                'states' => $states,
+                'states' => $states ?? [],
                 'cities' => $cities,
             ]);
         }
@@ -150,20 +162,47 @@ class SpaceAdminController extends AbstractAdminController
         $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         $name = $request->request->get('name');
-        $description = $request->request->get('extraFields')['description'] ?? null;
         $date = $request->request->get('date') ?? null;
         $tags = $request->get('tags') ?? [];
         $activityAreas = $request->get('activityAreas') ?? [];
+        $isAccessible = (bool) $request->request->get('architectural_accessibility_option');
+        $accessibilities = $request->get('architectural_accessibility') ?? [];
+
+        $networks = [];
+        foreach (SocialNetworkEnum::getValues() as $network) {
+            if ($request->get("social_networks_{$network}") !== '') {
+                $networks[$network] = $request->get("social_networks_{$network}");
+            }
+        }
 
         $dataToUpdate = [
             'name' => $name,
-            'description' => $description,
+            'shortDescription' => $request->request->get('short_description'),
+            'longDescription' => $request->request->get('long_description'),
+            'site' => $request->request->get('site'),
+            'phoneNumber' => $request->request->get('phone_number'),
+            'email' => $request->request->get('email'),
+            'maxCapacity' => (int) $request->request->get('capacity'),
+            'spaceType' => $request->request->get('type'),
+            'isAccessible' => $isAccessible,
             'tags' => $tags,
             'activityAreas' => $activityAreas,
+            'socialNetworks' => $networks,
+            'accessibilities' => $isAccessible ? $accessibilities : [],
             'date' => $date ? new DateTime($date) : null,
             'updatedBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'addressData' => [
+                'id' => $space->getAddress()?->getId() ?? Uuid::v4(),
+                'owner' => $space->getId()->toRfc4122(),
+                'zipcode' => $request->request->get('address_cep'),
+                'street' => $request->request->get('address_street'),
+                'number' => $request->request->get('address_number'),
+                'neighborhood' => $request->request->get('address_neighborhood'),
+                'complement' => $request->request->get('address_complement'),
+                'state' => $request->request->get('address_state'),
+                'city' => $request->request->get('address_city'),
+            ],
         ];
-
         try {
             $this->service->update($id, $dataToUpdate);
 
@@ -196,6 +235,7 @@ class SpaceAdminController extends AbstractAdminController
                 'tagItems' => $tagItems,
                 'states' => $states,
                 'cities' => $cities,
+                'types' => $this->spaceTypeService->list(),
             ]);
         }
     }
