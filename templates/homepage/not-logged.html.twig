@@ -240,18 +240,16 @@
                 {% set events_content = events|map(
                     event => include('homepage/_partials/cards/item-event.html.twig', {
                         'status_icon': 'event',
-                        'image_url': asset('img/user.png'),
+                        'image_url': event.image ? asset(event.image) : asset('img/home-events.png'),
                         'image_alt': event.name ??' Imagem não disponível',
                         'title': event.name ?? 'Sem título',
-                        'date': '11 de julho às 18:00',
-                        'location': 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                        'description': 'Sem descrição',
-                        'interest_areas_count': 3,
-                        'interest_areas': 'Música, Cultura Popular, Tradições Locais',
-                        'tags_count': 4,
-                        'tags': 'Festival, Música, Cultura, Edição 2024',
-                        'seals_count': 2,
-                        'seals': '+2',
+                        'date': event.endDate ? event.startDate|date('d/m/Y') ~ ' até ' ~ event.endDate|date('d/m/Y') : event.startDate|date('d/m/Y') ~ ' - ' ~ event.startDate|date('H:i'),
+                        'location': event.space ? event.space.name : 'Sem local informado',
+                        'description': event.shortDescription ?? 'Sem descrição disponível',
+                        'interest_areas_count': event.activityAreas|length,
+                        'interest_areas': event.activityAreas|map(a => a.name)|join(', '),
+                        'tags_count': event.tags|length,
+                        'tags': event.tags|map(a => a.name)|join(', '),
                     })
                 ) %}
 
