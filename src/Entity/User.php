@@ -50,6 +50,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[Groups(['user.get'])]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $coverImage = null;
+
     #[ORM\OneToMany(targetEntity: Agent::class, mappedBy: 'user')]
     #[Groups(['user.get'])]
     private Collection $agents;
@@ -152,6 +155,16 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function setImage(?string $image): void
     {
         $this->image = $image;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
     }
 
     public function getAgents(): Collection
