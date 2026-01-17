@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 const { downloadFile } = require("cypress-downloadfile/lib/addPlugin");
 
 require('dotenv').config();
+//oi som
 
 module.exports = defineConfig({
   viewportWidth: 1920,
