@@ -7,20 +7,28 @@
                 <div class="col">
                     <label data-cy="event-cultural-languages" class="fw-bold mb-2">{{ 'cultural_languages' | trans }}</label>
                     <p>
-                        <span class="text__entity-details fw-bold">Exposição</span>,
-                        <span class="text__entity-details fw-bold">Festival</span>,
-                        <span class="text__entity-details fw-bold">Musical</span>
+                        {% if event.culturalLanguages is not empty %}
+                            {% for culturalLanguage in event.culturalLanguages %}
+                                <span class="text__entity-details fw-bold">{{ culturalLanguage.name }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {{ 'not_informed' | trans }}
+                        {% endif %}
                     </p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <label class="fw-bold mb-2">Tags (3) <i class="material-icons text-primary fs-5 align-top">help</i></label>
+                    <label class="fw-bold mb-2">Tags ({{ event.tags|length }}) <i class="material-icons text-primary fs-5 align-top">help</i></label>
                     <p>
-                        <span class="text__entity-details fw-bold">DESIGN</span>,
-                        <span class="text__entity-details fw-bold">ACESSIBILIDADE</span>,
-                        <span class="text__entity-details fw-bold">DESIGNINCLUSIVO</span>
+                        {% if event.tags is not empty %}
+                            {% for tag in event.tags %}
+                                <span class="text__entity-details fw-bold">{{ tag.name|upper }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            {{ 'not_informed' | trans }}
+                        {% endif %}
                     </p>
                 </div>
             </div>
@@ -29,9 +37,8 @@
                 <div class="col">
                     <label data-cy="event-description" class="fw-bold mb-2">{{ 'description' | trans }}</label>
                     <p>
-                        {% if event.extraFields.longDescription is defined %}
-                            {{ event.extraFields.longDescription }}
-                            <span class="text-primary fw-bold d-block">({{ 'see_more' | trans }})</span>
+                        {% if event.longDescription %}
+                            {{ event.longDescription }}
                         {% else %}
                             {{ 'not_informed' | trans }}
                         {% endif %}
@@ -42,11 +49,17 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <label class="fw-bold mb-2">Site</label>
-                    <p><a class="text-decoration-none fw-bold" href="#" target="_blank">Site do evento</a></p>
+                    <p>
+                        {% if event.site %}
+                            <a class="text-decoration-none fw-bold" href="{{ event.site }}" target="_blank">{{ event.site }}</a>
+                        {% else %}
+                            {{ 'not_informed' | trans }}
+                        {% endif %}
+                    </p>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="fw-bold mb-2">{{ 'phone' | trans }}</label>
-                    <p>(00) 12345-6789</p>
+                    <p>{{ event.phoneNumber ?? ('not_informed' | trans) }}</p>
                 </div>
             </div>
         </div>
@@ -54,7 +67,7 @@
 
     <div class="card shadow-sm mb-3 card__entity-details">
         <div class="card-body py-4">
-            {% include "_components/_show/social-media.html.twig" %}
+            {% include "_components/_show/social-media.html.twig" with { 'entity': event } %}
         </div>
     </div>
 
@@ -66,10 +79,15 @@
 
             <h6 class="fw-bold mb-4">{{ 'local' | trans }}</h6>
             <span class="d-flex align-items-center fw-bold">
-                <div class="rounded-circle card-names-ellipse__entity-details"></div>
                 {% if event.space %}
+                    {% if event.space.image %}
+                        <img src="{{ event.space.image }}" alt="{{ event.space.name }}" class="rounded-circle card-names-ellipse__entity-details" style="object-fit: cover;">
+                    {% else %}
+                        <div class="rounded-circle card-names-ellipse__entity-details"></div>
+                    {% endif %}
                     <span data-cy="event-location"><a class="text-decoration-none" href="#">{{ event.space.name }}</a></span>
                 {% else %}
+                    <div class="rounded-circle card-names-ellipse__entity-details"></div>
                     {{ 'not_informed' | trans }}
                 {% endif %}
             </span>
