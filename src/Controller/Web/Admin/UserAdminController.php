@@ -192,6 +192,10 @@ class UserAdminController extends AbstractAdminController
         if ($uploadedImage = $request->files->get('profileImage')) {
             $this->service->updateImage($user->getId(), $uploadedImage);
         }
+
+        if ($uploadedCover = $request->files->get('coverImage')) {
+            $this->service->updateCoverImage($user->getId(), $uploadedCover);
+        }
     }
 
     private function updateAgentData(Request $request): void
@@ -267,6 +271,7 @@ class UserAdminController extends AbstractAdminController
                 'socialName' => $user->getSocialName(),
                 'email' => $user->getEmail(),
                 'image' => $user->getImage(),
+                'coverImage' => $user->getCoverImage(),
             ],
             'form_id' => 'edit_profile',
             'agents' => $agents,
