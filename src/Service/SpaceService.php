@@ -10,7 +10,6 @@ use App\Entity\Agent;
 use App\Entity\Space;
 use App\Enum\EntityEnum;
 use App\Exception\Space\SpaceResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\SpaceRepositoryInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
@@ -26,6 +25,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 readonly class SpaceService extends AbstractEntityService implements SpaceServiceInterface
 {
     private const string DIR_SPACE_PROFILE = 'app.dir.space.profile';
+    private const string DIR_SPACE_COVER = 'app.dir.space.cover';
 
     public function __construct(
         private FileServiceInterface $fileService,
@@ -153,33 +153,30 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Space
     {
-        $space = $this->get($id);
-
-        $spaceDto = new SpaceDto();
-        $spaceDto->image = $uploadedFile;
-
-        $violations = $this->validator->validate($spaceDto, groups: [SpaceDto::UPDATE]);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        if ($space->getImage()) {
-            $this->fileService->deleteFileByUrl($space->getImage());
-        }
-
-        $uploadedImage = $this->fileService->uploadImage(
-            $this->parameterBag->get(self::DIR_SPACE_PROFILE),
-            $uploadedFile
+        return $this->processFileUpload(
+            id: $id,
+            uploadedFile: $uploadedFile,
+            dtoClass: SpaceDto::class,
+            dtoProperty: 'profileImage',
+            directoryParam: self::DIR_SPACE_PROFILE,
+            getterMethod: 'getImage',
+            setterMethod: 'setImage',
+            validationGroups: [SpaceDto::UPDATE]
         );
+    }
 
-        $space->setImage($this->fileService->urlOfImage($uploadedImage->getFilename()));
-
-        $space->setUpdatedAt(new DateTime());
-
-        $this->repository->save($space);
-
-        return $space;
+    public function updateCoverImage(Uuid $id, UploadedFile $uploadedFile): Space
+    {
+        return $this->processFileUpload(
+            id: $id,
+            uploadedFile: $uploadedFile,
+            dtoClass: SpaceDto::class,
+            dtoProperty: 'coverImage',
+            directoryParam: self::DIR_SPACE_COVER,
+            getterMethod: 'getCoverImage',
+            setterMethod: 'setCoverImage',
+            validationGroups: [SpaceDto::UPDATE]
+        );
     }
 
     public function togglePublish(Uuid $id): void

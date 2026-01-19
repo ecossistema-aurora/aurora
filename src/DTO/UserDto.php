@@ -69,7 +69,7 @@ class UserDto
     public mixed $password;
 
     #[Image(maxSize: (2000000), mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'], groups: [self::CREATE, self::UPDATE])]
-    public ?File $image = null;
+    public ?File $profileImage = null;
 
     #[Image(maxSize: (2000000), mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'], groups: [self::UPDATE])]
     public ?File $coverImage = null;

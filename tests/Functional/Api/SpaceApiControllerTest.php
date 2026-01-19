@@ -1174,14 +1174,14 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'requestBody' => $requestBody,
                 'file' => ImageTestFixtures::getGif(),
                 'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                    ['field' => 'profileImage', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
                 ],
             ],
             'image size' => [
                 'requestBody' => $requestBody,
                 'file' => ImageTestFixtures::getImageMoreThan2mb(),
                 'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
+                    ['field' => 'profileImage', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];
