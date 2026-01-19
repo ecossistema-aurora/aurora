@@ -291,7 +291,7 @@
                 {% set spaces_content = spaces|map(space =>
                     include('homepage/_partials/cards/item-space.html.twig', {
                         'space': space,
-                        'image_url': space.image ?: asset('img/default-image.png'),
+                        'image_url': space.image,
                         'image_alt':  'no_image' | trans ,
                         'title': space.name ?? 'no_titlçe' | trans,
                         'type': space.spaceType ? space.spaceType.name : 'no_type' | trans ,

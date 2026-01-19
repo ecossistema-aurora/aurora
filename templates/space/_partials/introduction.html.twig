@@ -3,9 +3,10 @@
     <hr>
     <p class="d-flex align-items-center gap-2 mb-1">
         <i class="material-icons text-primary">location_on</i>
-        <span class="fw-bold text-dark">
+        <strong class="text-dark">Endereço:</strong>
+        <span class="text-dark">
             {% if space.address is defined and space.address is not empty %}
-                {{ space.address.street|default('') }}, {{ space.address.city.name|default('') }} {{ space.address.state.name|default('') }}
+                {{ space.address.getCompleteAddress()|default('') }}
             {% else %}
                 {{ 'available_address' | trans }}
             {% endif %}

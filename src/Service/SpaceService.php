@@ -8,9 +8,11 @@ use App\DTO\SpaceDto;
 use App\DTO\SpaceFilterDto;
 use App\Entity\Agent;
 use App\Entity\Space;
+use App\Entity\SpaceAddress;
 use App\Enum\EntityEnum;
 use App\Exception\Space\SpaceResourceNotFoundException;
 use App\Repository\Interface\SpaceRepositoryInterface;
+use App\Service\Interface\CityServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
@@ -31,6 +33,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
         private SpaceRepositoryInterface $repository,
+        private CityServiceInterface $cityService,
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
@@ -100,6 +103,8 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
     public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
+        $params['isDraft'] = false;
+
         $filters = $this->validateInput($params, SpaceFilterDto::class);
 
         if (true === array_key_exists('associationWith', $params)) {
@@ -145,6 +150,20 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         $spaceObj = $this->serializer->denormalize($spaceDto, Space::class, context: [
             'object_to_populate' => $spaceFromDB,
         ]);
+
+
+        $address = $spaceFromDB->getAddress() ?? new SpaceAddress();
+        $city = $this->cityService->get($space['addressData']['city']);
+
+        $address->setZipcode($space['addressData']['zipcode']);
+        $address->setStreet($space['addressData']['street']);
+        $address->setNumber($space['addressData']['number'] ?? '');
+        $address->setNeighborhood($space['addressData']['neighborhood']);
+        $address->setComplement($space['addressData']['complement']);
+        $address->setCity($city);
+
+        $address->setOwner($spaceFromDB);
+        $spaceObj->setAddress($address);
 
         $spaceObj->setUpdatedAt(new DateTime());
 
