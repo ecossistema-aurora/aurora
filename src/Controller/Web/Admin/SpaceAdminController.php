@@ -167,16 +167,35 @@ class SpaceAdminController extends AbstractAdminController
         try {
             $this->service->update($id, $dataToUpdate);
 
+            if ($uploadedImage = $request->files->get('profileImage')) {
+                $this->service->updateImage($id, $uploadedImage);
+            }
+
+            if ($uploadedCover = $request->files->get('coverImage')) {
+                $this->service->updateCoverImage($id, $uploadedCover);
+            }
+
             $this->addFlashSuccess($this->translator->trans('view.space.message.updated'));
 
             return $this->redirectToRoute('admin_space_list');
         } catch (TypeError|Exception $exception) {
             $this->addFlashError($exception->getMessage());
 
+            $accessibilities = $this->architecturalAccessibilityService->list();
+            $activityAreaItems = $this->activityAreaService->list();
+            $tagItems = $this->tagService->list();
+            $states = $this->stateService->findBy();
+            $cities = $this->cityService->findBy();
+
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
                 'error' => $exception->getMessage(),
                 'form_id' => self::EDIT_FORM_ID,
+                'accessibilities' => $accessibilities,
+                'activityAreaItems' => $activityAreaItems,
+                'tagItems' => $tagItems,
+                'states' => $states,
+                'cities' => $cities,
             ]);
         }
     }

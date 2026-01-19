@@ -133,7 +133,7 @@ readonly class UserService extends AbstractEntityService implements UserServiceI
             id: $id,
             uploadedFile: $uploadedFile,
             dtoClass: UserDto::class,
-            dtoProperty: 'image',
+            dtoProperty: 'profileImage',
             directoryParam: self::DIR_USER_PROFILE,
             getterMethod: 'getImage',
             setterMethod: 'setImage'
