@@ -15,10 +15,6 @@
         'title': 'general_data'
     },
     {
-        'id': 'seals',
-        'title': 'seals'
-    },
-    {
         'id': 'people',
         'title': 'people'
     },
@@ -51,8 +47,6 @@
     <div class="container py-4">
         <div class="tab-content">
             {% include "event/_partials/show/general-data.html.twig" %}
-
-            {% include "_layouts/_show/seals.html.twig" %}
 
             {% include '_layouts/_show/peoples.html.twig' with { 'entity': event } %}
 

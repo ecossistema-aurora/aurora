@@ -334,6 +334,7 @@ no_type: Sem Tipo
 no_address: Sem endereço
 no_tags: Nenhuma tag cadastrada
 no_title: Sem título
+no_subtitle: Sem subtítulo
 no_description: Sem descrição
 no_image: Imagem não disponível
 no_languages: Nenhum idioma cadastrado
@@ -342,6 +343,7 @@ no_areas: Nenhuma área cadastrada
 no_accessibility: Nenhuma acessibilidade registrada
 no_seals: Nenhum selo registrado
 none_area_specified: Nenhuma área especificada
+does_not_have: Não possui
 not_informed: Não informado
 not_sent: Não enviadas
 notice: EDITAL
