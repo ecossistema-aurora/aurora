@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\DocumentService\OrganizationTimelineDocumentService;
+use App\Enum\OrganizationTypeEnum;
 use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
+use App\Service\ActivityAreaService;
 use App\Service\Interface\OrganizationServiceInterface;
 use Exception;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -29,6 +32,8 @@ class OrganizationAdminController extends AbstractAdminController
         private readonly OrganizationServiceInterface $service,
         private readonly TranslatorInterface $translator,
         private readonly OrganizationTimelineDocumentService $documentService,
+        private readonly ActivityAreaService $activityAreaService,
+        private readonly Security $security,
     ) {
     }
 
@@ -42,7 +47,9 @@ class OrganizationAdminController extends AbstractAdminController
     public function list(): Response
     {
         return $this->renderOrganizationList(
-            $this->service->list()
+            $this->service->findBy([
+                'createdBy' => $this->getUser()->getId(),
+            ])
         );
     }
 
@@ -74,6 +81,8 @@ class OrganizationAdminController extends AbstractAdminController
         if ('POST' !== $request->getMethod()) {
             return $this->render(self::VIEW_ADD, [
                 'form_id' => self::CREATE_FORM_ID,
+                'activityAreas' => $this->activityAreaService->list(),
+                'types' => OrganizationTypeEnum::getValues(),
             ]);
         }
 
@@ -83,15 +92,29 @@ class OrganizationAdminController extends AbstractAdminController
             $this->service->create([
                 'id' => Uuid::v4(),
                 'name' => $request->get('name'),
+                'description' => $request->get('description'),
+                'type' => $request->get('type'),
+                'activityAreas' => $request->get('activityAreas'),
+                'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+                'owner' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+                'extraFields' => [
+                    'site' => $request->get('site'),
+                    'email' => $request->get('email'),
+                    'phone' => $request->get('phone'),
+                ],
             ]);
         } catch (ValidatorException $exception) {
             return $this->render(self::VIEW_ADD, [
                 'errors' => $exception->getConstraintViolationList(),
                 'form_id' => self::CREATE_FORM_ID,
+                'activityAreas' => $this->activityAreaService->list(),
+                'types' => OrganizationTypeEnum::getValues(),
             ]);
         } catch (Exception $exception) {
             return $this->render(self::VIEW_ADD, [
                 'errors' => [$exception->getMessage()],
+                'activityAreas' => $this->activityAreaService->list(),
+                'types' => OrganizationTypeEnum::getValues(),
                 'form_id' => self::CREATE_FORM_ID,
             ]);
         }

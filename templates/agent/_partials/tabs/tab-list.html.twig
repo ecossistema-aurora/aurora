@@ -10,7 +10,7 @@
             <div class="agent-info gap0 gap-md-3">
                 <h5 class="agent-name">{{ agent.name }}</h5>
                 <span class="agent-type person">
-                    <i class="material-icons">person</i> Pessoa
+                    <i class="material-icons">person</i> {{ agent.extraFields.cargo ?? '' }}
                 </span>
             </div>
         </div>
@@ -18,8 +18,8 @@
         <div class="agent-card-body d-flex justify-content-between">
             <div>
                 <p class="agent-area">
-                    <strong>{{ 'areas_of_expertise' | trans }}:</strong>
-                    <span class="agent-sub-area">{{ agent.extraFields.cargo ?? 'Não informado'}}</span>
+                    <strong>{{ 'description' | trans }}:</strong>
+                    <span class="agent-sub-area">{{ agent.shortBio ?? 'Não informado'}}</span>
                 </p>
                 {#            <p class="agent-location">#}
                 {#                <strong>{{ 'location' | trans }}:</strong> Goiânia (GO)#}

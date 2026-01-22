@@ -104,6 +104,9 @@ dropdown:
       - text: "my_initiatives"
         icon: article
         route: "admin_initiative_list"
+      - text: "my_organizations"
+        icon: build
+        route: "admin_organization_list"
 
 dashboard:
   cards:
