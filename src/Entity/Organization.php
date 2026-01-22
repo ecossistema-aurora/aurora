@@ -69,6 +69,11 @@ class Organization extends AbstractEntity
     #[ORM\Column(type: Types::JSON, nullable: true)]
     private array $socialNetworks = [];
 
+    #[ORM\ManyToMany(targetEntity: ActivityArea::class, inversedBy: 'organizations', cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'activity_area_organizations')]
+    #[Groups(['organization.get', 'organization.get.item'])]
+    private Collection $activityAreas;
+
     #[ORM\Column]
     #[Groups('organization.get')]
     private DateTimeImmutable $createdAt;
@@ -85,6 +90,7 @@ class Organization extends AbstractEntity
     {
         $this->createdAt = new DateTimeImmutable();
         $this->agents = new ArrayCollection();
+        $this->activityAreas = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -190,6 +196,28 @@ class Organization extends AbstractEntity
     public function addExtraField(string $name, mixed $value): void
     {
         $this->extraFields[$name] = $value;
+    }
+
+    public function getActivityAreas(): Collection
+    {
+        return $this->activityAreas;
+    }
+
+    public function setActivityAreas(Collection $activityAreas): void
+    {
+        $this->activityAreas = $activityAreas;
+    }
+
+    public function addActivityArea(ActivityArea $activityArea): void
+    {
+        if (!$this->activityAreas->contains($activityArea)) {
+            $this->activityAreas->add($activityArea);
+        }
+    }
+
+    public function removeActivityArea(ActivityArea $activityArea): void
+    {
+        $this->activityAreas->removeElement($activityArea);
     }
 
     public function getSocialNetworks(): array
