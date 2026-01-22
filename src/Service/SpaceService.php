@@ -151,19 +151,22 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
             'object_to_populate' => $spaceFromDB,
         ]);
 
+        $addressData = $space['addressData'] ?? null;
 
-        $address = $spaceFromDB->getAddress() ?? new SpaceAddress();
-        $city = $this->cityService->get($space['addressData']['city']);
+        if (null !== $addressData) {
+            $address = $spaceFromDB->getAddress() ?? new SpaceAddress();
+            $city = $this->cityService->get($space['addressData']['city']);
 
-        $address->setZipcode($space['addressData']['zipcode']);
-        $address->setStreet($space['addressData']['street']);
-        $address->setNumber($space['addressData']['number'] ?? '');
-        $address->setNeighborhood($space['addressData']['neighborhood']);
-        $address->setComplement($space['addressData']['complement']);
-        $address->setCity($city);
+            $address->setZipcode($space['addressData']['zipcode']);
+            $address->setStreet($space['addressData']['street']);
+            $address->setNumber($space['addressData']['number'] ?? '');
+            $address->setNeighborhood($space['addressData']['neighborhood']);
+            $address->setComplement($space['addressData']['complement']);
+            $address->setCity($city);
 
-        $address->setOwner($spaceFromDB);
-        $spaceObj->setAddress($address);
+            $address->setOwner($spaceFromDB);
+            $spaceObj->setAddress($address);
+        }
 
         $spaceObj->setUpdatedAt(new DateTime());
 

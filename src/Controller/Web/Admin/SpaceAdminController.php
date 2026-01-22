@@ -7,6 +7,7 @@ namespace App\Controller\Web\Admin;
 use App\DocumentService\SpaceTimelineDocumentService;
 use App\Enum\SocialNetworkEnum;
 use App\Enum\UserRolesEnum;
+use App\Exception\ValidatorException;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
 use App\Service\Interface\CityServiceInterface;
@@ -38,7 +39,7 @@ class SpaceAdminController extends AbstractAdminController
         private readonly SpaceTimelineDocumentService $documentService,
         private readonly TranslatorInterface $translator,
         private readonly Security $security,
-        private ArchitecturalAccessibilityServiceInterface $architecturalAccessibilityService,
+        private readonly ArchitecturalAccessibilityServiceInterface $architecturalAccessibilityService,
         private readonly ActivityAreaServiceInterface $activityAreaService,
         private readonly TagServiceInterface $tagService,
         private readonly StateServiceInterface $stateService,
@@ -136,7 +137,7 @@ class SpaceAdminController extends AbstractAdminController
             $accessibilities = $this->architecturalAccessibilityService->list();
             $activityAreaItems = $this->activityAreaService->list();
             $tagItems = $this->tagService->list();
-            $states = $this->stateService->findBy();
+            $states = $this->stateService->list();
             $types = $this->spaceTypeService->list();
 
             $cities = [];
@@ -154,7 +155,7 @@ class SpaceAdminController extends AbstractAdminController
                 'accessibilities' => $accessibilities,
                 'activityAreaItems' => $activityAreaItems,
                 'tagItems' => $tagItems,
-                'states' => $states ?? [],
+                'states' => $states,
                 'cities' => $cities,
             ]);
         }
@@ -170,7 +171,7 @@ class SpaceAdminController extends AbstractAdminController
 
         $networks = [];
         foreach (SocialNetworkEnum::getValues() as $network) {
-            if ($request->get("social_networks_{$network}") !== '') {
+            if ('' !== $request->get("social_networks_{$network}")) {
                 $networks[$network] = $request->get("social_networks_{$network}");
             }
         }
@@ -190,6 +191,7 @@ class SpaceAdminController extends AbstractAdminController
             'socialNetworks' => $networks,
             'accessibilities' => $isAccessible ? $accessibilities : [],
             'date' => $date ? new DateTime($date) : null,
+            'createdBy' => $space->getCreatedBy()->getId(),
             'updatedBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
             'addressData' => [
                 'id' => $space->getAddress()?->getId() ?? Uuid::v4(),
@@ -201,6 +203,16 @@ class SpaceAdminController extends AbstractAdminController
                 'complement' => $request->request->get('address_complement'),
                 'state' => $request->request->get('address_state'),
                 'city' => $request->request->get('address_city'),
+            ],
+            'entityAssociation' => [
+                'id' => $space->getEntityAssociation()?->getId() ?? Uuid::v4(),
+                'space' => $space->getId(),
+                'withAgent' => (bool) $request->request->get('association_with_agent', default: false),
+                'withEvent' => (bool) $request->request->get('association_with_event', default: false),
+                'withInitiative' => (bool) $request->request->get('association_with_initiative', default: false),
+                'withOpportunity' => (bool) $request->request->get('association_with_opportunity', default: false),
+                'withOrganization' => (bool) $request->request->get('association_with_organization', default: false),
+                'withSpace' => (bool) $request->request->get('association_with_space', default: false),
             ],
         ];
         try {
@@ -217,8 +229,8 @@ class SpaceAdminController extends AbstractAdminController
             $this->addFlashSuccess($this->translator->trans('view.space.message.updated'));
 
             return $this->redirectToRoute('admin_space_list');
-        } catch (TypeError|Exception $exception) {
-            $this->addFlashError($exception->getMessage());
+        } catch (TypeError|Exception|ValidatorException $exception) {
+            $this->addFlashErrorByException($exception);
 
             $accessibilities = $this->architecturalAccessibilityService->list();
             $activityAreaItems = $this->activityAreaService->list();
@@ -246,5 +258,18 @@ class SpaceAdminController extends AbstractAdminController
         $this->service->togglePublish($id);
 
         return $this->redirectToRoute('admin_space_list');
+    }
+
+    public function addFlashErrorByException(Exception $exception): void
+    {
+        if ($exception instanceof ValidatorException) {
+            foreach ($exception->getConstraintViolationList() as $error) {
+                $this->addFlashError($error->getPropertyPath().': '.$error->getMessage());
+            }
+
+            return;
+        }
+
+        $this->addFlashError($exception->getMessage());
     }
 }

@@ -93,6 +93,7 @@ calendar: Calendario
 cancel: Cancelar
 cancelled: Cancelado
 capacity_accessibility: Capacidad y Accesibilidad
+capacity_cannot_be_zero: La capacidad no puede ser cero
 category: Categoría
 change_details: Cambiar Detalles
 cep: CEP

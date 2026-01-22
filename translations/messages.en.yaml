@@ -94,6 +94,7 @@ calendar: Calendar
 cancel: Cancel
 cancelled: Cancelled
 capacity_accessibility: Capacity and Accessibility
+capacity_cannot_be_zero: Capacity cannot be zero
 category: Category
 change_details: Change Details
 cep: CEP
