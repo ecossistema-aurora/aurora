@@ -84,7 +84,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'number' => '540',
                     'neighborhood' => 'Centro',
                     'complement' => 'Complexo Estação das Artes',
-                    'city' => [],
+                    'city' => [
+                        'id' => '97847c18-ac1c-4a00-93d4-b4a3e72a262c',
+                    ],
                     'zipcode' => '60030000',
                 ],
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -203,7 +205,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'number' => '540',
                     'neighborhood' => 'Centro',
                     'complement' => 'Complexo Estação das Artes',
-                    'city' => [],
+                    'city' => [
+                        'id' => '97847c18-ac1c-4a00-93d4-b4a3e72a262c',
+                    ],
                     'zipcode' => '60030000',
                 ],
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -460,7 +464,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'number' => '540',
                 'neighborhood' => 'Centro',
                 'complement' => 'Complexo Estação das Artes',
-                'city' => [],
+                'city' => [
+                    'id' => '97847c18-ac1c-4a00-93d4-b4a3e72a262c',
+                ],
                 'zipcode' => '60030000',
             ],
             'createdBy' => [
@@ -553,7 +559,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'number' => '5',
                 'neighborhood' => 'Asa Sul',
                 'complement' => 'Bloco A',
-                'city' => [],
+                'city' => [
+                    'id' => 'f6005001-9abf-4295-8ab5-572d54ec1ba0',
+                ],
                 'zipcode' => '70330000',
             ],
             'createdBy' => [
@@ -578,7 +586,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'number' => '250',
                     'neighborhood' => 'Centro',
                     'complement' => 'Apto 202',
-                    'city' => [],
+                    'city' => [
+                        'id' => '60e37453-19a2-4ff8-bed7-f08e28d14f78',
+                    ],
                     'zipcode' => '65010000',
                 ],
                 'createdBy' => [
@@ -764,7 +774,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'number' => '896',
                 'neighborhood' => 'Centro Histórico',
                 'complement' => 'de 0835 a 0999 - lado ímpar',
-                'city' => [],
+                'city' => [
+                    'id' => 'fb22ee01-1806-481f-af83-7deb980c89c3',
+                ],
                 'zipcode' => '90020005',
             ],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -787,7 +799,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'number' => '540',
                     'neighborhood' => 'Centro',
                     'complement' => 'Complexo Estação das Artes',
-                    'city' => [],
+                    'city' => [
+                        'id' => '97847c18-ac1c-4a00-93d4-b4a3e72a262c',
+                    ],
                     'zipcode' => '60030000',
                 ],
                 'createdBy' => [
@@ -935,7 +949,9 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 'number' => '540',
                 'neighborhood' => 'Centro',
                 'complement' => 'Complexo Estação das Artes',
-                'city' => [],
+                'city' => [
+                    'id' => '97847c18-ac1c-4a00-93d4-b4a3e72a262c',
+                ],
                 'zipcode' => '60030000',
             ],
             'createdBy' => [

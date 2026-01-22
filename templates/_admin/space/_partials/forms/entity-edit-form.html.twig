@@ -126,3 +126,27 @@
         </div>
     </div>
 </form>
+
+<script src="{{ asset('js/form-accordion-validator.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const customValidationFields = {
+        'capacity': (value) => {
+            const numValue = parseInt(value);
+            
+            if (isNaN(numValue) || numValue <= 0) {
+                return '{{ 'capacity_cannot_be_zero' | trans }}';
+            }
+
+            return true;
+        }
+    };
+    
+    const validator = new FormAccordionValidator(
+        document.getElementById('space-edit-form'),
+        customValidationFields
+    );
+    
+    window.addEventListener('beforeunload', () => validator.destroy());
+});
+</script>
