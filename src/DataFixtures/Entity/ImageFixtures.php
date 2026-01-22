@@ -39,6 +39,11 @@ final class ImageFixtures
         return self::getUploadedFile('space.png');
     }
 
+    public static function getSpacePortfolioImage(): UploadedFile
+    {
+        return self::getUploadedFile('space.png');
+    }
+
     public static function getUserImage(): UploadedFile
     {
         return self::getUploadedFile('user.png');

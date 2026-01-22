@@ -231,6 +231,13 @@ class SpaceAdminController extends AbstractAdminController
                 $this->service->updateCoverImage($id, $uploadedCover);
             }
 
+            $portfolioImages = $request->files->get('portfolioImages') ?? [];
+            $portfolioDescriptions = $request->request->all('portfolioDescriptions') ?? [];
+            foreach ($portfolioImages as $index => $portfolioImage) {
+                $description = $portfolioDescriptions[$index] ?? null;
+                $this->service->addPortfolioImage($space, $portfolioImage, $description);
+            }
+
             $this->addFlashSuccess($this->translator->trans('view.space.message.updated'));
 
             return $this->redirectToRoute('admin_space_list');
@@ -263,6 +270,19 @@ class SpaceAdminController extends AbstractAdminController
         $this->service->togglePublish($id);
 
         return $this->redirectToRoute('admin_space_list');
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function removePortfolioPhoto(Uuid $id, Uuid $photoId): Response
+    {
+        try {
+            $this->service->removePortfolioImage($id, $photoId);
+            $this->addFlashSuccess($this->translator->trans('photo_removed'));
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+        }
+
+        return $this->redirectToRoute('admin_space_edit', ['id' => $id]);
     }
 
     public function addFlashErrorByException(Exception $exception): void

@@ -340,6 +340,7 @@ no_image: Imagen no disponible
 no_languages: No hay idioma disponible
 no_cultural_languages: No hay lenguajes culturales disponibles
 no_seals: Sin sello
+no_photos_available: Este espacio aún no tiene fotos.
 no_subtitle: Sin subtítulos
 no_areas: Sin áreas
 no_accessibility: Sin accesibilidad
@@ -394,6 +395,7 @@ phone: Teléfono
 phone_for_information: Teléfono para información
 postgraduate: Posgrado
 photo: Foto
+photos: Fotos
 phase: Fase
 phases: Fases
 phase_name: Nombre de la fase
@@ -1115,6 +1117,17 @@ zip_code:
   generic_error: Error al buscar el código postal. Verifique su conexión o intente nuevamente.
   city_not_found: Ciudad no encontrada. Por favor, seleccione manualmente.
   state_not_found: Estado no encontrado. Por favor, seleccione manualmente.
+
+# portfolio
+existing_photos: Fotos existentes
+add_new_photos: Agregar nuevas fotos
+portfolio_upload_hint: "Seleccione las imágenes que desea agregar al portafolio del espacio. Formatos aceptados: PNG, JPG/JPEG. Tamaño máximo: 2MB."
+photo_description_placeholder: Ingrese una descripción para la foto
+add_another_photo: Agregar otra foto
+confirm_remove_photo: ¿Está seguro de que desea eliminar esta foto?
+remove: Eliminar
+optional: opcional
+photo_removed: Foto eliminada con éxito
 
 #exceptions
 exception:

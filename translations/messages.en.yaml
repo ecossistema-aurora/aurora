@@ -342,6 +342,7 @@ no_image: Image not available
 no_languages: No language available
 no_cultural_languages: No cultural language available
 no_seals: No seal
+no_photos_available: This space does not have photos yet.
 no_subtitle: No subtitle
 no_areas: No area registered
 no_accessibility: No accessibility registered
@@ -395,6 +396,7 @@ phone: Phone
 phone_for_information: Phone for information
 postgraduate: Postgraduate
 photo: Photo
+photos: Photos
 phase: Phase
 phases: Phases
 phase_name: Phase name
@@ -1120,6 +1122,17 @@ zip_code:
   generic_error: Error fetching ZIP code. Check your connection or try again.
   city_not_found: City not found. Please select manually.
   state_not_found: State not found. Please select manually.
+
+# portfolio
+existing_photos: Existing photos
+add_new_photos: Add new photos
+portfolio_upload_hint: "Select the images you want to add to the space portfolio. Accepted formats: PNG, JPG/JPEG. Maximum size: 2MB."
+photo_description_placeholder: Enter a description for the photo
+add_another_photo: Add another photo
+confirm_remove_photo: Are you sure you want to remove this photo?
+remove: Remove
+optional: optional
+photo_removed: Photo removed successfully
 
 #exceptions
 exception:
