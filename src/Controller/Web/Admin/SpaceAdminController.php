@@ -176,6 +176,10 @@ class SpaceAdminController extends AbstractAdminController
             }
         }
 
+        $currentExtraFields = $space->getExtraFields() ?? [];
+
+        $extraFields = $this->mountOpeningHours($request->request->get('opening_hours'), $currentExtraFields);
+
         $dataToUpdate = [
             'name' => $name,
             'shortDescription' => $request->request->get('short_description'),
@@ -193,6 +197,7 @@ class SpaceAdminController extends AbstractAdminController
             'date' => $date ? new DateTime($date) : null,
             'createdBy' => $space->getCreatedBy()->getId(),
             'updatedBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+            'extraFields' => $extraFields,
             'addressData' => [
                 'id' => $space->getAddress()?->getId() ?? Uuid::v4(),
                 'owner' => $space->getId()->toRfc4122(),
@@ -271,5 +276,19 @@ class SpaceAdminController extends AbstractAdminController
         }
 
         $this->addFlashError($exception->getMessage());
+    }
+
+    private function mountOpeningHours(?string $openingHours, array $extraFields): array
+    {
+        if (!empty($openingHours)) {
+            $openingHoursData = json_decode($openingHours, true);
+            if (JSON_ERROR_NONE === json_last_error() && !empty($openingHoursData)) {
+                $extraFields['openingHours'] = $openingHoursData;
+            }
+        } else {
+            unset($extraFields['openingHours']);
+        }
+
+        return $extraFields;
     }
 }
