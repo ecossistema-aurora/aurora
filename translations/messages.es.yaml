@@ -327,6 +327,7 @@ next: Próximo
 new_phase: Nueva fase
 notifications: Notificaciones
 no: No
+no_events_available: No hay eventos disponibles
 no_number: Sin número
 no_inform: No Informar
 no_phase: No se registró ninguna fase.
