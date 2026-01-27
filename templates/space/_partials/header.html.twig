@@ -34,8 +34,10 @@
     <div class="entity-description pb-5">
         <p>{{ space.longDescription }}</p>
     </div>
-    <div class="d-none profile-tabs d-flex align-items-center justify-content-between">
+    <div class="profile-tabs d-flex align-items-center justify-content-between">
         {% include tabs %}
-        <span>{{ 'identification_number' | trans }}: {{ id }}</span>
+        <button class="btn btn-outline-primary btn-sm copy-id" data-id="{{ space.id }}">
+            {{ 'copy_id' | trans }}
+        </button>
     </div>
 </div>
