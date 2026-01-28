@@ -124,6 +124,27 @@
                 </div>
             </div>
         </div>
+
+        <div class="accordion-item mt-4 mb-4">
+            <h2 class="accordion-header">
+                <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseSeven"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseSeven">
+                    {{ 'portfolio' | trans }}
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                    <hr>
+                    {% include "_admin/space/_partials/forms/portfolio.html.twig" %}
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 

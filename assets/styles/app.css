@@ -881,7 +881,8 @@ img.card-images__entity-details {
     gap: 0.625rem;
 }
 
-.entity-edit-submit button {
+.entity-edit-submit button,
+.entity-edit-submit a {
     font-weight: bold;
     border: 2px solid;
     width: 10rem;

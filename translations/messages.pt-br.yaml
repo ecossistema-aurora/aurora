@@ -344,6 +344,7 @@ no_cultural_languages: Nenhuma linguagem cultural cadastrada.
 no_areas: Nenhuma área cadastrada
 no_accessibility: Nenhuma acessibilidade registrada
 no_seals: Nenhum selo registrado
+no_photos_available: Esse espaço ainda não possui fotos.
 none_area_specified: Nenhuma área especificada
 does_not_have: Não possui
 not_informed: Não informado
@@ -395,6 +396,7 @@ postgraduate: Pós-graduação
 phone: Telefone
 phone_for_information: Telefone para informações
 photo: Foto
+photos: Fotos
 phase: Fase
 phases: Fases
 phase_name: Nome da fase
@@ -1116,6 +1118,17 @@ zip_code:
   generic_error: Erro ao buscar CEP. Verifique sua conexão ou tente novamente.
   city_not_found: Cidade não encontrada. Por favor, selecione manualmente.
   state_not_found: Estado não encontrado. Por favor, selecione manualmente.
+
+# portfolio
+existing_photos: Fotos existentes
+add_new_photos: Adicionar novas fotos
+portfolio_upload_hint: "Selecione as imagens que deseja adicionar ao portfólio do espaço. Formatos aceitos: PNG, JPG/JPEG. Tamanho máximo: 2MB."
+photo_description_placeholder: Digite uma descrição para a foto
+add_another_photo: Adicionar outra foto
+confirm_remove_photo: Tem certeza que deseja remover esta foto?
+remove: Remover
+optional: opcional
+photo_removed: Foto removida com sucesso
 
 #exceptions
 exception:

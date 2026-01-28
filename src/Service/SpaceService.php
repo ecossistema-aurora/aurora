@@ -14,6 +14,7 @@ use App\Exception\Space\SpaceResourceNotFoundException;
 use App\Repository\Interface\SpaceRepositoryInterface;
 use App\Service\Interface\CityServiceInterface;
 use App\Service\Interface\FileServiceInterface;
+use App\Service\Interface\PhotoServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,6 +29,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 {
     private const string DIR_SPACE_PROFILE = 'app.dir.space.profile';
     private const string DIR_SPACE_COVER = 'app.dir.space.cover';
+    private const string DIR_SPACE_PORTFOLIO = 'app.dir.space.portfolio';
 
     public function __construct(
         private FileServiceInterface $fileService,
@@ -38,6 +40,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
+        private PhotoServiceInterface $photoService,
     ) {
         parent::__construct(
             $this->security,
@@ -207,5 +210,34 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         $space->setIsDraft(!$space->isDraft());
 
         $this->repository->save($space);
+    }
+
+    public function addPortfolioImage(Space $space, UploadedFile $uploadedFile, ?string $description = null): Space
+    {
+        $photo = $this->photoService->create($uploadedFile, self::DIR_SPACE_PORTFOLIO, $description);
+
+        $space->addPortfolio($photo);
+        $space->setUpdatedAt(new DateTime());
+
+        $this->entityManager->flush();
+
+        return $space;
+    }
+
+    public function removePortfolioImage(Uuid $spaceId, Uuid $photoId): Space
+    {
+        $space = $this->get($spaceId);
+
+        $photo = $this->photoService->get($photoId);
+
+        if (null !== $photo) {
+            $space->removePortfolio($photo);
+            $this->photoService->delete($photo);
+            $space->setUpdatedAt(new DateTime());
+
+            $this->entityManager->flush();
+        }
+
+        return $space;
     }
 }

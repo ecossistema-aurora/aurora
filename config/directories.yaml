@@ -8,5 +8,6 @@ parameters:
     app.dir.organization.profile: '/organizations/images/profile'
     app.dir.space.profile: '/spaces/images/profile'
     app.dir.space.cover: '/spaces/images/cover'
+    app.dir.space.portfolio: '/spaces/images/portfolio'
     app.dir.user.profile: '/users/images/profile'
     app.dir.user.cover: '/users/images/cover'
