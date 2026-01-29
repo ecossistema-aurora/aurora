@@ -57,6 +57,23 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
         return $this->repository->count($criteria);
     }
 
+    public function countRecentOpportunities(int $days = 7): int
+    {
+        $startDate = new DateTime("-{$days} days");
+
+        return $this->repository->countRecentOpportunities($startDate);
+    }
+
+    public function countOpenedOpportunities(): int
+    {
+        return $this->repository->countOpenedOpportunities();
+    }
+
+    public function countFinishedOpportunities(): int
+    {
+        return $this->repository->countFinishedOpportunities();
+    }
+
     public function create(array $opportunity): Opportunity
     {
         $opportunity = $this->validateInput($opportunity, OpportunityDto::class, OpportunityDto::CREATE);
