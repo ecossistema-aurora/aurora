@@ -992,6 +992,8 @@ view:
     access: Acceder organización
     date: Organización fue creada en
     message:
+      created: La organización ha sido creada
+      updated: La organización ha sido actualizada
       deleted: La organización ha sido eliminada
       deleted_member: El miembro ha sido excluido
     quantity:

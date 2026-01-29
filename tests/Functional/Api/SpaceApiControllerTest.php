@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Api;
 use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\ArchitecturalAccessibilityFixtures;
+use App\DataFixtures\Entity\PhotoFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Space;
@@ -141,6 +142,32 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                         'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
                     ],
                 ],
+                'portfolio' => [
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_1,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_1),
+                        'description' => 'Fachada principal do espaço cultural',
+                        'createdAt' => '2024-07-10T11:30:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_2,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_2),
+                        'description' => 'Auditório com capacidade para 200 pessoas',
+                        'createdAt' => '2024-07-10T11:35:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_3,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_3),
+                        'description' => 'Galeria de arte contemporânea',
+                        'createdAt' => '2024-07-11T10:00:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -150,6 +177,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             'activityAreas' => [],
             'tags' => [],
             'accessibilities' => [],
+            'portfolio' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -262,6 +290,32 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                         'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
                     ],
                 ],
+                'portfolio' => [
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_1,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_1),
+                        'description' => 'Fachada principal do espaço cultural',
+                        'createdAt' => '2024-07-10T11:30:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_2,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_2),
+                        'description' => 'Auditório com capacidade para 200 pessoas',
+                        'createdAt' => '2024-07-10T11:35:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_3,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_3),
+                        'description' => 'Galeria de arte contemporânea',
+                        'createdAt' => '2024-07-11T10:00:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -285,6 +339,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
             ],
             'tags' => [],
             'accessibilities' => [],
+            'portfolio' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -636,6 +691,24 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                         'description' => 'Banheiros com adaptações para pessoas com deficiência',
                     ],
                 ],
+                'portfolio' => [
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_4,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_4),
+                        'description' => 'Espaço para oficinas e workshops',
+                        'createdAt' => '2024-07-11T10:05:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_5,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_5),
+                        'description' => 'Área de convivência',
+                        'createdAt' => '2024-07-12T09:00:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                ],
                 'createdAt' => '2024-07-11T10:49:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -685,6 +758,16 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
                     'name' => 'Sinalização tátil',
                     'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
+                ],
+            ],
+            'portfolio' => [
+                [
+                    'id' => PhotoFixtures::PHOTO_ID_6,
+                    'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_6),
+                    'description' => 'Biblioteca com acervo local',
+                    'createdAt' => '2024-07-12T09:30:00+00:00',
+                    'updatedAt' => null,
+                    'deletedAt' => null,
                 ],
             ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
@@ -858,6 +941,32 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                         'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
                     ],
                 ],
+                'portfolio' => [
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_1,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_1),
+                        'description' => 'Fachada principal do espaço cultural',
+                        'createdAt' => '2024-07-10T11:30:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_2,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_2),
+                        'description' => 'Auditório com capacidade para 200 pessoas',
+                        'createdAt' => '2024-07-10T11:35:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                    [
+                        'id' => PhotoFixtures::PHOTO_ID_3,
+                        'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_3),
+                        'description' => 'Galeria de arte contemporânea',
+                        'createdAt' => '2024-07-11T10:00:00+00:00',
+                        'updatedAt' => null,
+                        'deletedAt' => null,
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -901,6 +1010,7 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'description' => 'Banheiros com adaptações para pessoas com deficiência',
                 ],
             ],
+            'portfolio' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $space->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -1007,6 +1117,32 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                     'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
                     'name' => 'Sinalização tátil',
                     'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
+                ],
+            ],
+            'portfolio' => [
+                [
+                    'id' => PhotoFixtures::PHOTO_ID_1,
+                    'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_1),
+                    'description' => 'Fachada principal do espaço cultural',
+                    'createdAt' => '2024-07-10T11:30:00+00:00',
+                    'updatedAt' => null,
+                    'deletedAt' => null,
+                ],
+                [
+                    'id' => PhotoFixtures::PHOTO_ID_2,
+                    'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_2),
+                    'description' => 'Auditório com capacidade para 200 pessoas',
+                    'createdAt' => '2024-07-10T11:35:00+00:00',
+                    'updatedAt' => null,
+                    'deletedAt' => null,
+                ],
+                [
+                    'id' => PhotoFixtures::PHOTO_ID_3,
+                    'image' => $this->findImage($client, PhotoFixtures::PHOTO_ID_3),
+                    'description' => 'Galeria de arte contemporânea',
+                    'createdAt' => '2024-07-11T10:00:00+00:00',
+                    'updatedAt' => null,
+                    'deletedAt' => null,
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -1201,5 +1337,25 @@ class SpaceApiControllerTest extends AbstractApiTestCase
                 ],
             ],
         ];
+    }
+
+    private function findImage(mixed $client, string $photoId): string
+    {
+        $response = json_decode($client->getResponse()->getContent(), true);
+
+        $locations = [
+            $response['portfolio'] ?? [],
+            $response['parent']['portfolio'] ?? [],
+        ];
+
+        foreach ($locations as $portfolio) {
+            foreach ($portfolio as $item) {
+                if (($item['id'] ?? '') === $photoId) {
+                    return $item['image'];
+                }
+            }
+        }
+
+        return 'image not found';
     }
 }
