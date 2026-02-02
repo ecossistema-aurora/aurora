@@ -15,6 +15,7 @@ use App\Repository\Interface\AgentRepositoryInterface;
 use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
+use App\Service\Interface\PhotoServiceInterface;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -27,6 +28,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 readonly class AgentService extends AbstractEntityService implements AgentServiceInterface
 {
     private const string DIR_AGENT_PROFILE = 'app.dir.agent.profile';
+    private const string DIR_AGENT_PORTFOLIO = 'app.dir.agent.portfolio';
 
     public function __construct(
         private AgentRepositoryInterface $repository,
@@ -37,6 +39,7 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
+        private PhotoServiceInterface $photoService,
     ) {
         parent::__construct(
             $this->security,
@@ -228,6 +231,35 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         $agent->setUpdatedAt(new DateTime());
 
         $this->repository->save($agent);
+
+        return $agent;
+    }
+
+    public function addPortfolioImage(Agent $agent, UploadedFile $uploadedFile, ?string $description = null): Agent
+    {
+        $photo = $this->photoService->create($uploadedFile, self::DIR_AGENT_PORTFOLIO, $description);
+
+        $agent->addPortfolio($photo);
+        $agent->setUpdatedAt(new DateTime());
+
+        $this->entityManager->flush();
+
+        return $agent;
+    }
+
+    public function removePortfolioImage(Uuid $agentId, Uuid $photoId): Agent
+    {
+        $agent = $this->get($agentId);
+
+        $photo = $this->photoService->get($photoId);
+
+        if (null !== $photo) {
+            $agent->removePortfolio($photo);
+            $this->photoService->delete($photo);
+            $agent->setUpdatedAt(new DateTime());
+
+            $this->entityManager->flush();
+        }
 
         return $agent;
     }

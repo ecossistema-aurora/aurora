@@ -1,9 +1,9 @@
 <section class="card card-body shadow mt-4">
     <h3>{{ 'photos' | trans }}</h3>
     <hr>
-    {% if space.portfolio is defined and space.portfolio|length > 0 %}
+    {% if agent.portfolio is defined and agent.portfolio|length > 0 %}
         <div class="row g-3">
-            {% for photo in space.portfolio %}
+            {% for photo in agent.portfolio %}
                 <div class="col-md-4 col-sm-6">
                     <div class="card h-100">
                         <img src="{{ asset(photo.image) }}"
@@ -20,6 +20,6 @@
             {% endfor %}
         </div>
     {% else %}
-        <em>{{ 'view.space.no_photos_available' | trans }}</em>
+        <em>{{ 'view.agent.no_photos_available' | trans }}</em>
     {% endif %}
 </section>

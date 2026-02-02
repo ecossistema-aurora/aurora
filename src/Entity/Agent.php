@@ -83,6 +83,11 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get.item'])]
     private ?Collection $addresses = null;
 
+    #[ORM\ManyToMany(targetEntity: Photo::class)]
+    #[ORM\JoinTable(name: 'agent_photo')]
+    #[Groups('agent.get.item')]
+    private Collection $portfolio;
+
     /**
      * @var array<string, string>
      */
@@ -109,6 +114,7 @@ class Agent extends AbstractEntity
         $this->seals = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->culturalFunction = new ArrayCollection();
+        $this->portfolio = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -276,6 +282,28 @@ class Agent extends AbstractEntity
         $this->addresses->removeElement($address);
     }
 
+    public function getPortfolio(): Collection
+    {
+        return $this->portfolio;
+    }
+
+    public function setPortfolio(Collection $portfolio): void
+    {
+        $this->portfolio = $portfolio;
+    }
+
+    public function addPortfolio(Photo $photo): void
+    {
+        if (!$this->portfolio->contains($photo)) {
+            $this->portfolio->add($photo);
+        }
+    }
+
+    public function removePortfolio(Photo $photo): void
+    {
+        $this->portfolio->removeElement($photo);
+    }
+
     public function getSocialNetworks(): array
     {
         return $this->socialNetworks;
@@ -356,6 +384,7 @@ class Agent extends AbstractEntity
             'extraFields' => $this->extraFields,
             'organizations' => $this->organizations->map(fn ($organization) => $organization->getId()->toRfc4122())->toArray(),
             'culturalFunction' => $this->culturalFunction->map(fn ($culturalFunction) => $culturalFunction->getId()->toRfc4122())->toArray(),
+            'portfolio' => $this->portfolio->map(fn (Photo $photo) => $photo->toArray())->toArray(),
             'socialNetworks' => $this->socialNetworks,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
