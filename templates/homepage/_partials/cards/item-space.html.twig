@@ -18,30 +18,19 @@
             <h4 class="fw-bold">{{ title }}</h4>
         </div>
     </div>
-
-    <p><span class="text-uppercase">{{ 'type'|trans }}:</span> <span class="text-green">{{ type }}</span></p>
-    <p><span class="text-uppercase">{{ 'where'|trans }}:</span> <span class="text-info">{{ location }}</span></p>
-    <p>{{ description }}</p>
-
-    <h6 class="fw-bold">{{ 'activity_area'|trans }} ({{ interest_areas_count }}):</h6>
+    <p> <span class="text-uppercase fw-bold mt-3">{{ 'type'|trans }}:</span> <span class="text-green">{{ type }}</span> </p>
+    <p> <span class="text-uppercase fw-bold mt-3">{{ 'where'|trans }}:</span> <span class="text-info">{{ location }}</span> </p>
+    <p> {{ description }}</p>
+    <h6 class="fw-bold"> {{ 'activity_area'|trans }} ({{ interest_areas_count }}):</h6>
     <p class="fw-bold text-info">{{ interest_areas }}</p>
-
-    <h6 class="fw-bold">{{ 'tags'|trans }} ({{ tags_count }}):</h6>
-    <p class="fw-bold text-info">{{ tags }}</p>
-
-    <p><strong>Site:</strong>
-        {% if site != 'no_site'|trans %}
-            <a href="{{ site }}" target="_blank">{{ site }}</a>
-        {% else %}
-            {{ site }}
-        {% endif %}
-    </p>
+    <h6 class="fw-bold"> {{ 'tags'|trans }} ({{ tags_count }}):</h6>
+    <p class="fw-bold text-info">{{ tags }} </p>
 
     <div class="row mt-3">
         <div class="col-md position-relative">
             <a href="{{ path('web_space_getOne', { id: space.id }) }}"
                class="btn btn-primary d-flex align-items-center justify-content-center">
-                <span class="fw-bold">{{ 'check'|trans }}</span>
+                <span class="fw-bold"> {{ 'check'|trans }}</span>
                 <i class="material-icons ms-3">arrow_forward</i>
             </a>
         </div>

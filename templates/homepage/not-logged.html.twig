@@ -1,14 +1,10 @@
 {% extends "_layouts/blank-not-logged.html.twig" %}
-
 {% block title %} {{ 'home'|trans}} {% endblock %}
-
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/pages/homepage.css') }}">
 {% endblock %}
-
 {% block content %}
-
 {% if env.aurora.homepage.sections.banner.enabled == "true" %}
     <div style="height: 500px; background: url('{{ env.aurora.homepage.sections.banner.image }}'); background-repeat: no-repeat; background-size: cover;">
         <div class="container">
@@ -18,7 +14,6 @@
         </div>
     </div>
 {% endif %}
-
 {% if env.aurora.homepage.sections.header.enabled == "true" %}
     <div class="{{ env.aurora.homepage.sections.header.background ?? 'bg-primary' }}">
         <div class="container">
@@ -40,7 +35,6 @@
         </div>
     </div>
 {% endif %}
-
 {% if env.aurora.homepage.sections.register.enabled == "true" %}
     <div class=" text-white py-5" style="background-color: {{ env.aurora.homepage.sections.register.color }}">
         <div class="container pb-5">
@@ -48,9 +42,7 @@
                 <div class="col-md-12">
                     {% if not app.user %}
                         <h1 class="fw-bold mt-4">{{ 'create_account'|trans }}</h1>
-
                         <p class="lead mt-3">{{ 'view.homepage.registration_info'|trans }}</p>
-
                         <div>
                             <a href="{{ path('web_auth_register') }}"
                                class="col-sm-3 mx-auto btn btn-light btn-lg text-secondary icon-link justify-content-between mt-5">
@@ -68,7 +60,6 @@
         </div>
     </div>
 {% endif %}
-
 {% if env.aurora.homepage.sections.opportunities.enabled == "true" %}
     <section class="bg-rose text-dark py-5">
         <div class="container pb-5">
@@ -78,7 +69,6 @@
                         <h1 class="fw-bold mt-4">{{ 'view.homepage.check_opportunities'|trans }}</h1>
                         <p class="lead mt-3">{{ 'view.homepage.discover_open_notice'|trans }}</p>
                     </div>
-
                     <div class="col-4 col-sm-3 text-end mt-4">
                         <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-md-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
                             <i class="material-icons">chevron_left</i>
@@ -88,7 +78,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="d-flex justify-content-center align-items-center mt-4">
                     <div class="d-flex align-items-center">
                         <div class="input-group me-3">
@@ -105,7 +94,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="opportunitiesCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner d-flex gap-5">
                     {% for opportunity in opportunities %}
@@ -132,7 +120,6 @@
         </div>
     </section>
 {% endif %}
-
 {% if env.aurora.homepage.sections.modules.enabled == "true" %}
 <section class="py-5">
     <div class="container pb-5">
@@ -224,49 +211,55 @@
                 </div>
 
                 {% set agents_content = agents|map(
+                    
                     agent => include('homepage/_partials/cards/item-agent.html.twig', {
                         'icon': 'person',
                         'status_text': agent.status_text ?? 'Individual',
-                        'image_url': asset('img/user.png'),
-                        'image_alt': agent.name ?? 'Sem foto',
+                        'image_url': agent.image ? asset(agent.image) : asset('img/default-image.png'),
+                        'image_alt': agent.name ?? 'Imagem não disponível',
                         'name': agent.name ?? 'Sem nome',
                         'areas_of_expertise_count': 0,
                         'areas_of_expertise': 'Música, Cultura Popular, Tradições Locais',
                         'seals_count': 2,
                         'seals': '+2',
+                        'email': agent.extraFields.email ?? 'Sem email',
+                        'instagram': agent.extraFields.instagram ?? 'Sem instagram',
+                        'short_bio': agent.shortBio ?? 'Sem biografia disponível',
+                        'long_bio': agent.longBio ?? 'Sem biografia disponível',
                     })
                 ) %}
 
                 {% set events_content = events|map(
                     event => include('homepage/_partials/cards/item-event.html.twig', {
-                        'status_icon': 'event',
+                        'status_icon': 'event' ? 'check_circle',
                         'image_url': event.image ? asset(event.image) : asset('img/home-events.png'),
-                        'image_alt': event.name ??' Imagem não disponível',
+                        'image_alt': event.name ?? 'Imagem não disponível',
                         'title': event.name ?? 'Sem título',
                         'date': event.endDate ? event.startDate|date('d/m/Y') ~ ' até ' ~ event.endDate|date('d/m/Y') : event.startDate|date('d/m/Y') ~ ' - ' ~ event.startDate|date('H:i'),
                         'location': event.space ? event.space.name : 'Sem local informado',
                         'description': event.shortDescription ?? 'Sem descrição disponível',
                         'interest_areas_count': event.activityAreas|length,
-                        'interest_areas': event.activityAreas|map(a => a.name)|join(', '),
+                        'interest_areas': event.activityAreas|map(a => a.name)|join(', ')|default('none_area_specified'),
                         'tags_count': event.tags|length,
-                        'tags': event.tags|map(a => a.name)|join(', '),
+                        'tags': event.tags|map(a => a.name)|join(', ')|default('Nenhuma tag cadastrada'),
                     })
                 ) %}
 
                 {% set initiatives_content = initiatives|map(
                     initiative => include('homepage/_partials/cards/item-initiative.html.twig', {
-                        'status_icon': 'check_circle',
+                        'status_icon': 'check_circle' ?? 'check_circle',
                         'status_text': initiative.status_text ?? 'Iniciativa',
-                        'image_url': asset('img/user.png'),
+                        'image_url': initiative.image ? asset(initiative.image) : asset('img/default-image.png'),
                         'image_alt': initiative.name ?? 'Imagem não disponível',
                         'title': initiative.name ?? 'Sem título',
-                        'type': 'CICLO',
+                        'type': initiative.extraFields.culturalLanguage ?? 'none_specified',
                         'registration_period': 'Sem período de inscrição',
-                        'description': 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
+                        'description': initiative.extraFields.shortDescription ?? 'description',
                         'tags_count': 4,
                         'tags': 'Festival, Música, Cultura, Edição 2024',
                         'seals_count': 2,
                         'seals': '+2',
+                        'date' : initiative.extraFields.period.endDate ? initiative.extraFields.period.startDate|date('d/m/Y') ~ ' até ' ~ initiative.extraFields.period.endDate|date('d/m/Y') : initiative.extraFields.period.startDate|date('d/m/Y') ~ ' - ' ~ initiative.extraFields.period.startDate|date('H:i'),
                     })
                 ) %}
 
@@ -274,17 +267,22 @@
                     opportunity => include('homepage/_partials/cards/item-opportunity.html.twig', {
                         'status_icon': 'visibility',
                         'status_text': 'Oportunidades',
-                        'image_url': asset(opportunity.image ?? 'img/img.png'),
+                        'image_url': opportunity.image ? asset(opportunity.image) : asset('img/default-image.png'),
                         'image_alt': opportunity.name ?? 'Sem imagem',
-                        'title': opportunity.name,
+                        'title': opportunity.name ?? 'opportunities',
                         'phases': opportunity.phases,
-                        'description': opportunity.description,
+                        'description': opportunity.description ? opportunity.description : 'Descrição do evento ou oportunidade aqui.',
                         'social_medias_count': opportunity.socialNetworks.count ?? 0,
                         'social_medias': opportunity.socialNetworks|map(s => s),
                         'phases_count': opportunity.phases.count,
+                        'interest_areas' : opportunity.extraFields.areasOfActivity|join(', '),
+                        'interest_areas_count': opportunity.extraFields.areasOfActivity|length,
+                        'tags':  opportunity.extraFields.tags|join(', ')|default('Nenhuma tag cadastrada'),
+                        'tags_count' : opportunity.extraFields.tags|length,
                         'badges_count': 0,
                         'badges': '0',
                         'link_url': path('web_opportunity_details', {id: opportunity.id}),
+                        'date' : opportunity.extraFields.period.endDate ? opportunity.extraFields.period.startDate|date('d/m/Y') ~ ' até ' ~ opportunity.extraFields.period.endDate|date('d/m/Y') : opportunity.extraFields.period.startDate|date('d/m/Y') ~ ' - ' ~ opportunity.extraFields.period.startDate|date('H:i'),
                     })
                 ) %}
 
