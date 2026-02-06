@@ -139,6 +139,13 @@ class AgentAdminController extends AbstractAdminController
                 'longBio' => $request->request->get('long_description'),
             ]);
 
+            $portfolioImages = $request->files->get('portfolioImages') ?? [];
+            $portfolioDescriptions = $request->request->all('portfolioDescriptions') ?? [];
+            foreach ($portfolioImages as $index => $portfolioImage) {
+                $description = $portfolioDescriptions[$index] ?? null;
+                $this->service->addPortfolioImage($agent, $portfolioImage, $description);
+            }
+
             $this->addFlash(FlashMessageTypeEnum::SUCCESS->value, $this->translator->trans('view.agent.message.updated'));
         } catch (ValidatorException $exception) {
             $errors = $exception->getConstraintViolationList();
@@ -154,6 +161,19 @@ class AgentAdminController extends AbstractAdminController
             ]);
         }
 
-        return $this->redirectToRoute('admin_agent_list');
+        return $this->redirectToRoute('admin_agent_edit', ['id' => $id]);
+    }
+
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function removePortfolioPhoto(Uuid $id, Uuid $photoId): Response
+    {
+        try {
+            $this->service->removePortfolioImage($id, $photoId);
+            $this->addFlash(FlashMessageTypeEnum::SUCCESS->value, $this->translator->trans('photo_removed'));
+        } catch (Exception $exception) {
+            $this->addFlash(FlashMessageTypeEnum::ERROR->value, $exception->getMessage());
+        }
+
+        return $this->redirectToRoute('admin_agent_edit', ['id' => $id]);
     }
 }

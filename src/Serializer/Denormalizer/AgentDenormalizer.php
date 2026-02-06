@@ -6,6 +6,7 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\Agent;
 use App\Entity\Organization;
+use App\Entity\Photo;
 use App\Entity\User;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -55,6 +56,15 @@ readonly class AgentDenormalizer implements DenormalizerInterface
             $agent->setOrganizations(new ArrayCollection($organizations));
         }
 
+        $portfolio = array_map(
+            fn (string $id) => $this->entityManager->find(Photo::class, $id),
+            $data['portfolio'] ?? []
+        );
+
+        if (true === array_key_exists('portfolio', $data)) {
+            $agent->setPortfolio(new ArrayCollection($portfolio));
+        }
+
         return $agent;
     }
 
@@ -71,7 +81,7 @@ readonly class AgentDenormalizer implements DenormalizerInterface
 
     private function filterData(array $data): array
     {
-        unset($data['organizations']);
+        unset($data['organizations'], $data['portfolio']);
 
         return $data;
     }

@@ -343,7 +343,6 @@ no_image: Image not available
 no_languages: No language available
 no_cultural_languages: No cultural language available
 no_seals: No seal
-no_photos_available: This space does not have photos yet.
 no_subtitle: No subtitle
 no_areas: No area registered
 no_accessibility: No accessibility registered
@@ -681,6 +680,7 @@ view:
     areas_of_expertise: Areas of Expertise
     collective_agents: Collective Agents
     individual_agents: Individual Agents
+    no_photos_available: This agent does not have photos yet.
 
   agent_profile:
     organizations_of: Organizations of
@@ -1041,6 +1041,7 @@ view:
       last_days: Registered in the last 7 days
     picture: Space Picture
     no_spaces_found: No spaces found
+    no_photos_available: This space does not have photos yet.
 
   space-edit:
     edit-space: Edit Space

@@ -341,7 +341,6 @@ no_image: Imagen no disponible
 no_languages: No hay idioma disponible
 no_cultural_languages: No hay lenguajes culturales disponibles
 no_seals: Sin sello
-no_photos_available: Este espacio aún no tiene fotos.
 no_subtitle: Sin subtítulos
 no_areas: Sin áreas
 no_accessibility: Sin accesibilidad
@@ -682,6 +681,7 @@ view:
     areas_of_expertise: Áreas de Especialización
     collective_agents: Agentes Colectivos
     individual_agents: Agentes Individuales
+    no_photos_available: Este agente aún no tiene fotos.
 
   agent_profile:
     organizations_of: Organizaciones de
@@ -1041,6 +1041,7 @@ view:
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
     no_spaces_found: No se encontraron espacios
+    no_photos_available: Este espacio aún no tiene fotos.
 
   space-edit:
     edit-space: Editar Espacio

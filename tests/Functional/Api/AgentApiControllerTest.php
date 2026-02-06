@@ -62,6 +62,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'organizations' => [],
             'culturalFunction' => [],
             'addresses' => null,
+            'portfolio' => [],
             'socialNetworks' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -104,6 +105,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             ],
             'culturalFunction' => [],
             'addresses' => null,
+            'portfolio' => [],
             'socialNetworks' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -326,6 +328,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                     'zipcode' => '51020010',
                 ],
             ],
+            'portfolio' => [],
             'socialNetworks' => [
                 SocialNetworkEnum::INSTAGRAM->value => 'https://instagram.com/anamouraab',
             ],
@@ -450,6 +453,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                     'zipcode' => '74120010',
                 ],
             ],
+            'portfolio' => [],
             'socialNetworks' => [
                 'instagram' => 'talysonsoares_',
             ],
@@ -519,6 +523,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                     'zipcode' => '51020010',
                 ],
             ],
+            'portfolio' => [],
             'socialNetworks' => [
                 'instagram' => 'anamouraab',
             ],

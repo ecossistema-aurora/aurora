@@ -31,5 +31,9 @@ interface AgentServiceInterface
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Agent;
 
+    public function addPortfolioImage(Agent $agent, UploadedFile $uploadedFile, ?string $description = null): Agent;
+
+    public function removePortfolioImage(Uuid $agentId, Uuid $photoId): Agent;
+
     public function count(?User $user = null): int;
 }
