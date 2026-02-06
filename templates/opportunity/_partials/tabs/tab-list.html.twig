@@ -18,7 +18,7 @@
             </div>
 
             <div class="d-flex flex-column flex-sm-row align-items-center mt-2 mb-3">
-                <img src="{{ opportunity.image }}" alt="Foto da oportunidade" class="rounded-circle">
+                <img src="{{ asset(opportunity.image ?? '') }}" alt="Foto da oportunidade" class="rounded-circle">
                 <span class="fw-bold ps-md-3 text-center text-sm-start">{{ opportunity.name }}</span>
             </div>
         </div>
@@ -38,7 +38,7 @@
                         <a class="text-primary fw-bold text-decoration-none" href="{{ path('web_event_show', {id: opportunity.event.id}) }}">{{ opportunity.event.name }}</a>
                     {% endif %}
                 </div>
-                {% if opportunity.extraFields.period %}
+                {% if opportunity.extraFields.period is defined %}
                 <p class="text-orange fw-bold">
                     {{ 'from'|trans }} {{ opportunity.extraFields.period.startDate|date('d/m/Y') }} {{ 'to'|trans }} {{ opportunity.extraFields.period.endDate|date('d/m/Y') }}
                 </p>
@@ -46,14 +46,14 @@
                 <p>
                     {{ opportunity.description|default(opportunity.extraFields.description|default('Descrição não disponível'))|slice(0, 150) }}...
                 </p>
-                {% if opportunity.extraFields.areasOfActivity %}
+                {% if opportunity.extraFields.areasOfActivity is defined %}
                 <div class="additional-info mb-2">
                     <span class="fw-bold text-uppercase">{{ 'areas_of_interest'|trans }}:</span>
                     <br>
                     <span class="text-orange">{{ opportunity.extraFields.areasOfActivity|join(', ') }}</span>
                 </div>
                 {% endif %}
-                {% if opportunity.extraFields.tags %}
+                {% if opportunity.extraFields.tags is defined %}
                 <div class="additional-info mb-2">
                     <span class="fw-bold">TAGS:</span>
                     <br>
