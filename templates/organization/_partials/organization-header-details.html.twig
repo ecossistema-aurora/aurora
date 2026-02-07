@@ -12,12 +12,12 @@
 <div class="entity-profile-bio">
     <div class="d-flex justify-content-between align-items-end">
         <div class="entity-photo d-flex align-items-end gap-4">
-            <img src="{{ asset('img/organization-icon.png') }}" alt="{{ 'photo' | trans }}">
+            <img src="{{ asset(organization.image ?? 'img/default-image.png') }}" alt="{{ 'photo' | trans }}">
             <div class="d-flex align-items-end gap-3">
                 <h1 class="fs-2 mb-0 fw-bold">{{ name }}</h1>
             </div>
         </div>
-        <div class="entity-profile-actions d-flex gap-4">
+        <div class="entity-profile-actions d-flex gap-4 d-none">
             <button class="d-flex align-items-center text-nowrap">
                 <i class="material-icons">share</i>
                 {{ 'share' | trans }}
@@ -28,8 +28,13 @@
             </button>
         </div>
     </div>
+    <div class="entity-description pb-5">
+        <p>{{ organization.description }}</p>
+    </div>
     <div class="profile-tabs d-flex align-items-center justify-content-between">
         {% include tabs %}
-        <span>{{ 'identification_number' | trans }}: {{ id }}</span>
+        <button class="btn btn-outline-primary btn-sm copy-id" data-id="{{ organization.id }}">
+            {{ 'copy_id' | trans }}
+        </button>
     </div>
 </div>
