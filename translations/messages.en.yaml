@@ -187,7 +187,7 @@ end_date: End date
 event: Event
 events: Events
 events_month_year: "{month} {year} Events"
-event_types:
+event_format_types:
   IN_PERSON: In Person
   ONLINE: Online
   HYBRID: Hybrid
