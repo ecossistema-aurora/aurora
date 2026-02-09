@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\Entity\Organization;
@@ -197,7 +198,12 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
-            'activityAreas' => [],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_8,
+                    'name' => 'Design',
+                ],
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -241,7 +247,16 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                 'phone' => '(85) 99999-0003',
                 'site' => 'https://www.igrejaderussas.org.br',
             ],
-            'activityAreas' => [],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -314,7 +329,16 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => $requestBody['extraFields'],
-            'activityAreas' => [],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
+                    'name' => 'Dança',
+                ],
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -459,7 +483,16 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                 'phone' => '(85) 99999-0010',
                 'site' => 'https://www.acr.com.br',
             ],
-            'activityAreas' => [],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                    'name' => 'Teatro',
+                ],
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
