@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\DocumentService\OrganizationTimelineDocumentService;
+use App\Entity\Organization;
 use App\Enum\OrganizationTypeEnum;
 use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
@@ -92,7 +93,7 @@ class OrganizationAdminController extends AbstractAdminController
             $this->service->create([
                 'id' => Uuid::v4(),
                 'name' => $request->get('name'),
-                'description' => $request->get('description'),
+                'long_description' => $request->get('long_description'),
                 'type' => $request->get('type'),
                 'activityAreas' => $request->get('activityAreas'),
                 'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
@@ -155,17 +156,102 @@ class OrganizationAdminController extends AbstractAdminController
         ]);
     }
 
-    public function edit(Uuid $id): Response
+    #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    public function edit(Uuid $id, Request $request): Response
     {
-        $organization = $this->service->get($id);
-        $agents = $organization->getAgents();
+        try {
+            $organization = $this->service->get($id);
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
 
-        $this->denyAccessUnlessGranted('edit', $organization);
+            return $this->redirectToRoute('admin_organization_list');
+        }
+
+        if ($request->isMethod(Request::METHOD_POST)) {
+            return $this->handleUpdate($organization, $request);
+        }
 
         return $this->render(self::VIEW_EDIT, [
             'organization' => $organization,
-            'agents' => $agents,
+            'agents' => $organization->getAgents(),
+            'activityAreas' => $this->activityAreaService->list(),
             'form_id' => self::EDIT_FORM_ID,
         ]);
+    }
+
+    private function handleUpdate(Organization $organization, Request $request): Response
+    {
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
+
+        try {
+            $dataToUpdate = [
+                'name' => $request->request->get('name'),
+                'description' => $request->request->get('short_description'),
+                'longDescription' => $request->request->get('long_description'),
+                'extraFields' => $this->extractExtraFields($request, $organization),
+                'socialNetworks' => $this->extractSocialNetworks($request),
+            ];
+
+            $this->service->update($organization->getId(), $dataToUpdate);
+
+            $this->handleUploads($organization->getId(), $request);
+
+            $this->addFlash('success', $this->translator->trans('view.organization.message.updated'));
+
+            return $this->redirectToRoute('admin_organization_list');
+        } catch (Exception $exception) {
+            $this->addFlash('error', $exception->getMessage());
+
+            return $this->render(self::VIEW_EDIT, [
+                'organization' => $organization,
+                'agents' => $organization->getAgents(),
+                'error' => $exception->getMessage(),
+                'activityAreas' => $this->activityAreaService->list(),
+                'form_id' => self::EDIT_FORM_ID,
+            ]);
+        }
+    }
+
+    private function extractExtraFields(Request $request, Organization $organization): array
+    {
+        $currentExtras = $organization->getExtraFields() ?? [];
+
+        $newExtras = [
+            'site' => $request->request->get('site'),
+            'link_description' => $request->request->get('link_description'),
+            'email' => $request->request->get('email'),
+            'phone' => $request->request->get('phone_number'),
+        ];
+
+        return array_merge($currentExtras, array_filter($newExtras));
+    }
+
+    private function extractSocialNetworks(Request $request): array
+    {
+        $socialNetworks = [];
+        $allowedNetworks = [
+            'instagram', 'x', 'facebook', 'vimeo',
+            'youtube', 'linkedin', 'spotify', 'pinterest', 'tiktok',
+        ];
+
+        foreach ($allowedNetworks as $network) {
+            $value = $request->request->get($network);
+            if (!empty($value)) {
+                $socialNetworks[$network] = $value;
+            }
+        }
+
+        return $socialNetworks;
+    }
+
+    private function handleUploads(Uuid $id, Request $request): void
+    {
+        if ($uploadedImage = $request->files->get('profileImage')) {
+            $this->service->updateImage($id, $uploadedImage);
+        }
+
+        if ($uploadedCover = $request->files->get('coverImage')) {
+            $this->service->updateCoverImage($id, $uploadedCover);
+        }
     }
 }
