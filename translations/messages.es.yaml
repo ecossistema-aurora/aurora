@@ -344,6 +344,8 @@ no_seals: Sin sello
 no_subtitle: Sin subtítulos
 no_areas: Sin áreas
 no_accessibility: Sin accesibilidad
+no_organizations: Sin organizaciones
+no_spaces: Sin espacios
 none_area_specified: Ninguna zona especificada
 does_not_have: No tiene
 not_informed: No informado
@@ -504,6 +506,7 @@ view_all: Ver Todas
 view_file: ver archivo
 video: vídeo
 visualization: Visual
+validity: Validez
 
 save: Guardar
 save_and_publish: Guardar y Publicar
