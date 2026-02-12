@@ -112,6 +112,9 @@ style:
 	docker compose exec -T php bash -c "php vendor/bin/phpcs --config-set installed_paths src/Standards"
 	docker compose exec -T php bash -c "php vendor/bin/phpcs"
 
+composer_install:
+	docker compose exec -T php composer install --ignore-platform-req=ext-mongodb
+
 create-admin-user:
 	docker compose exec -T php bash -c "php bin/console app:create-admin-user"
 
