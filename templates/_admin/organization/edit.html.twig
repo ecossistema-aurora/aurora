@@ -39,10 +39,13 @@
                     </button>
                 </div>
                 <div class="logout-submit">
-                    <button class="btn btn-outline-light">{{ 'logout' | trans }}</button>
+                    <a href="{{ path('admin_organization_list') }}" class="btn btn-outline-light">{{ 'logout' | trans }}</a href"{{ path('admin_organization_list') }}>
                     <button form="organization-edit-form" type="submit" class="btn btn-light">{{ 'save' | trans}}</button>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+{% block extra_javascripts %}
+    <script src="{{ asset('js/image-validation.js') }}"></script>
 {% endblock %}

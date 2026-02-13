@@ -169,7 +169,7 @@ abstract readonly class AbstractEntityService
             $dto->$dtoProperty = $uploadedFile;
         }
 
-        $violations = $this->validator->validate($dto, groups: $validationGroups);
+        $violations = $this->validator->validateProperty($dto, $dtoProperty, $validationGroups);
 
         if ($violations->count() > 0) {
             throw new ValidatorException(violations: $violations);

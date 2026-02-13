@@ -8,6 +8,7 @@ parameters:
     app.dir.opportunity.cover: '/opportunities/images/cover'
     app.dir.opportunity.profile: '/opportunities/images/profile'
     app.dir.organization.profile: '/organizations/images/profile'
+    app.dir.organization.cover: '/organizations/images/cover'
     app.dir.space.profile: '/spaces/images/profile'
     app.dir.space.cover: '/spaces/images/cover'
     app.dir.space.portfolio: '/spaces/images/portfolio'
