@@ -65,10 +65,10 @@ class OpportunityAdminController extends AbstractAdminController
         return $data;
     }
 
-//    #[IsGranted(new Expression('
-//        is_granted("'.UserRolesEnum::ROLE_ADMIN->value.'") or
-//        is_granted("'.UserRolesEnum::ROLE_MANAGER->value.'")
-//    '), statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    //    #[IsGranted(new Expression('
+    //        is_granted("'.UserRolesEnum::ROLE_ADMIN->value.'") or
+    //        is_granted("'.UserRolesEnum::ROLE_MANAGER->value.'")
+    //    '), statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function create(Request $request): Response
     {
         if ('POST' !== $request->getMethod()) {
@@ -196,10 +196,10 @@ class OpportunityAdminController extends AbstractAdminController
         ]);
     }
 
-//    #[IsGranted(new Expression('
-//        is_granted("'.UserRolesEnum::ROLE_ADMIN->value.'") or
-//        is_granted("'.UserRolesEnum::ROLE_MANAGER->value.'")
-//    '), statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
+    //    #[IsGranted(new Expression('
+    //        is_granted("'.UserRolesEnum::ROLE_ADMIN->value.'") or
+    //        is_granted("'.UserRolesEnum::ROLE_MANAGER->value.'")
+    //    '), statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
     public function get(Uuid $id): Response
     {
         $opportunity = $this->service->get($id);
