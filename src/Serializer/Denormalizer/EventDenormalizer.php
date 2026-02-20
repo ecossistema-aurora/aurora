@@ -45,8 +45,8 @@ readonly class EventDenormalizer implements DenormalizerInterface
             $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
-        if (true === array_key_exists('type', $data)) {
-            $data['type'] = $this->denormalizeEventType($data['type']);
+        if (true === array_key_exists('format', $data)) {
+            $data['format'] = $this->denormalizeEventType($data['format']);
         }
 
         if (true === array_key_exists('accessibleAudio', $data)) {

@@ -52,7 +52,6 @@
 }
 
 .entity-profile-bio .entity-profile-label {
-    width: 6.563rem;
     height: 2rem;
     border-radius: 45px;
     background-color: var(--color-highlight);

@@ -187,7 +187,7 @@ end_date: End date
 event: Event
 events: Events
 events_month_year: "{month} {year} Events"
-event_types:
+event_format_types:
   IN_PERSON: In Person
   ONLINE: Online
   HYBRID: Hybrid
@@ -346,6 +346,8 @@ no_seals: No seal
 no_subtitle: No subtitle
 no_areas: No area registered
 no_accessibility: No accessibility registered
+no_organizations: No organization found
+no_spaces: No space found
 none_area_specified: None area specified
 does_not_have: Does not have
 not_informed: Not informed
@@ -506,6 +508,7 @@ view_all: View All
 view_file: view file
 video: video
 visualization: Visual
+validity: Validity
 
 save: Save
 save_and_publish: Save and Publish
