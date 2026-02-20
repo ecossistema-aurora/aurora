@@ -92,14 +92,14 @@ class OpportunityAdminController extends AbstractAdminController
         $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $data = $request->request->all();
-        $files = $request->files->all();
+        unset($data['coverImage']);
 
         $data = $this->hidrate($data);
 
         try {
             $opportunity = $this->service->create($data);
-            if ($files['extraFields']['coverImage'] ?? null instanceof UploadedFile) {
-                $this->service->updateCoverImage($opportunity->getId(), $files['extraFields']['coverImage']);
+            if ($uploadedImage = $request->files->get('coverImage')) {
+                $this->service->updateCoverImage($opportunity->getId(), $uploadedImage);
             }
 
             $this->addFlash('success', $this->translator->trans('view.opportunity.message.created'));
