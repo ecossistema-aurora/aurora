@@ -62,6 +62,16 @@ readonly class EventService extends AbstractEntityService implements EventServic
         return $this->repository->count($criteria);
     }
 
+    public function countOpenedEvents(): int
+    {
+        return $this->repository->countOpenedEvents();
+    }
+
+    public function countFinishedEvents(): int
+    {
+        return $this->repository->countFinishedEvents();
+    }
+
     public function create(array $event): Event
     {
         $event = $this->validateInput($event, EventDto::class, EventDto::CREATE);

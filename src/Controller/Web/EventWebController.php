@@ -45,13 +45,15 @@ class EventWebController extends AbstractWebController
 
         $days = $filters->toArray()['days'] ?? 7;
         $recentEvents = $this->service->countRecentRecords($days);
+        $openedEvents = $this->service->countOpenedEvents();
+        $finishedEvents = $this->service->countFinishedEvents();
 
         $dashboard = [
             'color' => '#f5b932',
             'items' => [
                 new CardItem(icon: 'description', quantity: $totalEvents, text: 'view.event.quantity.total'),
-                new CardItem(icon: 'event_note', quantity: 10, text: 'view.event.quantity.opened'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'view.event.quantity.finished'),
+                new CardItem(icon: 'event_note', quantity: $openedEvents, text: 'view.event.quantity.opened'),
+                new CardItem(icon: 'event_available', quantity: $finishedEvents, text: 'view.event.quantity.finished'),
                 new CardItem(icon: 'today', quantity: $recentEvents, text: $this->translator->trans('view.event.quantity.last_days', ['{days}' => $days])),
             ],
         ];

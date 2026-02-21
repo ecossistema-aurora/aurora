@@ -45,6 +45,10 @@ readonly class EventDenormalizer implements DenormalizerInterface
             $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
+        if (true === array_key_exists('coverImage', $data)) {
+            $this->uploadCoverImage($data, $context['object_to_populate'] ?? null);
+        }
+
         if (true === array_key_exists('format', $data)) {
             $data['format'] = $this->denormalizeEventType($data['format']);
         }
@@ -128,6 +132,17 @@ readonly class EventDenormalizer implements DenormalizerInterface
 
         if ($data['image'] instanceof File) {
             $data['image'] = $this->fileService->getFileUrl($data['image']->getPathname());
+        }
+    }
+
+    private function uploadCoverImage(array &$data, ?Event $eventFromDb = null): void
+    {
+        if (false === is_null($eventFromDb) && true === is_string($eventFromDb->getCoverImage())) {
+            $this->fileService->deleteFileByUrl($eventFromDb->getCoverImage());
+        }
+
+        if ($data['coverImage'] instanceof File) {
+            $data['coverImage'] = $this->fileService->getFileUrl($data['coverImage']->getPathname());
         }
     }
 
