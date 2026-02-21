@@ -8,6 +8,7 @@ use App\Enum\AgeClassificationEnum;
 use App\Request\Query\Filters;
 use App\Service\Interface\CulturalLanguageServiceInterface;
 use App\Service\Interface\EventServiceInterface;
+use App\Service\Interface\InscriptionEventServiceInterface;
 use App\Service\Interface\StateServiceInterface;
 use App\Service\Interface\TagServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
@@ -24,6 +25,7 @@ class EventWebController extends AbstractWebController
         private readonly CulturalLanguageServiceInterface $culturalLanguageService,
         private readonly TagServiceInterface $tagService,
         private readonly StateServiceInterface $stateService,
+        private readonly InscriptionEventServiceInterface $inscriptionEventService,
     ) {
     }
 
@@ -75,7 +77,11 @@ class EventWebController extends AbstractWebController
     public function show(Uuid $id): Response
     {
         $event = $this->service->get($id);
+        $userInscription = $this->inscriptionEventService->getUserInscription($id);
 
-        return $this->render('event/show.html.twig', ['event' => $event]);
+        return $this->render('event/show.html.twig', [
+            'event' => $event,
+            'userInscription' => $userInscription,
+        ]);
     }
 }

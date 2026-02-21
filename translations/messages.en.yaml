@@ -565,6 +565,10 @@ status_create: Create
 street: Street
 suggestions: Suggestions
 subscribe: Subscribe
+subscribed: Subscribed
+subscribed_since: Subscribed since {date}
+subscribe_confirmation_title: Confirm subscription
+subscribe_confirmation_message: Are you sure you want to subscribe to this event?
 subsites: Subsites
 subtitle: Subtitle
 suspend: Suspend

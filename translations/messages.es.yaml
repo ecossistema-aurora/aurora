@@ -562,6 +562,10 @@ status_create: Crear
 status_published: Publicado
 suggestions: Sugerencias
 subscribe: Suscribir
+subscribed: Inscrito
+subscribed_since: Inscrito desde {date}
+subscribe_confirmation_title: Confirmar suscripción
+subscribe_confirmation_message: ¿Está seguro de que desea suscribirse a este evento?
 subsites: Subsitios
 subtitle: Subtítulo
 suspend: Suspender
