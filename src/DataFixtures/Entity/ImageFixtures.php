@@ -49,6 +49,11 @@ final class ImageFixtures
         return self::getUploadedFile('user.png');
     }
 
+    public static function getCoverImage(): UploadedFile
+    {
+        return self::getUploadedFile('entity-cover-image.png');
+    }
+
     private static function getUploadedFile(string $image): UploadedFile
     {
         $path = realpath(sprintf('%s/images/%s', __DIR__, $image));
