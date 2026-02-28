@@ -964,6 +964,7 @@ view:
     registration_success: Inscrição realizada com sucesso
     registration_duplicated: Você já está inscrito nesta oportunidade
     registration_unauthorized: Você não pode se inscrever em uma oportunidade que você criou
+    no_opportunities_found: Nenhuma oportunidade encontrada
 
   opportunity_admin:
     inscriptions:

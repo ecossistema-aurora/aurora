@@ -983,6 +983,7 @@ view:
     registration_success: Registration completed successfully
     registration_duplicated: You are already registered for this opportunity
     registration_unauthorized: You cannot apply to an opportunity you created
+    no_opportunities_found: No opportunities found
 
   opportunity_admin:
     inscriptions:
