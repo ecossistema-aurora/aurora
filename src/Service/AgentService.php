@@ -28,6 +28,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 readonly class AgentService extends AbstractEntityService implements AgentServiceInterface
 {
     private const string DIR_AGENT_PROFILE = 'app.dir.agent.profile';
+    private const string DIR_AGENT_COVER = 'app.dir.agent.cover';
     private const string DIR_AGENT_PORTFOLIO = 'app.dir.agent.portfolio';
 
     public function __construct(
@@ -233,6 +234,20 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         $this->repository->save($agent);
 
         return $agent;
+    }
+
+    public function updateCoverImage(Uuid $id, UploadedFile $uploadedFile): Agent
+    {
+        return $this->processFileUpload(
+            id: $id,
+            uploadedFile: $uploadedFile,
+            dtoClass: AgentDto::class,
+            dtoProperty: 'coverImage',
+            directoryParam: self::DIR_AGENT_COVER,
+            getterMethod: 'getCoverImage',
+            setterMethod: 'setCoverImage',
+            validationGroups: [AgentDto::UPDATE]
+        );
     }
 
     public function addPortfolioImage(Agent $agent, UploadedFile $uploadedFile, ?string $description = null): Agent
