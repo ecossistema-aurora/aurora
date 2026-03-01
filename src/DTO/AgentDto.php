@@ -43,6 +43,9 @@ class AgentDto
     #[Image(maxSize: (2000000), mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'], groups: [self::CREATE, self::UPDATE])]
     public ?File $image = null;
 
+    #[Image(maxSize: (2000000), mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'], groups: [self::UPDATE])]
+    public ?File $coverImage = null;
+
     #[Sequentially([
         new NotNull(groups: [self::UPDATE]),
         new Type('string', groups: [self::CREATE, self::UPDATE]),

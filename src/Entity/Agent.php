@@ -38,6 +38,10 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['agent.get'])]
+    private ?string $coverImage = null;
+
     #[ORM\Column(length: 100)]
     #[Groups(['agent.get'])]
     private string $shortBio;
@@ -155,6 +159,16 @@ class Agent extends AbstractEntity
     public function setImage(?string $image): void
     {
         $this->image = $image;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
     }
 
     public function getShortBio(): string
@@ -378,6 +392,7 @@ class Agent extends AbstractEntity
             'name' => $this->name,
             'fiscalCode' => $this->fiscalCode,
             'image' => $this->image,
+            'coverImage' => $this->coverImage,
             'shortBio' => $this->shortBio,
             'longBio' => $this->longBio,
             'culture' => $this->culture,

@@ -1,5 +1,6 @@
 parameters:
     app.dir.agent.profile: '/agents/images/profile'
+    app.dir.agent.cover: '/agents/images/cover'
     app.dir.agent.portfolio: '/agents/images/portfolio'
     app.dir.event.profile: '/events/images/profile'
     app.dir.event.cover: '/event/images/cover'
