@@ -30,13 +30,15 @@ class InitiativeWebController extends AbstractWebController
 
         $days = $request->get('days', 7);
         $recentInitiatives = $this->initiativeService->countRecentRecords($days);
+        $finishedInitiatives = $this->initiativeService->countByStatus('finalizados');
+        $openedInitiatives = $this->initiativeService->countByStatus('em-andamento');
 
         $dashboard = [
             'color' => 'var(--navlink-initiative)',
             'items' => [
                 new CardItem(icon: 'description', quantity: $totalInitiatives, text: 'view.initiative.quantity.total'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'view.initiative.quantity.finished'),
-                new CardItem(icon: 'event_note', quantity: 10, text: 'view.initiative.quantity.opened'),
+                new CardItem(icon: 'event_available', quantity: $finishedInitiatives, text: 'view.initiative.quantity.finished'),
+                new CardItem(icon: 'event_note', quantity: $openedInitiatives, text: 'view.initiative.quantity.opened'),
                 new CardItem(icon: 'today', quantity: $recentInitiatives, text: $this->translator->trans('view.initiative.quantity.last_days', ['{days}' => $days])),
             ],
         ];

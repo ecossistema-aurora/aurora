@@ -346,6 +346,7 @@ no_accessibility: Nenhuma acessibilidade registrada
 no_seals: Nenhum selo registrado
 no_organizations: Nenhuma organização encontrada
 no_spaces: Nenhum espaço encontrado
+no_connections: Nenhuma conexão encontrada
 none_area_specified: Nenhuma área especificada
 does_not_have: Não possui
 not_informed: Não informado
@@ -868,6 +869,7 @@ view:
     target_public_profile: Perfil do público a ser atingido pelo projeto
     type_of: Tipo de iniciativa
     where_initiative_executed: locais onde a iniciativa será executada
+    no_initiatives_found: Nenhuma iniciativa encontrada
 
   my-opportunity:
     title_opportunity: PNAB - Fomento à Execução de Ações Culturais
