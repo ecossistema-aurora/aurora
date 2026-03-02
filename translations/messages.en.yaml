@@ -348,6 +348,7 @@ no_areas: No area registered
 no_accessibility: No accessibility registered
 no_organizations: No organization found
 no_spaces: No space found
+no_connections: No connections found
 none_area_specified: None area specified
 does_not_have: Does not have
 not_informed: Not informed
@@ -869,6 +870,7 @@ view:
     type_of: Type of initiative
     target_public_profile: Profile of the audience to be reached by the project
     where_initiative_executed: Places where the initiative will be carried out
+    no_initiatives_found: No initiatives found
 
 
   management:

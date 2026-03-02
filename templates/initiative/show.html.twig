@@ -27,14 +27,6 @@
         'title': 'people'
     },
     {
-        'id': 'portfolio',
-        'title': 'portfolio'
-    },
-    {
-        'id': 'seals',
-        'title': 'seals'
-    },
-    {
         'id': 'connections',
         'title': 'connections'
     }
@@ -56,10 +48,6 @@
             {% include "initiative/_partials/show/events.html.twig" %}
 
             {% include '_layouts/_show/peoples.html.twig' with { 'entity': initiative } %}
-
-            {% include "initiative/_partials/show/portfolio.html.twig" %}
-
-            {% include "_layouts/_show/seals.html.twig" %}
 
             {% include "initiative/_partials/show/connections.html.twig" %}
         </div>
