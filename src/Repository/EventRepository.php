@@ -111,6 +111,35 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
         ];
     }
 
+    public function countOpenedEvents(): int
+    {
+        $now = new DateTime();
+
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e.id)')
+            ->where('e.deletedAt IS NULL')
+            ->andWhere('e.draft = false')
+            ->andWhere('e.startDate <= :now')
+            ->andWhere('COALESCE(e.endDate, e.startDate) >= :now')
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countFinishedEvents(): int
+    {
+        $now = new DateTime();
+
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e.id)')
+            ->where('e.deletedAt IS NULL')
+            ->andWhere('e.draft = false')
+            ->andWhere('COALESCE(e.endDate, e.startDate) < :now')
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     private function applyPeriodFilter(QueryBuilder $qb, mixed $period): void
     {
         if (!is_array($period)) {
