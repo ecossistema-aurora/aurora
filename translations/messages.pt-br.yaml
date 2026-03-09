@@ -563,6 +563,10 @@ status_create: Criado
 status_published: Publicado
 street: Logradouro
 subscribe: Inscreva-se
+subscribed: Inscrito
+subscribed_since: Inscrito desde {date}
+subscribe_confirmation_title: Confirmar inscrição
+subscribe_confirmation_message: Tem certeza que deseja se inscrever neste evento?
 subsites: Subsites
 subtitle: Subtítulo
 suspend: Suspender
