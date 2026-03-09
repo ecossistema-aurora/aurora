@@ -1,53 +1,96 @@
 <div class="tab-pane container fade" id="connections">
     <div class="card shadow-sm mb-3 card__entity-details">
         <div class="card-body py-4">
-            <h5 class="mb-4 fw-bold card-title__entity-details">{{ 'connections'|trans }}</h5>
+            <h3 class="mb-3 fw-bold">{{ 'connections' | trans }}</h3>
+            <hr class="mb-4">
 
-            <div class="py-2">
-                <div class="clearfix">
-                    <h6 data-cy="entity-connection" class="fw-bold mb-3 float-start">{{ 'opportunities'|trans }}</h6>
-                    <span class="float-end fw-semibold">
-                        <a class="text-decoration-none" href="#">{{ 'see_all'|trans }} <i class="material-icons align-top fs-4 me-1">arrow_forward</i></a>
-                    </span>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <span class="d-flex align-items-center fw-bold">
-                            <div class="rounded-circle card-names-ellipse__entity-details"></div>
-                            <span><a class="text-decoration-none" href="#">Nome da oportunidade</a></span>
-                        </span>
-                    </div>
-                    <div class="col mb-3">
-                        <span class="d-flex align-items-center fw-bold">
-                            <div class="rounded-circle card-names-ellipse__entity-details"></div>
-                            <span><a class="text-decoration-none" href="#">Nome da oportunidade</a></span>
-                        </span>
-                    </div>
-                    <div class="col mb-3">
-                        <span class="d-flex align-items-center fw-bold">
-                            <div class="rounded-circle card-names-ellipse__entity-details"></div>
-                            <span><a class="text-decoration-none" href="#">Nome da oportunidade</a></span>
-                        </span>
+            {% if initiative.space %}
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3">{{ 'spaces' | trans }}</h6>
+                    <div class="d-flex align-items-center fw-bold">
+                        {% if initiative.space.image %}
+                            <img
+                                src="{{ asset(initiative.space.image) }}"
+                                alt="{{ initiative.space.name }}"
+                                class="rounded-circle me-2"
+                                style="width: 2rem; height: 2rem; object-fit: cover;"
+                            >
+                        {% else %}
+                            <div class="rounded-circle card-names-ellipse__entity-details me-2"></div>
+                        {% endif %}
+                        <a class="text-decoration-none" href="{{ path('web_space_getOne', {id: initiative.space.id}) }}">
+                            {{ initiative.space.name }}
+                        </a>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="py-2">
-                <div class="clearfix">
-                    <h6 data-cy="entity-connection" class="fw-bold mb-3 float-start">{{ 'events'|trans }}</h6>
-                    <span class="float-end fw-semibold">
-                        <a class="text-decoration-none" href="#">{{ 'see_all'|trans }} <i class="material-icons align-top fs-4 me-1">arrow_forward</i></a>
-                    </span>
+                <hr>
+            {% endif %}
+
+            {% if initiative.organizationFrom or initiative.organizationTo %}
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3">{{ 'organizations' | trans }}</h6>
+                    {% if initiative.organizationFrom %}
+                        <div class="d-flex align-items-center fw-bold mb-2">
+                            {% if initiative.organizationFrom.image %}
+                                <img
+                                    src="{{ asset(initiative.organizationFrom.image) }}"
+                                    alt="{{ initiative.organizationFrom.name }}"
+                                    class="rounded-circle me-2"
+                                    style="width: 2rem; height: 2rem; object-fit: cover;"
+                                >
+                            {% else %}
+                                <div class="rounded-circle card-names-ellipse__entity-details me-2"></div>
+                            {% endif %}
+                            <a class="text-decoration-none" href="{{ path('web_organization_getOne', {id: initiative.organizationFrom.id}) }}">
+                                {{ initiative.organizationFrom.name }}
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if initiative.organizationTo and initiative.organizationTo.id != initiative.organizationFrom.id %}
+                        <div class="d-flex align-items-center fw-bold mb-2">
+                            {% if initiative.organizationTo.image %}
+                                <img
+                                    src="{{ asset(initiative.organizationTo.image) }}"
+                                    alt="{{ initiative.organizationTo.name }}"
+                                    class="rounded-circle me-2"
+                                    style="width: 2rem; height: 2rem; object-fit: cover;"
+                                >
+                            {% else %}
+                                <div class="rounded-circle card-names-ellipse__entity-details me-2"></div>
+                            {% endif %}
+                            <a class="text-decoration-none" href="{{ path('web_organization_getOne', {id: initiative.organizationTo.id}) }}">
+                                {{ initiative.organizationTo.name }}
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <span class="d-flex align-items-center fw-bold">
-                            <div class="rounded-circle card-names-ellipse__entity-details"></div>
-                            <span><a class="text-decoration-none" href="#">Nome do evento</a></span>
-                        </span>
+                <hr>
+            {% endif %}
+
+            {% if initiative.createdBy %}
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3">{{ 'agents' | trans }}</h6>
+                    <div class="d-flex align-items-center fw-bold">
+                        {% if initiative.createdBy.image %}
+                            <img
+                                src="{{ asset(initiative.createdBy.image) }}"
+                                alt="{{ initiative.createdBy.name }}"
+                                class="rounded-circle me-2"
+                                style="width: 2rem; height: 2rem; object-fit: cover;"
+                            >
+                        {% else %}
+                            <div class="rounded-circle card-names-ellipse__entity-details me-2"></div>
+                        {% endif %}
+                        <a class="text-decoration-none" href="{{ path('web_agent_getOne', {id: initiative.createdBy.id}) }}">
+                            {{ initiative.createdBy.name }}
+                        </a>
                     </div>
                 </div>
-            </div>
+            {% endif %}
+
+            {% if not initiative.space and not initiative.organizationFrom and not initiative.organizationTo %}
+                <p class="text-muted">{{ 'no_connections' | trans }}</p>
+            {% endif %}
         </div>
     </div>
 </div>

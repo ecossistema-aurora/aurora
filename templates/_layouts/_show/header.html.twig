@@ -1,7 +1,7 @@
 <div class="container-fluid px-0 bg-white shadow position-relative">
     <img
         class="img-fluid w-100"
-        src="{{ entity.coverImage ? asset(entity.coverImage) : asset('img/entity-cover-image.png') }}"
+        src="{{ entity.coverImage is defined and entity.coverImage is not null ? asset(entity.coverImage) : asset('img/entity-cover-image.png') }}"
         alt="{{ 'entityName'|trans }} | {{ 'cover_image'|trans }}"
     >
 
