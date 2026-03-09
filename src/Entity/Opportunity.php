@@ -37,6 +37,9 @@ class Opportunity extends AbstractEntity
     #[Groups('opportunity.get')]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $coverImage = null;
+
     #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups('opportunity.get')]
@@ -123,6 +126,16 @@ class Opportunity extends AbstractEntity
     public function setImage(?string $image): void
     {
         $this->image = $image;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
     }
 
     public function getParent(): ?Opportunity
