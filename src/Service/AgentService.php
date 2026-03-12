@@ -278,4 +278,9 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
 
         return $agent;
     }
+
+    public function getMainAgentByUser(Uuid $userId): ?Agent
+    {
+        return $this->repository->getMainAgentByUser($userId->toString());
+    }
 }

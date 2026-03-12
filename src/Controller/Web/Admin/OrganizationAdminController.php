@@ -51,7 +51,7 @@ class OrganizationAdminController extends AbstractAdminController
     {
         return $this->renderOrganizationList(
             $this->service->findBy([
-                'createdBy' => $this->getUser()->getId(),
+                'createdBy' => $this->agentService->getMainAgentByUser($this->security->getUser()->getId())?->getId(),
             ])
         );
     }
