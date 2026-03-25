@@ -9,7 +9,7 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20260227003936 extends AbstractMigration
 {
-       public function getDescription(): string
+    public function getDescription(): string
     {
         return 'Add cover image to agent';
     }
