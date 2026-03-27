@@ -1249,6 +1249,22 @@ img.card-images__entity-details {
     .entity-edit-submit div {
         justify-content: space-between;
     }
+
+    .tag-entity {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+        gap: 0.3rem;
+    }
+
+    .tag-entity::before {
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+
+    .btn-mobile-100 {
+        width: 100% !important;
+        padding: 0.8rem 0 !important;
+    }
 }
 
 @media (max-width: 576px) {
