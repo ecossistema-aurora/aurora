@@ -9,15 +9,15 @@
             <img src="{{ asset(agent.image ?? 'img/default-image.png') }}" alt="{{ 'photo' | trans }}" class="rounded-circle">
             <div class="agent-info gap0 gap-md-3">
                 <h5 class="agent-name">{{ agent.name }}</h5>
-                <span class="agent-type person">
-                    <i class="material-icons">person</i> {{ agent.extraFields.cargo ?? '' }}
-                </span>
+                <span class="agent-type person d-inline-flex align-items-center">
+                <i class="material-icons" style="font-size: 18px; margin-right: 4px;">person</i> {{ agent.extraFields.cargo ?? '' }}
+            </span>
             </div>
         </div>
 
-        <div class="agent-card-body d-flex justify-content-between">
-            <div>
-                <p class="agent-area">
+        <div class="agent-card-body d-flex flex-column flex-md-row align-items-md-center gap-3">
+            <div class="flex-grow-1">
+                <p class="agent-area mt-1 mt-md-0">
                     <strong>{{ 'description' | trans }}:</strong>
                     <span class="agent-sub-area">{{ agent.shortBio ?? 'Não informado'}}</span>
                 </p>
@@ -38,17 +38,14 @@
                     <span class="agent-sub-area">{{ agent.user.lastLogin.format('d/m/Y') ?? 'Não informado'}}</span>
                 </p>
             </div>
-            <div>
-                <div class="access-profile-container">
-                    <a href="{{ path('web_agent_getOne', {'id': agent.id }) }}" class="btn btn-primary list-page__access-btn">
-                        {{ 'view.agent.access' | trans }}
-                    </a>
-                </div>
-            </div>
 
+            <div class="access-profile-container mt-0 flex-shrink-0 d-grid d-md-block">
+                <a href="{{ path('web_agent_getOne', {'id': agent.id }) }}" class="btn btn-primary list-page__access-btn text-nowrap">
+                    {{ 'view.agent.access' | trans }}
+                </a>
+            </div>
         </div>
     </div>
-
 {% endfor %}
 
 {% if agents|length > 0 %}
