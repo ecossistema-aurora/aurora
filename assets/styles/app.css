@@ -310,6 +310,7 @@ body {
     display: flex;
     width: var(--WIDTH_DEFAULT);
     margin-left: 13rem;
+    margin-top: 3rem;
 }
 
 .entry-fee, .participants {
@@ -1130,6 +1131,7 @@ img.card-images__entity-details {
     .entity-page-tabs {
         position: relative;
         margin-left: 1.2rem;
+        margin-top: 0;
         align-items: center;
         white-space: nowrap;
         width: var(--WIDTH_DEFAULT_MOBILE);
