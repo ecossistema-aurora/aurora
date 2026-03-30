@@ -173,22 +173,22 @@ class AgentAdminController extends AbstractAdminController
             $sensitiveData['education_public'] = (bool) $request->get('education_public');
         }
 
-        if ($request->get('is_disabled') !== null && $request->get('is_disabled') !== '') {
+        if (null !== $request->get('is_disabled') && '' !== $request->get('is_disabled')) {
             $sensitiveData['is_disabled'] = (bool) (int) $request->get('is_disabled');
             $sensitiveData['disabled_public'] = (bool) $request->get('disabled_public');
         }
 
-        if ($request->get('is_indigenous') !== null && $request->get('is_indigenous') !== '') {
+        if (null !== $request->get('is_indigenous') && '' !== $request->get('is_indigenous')) {
             $sensitiveData['is_indigenous'] = (bool) (int) $request->get('is_indigenous');
             $sensitiveData['indigenous_public'] = (bool) $request->get('indigenous_public');
         }
 
-        if ($request->get('is_quilombola') !== null && $request->get('is_quilombola') !== '') {
+        if (null !== $request->get('is_quilombola') && '' !== $request->get('is_quilombola')) {
             $sensitiveData['is_quilombola'] = (bool) (int) $request->get('is_quilombola');
             $sensitiveData['quilombola_public'] = (bool) $request->get('quilombola_public');
         }
 
-        if ($request->get('is_traditional_people') !== null && $request->get('is_traditional_people') !== '') {
+        if (null !== $request->get('is_traditional_people') && '' !== $request->get('is_traditional_people')) {
             $sensitiveData['is_traditional_people'] = (bool) (int) $request->get('is_traditional_people');
             $sensitiveData['traditional_people_public'] = (bool) $request->get('traditional_people_public');
         }
