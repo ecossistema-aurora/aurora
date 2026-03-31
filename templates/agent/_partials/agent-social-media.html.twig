@@ -1,18 +1,18 @@
-<section class="card card-body mt-4">
-    <h3>{{ 'social_media' | trans }}</h3>
+<section class="card card-body mt-4 shadow-sm"> <h3>{{ 'social_media' | trans }}</h3>
     <hr>
-    <div class="d-flex gap-3 mt-2">
+    <div class="row g-3 mt-1">
         {% if agent.socialNetworks is empty %}
-            <p class="text-muted">{{ 'not_informed' | trans }}</p>
+            <div class="col-12">
+                <p class="text-muted mb-0">{{ 'not_informed' | trans }}</p>
+            </div>
         {% endif %}
 
         {% for network, value in agent.socialNetworks %}
             {% if value != '' %}
-            <div class="social-media-wrapper">
+            <div class="col-6 col-md-4 col-lg-3">
                 <div class="social-media">
-                    <div class="social-link">
-                        <span class="iconify" data-icon="ph:{{ network }}-logo-light" style="font-size: 1.9rem;"></span>
-                        <a href="https://www.{{ network }}.com/{{ value }}" target="_blank" class="text-decoration-none fw-bold">
+                    <div class="social-link d-flex align-items-center gap-2"> <span class="iconify text-primary" data-icon="ph:{{ network }}-logo-light" style="font-size: 1.9rem;"></span>
+                        <a href="https://www.{{ network }}.com/{{ value }}" target="_blank" class="text-decoration-none fw-bold text-dark text-break">
                             {{ network }}
                         </a>
                     </div>

@@ -1,5 +1,5 @@
 <div class="entity-banner">
-    <img src="{{ asset(coverImage ?? 'img/banner.jpeg') }}" alt="{{ 'entity_banner' | trans    }}">
+    <img src="{{ asset(coverImage ?? 'img/banner.jpeg') }}" alt="{{ 'entity_banner' | trans }}">
     {% include '_components/breadcrumb.html.twig' with {
         items: [
             {text: 'home'|trans, path: path('web_home_homepage')},
@@ -9,34 +9,38 @@
     } %}
 </div>
 
-<div class="entity-profile-bio">
-    <div class="d-flex justify-content-between align-items-end">
-        <div class="entity-photo d-flex align-items-end gap-4">
+<div class="entity-profile-bio position-relative">
+    <div class="d-flex justify-content-between align-items-center align-items-lg-end">
+
+        <div class="entity-photo d-flex align-items-center align-items-lg-end gap-3 gap-lg-4 text-center text-lg-start">
             <img src="{{ asset(image ?? 'img/user.png') }}" alt="{{ 'photo' | trans }}">
-            <div class="d-flex align-items-end gap-3">
+            <div class="d-flex flex-column flex-lg-row align-items-center align-items-lg-end gap-2 gap-lg-3 mt-2 mt-lg-0">
                 <h1 class="fs-2 mb-0 fw-bold">{{ name }}</h1>
-                <span class="entity-profile-label">
+                <span class="entity-profile-label text-wrap">
                     <i class="material-icons">person</i>
                     {{ agent.shortBio }}
                 </span>
             </div>
         </div>
-        <div class="d-none entity-profile-actions d-flex gap-4">
-            <button class="d-flex align-items-center text-nowrap">
+
+        <div class="entity-profile-actions d-flex flex-row gap-2 gap-lg-4 mt-4 mt-lg-0">
+            <button class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">share</i>
-                {{ 'share' | trans }}
+                <span class="d-none d-lg-block ms-2 text-nowrap">{{ 'share' | trans }}</span>
             </button>
-            <button class="d-flex align-items-center text-nowrap">
+            <button class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">chat_bubble</i>
-                {{ 'send_message' | trans }}
+                <span class="d-none d-lg-block ms-2 text-nowrap">{{ 'send_message' | trans }}</span>
             </button>
         </div>
     </div>
-    <div class="entity-description">
+
+    <div class="entity-description mt-3 mt-lg-2">
         <p>{{ longBio }}</p>
     </div>
-    <div class="profile-tabs d-flex align-items-center justify-content-between">
+
+    <div class="profile-tabs d-flex align-items-start align-items-lg-center gap-3 mt-4 mt-lg-2">
         {% include tabs %}
-        <span>{{ 'identification_number' | trans }}: {{ id }}</span>
+        <span class="text-break">{{ 'identification_number' | trans }}: {{ id }}</span>
     </div>
 </div>
