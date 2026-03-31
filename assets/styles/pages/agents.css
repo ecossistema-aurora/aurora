@@ -119,8 +119,8 @@
 
 .profile-entity-wrapper .agent-organizations {
     background-color: var(--white-color);
-    height: 9.875rem;
-    border-radius: 4px;
+    height: auto;
+    border-radius: 0.25rem;
 }
 
 .agent-organizations {
@@ -128,15 +128,16 @@
     box-shadow: 0 4px 8px 0 var(--box-shadow-color);
 }
 
-.agent-organizations__content .agent-organization img {
+.agent-organization img {
     width: 2.5rem;
     height: 2.5rem;
+    min-width: 2.5rem;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .agent-organization {
-    width: 23.625rem;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -234,12 +235,6 @@
     margin-bottom: 0;
 }
 
-.agent-profile-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
 .agent-profile-actions button {
     border: 2px solid var(--deep-teal);
     height: 3rem;
@@ -285,6 +280,18 @@
     margin-left: 0.625rem;
 }
 
+.entity-profile-actions button {
+    width: auto;
+    min-width: 12.5rem;
+    height: 3rem;
+    border: none;
+    background-color: var(--deep-teal);
+    color: var(--white-color);
+    font-weight: 700;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+}
+
 @media (max-width: 768px) {
     .agent-card-header {
         flex-direction: column;
@@ -316,4 +323,81 @@
         padding-right: 0;
         margin-right: 0;
     }
+
+    .entity-profile-bio {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .entity-banner .breadcrumb {
+        margin-left: 1.5rem;
+    }
+
+    .entity-profile-bio > .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .entity-photo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .entity-profile-bio .entity-profile-label {
+        height: auto;
+        min-height: 2rem;
+        line-height: 1.2;
+        text-align: center;
+        justify-content: center;
+        white-space: normal;
+    }
+
+    .entity-profile-bio .entity-description {
+        max-height: none;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-tabs {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .profile-entity-wrapper {
+        margin: 1.5rem 1rem !important;
+    }
+
+    .entity-profile-actions {
+        position: absolute;
+        top: 3.75rem;
+        right: 1.5rem;
+        transform: translateY(-50%);
+        margin-top: 0 !important;
+        z-index: 10;
+    }
+
+    .entity-profile-actions button,
+    .entity-profile-actions button:first-child {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 0;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .entity-profile-actions button i {
+        font-size: 1.2rem;
+        margin: 0;
+        height: auto;
+    }
+
+    .agent-profile-actions button,
+    .agent-profile-actions button:first-child {
+        width: 100%;
+        min-width: 0;
+    }
+
 }
