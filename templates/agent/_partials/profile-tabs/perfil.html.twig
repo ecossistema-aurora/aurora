@@ -8,7 +8,7 @@
             </a>
         </li>
         <li class="nav-item mb-md-1 me-md-3" role="presentation">
-            <a class="centered-icon-text nav-link" id="subtab-personaldata-tab" data-bs-toggle="pill" href="#subtab-personaldata" role="tab" aria-controls="subtab-personaldata" aria-selected="false">
+            <a class="centered-icon-text nav-link text-nowrap" id="subtab-personaldata-tab" data-bs-toggle="pill" href="#subtab-personaldata" role="tab" aria-controls="subtab-personaldata" aria-selected="false">
                 {{ 'personal_data' | trans }}
             </a>
         </li>
@@ -36,21 +36,34 @@
         <section class="card card-body shadow">
             <h3>{{ 'personal_data' | trans }}</h3>
             <hr>
-            <p class="d-flex align-items-center gap-2 mb-1">
-                <i class="material-icons text-primary">person</i>
-                <strong class="text-dark">{{ 'name' | trans }}:</strong>
-                <span class="text-dark">{{ agent.name }}</span>
-            </p>
-            <p class="d-flex align-items-center gap-2 mb-1">
-                <i class="material-icons text-primary">badge</i>
-                <strong class="text-dark">{{ 'short_description' | trans }}:</strong>
-                <span class="text-dark">{{ agent.shortBio ?? ('not_informed' | trans) }}</span>
-            </p>
-            <p class="d-flex align-items-center gap-2 mb-1">
-                <i class="material-icons text-primary">email</i>
-                <strong class="text-dark">Email:</strong>
-                <span class="text-dark">{{ agent.user.email ?? ('not_informed' | trans) }}</span>
-            </p>
+            <div class="d-flex align-items-start gap-3 mb-3">
+                <i class="material-icons text-primary fs-5 mt-1">person</i>
+                <div class="text-dark">
+                    <strong class="d-none d-md-inline">{{ 'name' | trans }}:</strong>
+                    <span class="visually-hidden d-md-none">{{ 'name' | trans }}:</span>
+
+                    <span class="text-break">{{ agent.name }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-3">
+                <i class="material-icons text-primary fs-5 mt-1">badge</i>
+                <div class="text-dark">
+                    <strong class="d-none d-md-inline">{{ 'short_description' | trans }}:</strong>
+                    <span class="visually-hidden d-md-none">{{ 'short_description' | trans }}:</span>
+
+                    <span class="text-break">{{ agent.shortBio ?? ('not_informed' | trans) }}</span>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-1"> <i class="material-icons text-primary fs-5 mt-1">email</i>
+                <div class="text-dark">
+                    <strong class="d-none d-md-inline">Email:</strong>
+                    <span class="visually-hidden d-md-none">Email:</span>
+
+                    <span class="text-break">{{ agent.user.email ?? ('not_informed' | trans) }}</span>
+                </div>
+            </div>
         </section>
     </div>
 
@@ -58,19 +71,21 @@
         <section class="card card-body shadow">
             <h3>{{ 'address' | trans }}</h3>
             <hr>
-            {% if agent.addresses is defined and agent.addresses is not empty %}
-                {% for address in agent.addresses %}
-                    <div class="mb-3">
-                        <p class="d-flex align-items-center gap-2 mb-1">
-                            <i class="material-icons text-primary">location_on</i>
-                            <strong class="text-dark">{{ 'address' | trans }}:</strong>
-                            <span class="text-dark">{{ address.getCompleteAddress() }}</span>
-                        </p>
+            {% for address in agent.addresses %}
+                <div class="mb-3">
+                    <div class="d-flex align-items-start gap-3">
+                        <i class="material-icons text-primary fs-5 mt-1">location_on</i>
+                        <div class="text-dark">
+                            <strong class="d-none d-md-inline">{{ 'address' | trans }}:</strong>
+                            <span class="visually-hidden d-md-none">{{ 'address' | trans }}:</span>
+
+                            <span class="text-break">{{ address.getCompleteAddress() }}</span>
+                        </div>
                     </div>
-                {% endfor %}
+                </div>
             {% else %}
                 <p class="text-muted">{{ 'available_address' | trans }}</p>
-            {% endif %}
+            {% endfor %}
         </section>
     </div>
 
@@ -113,7 +128,7 @@
     });
 </script>
 
-<div class="agent-profile-actions mt-4">
-    <button class="left-button ">{{ 'view.agent_profile.profile_change_history' | trans }}</button>
+<div class="agent-profile-actions d-flex flex-column flex-md-row justify-content-between gap-3 mt-4 mt-md-5">
+    <button class="left-button">{{ 'view.agent_profile.profile_change_history' | trans }}</button>
     <button class="right-button">{{ 'view.agent_profile.report' | trans }}</button>
 </div>
