@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\DocumentService\AgentTimelineDocumentService;
-use App\Entity\Agent;
-use App\Entity\AgentAddress;
-use App\Entity\City;
 use App\Enum\EducationEnum;
 use App\Enum\FlashMessageTypeEnum;
 use App\Enum\GenderEnum;
@@ -16,13 +13,12 @@ use App\Enum\SexualOrientationEnum;
 use App\Enum\SocialNetworkEnum;
 use App\Enum\UserRolesEnum;
 use App\Exception\ValidatorException;
-use App\Repository\Interface\AddressRepositoryInterface;
 use App\Service\Interface\ActivityAreaServiceInterface;
+use App\Service\Interface\AddressServiceInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\CulturalFunctionServiceInterface;
 use App\Service\Interface\StateServiceInterface;
 use App\Service\Interface\TagServiceInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -50,8 +46,7 @@ class AgentAdminController extends AbstractAdminController
         private readonly ActivityAreaServiceInterface $activityAreaService,
         private readonly TagServiceInterface $tagService,
         private readonly CulturalFunctionServiceInterface $culturalFunctionService,
-        private readonly AddressRepositoryInterface $addressRepository,
-        private readonly EntityManagerInterface $entityManager,
+        private readonly AddressServiceInterface $addressService,
         private readonly Security $security,
     ) {
     }
@@ -91,7 +86,7 @@ class AgentAdminController extends AbstractAdminController
             $agent = $this->service->create($agentData);
 
             if (!empty($addressData)) {
-                $this->createAgentAddress($agent, $addressData);
+                $this->addressService->create($agent, $addressData);
             }
 
             $this->addFlash(FlashMessageTypeEnum::SUCCESS->value, $this->translator->trans('view.agent.message.created'));
@@ -210,30 +205,6 @@ class AgentAdminController extends AbstractAdminController
             'complement' => $request->get('complement_or_reference_point') ?: '',
             'cityId' => $request->get('address_city'),
         ];
-    }
-
-    private function createAgentAddress(Agent $agent, array $addressData): void
-    {
-        $agentAddress = new AgentAddress();
-        $agentAddress->setId(Uuid::v4());
-        $agentAddress->setZipcode($addressData['zipcode']);
-        $agentAddress->setStreet($addressData['street']);
-        $agentAddress->setNumber($addressData['number']);
-        $agentAddress->setNeighborhood($addressData['neighborhood']);
-
-        if ($addressData['complement']) {
-            $agentAddress->setComplement($addressData['complement']);
-        }
-
-        if ($addressData['cityId']) {
-            $city = $this->entityManager->getRepository(City::class)->find($addressData['cityId']);
-            if ($city) {
-                $agentAddress->setCity($city);
-            }
-        }
-
-        $agentAddress->setOwner($agent);
-        $this->addressRepository->save($agentAddress);
     }
 
     #[IsGranted(UserRolesEnum::ROLE_USER->value, statusCode: self::ACCESS_DENIED_RESPONSE_CODE)]
