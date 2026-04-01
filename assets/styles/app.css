@@ -1053,6 +1053,11 @@ img.card-images__entity-details {
     object-fit: cover;
 }
 
+.space-img-wrapper {
+    width: 5rem;
+    height: 5rem;
+}
+
 @media (min-width: 1400px) {
     .name__entity-details {
         max-width: 755px;
@@ -1248,6 +1253,10 @@ img.card-images__entity-details {
 
     .entity-edit-submit div {
         justify-content: space-between;
+    }
+
+    .space-btn-mobile {
+        width: 100% !important;
     }
 }
 
