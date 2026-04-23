@@ -55,14 +55,11 @@ class OpportunityRepository extends AbstractRepository implements OpportunityRep
     {
         $now = new DateTime();
 
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(DISTINCT o.id)')
-            ->leftJoin('o.phases', 'p')
+            ->innerJoin('o.phases', 'p')
             ->where('o.deletedAt IS NULL')
-            ->andWhere(
-                'p.id IS NOT NULL AND p.endDate < :now'
-            )
-            ->having('COUNT(p.id) > 0')
+            ->andWhere('p.endDate < :now')
             ->setParameter('now', $now)
             ->getQuery()
             ->getSingleScalarResult();
