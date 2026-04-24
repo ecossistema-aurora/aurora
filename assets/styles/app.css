@@ -313,6 +313,10 @@ body {
     margin-top: 3rem;
 }
 
+.profile-entity-wrapper {
+    margin: 1.563rem 8.2rem;
+}
+
 .entry-fee, .participants {
     margin-right: 30px;
     display: flex;
@@ -1146,6 +1150,10 @@ img.card-images__entity-details {
 
     .entity-page-tabs p {
         padding-top: 0.8rem;
+    }
+
+    .profile-entity-wrapper {
+        margin: 1.5rem 1rem !important;
     }
 
     .pill-tabs {
