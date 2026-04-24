@@ -6,75 +6,74 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/pages/initiatives.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/pages/agents.css') }}">
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid px-0 bg-white shadow position-relative">
+    <div class="entity-banner">
         <img
-            class="w-100 object-fit-cover bg-white"
-            style="aspect-ratio: 5.65"
-            src="{{ opportunity.coverImage ?? asset('img/entity-cover-image.png') }}"
-            alt="{{ 'opportunity'|trans }} | {{ 'cover_image'|trans }}"
+                class="w-100 object-fit-cover bg-white"
+                style="aspect-ratio: 5.65"
+                src="{{ opportunity.coverImage ?? asset('img/entity-cover-image.png') }}"
+                alt="{{ 'opportunity'|trans }} | {{ 'cover_image'|trans }}"
         >
 
-        <div class="container">
+        <div class="container mt-2">
             <div class="breadcrumb pt-sm-4 breadcrumb__entity-details">
                 <a href="{{ path('web_home_homepage') }}">{{ 'home'|trans }}</a>
                 <a href="{{ path('web_opportunity_list') }}">{{ 'opportunities'|trans }}</a>
                 <a href="{{ path('web_opportunity_details', {id: opportunity.id}) }}">{{ opportunity.name }}</a>
             </div>
         </div>
+    </div>
 
-        <div class="container position-relative">
-            <div class="d-flex mb-3 entity-info-wrapper">
-                <img class="entity-image rounded-circle bg-white" src="{{ opportunity.image ?? asset('img/entity-image.png') }}" alt="{{ 'opportunity'|trans }} | {{ 'image'|trans }}">
+    <div class="container py-4">
+        <div class="entity-profile-bio position-relative">
+            <div class="d-flex justify-content-between align-items-center align-items-lg-end">
+                <div class="entity-photo d-flex align-items-center align-items-lg-end gap-3 gap-lg-4 text-center text-lg-start">
+                    <img class="rounded-circle bg-white shadow-sm" style="width: 120px; height: 120px; object-fit: cover;" src="{{ opportunity.image ?? asset('img/entity-image.png') }}" alt="{{ 'opportunity'|trans }} | {{ 'image'|trans }}">
 
-                <h2 class="name__entity-details fw-bold ms-2 mt-2 ms-sm-4 mt-sm-3">{{ opportunity.name }}</h2>
+                    <div class="d-flex flex-column flex-lg-row align-items-center align-items-lg-end gap-2 gap-lg-3 mt-2 mt-lg-0">
+                        <h1 class="fs-2 mb-0 fw-bold name__entity-details">{{ opportunity.name }}</h1>
+                    </div>
+                </div>
 
-                <div class="ms-auto mt-3 d-none d-xxl-inline">
+                <div class="entity-profile-actions d-flex flex-row gap-2 gap-lg-4 mt-4 mt-lg-0">
                     {% include "opportunity/_partials/details/_info-btns.html.twig" %}
                 </div>
             </div>
 
-            <div class="mb-3 d-xxl-none">
-                {% include "opportunity/_partials/details/_info-btns.html.twig" %}
+            <div class="entity-description mt-3 mt-lg-4">
+                <p data-cy="short-description"></p>
+                <p class="text-secondary id__entity-details mb-xxl-0">{{ 'view.opportunity.id' | trans }}: {{ opportunity.id }}</p>
             </div>
 
-            <p data-cy="short-description"></p>
-
-            <p class="text-secondary id__entity-details mb-xxl-0">{{ 'view.opportunity.id' | trans }}: {{ opportunity.id }}</p>
-
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="pill" href="#generalData">{{ 'general_data'|trans }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#workPlan">{{ 'work_plan'|trans }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#events">{{ 'events'|trans }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#people">{{ 'people'|trans }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="pill" href="#connections">{{ 'connections'|trans }}</a>
-                </li>
-            </ul>
+            <div class="profile-tabs d-flex align-items-start align-items-lg-center gap-3 mt-4 mt-lg-2">
+                <ul class="nav nav-pills flex-wrap">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#generalData">{{ 'general_data'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#workPlan">{{ 'work_plan'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#events">{{ 'events'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#people">{{ 'people'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="pill" href="#connections">{{ 'connections'|trans }}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
 
-    <div class="container py-4">
-        <div class="tab-content">
+        <div class="tab-content mt-4">
             {% include "opportunity/_partials/details/general-data.html.twig" %}
-
             {% include "opportunity/_partials/details/work-plan.html.twig" %}
-
             {% include "opportunity/_partials/details/events.html.twig" %}
-
             {% include "opportunity/_partials/details/peoples.html.twig" %}
-
             {% include "opportunity/_partials/details/connections.html.twig" %}
         </div>
     </div>
