@@ -56,7 +56,7 @@ class AgentWebController extends AbstractWebController
         $events = $this->eventService->findByAgent($agent->getId()->toRfc4122());
         $spaces = $this->spaceService->findBy(['createdBy' => $agent]);
 
-        return $this->render('agent/one.html.twig', [
+        return $this->render('agent/details.html.twig', [
             'agent' => $agent,
             'events' => $events,
             'spaces' => $spaces,
