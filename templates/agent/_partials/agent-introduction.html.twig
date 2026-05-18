@@ -2,46 +2,58 @@
     <h3>{{ 'introduction' | trans }}</h3>
     <hr>
 
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">location_on</i>
-        <strong class="text-dark">{{ 'address' | trans }}:</strong>
-        <span class="text-dark">
-            {% if agent.addresses is defined and agent.addresses is not empty %}
-                {{ agent.addresses|first.getCompleteAddress()|default('') }}
-            {% else %}
-                {{ 'available_address' | trans }}
-            {% endif %}
-        </span>
-    </p>
+    <div class="d-flex align-items-start gap-3 mb-3">
+        <i class="material-icons text-primary fs-5 mt-1">location_on</i>
+        <div class="text-dark">
+            <strong class="d-none d-md-inline">{{ 'address' | trans }}:</strong>
+            <span class="visually-hidden d-md-none">{{ 'address' | trans }}:</span>
 
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">work</i>
-        <strong class="text-dark">{{ 'view.agent_profile.roles_in_culture' | trans }} ({{ agent.culturalFunction|length }}):</strong>
-        <span class="text-dark">
-            {% for func in agent.culturalFunction %}
-                {{ func.name }}{% if not loop.last %}, {% endif %}
-            {% else %}
-                {{ 'not_informed' | trans }}
-            {% endfor %}
-        </span>
-    </p>
+            <span class="text-break">
+                {% if agent.addresses is not empty %}
+                    {{ agent.addresses|first.getCompleteAddress() }}
+                {% else %}
+                    {{ 'available_address' | trans }}
+                {% endif %}
+            </span>
+        </div>
+    </div>
 
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">description</i>
-        <strong class="text-dark">{{ 'description' | trans }}:</strong>
-        <span class="text-dark">{{ agent.longBio ?? ('not_informed' | trans) }}</span>
-    </p>
+    <div class="d-flex align-items-start gap-3 mb-3">
+        <i class="material-icons text-primary fs-5 mt-1">work</i>
+        <div class="text-dark">
+            <strong class="d-none d-md-inline">{{ 'view.agent_profile.roles_in_culture' | trans }} ({{ agent.culturalFunction|length }}):</strong>
+            <span class="visually-hidden d-md-none">{{ 'view.agent_profile.roles_in_culture' | trans }} ({{ agent.culturalFunction|length }}):</span>
 
-    <div class="entity-seals mt-2 d-flex justify-content-between align-items-center">
-        <div class="d-flex flex-wrap gap-2">
-            <strong class="text-dark">{{ 'tags' | trans }}:</strong>
-            {% if agent.extraFields.tags is defined and agent.extraFields.tags is not empty %}
-                {% for tag in agent.extraFields.tags %}
-                    <span class="seal-entity px-3 py-1">{{ tag }}</span>
+            <span class="text-break">
+                {% for func in agent.culturalFunction %}
+                    {{ func.name }}{% if not loop.last %}, {% endif %}
+                {% else %}
+                    {{ 'not_informed' | trans }}
                 {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-start gap-3 mb-3">
+        <i class="material-icons text-primary fs-5 mt-1">description</i>
+        <div class="text-dark">
+            <strong class="d-none d-md-inline">{{ 'description' | trans }}:</strong>
+            <span class="visually-hidden d-md-none">{{ 'description' | trans }}:</span>
+
+            <span class="text-break">{{ agent.longBio ?? ('not_informed' | trans) }}</span>
+        </div>
+    </div>
+
+    <div class="entity-seals mt-2">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <i class="material-icons text-primary fs-5 d-md-none">local_offer</i>
+            <strong class="text-dark d-none d-md-inline">{{ 'tags' | trans }}:</strong>
+            <span class="visually-hidden d-md-none">{{ 'tags' | trans }}:</span>
+            {% for tag in agent.extraFields.tags|default([]) %}
+                <span class="seal-entity px-3 py-1">{{ tag }}</span>
             {% else %}
                 <span class="seal-entity px-3 py-1">{{ 'no_tags' | trans }}</span>
-            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>
