@@ -1,9 +1,9 @@
 <section class="card card-body shadow">
     <h3>Mais informações</h3>
     <hr>
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">location_on</i>
-        <strong class="text-dark">Endereço:</strong>
+    <p class="d-flex align-items-center gap-2 mb-2">
+        <i class="material-icons text-primary responsive-icon">location_on</i>
+        <strong class="visually-hidden">Endereço:</strong>
         <span class="text-dark">
             {% if space.address is defined and space.address is not empty %}
                 {{ space.address.getCompleteAddress()|default('') }}
@@ -13,23 +13,22 @@
         </span>
     </p>
 
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">category</i>
+    <p class="d-flex align-items-center gap-2 mb-2">
+        <i class="material-icons text-primary responsive-icon">category</i>
         <strong class="text-dark">{{ 'category' | trans }}:</strong>
         <span class="text-dark">{{ space.shortDescription ?? 'available_description' | trans }}</span>
     </p>
 
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">group</i>
+    <p class="d-flex align-items-center gap-2 mb-2">
+        <i class="material-icons text-primary responsive-icon">group</i>
         <strong class="text-dark">{{ 'Capacidade' | trans }}:</strong>
         <span class="text-dark">{{ space.maxCapacity ?? 'available_description' | trans }}</span>
     </p>
 
-
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">work</i>
-        <strong class="text-dark">{{ 'areas_of_expertise' | trans }} ({{ space.activityAreas|length }}):</strong>
-        <span class="fw-bold space-card__areas">
+    <p class="d-flex align-items-center gap-2 mb-2">
+        <i class="material-icons text-primary responsive-icon">work</i>
+        <strong class="visually-hidden">{{ 'areas_of_expertise' | trans }} ({{ space.activityAreas|length }}):</strong>
+        <span class="fw-bold space-card__areas text-dark">
             {% for area in space.activityAreas %}
                 {{ area.name }}{% if not loop.last %}, {% endif %}
             {% else %}
@@ -38,24 +37,24 @@
         </span>
     </p>
 
-    <p class="d-flex align-items-center gap-2 mb-1">
-        <i class="material-icons text-primary">accessibility_new</i>
-        <strong class="text-dark">{{ 'accessibility' | trans }}:</strong>
-        {% for acc in space.accessibilities %}
-            {{ acc.name }}{% if not loop.last %}, {% endif %}
-        {% else %}
-            {{ 'no_accessibility' | trans }}
-        {% endfor %}
+    <p class="d-flex align-items-center gap-2 mb-2">
+        <i class="material-icons text-primary responsive-icon">accessibility_new</i>
+        <strong class="visually-hidden">{{ 'accessibility' | trans }}:</strong>
+        <span class="text-dark">
+            {% for acc in space.accessibilities %}
+                {{ acc.name }}{% if not loop.last %}, {% endif %}
+            {% else %}
+                {{ 'no_accessibility' | trans }}
+            {% endfor %}
+        </span>
     </p>
 
-    <div class="entity-seals mt-2 d-flex justify-content-between align-items-center">
-        <div class="d-flex flex-wrap gap-2">
-            <strong class="text-dark">{{ 'tags' | trans }}:</strong>
-            {% for tag in space.tags %}
-                <span class="seal-entity px-3 py-1">{{ tag.name }}</span>
-            {% else %}
-                <span class="seal-entity px-3 py-1">{{ 'no_seals' | trans }}</span>
-            {% endfor %}
-        </div>
+    <div class="entity-seals mt-3 d-flex flex-wrap align-items-center gap-2">
+        <strong class="text-dark">{{ 'tags' | trans }}:</strong>
+        {% for tag in space.tags %}
+            <span class="seal-entity px-3 py-1">{{ tag.name }}</span>
+        {% else %}
+            <span class="seal-entity px-3 py-1">{{ 'no_seals' | trans }}</span>
+        {% endfor %}
     </div>
 </section>
