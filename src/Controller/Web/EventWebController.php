@@ -81,7 +81,7 @@ class EventWebController extends AbstractWebController
         $event = $this->service->get($id);
         $userInscription = $this->inscriptionEventService->getUserInscription($id);
 
-        return $this->render('event/show.html.twig', [
+        return $this->render('event/details.html.twig', [
             'event' => $event,
             'userInscription' => $userInscription,
         ]);

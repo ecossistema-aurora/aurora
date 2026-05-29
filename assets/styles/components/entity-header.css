@@ -133,11 +133,14 @@
 
     .entity-profile-actions {
         position: absolute;
+        left: 0;
         top: 3.75rem;
-        right: 1.5rem;
+        right: 0.5rem;
+        padding: 0 1rem;
         transform: translateY(-50%);
         margin-top: 0 !important;
         z-index: 10;
+        pointer-events: none;
     }
 
     .entity-profile-actions button,
@@ -157,5 +160,14 @@
 
     .entity-page-tabs {
         width: 100%;
+    }
+
+    .entity-profile-actions > * {
+        pointer-events: auto;
+    }
+
+    .dynamic-action-mobile-left {
+        order: -1;
+        margin-right: auto;
     }
 }
