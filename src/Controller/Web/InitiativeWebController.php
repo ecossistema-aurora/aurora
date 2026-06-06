@@ -54,6 +54,6 @@ class InitiativeWebController extends AbstractWebController
     {
         $initiative = $this->initiativeService->get($id);
 
-        return $this->render('initiative/show.html.twig', ['initiative' => $initiative]);
+        return $this->render('initiative/details.html.twig', ['initiative' => $initiative]);
     }
 }
