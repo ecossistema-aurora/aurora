@@ -629,7 +629,7 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'createdBy' => [
                     'id' => AgentFixtures::AGENT_ID_2,
                 ],
-                'coverImage' => 'coverimage.jpg',
+                'coverImage' => $event->getParent()->getCoverImage(),
                 'subtitle' => null,
                 'shortDescription' => 'Descrição curta',
                 'longDescription' => 'Uma descrição mais longa',
@@ -680,7 +680,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
-            'coverImage' => 'coverimage.jpg',
+            'coverImage' => $event->getCoverImage(),
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
@@ -871,7 +871,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             ],
             'extraFields' => $requestBody['extraFields'],
             'createdBy' => ['id' => self::getLoggedAgentId()],
-            'coverImage' => 'coverimage.jpg',
+            'coverImage' => $event->getCoverImage(),
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
@@ -1251,7 +1251,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_4,
             ],
-            'coverImage' => 'coverimage.jpg',
+            'coverImage' => $event->getCoverImage(),
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => null,
