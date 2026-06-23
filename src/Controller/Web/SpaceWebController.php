@@ -92,7 +92,7 @@ class SpaceWebController extends AbstractWebController
         $owner = $this->agentService->get($space->getCreatedBy()->getId());
         $events = $this->eventService->findBy(['space' => $space]);
 
-        return $this->render('space/one.html.twig', [
+        return $this->render('space/details.html.twig', [
             'space' => $space,
             'owner' => $owner,
             'events' => $events,
