@@ -778,6 +778,13 @@ view:
       success: ¡Tu contraseña ha sido restablecida exitosamente!
       link_sent_to_email: Enlace enviado a tu correo electrónico.
 
+    password_strength:
+      too_weak: Contraseña muy débil
+      weak: Contraseña débil
+      medium: Contraseña media
+      strong: Contraseña fuerte
+      too_strong: Contraseña muy fuerte
+
     password_reset:
       define_your_new_password: Establezca su nueva contraseña
 

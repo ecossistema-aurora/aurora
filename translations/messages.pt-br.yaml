@@ -776,6 +776,13 @@ view:
       success: Sua senha foi redefinida com sucesso!
       link_sent_to_email: Link de recuperação enviado ao e-mail!
 
+    password_strength:
+      too_weak: Senha muito fraca
+      weak: Senha fraca
+      medium: Senha média
+      strong: Senha forte
+      too_strong: Senha muito forte
+
     password_reset:
       define_your_new_password: Defina sua nova senha
 
