@@ -6,18 +6,17 @@
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
 
-        <div class="management-content w-100 p-4">
+        <div class="management-content w-100 p-3 p-md-4">
 
-            <div class="container d-grid justify-content-start mt-4">
+            <div class="container d-grid justify-content-start my-4 p-0">
                 <a href="{{ app.request.headers.get('referer')|default(path('web_initiative_list')) }}" class="nav-link centered-icon-text text-primary">
                     <i class="material-icons">arrow_back</i>
                     {{ 'back'|trans }}
                 </a>
             </div>
 
-
             <div class="row justify-content-center">
-                <div class="col-6">
+                <div class="col-12 col-md-8 col-lg-6">
                     <div class="card card-body shadow">
                         <h2>{{ 'view.initiative.create'|trans }}</h2>
 
@@ -81,9 +80,11 @@
                                     </small>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
-                            <button type="button" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
-                            <a href="{{ path('admin_initiative_list') }}" class="btn">{{ 'cancel'|trans }}</a>
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <button type="submit" class="btn btn-primary" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
+                                <button type="button" class="btn btn-secondary">{{ 'create_in_draft'|trans }}</button>
+                                <a href="{{ path('admin_initiative_list') }}" class="btn btn-light">{{ 'cancel'|trans }}</a>
+                            </div>
                         </form>
                     </div>
                 </div>
