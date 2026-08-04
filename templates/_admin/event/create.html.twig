@@ -10,66 +10,70 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container d-grid justify-content-start mt-4">
-        <a href="{{ app.request.headers.get('referer')|default(path('web_event_list')) }}" class="nav-link centered-icon-text text-primary">
-            <i class="material-icons">arrow_back</i>
+    <div class="container mt-4">
+        <a href="{{ app.request.headers.get('referer')|default(path('web_event_list')) }}" class="nav-link text-primary d-inline-flex align-items-center">
+            <i class="material-icons me-2">arrow_back</i>
             {{ 'back'|trans }}
         </a>
     </div>
 
-    <div class="container d-grid justify-content-center mt-5 mb-5 mw-0">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
 
-        <form action="{{ path('admin_event_create') }}" method="post" class="form-stepper">
-            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
-            <h2 class="fw-bold fs-3">{{ 'view.event.create_event.create'|trans }}</h2>
-            <p>{{ 'view.event.create_event.description'|trans }}</p>
+                <form action="{{ path('admin_event_create') }}" method="post" class="form-stepper w-100">
+                    <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
+                    <h2 class="fw-bold fs-3">{{ 'view.event.create_event.create'|trans }}</h2>
+                    <p>{{ 'view.event.create_event.description'|trans }}</p>
 
-            <div class="mb-4">
-                <label for="name" class="form-label">{{ 'name'|trans }}</label>
-                <input type="text" class="form-control" id="name" name="name" required/>
+                    <div class="mb-4">
+                        <label for="name" class="form-label">{{ 'name'|trans }}</label>
+                        <input type="text" class="form-control" id="name" name="name" required/>
+                    </div>
+
+                    <div class="mb-4">
+                        {% include '_components/tags-selector.html.twig' with {
+                            inputName: 'culturalLanguages',
+                            inputLabel: 'cultural_languages'|trans,
+                            items: culturalLanguageItems|map(culturalLanguage => { 'label': culturalLanguage.name, 'value': culturalLanguage.id }),
+                            tags: [],
+                            required: false,
+                            questionFill: true,
+                        } %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="description">
+                            {{ 'view.event.create_event.short_bio'|trans }}
+                        </label>
+                        <textarea id="description" name="description" maxlength="255" rows="5" class="form-control mt-1"></textarea>
+                        <p id="counter" class="text-end small text-muted">0/255</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="format-event-type">{{ 'type'|trans }}</label>
+                        <span class="text-danger">*</span>
+                        <select class="form-select mt-1" id="format-event-type" name="eventFormatType" required>
+                            <option selected disabled value="">{{ 'select'|trans }}</option>
+                            {% for type in typeItems %}
+                                <option value="{{ type.value }}">{{ ('event_format_types.' ~ type.name)|trans }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="start_date" class="form-label"> {{ 'start_date' | trans}} </label>
+                        <span class="text-danger">*</span>
+                        <input type="date" class="form-control" id="start_date" name="startDate" required>
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3 mt-5">
+                        <button type="submit" class="btn btn-primary" data-cy="submit">{{ 'create_in_draft'|trans }}</button>
+                        <button type="button" class="btn btn-link text-decoration-none">{{ 'cancel'|trans }}</button>
+                    </div>
+                </form>
             </div>
-
-            <div class="mb-4">
-                {% include '_components/tags-selector.html.twig' with {
-                    inputName: 'culturalLanguages',
-                    inputLabel: 'cultural_languages'|trans,
-                    items: culturalLanguageItems|map(culturalLanguage => { 'label': culturalLanguage.name, 'value': culturalLanguage.id }),
-                    tags: [],
-                    required: false,
-                    questionFill: true,
-                } %}
-            </div>
-
-            <div class="mb-4">
-                <label for="description">
-                    {{ 'view.event.create_event.short_bio'|trans }}
-                </label>
-                <textarea id="description" name="description" maxlength="255" rows="5" class="form-control mt-1"></textarea>
-                <p id="counter">0/255</p>
-            </div>
-
-            <div class="mb-4">
-                <label class="form-label" for="format-event-type">{{ 'type'|trans }}</label>
-                <span class="text-danger">*</span>
-                <select class="form-select mt-1" id="format-event-type" name="eventFormatType" required>
-                    <option selected disabled value="">{{ 'select'|trans }}</option>
-                    {% for type in typeItems %}
-                        <option value="{{ type.value }}">{{ ('event_format_types.' ~ type.name)|trans }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="start_date" class="form-label"> {{ 'start_date' | trans}} </label>
-                <span class="text-danger">*</span>
-                <input type="date" class="form-control" id="start_date" name="startDate" required>
-            </div>
-
-            <div class="btn-form-group mt-5">
-                <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_in_draft'|trans }}</button>
-                <button type="button" class="btn btn-link">{{ 'cancel'|trans }}</button>
-            </div>
-        </form>
+        </div>
     </div>
 {% endblock %}
 
@@ -87,6 +91,5 @@
             const length = description.value.length;
             counter.textContent = `${length}/${maxLength}`;
         });
-
     </script>
 {% endblock %}
