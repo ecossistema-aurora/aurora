@@ -1,0 +1,20 @@
+{% set tabs = [
+    {
+        'id': 'generalData',
+        'content': include('event/_partials/details/general-data.html.twig')
+    },
+    {
+        'id': 'people',
+        'content': include('_layouts/_show/peoples.html.twig', { 'entity': event })
+    },
+    {
+        'id': 'initiatives',
+        'content': include('event/_partials/details/initiatives.html.twig')
+    },
+    {
+        'id': 'evidences',
+        'content': include('event/_partials/details/evidences.html.twig')
+    }
+] %}
+
+{% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}
