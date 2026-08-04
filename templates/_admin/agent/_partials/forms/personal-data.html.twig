@@ -17,8 +17,7 @@
     <div class="row mt-3">
         <div class="col-md-4">
             <label for="cpf">{{ 'cpf'|trans }}</label>
-            <input type="text" class="form-control" id="cpf" name="cpf"
-                placeholder="123.456.789-10">
+            <input type="text" class="form-control" id="cpf" name="cpf" data-mask="cpf" placeholder="123.456.789-10">
         </div>
         <div class="col-md-4">
             <label for="private_email">{{ 'private_email'|trans }}</label>
@@ -27,8 +26,7 @@
         </div>
         <div class="col-md-4">
             <label for="private_phone">{{ 'private_phone'|trans }}</label>
-            <input type="text" class="form-control" id="private_phone" name="private_phone"
-                placeholder="(00) 00000-0000">
+            <input type="text" class="form-control" id="private_phone" name="private_phone" data-mask="phone" placeholder="(00) 00000-0000">
         </div>
     </div>
 
