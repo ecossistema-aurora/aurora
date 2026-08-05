@@ -3,7 +3,7 @@
         <div class="col-md-4">
             <label for="cep" class="form-label">{{ 'cep' | trans }}</label>
             <span class="text-danger">*</span>
-            <input value="{{ space.address.zipcode ?? '' }}" type="text" name="address_cep" class="form-control" id="cep" placeholder="{{ 'type_here' | trans }}" required>
+            <input value="{{ space.address.zipcode ?? '' }}" type="text" name="address_cep" class="form-control" id="cep" placeholder="{{ 'type_here' | trans }}" data-mask="cep" required>
         </div>
         <div class="col-md-8">
             <label for="street" class="form-label">{{ 'street' | trans }}</label>
@@ -16,7 +16,7 @@
         <div class="col-md-2">
             <label for="number" class="form-label">{{ 'number_address' | trans}}</label>
             <span class="text-danger">*</span>
-            <input value="{{ space.address.number ?? '' }}" disabled="{{ space.address and space.address.number == '' }}" type="text" name="address_number" class="form-control" id="number" placeholder="{{ 'type_here' | trans }}" required>
+            <input value="{{ space.address.number ?? '' }}" disabled="{{ space.address and space.address.number == '' }}" type="text" name="address_number" class="form-control" id="number" placeholder="{{ 'type_here' | trans }}" maxlength="5" required>
         </div>
         <div class="col-md-1 form-check align-items-end d-flex gap-2">
             <input name="address_no_number" checked="{{ space.address and space.address.number != '' }}" class="form-check-input" type="checkbox" id="no_number" value="1">
