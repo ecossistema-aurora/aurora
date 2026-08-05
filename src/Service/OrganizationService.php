@@ -8,8 +8,12 @@ use App\DTO\OrganizationDto;
 use App\Entity\Agent;
 use App\Entity\Organization;
 use App\Enum\OrganizationTypeEnum;
+use App\Exception\ActivityArea\ActivityAreaResourceNotFoundException;
 use App\Exception\Organization\OrganizationResourceNotFoundException;
+use App\Exception\Tag\TagResourceNotFoundException;
+use App\Repository\Interface\ActivityAreaRepositoryInterface;
 use App\Repository\Interface\OrganizationRepositoryInterface;
+use App\Repository\Interface\TagRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\OrganizationServiceInterface;
@@ -31,6 +35,7 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
     private const string DIR_ORGANIZATION_COVER = 'app.dir.organization.cover';
 
     public function __construct(
+        private ActivityAreaRepositoryInterface $activityAreaRepository,
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
         private OrganizationRepositoryInterface $repository,
@@ -40,6 +45,7 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         private EntityManagerInterface $entityManager,
         private AgentServiceInterface $agentService,
         private UrlGeneratorInterface $urlGenerator,
+        private TagRepositoryInterface $tagRepository,
         private TranslatorInterface $translator,
     ) {
         parent::__construct(
@@ -132,19 +138,47 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         $this->repository->save($organization);
     }
 
-    public function update(Uuid $identifier, array $organization): Organization
+    public function update(Uuid $identifier, array $organizationData): Organization
     {
         $organizationFromDB = $this->get($identifier);
+        $organizationDto = $this->validateInput($organizationData, OrganizationDto::class, OrganizationDto::UPDATE);
 
-        $organizationDto = $this->validateInput($organization, OrganizationDto::class, OrganizationDto::UPDATE);
+        $tagsIds = $organizationDto['tags'] ?? [];
+        $activityAreaIds = $organizationDto['activityAreaItems'] ?? [];
 
         $organizationObj = $this->serializer->denormalize($organizationDto, Organization::class, context: [
             'object_to_populate' => $organizationFromDB,
+            'ignored_attributes' => ['tags', 'activityAreaItems'],
         ]);
+
+        $this->syncTags($organizationObj, $tagsIds);
+        $this->syncActivityAreas($organizationObj, $activityAreaIds);
 
         $organizationObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($organizationObj);
+    }
+
+    private function syncTags(Organization $organization, array $tagsIds): void
+    {
+        $organization->getTags()->clear();
+
+        foreach ($tagsIds as $tagId) {
+            $tag = $this->tagRepository->find($tagId) ?? throw new TagResourceNotFoundException();
+
+            $organization->addTag($tag);
+        }
+    }
+
+    private function syncActivityAreas(Organization $organization, array $activityAreaIds): void
+    {
+        $organization->getActivityAreas()->clear();
+
+        foreach ($activityAreaIds as $areaId) {
+            $area = $this->activityAreaRepository->find($areaId) ?? throw new ActivityAreaResourceNotFoundException();
+
+            $organization->addActivityArea($area);
+        }
     }
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Organization
