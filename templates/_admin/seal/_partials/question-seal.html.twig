@@ -1,21 +1,30 @@
 <div class="seal-form-container">
-    <h2 class="form-title">{{ 'view.seal.create' | trans }}</h2>
+    <div class="text-center mb-4">
+        <h3 class="form-title fw-bold text-primary mb-1">
+            <i class="bi bi-award me-2"></i>{{ 'view.seal.create' | trans }}
+        </h3>
+        <p class="text-muted small">Preencha os dados abaixo para cadastrar o selo.</p>
+    </div>
 
     <form method="POST" action="{{ path('admin_seal_add') }}">
         <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
-        <div class="mb-3">
-            <label for="name" class="form-label">{{ 'seal_name' | trans }}</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder={{ 'name' | trans}} required>
+
+        <div class="form-floating mb-4">
+            <input type="text" class="form-control" id="name" name="name" placeholder="{{ 'name' | trans }}" required>
+            <label for="name">{{ 'seal_name' | trans }}</label>
         </div>
 
-        <div class="mb-3">
-            <label for="description" class="form-label">{{ 'description' | trans }}</label>
-            <textarea class="form-control" id="description" name="description" rows="3" maxlength="500" placeholder={{ 'description' | trans }} required></textarea>
+        <div class="form-floating mb-4">
+            <textarea class="form-control" id="description" name="description" style="height: 130px" maxlength="500" placeholder="{{ 'description' | trans }}" required></textarea>
+            <label for="description">{{ 'description' | trans }}</label>
         </div>
 
-        <div class="btn-form-group">
-            <button class="btn btn-primary" type="submit">
-                {{ 'save' | trans }}
+        <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-4">
+            <a href="{{ path('admin_seal_list') }}" class="btn btn-outline-secondary px-4 py-2 fw-semibold rounded-pill">
+                <i class="bi bi-arrow-left me-1"></i> {{ 'cancel' | trans }}
+            </a>
+            <button class="btn btn-primary px-5 py-2 fw-semibold rounded-pill" type="submit">
+                {{ 'save' | trans }} <i class="bi bi-check2 ms-1"></i>
             </button>
         </div>
     </form>

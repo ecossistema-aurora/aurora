@@ -28,53 +28,58 @@
 
                         <hr>
 
-                        <table class="table table-hover table-striped" data-cy="table-seal-list">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>{{ 'name'|trans }}</th>
-                                <th>{{ 'status'|trans }}</th>
-                                <th>{{ 'created_at'|trans }}</th>
-                                <th></th>
-                                <th>{{ 'actions'|trans }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for seal in seals %}
-                                <tr data-cy="{{ seal.id }}">
-                                    <td>{{ seal.name }}</td>
-                                    <td>
-                                        {% if seal.active %}
-                                            <span class="badge bg-success">
-                                                    {{ 'view.seal.status.active'|trans }}
-                                            </span>
-                                        {% else %}
-                                            <span class="badge bg-danger">
-                                                    {{ 'view.seal.status.inactive'|trans }}
-                                            </span>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ seal.createdAt|date('d/m/Y H:i') }}</td>
-                                    <td></td>
-                                    <td>
-                                        <a href="{{ path('admin_seal_edit', {'id': seal.id}) }}"
-                                           class="btn btn-outline-warning btn-sm">
-                                            {{ 'edit'|trans }}
-                                        </a>
-                                        <button
-                                                data-cy="remove-{{ loop.index }}"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalRemoveConfirm"
-                                                onclick="confirmRemove(this)"
-                                                data-href="{{ path('admin_seal_remove', {id: seal.id}) }}"
-                                                class="btn btn-outline-danger btn-sm"
-                                        >
-                                            {{ 'delete'|trans }}
-                                        </button>
-                                    </td>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped" data-cy="table-seal-list">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>{{ 'name'|trans }}</th>
+                                    <th>{{ 'status'|trans }}</th>
+                                    <th>{{ 'created_at'|trans }}</th>
+                                    <th>{{ 'actions'|trans }}</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                {% for seal in seals %}
+                                    <tr data-cy="{{ seal.id }}">
+                                        <td>{{ seal.name }}</td>
+                                        <td>
+                                            {% if seal.active %}
+                                                <span class="badge bg-success">
+                                                {{ 'view.seal.status.active'|trans }}
+                                        </span>
+                                            {% else %}
+                                                <span class="badge bg-danger">
+                                                {{ 'view.seal.status.inactive'|trans }}
+                                        </span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ seal.createdAt|date('d/m/Y H:i') }}</td>
+
+                                        <td>
+                                            <div class="d-flex gap-2">
+                                                <a href="{{ path('admin_seal_edit', {'id': seal.id}) }}" class="btn btn-outline-warning btn-sm text-nowrap">
+                                                    <i class="iconify d-md-none" data-icon="material-symbols-light:edit"></i>
+                                                    <span class="d-none d-md-inline">{{ 'edit'|trans }}</span>
+                                                </a>
+
+                                                <button
+                                                        data-cy="remove-{{ loop.index }}"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalRemoveConfirm"
+                                                        onclick="confirmRemove(this)"
+                                                        data-href="{{ path('admin_seal_remove', {id: seal.id}) }}"
+                                                        class="btn btn-outline-danger btn-sm text-nowrap"
+                                                >
+                                                    <i class="iconify d-md-none" data-icon="material-symbols-light:delete"></i>
+                                                    <span class="d-none d-md-inline">{{ 'delete'|trans }}</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>
