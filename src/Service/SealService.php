@@ -71,9 +71,8 @@ readonly class SealService extends AbstractEntityService implements SealServiceI
 
     public function list(int $limit = 50): array
     {
-        return $this->repository->findBy(
+        return $this->repository->findActiveSeals(
             $this->getUserParams(),
-            ['createdAt' => 'DESC'],
             $limit
         );
     }
