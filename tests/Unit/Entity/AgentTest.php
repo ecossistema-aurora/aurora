@@ -123,6 +123,7 @@ class AgentTest extends TestCase
             'name' => 'Test Agent',
             'fiscalCode' => '',
             'image' => 'http://example.com/image.jpg',
+            'coverImage' => null,
             'shortBio' => 'Short biography',
             'longBio' => 'Long biography description',
             'culture' => true,
