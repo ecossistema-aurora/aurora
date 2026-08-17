@@ -60,7 +60,10 @@ class EventWebController extends AbstractWebController
     {
         $event = $this->service->get($id);
 
-        return $this->render('event/show.html.twig', ['event' => $event]);
+        return $this->render('event/details.html.twig', [
+            'event' => $event,
+            'userInscription' => $userInscription,
+        ]);
     }
 
     private function hidratePeriodParam(array $filters): array
