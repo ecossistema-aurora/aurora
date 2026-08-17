@@ -18,23 +18,24 @@
         {% endfor %}
     </div>
 
-    <div class="dropdown position-static mt-2">
-        <button id="add-{{ inputName }}-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown position-relative mt-2 w-100">
+        <button id="add-{{ inputName }}-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
             {{ 'add'|trans }}
             <i class="material-icons fs-4 ms-2">add</i>
         </button>
 
-        <ul class="dropdown-menu" aria-labelledby="add-{{ inputName }}-btn">
-            <div class="search-input-container">
-                <div class="input-wrapper">
+        <ul class="dropdown-menu w-100 shadow" aria-labelledby="add-{{ inputName }}-btn" style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+
+            <div class="search-input-container px-2 mb-2">
+                <div class="input-wrapper position-relative d-flex align-items-center">
                     <input
-                        type="search"
-                        id="search-{{ inputName }}-items"
-                        class="form-control custom-search-input mx-2 no-focus-ring"
-                        placeholder="{{ 'search'|trans }}"
-                        autocomplete="off"
+                            type="search"
+                            id="search-{{ inputName }}-items"
+                            class="form-control custom-search-input w-100 pe-4 no-focus-ring"
+                            placeholder="{{ 'search'|trans }}"
+                            autocomplete="off"
                     />
-                    <i class="material-icons custom-search-icon me-4 pb-1" aria-hidden="true">search</i>
+                    <i class="material-icons custom-search-icon position-absolute end-0 me-3" aria-hidden="true" style="pointer-events: none;">search</i>
                 </div>
             </div>
 
@@ -52,11 +53,12 @@
             {% for item in items %}
                 <li class="{{ item.value in tags|column('value') ? 'd-none' : '' }}">
                     <button
-                        type="button"
-                        class="dropdown-item"
-                        style="cursor: pointer"
-                        data-label="{{ item.label }}"
-                        data-value="{{ item.value }}"
+                            type="button"
+                            class="dropdown-item text-truncate"
+                            style="cursor: pointer"
+                            data-label="{{ item.label }}"
+                            data-value="{{ item.value }}"
+                            title="{{ item.label }}"
                     >{{ item.label }}</button>
                 </li>
             {% endfor %}
