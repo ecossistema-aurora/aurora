@@ -1,0 +1,35 @@
+<button class="btn-mobile-circle d-flex align-items-center justify-content-center btn btn-link text-decoration-none">
+    <i class="material-icons">share</i>
+    <span class="d-none d-lg-block ms-2 text-nowrap">{{ 'share' | trans }}</span>
+</button>
+
+<button class="btn-mobile-circle d-flex align-items-center justify-content-center text-decoration-none">
+    <i class="material-icons">chat_bubble</i>
+    <span class="d-none d-lg-block ms-2 text-nowrap">{{ 'send_message' | trans }}</span>
+</button>
+
+{% if dynamicActions|default %}
+    {% for action in dynamicActions %}
+        {% set displayIcon = action.disabled|default ? 'check' : 'add' %}
+        <div class="dynamic-action-mobile-left">
+            {% if action.disabled|default %}
+                <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ action.tooltip|trans({'{date}': action.date}) }}">
+                    <button type="button" class="btn-mobile-circle d-flex align-items-center justify-content-center btn btn-primary px-lg-4" disabled>
+                        <i class="material-icons m-0 me-lg-2">{{ displayIcon }}</i>
+                        <span class="d-none d-lg-inline-block text-nowrap">{{ action.key|trans }}</span>
+                    </button>
+                </span>
+            {% elseif action.requiresConfirmation|default %}
+                <button type="button" class="btn-mobile-circle d-flex align-items-center justify-content-center btn btn-primary px-lg-4" data-bs-toggle="modal" data-bs-target="#subscribeConfirmModal">
+                    <i class="material-icons m-0 me-lg-2">{{ displayIcon }}</i>
+                    <span class="d-none d-lg-inline-block text-nowrap">{{ action.key|trans }}</span>
+                </button>
+            {% else %}
+                <a href="{{ action.path }}" class="btn-mobile-circle d-flex align-items-center justify-content-center btn btn-primary px-lg-4 text-decoration-none">
+                    <i class="material-icons m-0 me-lg-2">{{ displayIcon }}</i>
+                    <span class="d-none d-lg-inline-block text-nowrap">{{ action.key|trans }}</span>
+                </a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endif %}

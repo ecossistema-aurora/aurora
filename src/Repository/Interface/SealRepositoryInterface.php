@@ -9,4 +9,6 @@ use App\Entity\Seal;
 interface SealRepositoryInterface
 {
     public function save(Seal $seal): Seal;
+
+    public function findActiveSeals(array $userParams, int $limit): array;
 }

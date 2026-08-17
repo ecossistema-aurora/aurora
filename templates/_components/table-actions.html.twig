@@ -1,0 +1,56 @@
+<div class="d-flex flex-nowrap gap-1">
+    <a href="{{ path('admin_' ~ entity_prefix ~ '_timeline', {id: item.id}) }}" class="btn btn-outline-primary btn-sm d-flex align-items-center py-2" title="{{ 'Timeline'|trans }}">
+        <i class="iconify d-md-none" data-icon="material-symbols-light:timeline"></i>
+        <span class="d-none d-md-inline">{{ 'Timeline'|trans }}</span>
+    </a>
+
+    {% if not item.deletedAt %}
+        <a href="{{ path('admin_' ~ entity_prefix ~ '_edit', { id: item.id }) }}"
+           class="btn btn-outline-warning btn-sm d-flex align-items-center py-2"
+           title="{{ 'edit'|trans }}"
+           data-cy="edit-{{ entity_prefix }}-btn-{{ item.id }}">
+            <i class="iconify d-md-none" data-icon="material-symbols-light:edit"></i>
+            <span class="d-none d-md-inline">{{ 'edit'|trans }}</span>
+        </a>
+
+        {% set show_delete = can_delete ?? true %}
+        {% if show_delete %}
+            {% set remove_params = {id: item.id} %}
+            {% if remove_token|default %}
+                {% set remove_params = remove_params|merge({_token: remove_token}) %}
+            {% endif %}
+
+            <button
+                    data-cy="remove-{{ loop_index }}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalRemoveConfirm"
+                    onclick="confirmRemove(this)"
+                    data-href="{{ path('admin_' ~ entity_prefix ~ '_remove', remove_params) }}"
+                    class="btn btn-outline-danger btn-sm d-flex align-items-center"
+                    title="{{ 'delete'|trans }}"
+            >
+                <i class="iconify d-md-none" data-icon="material-symbols-light:delete"></i>
+                <span class="d-none d-md-inline">{{ 'delete'|trans }}</span>
+            </button>
+        {% endif %}
+
+        {% if has_publish ?? false %}
+            {% set isDraft = item.draft %}
+            {% set btnClass = isDraft ? 'btn btn-outline-info btn-sm' : 'btn btn-outline-warning btn-sm' %}
+            {% set btnText = (isDraft ? 'publish' : 'unpublish')|trans %}
+            {% set publishIcon = isDraft ? 'material-symbols-light:public' : 'material-symbols-light:public-off' %}
+
+            <button
+                    data-cy="publish-{{ loop_index }}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalTogglePublishConfirm"
+                    onclick="confirmTogglePublish(this)"
+                    data-href="{{ path('admin_' ~ entity_prefix ~ '_toggle_publish', {id: item.id}) }}"
+                    class="{{ btnClass }} d-flex align-items-center"
+                    title="{{ btnText }}">
+                <i class="iconify d-md-none" data-icon="{{ publishIcon }}"></i>
+                <span class="d-none d-md-inline">{{ btnText }}</span>
+            </button>
+        {% endif %}
+    {% endif %}
+</div>

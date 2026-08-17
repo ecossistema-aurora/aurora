@@ -12,6 +12,7 @@ use App\Exception\ValidatorException;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\OrganizationServiceInterface;
+use App\Service\Interface\TagServiceInterface;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +35,7 @@ class OrganizationAdminController extends AbstractAdminController
         private readonly OrganizationServiceInterface $service,
         private readonly AgentServiceInterface $agentService,
         private readonly TranslatorInterface $translator,
+        private readonly TagServiceInterface $tagService,
         private readonly OrganizationTimelineDocumentService $documentService,
         private readonly ActivityAreaServiceInterface $activityAreaService,
         private readonly Security $security,
@@ -173,18 +175,22 @@ class OrganizationAdminController extends AbstractAdminController
             return $this->handleUpdate($organization, $request);
         }
 
+        $tags = $this->tagService->list();
+
         return $this->render(self::VIEW_EDIT, [
             'organization' => $organization,
             'organizationAgents' => $organization->getAgents(),
             'availableAgents' => $this->agentService->findBy(),
             'activityAreaItems' => $this->activityAreaService->list(),
             'form_id' => self::EDIT_FORM_ID,
+            'tags' => $tags,
         ]);
     }
 
     private function handleUpdate(Organization $organization, Request $request): Response
     {
         $this->validCsrfToken(self::EDIT_FORM_ID, $request);
+        $submittedTags = $request->request->all('tags') ?? [];
 
         try {
             $agentIds = $request->request->all('agent_ids') ?? [];
@@ -197,7 +203,8 @@ class OrganizationAdminController extends AbstractAdminController
                 'extraFields' => $this->extractExtraFields($request, $organization),
                 'socialNetworks' => $this->extractSocialNetworks($request),
                 'agents' => $agentIds,
-                'activityAreas' => $activityAreas,
+                'activityAreaItems' => $activityAreas,
+                'tags' => $submittedTags,
             ];
 
             $this->service->update($organization->getId(), $dataToUpdate);
@@ -215,7 +222,8 @@ class OrganizationAdminController extends AbstractAdminController
                 'organizationAgents' => $organization->getAgents(),
                 'availableAgents' => $this->agentService->findBy(),
                 'error' => $exception->getMessage(),
-                'activityAreas' => $this->activityAreaService->list(),
+                'activityAreaItems' => $this->activityAreaService->list(),
+                'tags' => $this->tagService->list(),
                 'form_id' => self::EDIT_FORM_ID,
             ]);
         }

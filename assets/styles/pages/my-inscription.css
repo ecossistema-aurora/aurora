@@ -8,6 +8,7 @@
     width: 3rem;
     height: 3rem;
     margin-right: 10px;
+    flex-shrink: 0;
 }
 
 .icon-container-inscriptions i {
@@ -79,35 +80,6 @@
     flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-    .header-content-inscriptions {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .icon-container-inscriptions {
-        margin-bottom: 10px;
-        width: 10%;
-    }
-
-    .text-container-inscriptions .title-inscriptions {
-        font-size: 20px;
-    }
-
-    .text-container-inscriptions .subtitle-inscriptions {
-        font-size: 12px;
-    }
-
-    .search-dropdown-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .input-wrapper-inscriptions {
-        width: 100%;
-    }
-}
-
 .resources-section {
     margin-top: 20px;
 }
@@ -146,9 +118,10 @@ hr {
 .resource-icon {
     background-color: var(--paleGray);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
+    width: 3.125rem;
+    height: 3.125rem;
+    margin-right: 0.9375rem;
+    flex-shrink: 0;
 }
 
 .resource-title {
@@ -181,4 +154,68 @@ hr {
 
 .my-inscription-page i.material-icons {
     font-size: 24px !important;
+}
+
+.management-panel__white-square {
+    height: auto !important;
+    min-height: max-content;
+    flex-shrink: 0;
+}
+
+.management-panel__white-square ul {
+    margin-top: 1.875rem;
+}
+
+@media (max-width: 48rem) {
+    .header-content-inscriptions {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .icon-container-inscriptions {
+        margin-bottom: 0.625rem;
+    }
+
+    .text-container-inscriptions .title-inscriptions {
+        font-size: 1.25rem;
+    }
+
+    .text-container-inscriptions .subtitle-inscriptions {
+        font-size: 12px;
+    }
+
+    .search-dropdown-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-wrapper-inscriptions {
+        width: 100%;
+    }
+
+    .filter-control {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0.9375rem;
+    }
+
+    .filter-control .search-box {
+        width: 100%;
+    }
+
+    .filter-control .search-box input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .agent-sort {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .agent-sort select {
+        flex: 1;
+        margin-left: 10px;
+    }
 }

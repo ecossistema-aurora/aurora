@@ -31,6 +31,7 @@ function updateFormSteps() {
 }
 
 function updateProgressbar() {
+    console.log('testando se to passando nessa bosta')
     const totalSteps = progressSteps.length - 1;
     const activeSteps = formStepsNum + 1;
 

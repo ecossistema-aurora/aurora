@@ -1,0 +1,86 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %}
+    {{ 'event'|trans }} | {{ event.name }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/components/entity-header.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% set dynamicActions = [] %}
+    {% if app.user %}
+        {% if userInscription %}
+            {% set dynamicActions = [
+                {
+                    'icon': 'check',
+                    'key': 'subscribed',
+                    'disabled': true,
+                    'tooltip': 'subscribed_since',
+                    'date': userInscription.createdAt|date('d/m/Y')
+                }
+            ] %}
+        {% else %}
+            {% set dynamicActions = [
+                {
+                    'icon': 'person',
+                    'key': 'subscribe',
+                    'requiresConfirmation': true
+                }
+            ] %}
+        {% endif %}
+    {% else %}
+        {% set dynamicActions = [
+            {
+                'icon': 'person',
+                'key': 'subscribe',
+                'path': path('web_auth_login')
+            }
+        ] %}
+    {% endif %}
+
+    <section class="entity-section">
+        {% include "_components/entity-header.html.twig" with {
+            id: event.id,
+            name: event.name,
+            image: event.image|default('img/entity-image.png'),
+            coverImage: event.coverImage|default('img/entity-cover-image.png'),
+            icon: 'event',
+            longBio: event.longDescription,
+            actions: 'event/_partials/details/actions.html.twig',
+            actionData: { 'dynamicActions': dynamicActions },
+            tabs: 'event/_partials/details/tabs.html.twig',
+            breadcrumbs: [
+                {text: 'home'|trans, path: path('web_home_homepage')},
+                {text: 'events'|trans, path: path('web_event_list')},
+                {text: event.name, path: path('web_event_show', {id: event.id})}
+            ]
+        } only %}
+    </section>
+
+    <section class="profile-entity-wrapper">
+        {% include "event/_partials/details/content-tabs.html.twig" %}
+    </section>
+
+    <div class="modal fade" id="subscribeConfirmModal" tabindex="-1" aria-labelledby="subscribeConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subscribeConfirmModalLabel">{{ 'subscribe_confirmation_title'|trans }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ 'subscribe_confirmation_message'|trans }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'cancel'|trans }}</button>
+                    <form method="post" id="subscribeConfirmForm" action="{{ path('admin_event_inscription_create', {id: event.id}) }}">
+                        <button type="submit" class="btn btn-primary">{{ 'subscribe'|trans }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

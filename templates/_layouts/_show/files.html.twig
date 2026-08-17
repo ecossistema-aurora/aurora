@@ -17,39 +17,37 @@
     }
 ] %}
 
-<div class="tab-pane container fade" id="{{ id }}">
-    {% include '_components/_show/nav-pills.html.twig' with {
-        'pills': pills,
-        'classes': 'border-bottom border-secondary'
-    } %}
+{% include '_components/_show/nav-pills.html.twig' with {
+    'pills': pills,
+    'classes': 'border-bottom border-secondary'
+} %}
 
-    <div class="tab-content py-3">
-        <div class="tab-pane container active" id="{{ id }}Archives">
-            <div class="card shadow-sm mb-3 card__entity-details">
-                <div class="card-body py-4">
-                    {{ 'no_records_found' | trans }}
-                </div>
+<div class="tab-content py-3">
+    <div class="tab-pane container active" id="{{ id }}Archives">
+        <div class="card shadow-sm mb-3 card__entity-details">
+            <div class="card-body py-4">
+                {{ 'no_records_found' | trans }}
             </div>
         </div>
-        <div class="tab-pane container fade" id="{{ id }}Links">
-            <div class="card shadow-sm mb-3 card__entity-details">
-                <div class="card-body py-4">
-                    Em breve
-                </div>
+    </div>
+    <div class="tab-pane container fade" id="{{ id }}Links">
+        <div class="card shadow-sm mb-3 card__entity-details">
+            <div class="card-body py-4">
+                Em breve
             </div>
         </div>
-        <div class="tab-pane container fade" id="{{ id }}Videos">
-            <div class="card shadow-sm mb-3 card__entity-details">
-                <div class="card-body py-4">
-                    Em breve
-                </div>
+    </div>
+    <div class="tab-pane container fade" id="{{ id }}Videos">
+        <div class="card shadow-sm mb-3 card__entity-details">
+            <div class="card-body py-4">
+                Em breve
             </div>
         </div>
-        <div class="tab-pane container fade" id="{{ id }}Images">
-            <div class="card shadow-sm mb-3 card__entity-details">
-                <div class="card-body py-4">
-                    Em breve
-                </div>
+    </div>
+    <div class="tab-pane container fade" id="{{ id }}Images">
+        <div class="card shadow-sm mb-3 card__entity-details">
+            <div class="card-body py-4">
+                Em breve
             </div>
         </div>
     </div>

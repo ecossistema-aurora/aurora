@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DTO;
 
 use App\Entity\Agent;
+use App\Entity\Tag;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
@@ -49,6 +50,12 @@ class OrganizationDto
         new Uuid(),
     ])]
     public mixed $activityAreas;
+
+    #[Sequentially([
+        new All([new Uuid()], [self::CREATE, self::UPDATE]),
+        new Exists(Tag::class),
+    ], groups: [self::CREATE, self::UPDATE])]
+    public mixed $tags;
 
     #[Sequentially([
         new NotNull(groups: [self::UPDATE]),
