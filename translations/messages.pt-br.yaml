@@ -562,6 +562,22 @@ view:
     forgot_password: Esqueci minha senha
     paragraph: Entre com a sua conta
 
+    forgot:
+      forgot_your_password: Esqueceu a sua senha?
+      paragraph: Informe seu e-mail cadastrado, enviaremos as instruções de redefinição de senha.
+      success: Sua senha foi redefinida com sucesso!
+      link_sent_to_email: Link de recuperação enviado ao e-mail!
+
+    password_strength:
+      too_weak: Senha muito fraca
+      weak: Senha fraca
+      medium: Senha média
+      strong: Senha forte
+      too_strong: Senha muito forte
+
+    password_reset:
+      define_your_new_password: Defina sua nova senha
+
     register:
       create_account: Criar conta
       paragraph: Siga os passos para completar o seu cadastro na plataforma

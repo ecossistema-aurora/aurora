@@ -567,6 +567,22 @@ view:
     forgot_password: Forgot my password
     paragraph: Log in with your account
 
+    forgot:
+      forgot_your_password: Forgot your password?
+      paragraph: Enter your email address below, and we will send you a link to reset your password.
+      success: Your password has been reset successfully!
+      link_sent_to_email: A link to reset your password has been sent to your email address.
+
+    password_strength:
+      too_weak: Password is too weak
+      weak: Password is weak
+      medium: Password strength is medium
+      strong: Password is strong
+      too_strong: Password is too strong
+
+    password_reset:
+      define_your_new_password: Define your new password
+
     register:
       create_account: Create Account
       paragraph: Follow the steps to complete your registration on the platform

@@ -11,7 +11,12 @@ import {
     VIEW_AUTHENTICATION_ERROR_CPF_INVALID,
     VIEW_AUTHENTICATION_ERROR_PHONE_INVALID,
     VIEW_AUTHENTICATION_ERROR_EMAIL_IN_USE,
-    VIEW_AUTHENTICATION_ERROR_CNPJ_INVALID
+    VIEW_AUTHENTICATION_ERROR_CNPJ_INVALID,
+    VIEW_AUTHENTICATION_PASSWORD_STRENGTH_TOO_WEAK,
+    VIEW_AUTHENTICATION_PASSWORD_STRENGTH_WEAK,
+    VIEW_AUTHENTICATION_PASSWORD_STRENGTH_MEDIUM,
+    VIEW_AUTHENTICATION_PASSWORD_STRENGTH_STRONG,
+    VIEW_AUTHENTICATION_PASSWORD_STRENGTH_TOO_STRONG
 } from "../../../translator.js";
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -80,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: trans(VIEW_AUTHENTICATION_ERROR_PASSWORD_MISMATCH)
             },
             {
-                valid: () => calculatePasswordStrength(password) === 5,
+                valid: () => calculatePasswordStrength(password) >= 1,
                 input: inputs.password,
                 message: trans(VIEW_AUTHENTICATION_ERROR_INVALID_PASSWORD)
             }
@@ -231,46 +236,72 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateBtnNextState();
 
-    function updatePasswordStrength(password) {
-        if (!progressBar) return;
+    const STRENGTH_UI_CONFIG = {
+        0: { colorClass: 'bg-danger', label: trans(VIEW_AUTHENTICATION_PASSWORD_STRENGTH_TOO_WEAK) },
+        1: { colorClass: 'bg-warning', label: trans(VIEW_AUTHENTICATION_PASSWORD_STRENGTH_WEAK) },
+        2: { colorClass: 'bg-success', label: trans(VIEW_AUTHENTICATION_PASSWORD_STRENGTH_MEDIUM) },
+        3: { colorClass: 'bg-success', label: trans(VIEW_AUTHENTICATION_PASSWORD_STRENGTH_STRONG) },
+        4: { colorClass: 'bg-success', label: trans(VIEW_AUTHENTICATION_PASSWORD_STRENGTH_TOO_STRONG) }
+    };
 
-        if (password.length === 0) {
+    function updatePasswordStrength(password) {
+        const progressBar = document.getElementById('progressBar');
+        const strengthMessage = document.getElementById('strengthMessage');
+
+        if (!password) {
             progressBar.classList.add('d-none');
-            if (strengthMessage) strengthMessage.textContent = '';
+            strengthMessage.textContent = '';
             return;
         }
 
-        progressBar.classList.remove('d-none');
-
         const strength = calculatePasswordStrength(password);
-        const strengthPercentage = (strength / 5) * 100;
+        const config = STRENGTH_UI_CONFIG[strength];
 
-        progressBar.style.width = strengthPercentage + '%';
+        progressBar.classList.remove('d-none', 'bg-danger', 'bg-warning', 'bg-success');
+        progressBar.classList.add(config.colorClass);
 
-        if (strengthPercentage <= 40) {
-            progressBar.classList.add('bg-danger');
-            progressBar.classList.remove('bg-warning', 'bg-success');
-            if (strengthMessage) strengthMessage.textContent = 'Senha fraca';
-        } else if (strengthPercentage <= 80) {
-            progressBar.classList.add('bg-warning');
-            progressBar.classList.remove('bg-danger', 'bg-success');
-            if (strengthMessage) strengthMessage.textContent = 'Senha média';
-        } else {
-            progressBar.classList.add('bg-success');
-            progressBar.classList.remove('bg-danger', 'bg-warning');
-            if (strengthMessage) strengthMessage.textContent = 'Senha forte';
-        }
+        progressBar.style.width = `${(strength + 1) * 20}%`;
+
+        strengthMessage.textContent = config.label;
     }
 });
 
+const getCharTypeInfo = (charCode) => {
+    if (charCode < 32 || charCode === 127) return { type: 'control', size: 33 };
+    if (charCode >= 48 && charCode <= 57) return { type: 'digit', size: 10 };
+    if (charCode >= 65 && charCode <= 90) return { type: 'upper', size: 26 };
+    if (charCode >= 97 && charCode <= 122) return { type: 'lower', size: 26 };
+    if (charCode >= 128) return { type: 'other', size: 128 };
+
+    return { type: 'symbol', size: 33 };
+};
+
 function calculatePasswordStrength(password) {
-    let strength = 0;
-    if (password.length >= 8) strength += 1;
-    if (/[a-z]/.test(password)) strength += 1;
-    if (/[A-Z]/.test(password)) strength += 1;
-    if (/\d/.test(password)) strength += 1;
-    if (/[\W_]/.test(password)) strength += 1;
-    return strength;
+    const length = password.length;
+    if (length === 0) return 0;
+
+    const uniqueChars = new Set(password);
+    const poolTypes = new Map();
+
+    for (const char of uniqueChars) {
+        const { type, size } = getCharTypeInfo(char.charCodeAt(0));
+        poolTypes.set(type, size);
+    }
+
+    let pool = 0;
+    for (const size of poolTypes.values()) {
+        pool += size;
+    }
+
+    const uniqueCharsCount = uniqueChars.size;
+    const entropy = (uniqueCharsCount * Math.log2(pool)) + ((length - uniqueCharsCount) * Math.log2(uniqueCharsCount));
+
+    if (entropy >= 120) return 4;
+    if (entropy >= 100) return 3;
+    if (entropy >= 80) return 2;
+    if (entropy >= 60) return 1;
+
+    return 0;
 }
 
 function validateName(name) {

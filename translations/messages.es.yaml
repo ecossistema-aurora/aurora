@@ -571,6 +571,22 @@ view:
     forgot_password: Olvidé mi Contraseña
     paragraph: Inicia sesión con tu cuenta
 
+    forgot:
+      forgot_your_password: ¿Olvidaste tu contraseña?
+      paragraph: Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.
+      success: ¡Tu contraseña ha sido restablecida exitosamente!
+      link_sent_to_email: Enlace enviado a tu correo electrónico.
+
+    password_strength:
+      too_weak: Contraseña muy débil
+      weak: Contraseña débil
+      medium: Contraseña media
+      strong: Contraseña fuerte
+      too_strong: Contraseña muy fuerte
+
+    password_reset:
+      define_your_new_password: Establezca su nueva contraseña
+
     register:
       create_account: Crear Cuenta
       paragraph: Sigue los pasos para completar tu registro en la plataforma
