@@ -6,60 +6,58 @@
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
         <div class="management-content w-100 p-4">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="card card-body">
-                        <h2>{{ 'edit_seals' | trans }}</h2>
-                        <form method="POST">
-                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">{{ 'seals_name' | trans }}</label>
-                                <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        class="form-control"
-                                        value="{{ seal.name }}"
-                                        required
-                                >
+            <div class="row mt-4">
+                <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-4 p-md-5">
+
+                            <div class="text-center mb-4">
+                                <h3 class="form-title fw-bold text-primary mb-1">
+                                    <i class="bi bi-pencil-square me-2"></i>{{ 'edit_seals' | trans }}
+                                </h3>
                             </div>
-                            <div class="mb-3 form-check">
-                                <input
-                                        type="checkbox"
-                                        id="active"
-                                        name="active"
-                                        class="form-check-input"
-                                        {{ seal.active ? 'checked' : '' }}
-                                >
-                                <label for="active" class="form-check-label">Ativo</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">{{ 'seals_description' | trans }}</label>
-                                <textarea
-                                        id="description"
-                                        name="description"
-                                        class="form-control"
-                                        rows="3"
-                                        maxlength="500"
-                                        required
-                                >{{ seal.description }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                {{ 'save' | trans }}
-                            </button>
-                            <a href="{{ path('admin_seal_list') }}" class="btn btn-secondary">
-                                {{ 'cancel' | trans }}
-                            </a>
-                        </form>
-                        {% if errors is defined and errors|length > 0 %}
-                            <div class="alert alert-danger mt-3">
-                                <ul>
-                                    {% for error in errors %}
-                                        <li>{{ error.message }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
+
+                            {% if errors is defined and errors|length > 0 %}
+                                <div class="alert alert-danger rounded-3 mb-4 shadow-sm">
+                                    <ul class="mb-0">
+                                        {% for error in errors %}
+                                            <li>{{ error.message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+
+                            <form method="POST">
+                                <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
+
+                                <div class="form-floating mb-4">
+                                    <input type="text" id="name" name="name" class="form-control" value="{{ seal.name }}" placeholder="{{ 'seals_name' | trans }}" required>
+                                    <label for="name">{{ 'seals_name' | trans }}</label>
+                                </div>
+
+                                <div class="form-check form-switch mb-4">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="active" name="active" {{ seal.active ? 'checked' : '' }} style="cursor: pointer;">
+                                    <label class="form-check-label ms-1" for="active" style="cursor: pointer;">
+                                        <strong>Ativo</strong>
+                                    </label>
+                                </div>
+
+                                <div class="form-floating mb-4">
+                                    <textarea id="description" name="description" class="form-control" style="height: 130px" maxlength="500" placeholder="{{ 'seals_description' | trans }}" required>{{ seal.description }}</textarea>
+                                    <label for="description">{{ 'seals_description' | trans }}</label>
+                                </div>
+
+                                <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-4">
+                                    <a href="{{ path('admin_seal_list') }}" class="btn btn-outline-secondary px-4 py-2 fw-semibold rounded-pill">
+                                        <i class="bi bi-arrow-left me-1"></i> {{ 'cancel' | trans }}
+                                    </a>
+                                    <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold rounded-pill">
+                                        {{ 'save' | trans }} <i class="bi bi-check2 ms-1"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>

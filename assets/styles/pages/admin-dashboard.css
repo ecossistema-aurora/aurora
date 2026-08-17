@@ -138,3 +138,27 @@
     color: var(--deep-teal);
     border: 1px solid var(--deep-teal);
 }
+
+@media (max-width: 768px) {
+
+    .dashboard__white-square {
+        padding: 1.5rem 1rem 0 1rem;
+    }
+
+    .dashboard-info .user-info {
+        flex-wrap: wrap;
+    }
+
+    .dashboard-content {
+        padding: 1.5rem 1rem;
+    }
+
+    .recent-registrations-card {
+        width: 100%;
+        height: auto;
+        min-height: 18.125rem;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+    }
+}

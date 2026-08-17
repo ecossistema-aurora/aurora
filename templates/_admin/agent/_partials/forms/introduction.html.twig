@@ -99,7 +99,7 @@
             <label for="public_phone">
                 {{ 'public_phone' | trans }} (com DDD)
             </label>
-            <input type="text" class="form-control" id="public_phone" name="public_phone" value="{{ agent.extraFields['public_phone'] ?? '' }}" placeholder="(00) 00000-0000">
+            <input type="text" class="form-control" id="public_phone" name="public_phone" value="{{ agent.extraFields['public_phone'] ?? '' }}" data-mask="phone" placeholder="(00) 00000-0000">
         </div>
     </div>
 </div>

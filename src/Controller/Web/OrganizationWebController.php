@@ -54,7 +54,7 @@ class OrganizationWebController extends AbstractWebController
         $organization = $this->service->get($id);
         $owner = $this->agentService->get($organization->getCreatedBy()->getId());
 
-        return $this->render('organization/one.html.twig', [
+        return $this->render('organization/details.html.twig', [
             'organization' => $organization,
             'owner' => $owner,
         ]);

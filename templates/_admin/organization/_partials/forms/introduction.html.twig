@@ -44,15 +44,15 @@
         } %}
     </div>
 
-    <div class="entity-input-tags">
-        <label>
-            Tags
-            <span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill"></span>
-        </label>
-        <span class="d-flex align-items-center gap-3 fw-bold">
-            {{ 'add_new' | trans|lower }}
-            <span class="iconify fs-5" data-icon="material-symbols:add"></span>
-        </span>
+    <div class="mt-4">
+        {% include '_components/tags-selector.html.twig' with {
+            inputName: 'tags',
+            inputLabel: 'tags'|trans,
+            items: tags|map(tag => { 'label': tag.name, 'value': tag.id }),
+            tags: organization.tags ? organization.tags|map(tag => { 'label': tag.name, 'value': tag.id }) : [],
+            required: false,
+            questionFill: true,
+        } %}
     </div>
 
     <label for="short-description" class="required">{{ 'short_description' | trans }}</label>
