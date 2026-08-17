@@ -10,7 +10,7 @@
                     <div class="card mb-3" id="extra-info-card">
                         <div class="row">
                             <div class="col">
-                                <div class="card-body">
+                                <div class="card-body text-break">
                                     <h5 class="card-title" id="author-name"></h5>
                                     <p class="card-text">
                                         <strong>{{ "email" | trans }}</strong> <span id="author-email"></span><br>
@@ -27,16 +27,20 @@
                     </div>
                 </div>
                 <div id="modal-timeline-data"></div>
-                <table id="modal-timeline-table" class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>{{ "field" | trans }}</th>
-                        <th>{{ "from" | trans }}</th>
-                        <th>{{ "from_to" | trans }}</th>
-                    </tr>
-                    </thead>
-                    <tbody id="modal-timeline-table-body"></tbody>
-                </table>
+
+                <div class="table-responsive">
+                    <table id="modal-timeline-table" class="table table-striped mb-0">
+                        <thead>
+                        <tr>
+                            <th>{{ "field" | trans }}</th>
+                            <th>{{ "from" | trans }}</th>
+                            <th>{{ "from_to" | trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="modal-timeline-table-body"></tbody>
+                    </table>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "close" | trans }}</button>

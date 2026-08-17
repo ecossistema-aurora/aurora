@@ -14,16 +14,19 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .faq-header img {
-    width: 20vw;
+    width: 100%;
+    max-width: 250px;
     height: auto;
 }
 
 .faq-text {
-    width: 50%;
-    margin-top: 4rem;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
 }
 
 .faq-header h1 {
@@ -90,4 +93,54 @@
 .card-faq {
     height: 11.25rem;
     width: 28.641rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.custom-search-input {
+    width: 100%;
+    padding: 10px 45px 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.custom-search-icon {
+    position: absolute;
+    right: 15px;
+    font-size: 0.24rem;
+    cursor: pointer;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .faq-text {
+        text-align: left;
+    }
+
+    .input-wrapper {
+        width: 100%;
+        display: flex;
+        padding: 0 1rem;
+    }
+
+    .custom-search-input {
+        width: 100%;
+        flex-grow: 1;
+        padding-right: 0.1rem;
+    }
+
+    .custom-search-icon {
+        margin-right: 1rem;
+    }
+
+    .faq-header {
+        padding: 2rem 1rem;
+        gap: 1rem;
+    }
 }

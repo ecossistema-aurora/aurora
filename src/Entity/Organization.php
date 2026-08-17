@@ -82,6 +82,11 @@ class Organization extends AbstractEntity
     #[Groups(['organization.get', 'organization.get.item'])]
     private Collection $activityAreas;
 
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'organizations', cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'tag_organizations')]
+    #[Groups(['organization.get', 'organization.get.item'])]
+    private Collection $tags;
+
     #[ORM\Column]
     #[Groups('organization.get')]
     private DateTimeImmutable $createdAt;
@@ -246,6 +251,28 @@ class Organization extends AbstractEntity
     public function removeActivityArea(ActivityArea $activityArea): void
     {
         $this->activityAreas->removeElement($activityArea);
+    }
+
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function setTags(Collection $tags): void
+    {
+        $this->tags = $tags;
+    }
+
+    public function addTag(Tag $tag): void
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+    }
+
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
     }
 
     public function getSocialNetworks(): array

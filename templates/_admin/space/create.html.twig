@@ -5,21 +5,21 @@
 {% endblock %}
 
 {% block content %}
-    <section class="d-flex">
+    <section class="d-flex flex-column flex-lg-row">
         {% include "_components/side-bar.html.twig" %}
 
-        <div class="management-content w-100 p-4">
-            <div class="container d-grid justify-content-start mt-4">
-                <a href="{{ app.request.headers.get('referer')|default(path('web_space_list')) }}" class="nav-link centered-icon-text text-primary">
-                    <i class="material-icons">arrow_back</i>
+        <div class="management-content w-100 p-3 p-md-4">
+            <div class="container-fluid d-grid justify-content-start mt-2 mt-md-4">
+                <a href="{{ app.request.headers.get('referer')|default(path('web_space_list')) }}" class="nav-link centered-icon-text text-primary px-0">
+                    <i class="material-icons align-middle">arrow_back</i>
                     {{ 'back'|trans }}
                 </a>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-6">
+            <div class="row justify-content-center mt-3 mt-md-0">
+                <div class="col-12 col-md-10 col-lg-6">
                     <div class="card card-body shadow">
-                        <h2 data-cy="form-title">{{ 'view.space.create'|trans }}</h2>
+                        <h2 data-cy="form-title" class="fs-4 fs-md-2">{{ 'view.space.create'|trans }}</h2>
 
                         <hr>
 
@@ -51,7 +51,7 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-4">
                                 <label for="shortDescription" class="mb-1">{{ 'short_description'|trans }}</label>
                                 <textarea
                                         class="form-control"
@@ -62,13 +62,15 @@
                                 ></textarea>
                             </div>
 
-                            <button class="btn btn-secondary me-3" data-cy="submit">
-                                {{ 'create_in_draft'|trans }}
-                            </button>
+                            <div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-center">
+                                <button class="btn btn-secondary me-sm-3 mb-2 mb-sm-0" data-cy="submit">
+                                    {{ 'create_in_draft'|trans }}
+                                </button>
 
-                            <a href="{{ path('admin_space_list') }}" class="btn btn-link" data-cy="cancel">
-                                {{ 'cancel'|trans }}
-                            </a>
+                                <a href="{{ path('admin_space_list') }}" class="btn btn-link text-decoration-none text-center" data-cy="cancel">
+                                    {{ 'cancel'|trans }}
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>

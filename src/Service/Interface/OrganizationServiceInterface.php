@@ -27,7 +27,7 @@ interface OrganizationServiceInterface
 
     public function removeAgent(Uuid $agentId, Uuid $organizationId): void;
 
-    public function update(Uuid $identifier, array $organization): Organization;
+    public function update(Uuid $identifier, array $organizationData): Organization;
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Organization;
 

@@ -63,34 +63,12 @@
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td>
-                                        <a href="{{ path('admin_event_timeline', {id: item.id}) }}" class="btn btn-outline-primary btn-sm">
-                                            {{ 'Timeline'|trans }}
-                                        </a>
-                                        {% if not item.deletedAt %}
-                                            <a
-                                                href="{{ path('admin_event_edit', {id: item.id}) }}"
-                                                class="btn btn-outline-warning btn-sm"
-                                                data-cy="edit-event-btn-{{ item.id }}">
-                                                {{ 'edit'|trans }}
-                                            </a>
-
-                                            <button
-                                                    data-cy="remove-{{ loop.index }}"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modalRemoveConfirm"
-                                                    onclick="confirmRemove(this)"
-                                                    data-href="{{ path('admin_event_remove', {id: item.id}) }}"
-                                                    class="btn btn-outline-danger btn-sm"
-                                            >
-                                                {{ 'delete'|trans }}
-                                            </button>
-                                        {% if item.draft %}
-                                            <button data-cy="publish-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalTogglePublishConfirm" onclick="confirmTogglePublish(this)" data-href="{{ path('admin_event_toggle_publish', {id: item.id}) }}" class="btn btn-outline-info btn-sm">{{ 'publish'|trans }}</button>
-                                        {% else %}
-                                            <button data-cy="publish-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalTogglePublishConfirm" onclick="confirmTogglePublish(this)" data-href="{{ path('admin_event_toggle_publish', {id: item.id}) }}" class="btn btn-outline-warning btn-sm">{{ 'unpublish'|trans }}</button>
-                                        {% endif %}
-
-                                        {% endif %}
+                                        {% include '_components/table-actions.html.twig' with {
+                                            entity_prefix: 'event',
+                                            item: item,
+                                            loop_index: loop.index,
+                                            has_publish: true
+                                        } %}
                                     </td>
                                 </tr>
                             {% endfor %}
