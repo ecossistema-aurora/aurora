@@ -22,4 +22,13 @@ class SealRepository extends AbstractRepository implements SealRepositoryInterfa
 
         return $seal;
     }
+
+    public function findActiveSeals(array $userParams, int $limit): array
+    {
+        return $this->findBy(
+            [...$userParams, 'deletedAt' => null],
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
 }
