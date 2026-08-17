@@ -20,71 +20,57 @@
                                 </a>
                             </div>
                         </div>
-
                         <hr>
-
-                        <table class="table table-hover table-striped">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>{{ 'name'|trans }}</th>
-                                <th>{{ 'status'|trans }}</th>
-                                <th>{{ 'created_at'|trans }}</th>
-                                <th></th>
-                                <th></th>
-                                <th>{{ 'actions'|trans }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for item in agents %}
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead class="table-dark">
                                 <tr>
-                                    <td>
-                                        {% if item.deletedAt %}
-                                            <span class="text-secondary">{{ item.name }}</span>
-                                        {% else %}
-                                            <a href="{{ path('admin_agent_timeline', {id: item.id}) }}">{{ item.name }}</a>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if item.deletedAt %}
-                                            <span
-                                                    class="text-secondary"
-                                                    data-bs-toggle="tooltip"
-                                                    title="{{ item.deletedAt|date('d/m/Y H:i:s') }}"
-                                            >
+                                    <th>{{ 'name'|trans }}</th>
+                                    <th>{{ 'status'|trans }}</th>
+                                    <th>{{ 'created_at'|trans }}</th>
+                                    <th>{{ 'actions'|trans }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in agents %}
+                                    <tr>
+                                        <td>
+                                            {% if item.deletedAt %}
+                                                <span class="text-secondary">{{ item.name }}</span>
+                                            {% else %}
+                                                <a href="{{ path('admin_agent_timeline', {id: item.id}) }}">{{ item.name }}</a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if item.deletedAt %}
+                                                <span
+                                                        class="text-secondary"
+                                                        data-bs-toggle="tooltip"
+                                                        title="{{ item.deletedAt|date('d/m/Y H:i:s') }}"
+                                                >
                                                     {{ 'status_trashed'|trans }}
                                                 </span>
-                                        {% else %}
-                                            <span class="badge bg-success">
+                                            {% else %}
+                                                <span class="badge bg-success">
                                                     {{ 'status_create'|trans }}
                                                 </span>
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="{{ path('admin_agent_timeline', {id: item.id}) }}" class="btn btn-outline-primary btn-sm">{{ 'Timeline'|trans }}</a>
-                                        {% if not item.deletedAt %}
-                                            <a href="{{ path('admin_agent_edit', { id: item.id }) }}" class="btn btn-outline-warning btn-sm">
-                                                {{ 'edit'|trans }}
-                                            </a>                                            {% if agents|length > 1 %}
-                                                <button
-                                                        data-cy="remove-{{ loop.index }}"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#modalRemoveConfirm"
-                                                        onclick="confirmRemove(this)"
-                                                        data-href="{{ path('admin_agent_remove', { id: item.id, _token: token }) }}"
-                                                        class="btn btn-outline-danger btn-sm"
-                                                >
-                                                    {{ 'delete'|trans }}
-                                                </button>
                                             {% endif %}
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                        </td>
+                                        <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
+                                        <td>
+                                            {% include '_components/table-actions.html.twig' with {
+                                                entity_prefix: 'agent',
+                                                item: item,
+                                                loop_index: loop.index,
+                                                can_delete: agents|length > 1,
+                                                remove_token: token
+                                            } %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
