@@ -7,9 +7,11 @@ namespace App\Service;
 use App\DTO\EventDto;
 use App\Entity\Agent;
 use App\Entity\Event;
+use App\Entity\EventAddress;
 use App\Exception\Event\EventResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\EventRepositoryInterface;
+use App\Service\Interface\CityServiceInterface;
 use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use DateTime;
@@ -25,10 +27,13 @@ readonly class EventService extends AbstractEntityService implements EventServic
 {
     private const string DIR_EVENT_PROFILE = 'app.dir.event.profile';
 
+    private const string DIR_EVENT_COVER = 'app.dir.event.cover';
+
     public function __construct(
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
         private EventRepositoryInterface $repository,
+        private CityServiceInterface $cityService,
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
@@ -55,6 +60,16 @@ readonly class EventService extends AbstractEntityService implements EventServic
         }
 
         return $this->repository->count($criteria);
+    }
+
+    public function countOpenedEvents(): int
+    {
+        return $this->repository->countOpenedEvents();
+    }
+
+    public function countFinishedEvents(): int
+    {
+        return $this->repository->countFinishedEvents();
     }
 
     public function create(array $event): Event
@@ -138,6 +153,23 @@ readonly class EventService extends AbstractEntityService implements EventServic
             'object_to_populate' => $eventFromDB,
         ]);
 
+        $addressData = $event['addressData'] ?? null;
+
+        if (null !== $addressData) {
+            $address = $eventFromDB->getAddress() ?? new EventAddress();
+            $city = $this->cityService->get($event['addressData']['city']);
+
+            $address->setZipcode($event['addressData']['zipcode']);
+            $address->setStreet($event['addressData']['street']);
+            $address->setNumber($event['addressData']['number'] ?? '');
+            $address->setNeighborhood($event['addressData']['neighborhood']);
+            $address->setComplement($event['addressData']['complement']);
+            $address->setCity($city);
+
+            $address->setOwner($eventFromDB);
+            $eventObj->setAddress($address);
+        }
+
         $eventObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($eventObj);
@@ -172,5 +204,32 @@ readonly class EventService extends AbstractEntityService implements EventServic
         $this->repository->save($event);
 
         return $event;
+    }
+
+    public function updateCoverImage(Uuid $id, UploadedFile $uploadedFile): Event
+    {
+        return $this->processFileUpload(
+            id: $id,
+            uploadedFile: $uploadedFile,
+            dtoClass: EventDto::class,
+            dtoProperty: 'coverImage',
+            directoryParam: self::DIR_EVENT_COVER,
+            getterMethod: 'getCoverImage',
+            setterMethod: 'setCoverImage',
+            validationGroups: [EventDto::UPDATE]
+        );
+    }
+
+    public function findByAgent(string $agentId): array
+    {
+        return $this->repository->findByAgent($agentId);
+    }
+
+    public function togglePublish(Uuid $id): void
+    {
+        $event = $this->get($id);
+        $event->setDraft(!$event->isDraft());
+
+        $this->repository->save($event);
     }
 }
