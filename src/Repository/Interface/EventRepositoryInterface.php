@@ -14,8 +14,6 @@ interface EventRepositoryInterface
 
     public function findByAgent(string $agentId): array;
 
-    public function findByFilters(array $filters, array $orderBy, int $limit): array;
-
     public function countOpenedEvents(): int;
 
     public function countFinishedEvents(): int;
