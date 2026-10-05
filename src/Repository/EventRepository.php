@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Event;
+use App\Entity\InscriptionEvent;
 use App\Repository\Interface\EventRepositoryInterface;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -65,5 +67,47 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
         $this->getEntityManager()->flush();
 
         return $event;
+    }
+
+    public function findByAgent(string $agentId): array
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select('e')
+            ->from(Event::class, 'e')
+            ->join(InscriptionEvent::class, 'ie', 'WITH', 'ie.event = e.id')
+            ->where('ie.agent = :agentId')
+            ->setParameter('agentId', $agentId)
+            ->orderBy('e.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countOpenedEvents(): int
+    {
+        $now = new DateTime();
+
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e.id)')
+            ->where('e.deletedAt IS NULL')
+            ->andWhere('e.draft = false')
+            ->andWhere('e.startDate <= :now')
+            ->andWhere('COALESCE(e.endDate, e.startDate) >= :now')
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countFinishedEvents(): int
+    {
+        $now = new DateTime();
+
+        return $this->createQueryBuilder('e')
+            ->select('COUNT(e.id)')
+            ->where('e.deletedAt IS NULL')
+            ->andWhere('e.draft = false')
+            ->andWhere('COALESCE(e.endDate, e.startDate) < :now')
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }
