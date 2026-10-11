@@ -70,6 +70,11 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
             'draft' => [
                 'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('e.draft = :draft')->setParameter('draft', $value, Types::BOOLEAN),
             ],
+            'deletedAt' => [
+                'condition' => fn (QueryBuilder $qb, $value) => null === $value
+                    ? $qb->andWhere('e.deletedAt IS NULL')
+                    : $qb->andWhere('e.deletedAt = :deletedAt')->setParameter('deletedAt', $value),
+            ],
             'culturalLanguages' => [
                 'join' => ['e.culturalLanguages', 'cl'],
                 'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('cl.id = :culturalLanguageId')->setParameter('culturalLanguageId', $value),
