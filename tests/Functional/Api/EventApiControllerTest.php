@@ -1331,7 +1331,7 @@ class EventApiControllerTest extends AbstractApiTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([
-            'error_message' => 'error_general',
+            'error_message' => 'not_valid',
             'error_details' => $expectedErrors,
         ]);
     }
@@ -1346,7 +1346,10 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'requestBody' => $requestBody,
                 'file' => ImageTestFixtures::getGif(),
                 'expectedErrors' => [
-                    'description' => 'The file mime type is invalid.',
+                    [
+                        'field' => 'image',
+                        'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".',
+                    ],
                 ],
             ],
         ];
