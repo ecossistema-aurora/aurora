@@ -8,7 +8,9 @@ use App\Entity\Event;
 use App\Entity\InscriptionEvent;
 use App\Repository\Interface\EventRepositoryInterface;
 use DateTime;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 class EventRepository extends AbstractRepository implements EventRepositoryInterface
@@ -21,35 +23,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
     public function findByFilters(array $filters, array $order = [], int $limit = 50): array
     {
         $qb = $this->createQueryBuilder('e');
-        if (!empty($filters['name'])) {
-            $qb->andWhere('lower(e.name) LIKE lower(:name)')
-                ->setParameter('name', "%{$filters['name']}%");
-            unset($filters['name']);
-        }
 
-        if (!empty($filters['period']['start']) && !empty($filters['period']['end'])) {
-            $qb->leftJoin('e.eventSchedules', 'es')
-                ->andWhere('es.startHour BETWEEN :startPeriod AND :endPeriod')
-                ->setParameter('startPeriod', $filters['period']['start'], Types::DATETIME_IMMUTABLE)
-                ->setParameter('endPeriod', $filters['period']['end'], Types::DATETIME_IMMUTABLE);
-            unset($filters['period']);
-        }
-
-        foreach ($filters as $key => $value) {
-            $paramName = $key;
-            $expr = match (true) {
-                is_array($value) => "e.$key IN (:$paramName)",
-                is_null($value) => "e.$key IS NULL",
-                is_bool($value) => "e.$key is :$paramName",
-                default => "e.$key = :$paramName",
-            };
-
-            $qb->andWhere($expr);
-
-            if (null !== $value) {
-                $qb->setParameter($paramName, $value, type: is_bool($value) ? Types::BOOLEAN : null);
-            }
-        }
+        $this->applyFilters($qb, $filters);
 
         foreach ($order as $key => $value) {
             $qb->addOrderBy("e.$key", $value);
@@ -59,6 +34,78 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
+    }
+
+    private function applyFilters(QueryBuilder $qb, array $filters): void
+    {
+        $filterMappings = $this->getFilterMappings();
+
+        foreach ($filters as $key => $value) {
+            if (!isset($filterMappings[$key])) {
+                continue;
+            }
+
+            $map = $filterMappings[$key];
+
+            if (isset($map['join'])) {
+                $joins = is_array($map['join'][0]) ? $map['join'] : [$map['join']];
+
+                foreach ($joins as $join) {
+                    if (!in_array($join[1], $qb->getAllAliases(), true)) {
+                        $qb->leftJoin($join[0], $join[1]);
+                    }
+                }
+            }
+
+            $map['condition']($qb, $value);
+        }
+    }
+
+    private function getFilterMappings(): array
+    {
+        return [
+            'name' => [
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('lower(e.name) LIKE lower(:name)')->setParameter('name', "%{$value}%"),
+            ],
+            'draft' => [
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('e.draft = :draft')->setParameter('draft', $value, Types::BOOLEAN),
+            ],
+            'culturalLanguages' => [
+                'join' => ['e.culturalLanguages', 'cl'],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('cl.id = :culturalLanguageId')->setParameter('culturalLanguageId', $value),
+            ],
+            'tags' => [
+                'join' => ['e.tags', 't'],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('t.id = :tagId')->setParameter('tagId', $value),
+            ],
+            'state' => [
+                'join' => [['e.space', 'sp'], ['sp.address', 'a'], ['a.city', 'c'], ['c.state', 'st']],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('st.id = :stateId')->setParameter('stateId', $value),
+            ],
+            'city' => [
+                'join' => [['e.space', 'sp'], ['sp.address', 'a'], ['a.city', 'c']],
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere('c.id = :cityId')->setParameter('cityId', $value),
+            ],
+            'ageRating' => [
+                'condition' => fn (QueryBuilder $qb, $value) => $qb->andWhere("JSON_GET_TEXT(e.extraFields, 'ageRating') = :ageRating")
+                    ->setParameter('ageRating', (string) $value),
+            ],
+            'period' => [
+                'join' => ['e.eventSchedules', 'es'],
+                'condition' => fn (QueryBuilder $qb, $value) => $this->applyPeriodFilter($qb, $value),
+            ],
+        ];
+    }
+
+    private function applyPeriodFilter(QueryBuilder $qb, mixed $period): void
+    {
+        if (!is_array($period) || empty($period['start']) || empty($period['end'])) {
+            return;
+        }
+
+        $qb->andWhere('es.startHour BETWEEN :startPeriod AND :endPeriod')
+            ->setParameter('startPeriod', new DateTimeImmutable($period['start']), Types::DATETIME_IMMUTABLE)
+            ->setParameter('endPeriod', new DateTimeImmutable($period['end']), Types::DATETIME_IMMUTABLE);
     }
 
     public function save(Event $event): Event
