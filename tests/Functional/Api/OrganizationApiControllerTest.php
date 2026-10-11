@@ -210,6 +210,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                     'name' => 'Design',
                 ],
             ],
+            'tags' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -265,6 +266,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                     'name' => 'Música',
                 ],
             ],
+            'tags' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -341,14 +343,15 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'extraFields' => $requestBody['extraFields'],
             'activityAreas' => [
                 [
-                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
-                    'name' => 'Música',
-                ],
-                [
                     'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
                     'name' => 'Dança',
                 ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
             ],
+            'tags' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -505,6 +508,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
                     'name' => 'Teatro',
                 ],
             ],
+            'tags' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

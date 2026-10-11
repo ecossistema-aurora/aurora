@@ -143,16 +143,18 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         $organizationFromDB = $this->get($identifier);
         $organizationDto = $this->validateInput($organizationData, OrganizationDto::class, OrganizationDto::UPDATE);
 
-        $tagsIds = $organizationDto['tags'] ?? [];
-        $activityAreaIds = $organizationDto['activityAreaItems'] ?? [];
-
         $organizationObj = $this->serializer->denormalize($organizationDto, Organization::class, context: [
             'object_to_populate' => $organizationFromDB,
-            'ignored_attributes' => ['tags', 'activityAreaItems'],
+            'ignored_attributes' => ['tags', 'activityAreas'],
         ]);
 
-        $this->syncTags($organizationObj, $tagsIds);
-        $this->syncActivityAreas($organizationObj, $activityAreaIds);
+        if (array_key_exists('tags', $organizationDto)) {
+            $this->syncTags($organizationObj, $organizationDto['tags'] ?? []);
+        }
+
+        if (array_key_exists('activityAreas', $organizationDto)) {
+            $this->syncActivityAreas($organizationObj, $organizationDto['activityAreas'] ?? []);
+        }
 
         $organizationObj->setUpdatedAt(new DateTime());
 
