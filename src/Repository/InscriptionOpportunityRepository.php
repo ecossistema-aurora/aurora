@@ -43,6 +43,7 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
         $qb = $this->getEntityManager()->createQueryBuilder();
 
         return $qb->select('io')
+            ->addSelect('COALESCE(io.updatedAt, io.createdAt) AS HIDDEN lastActivityAt')
             ->from(InscriptionOpportunity::class, 'io')
             ->join('io.opportunity', 'o')
             ->where('io.opportunity = :opportunityId')
@@ -50,7 +51,7 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
             ->setParameter('opportunityId', $opportunityId)
             ->setParameter('agents', $agents)
             ->setMaxResults($limit)
-            ->orderBy('io.createdAt', 'DESC')
+            ->orderBy('lastActivityAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -110,6 +111,7 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
             ->join(Phase::class, 'p', 'WITH', 'p.opportunity = o.id AND p.startDate = ('.$subQuery->getDQL().')')
             ->where('i.agent = :agentId')
             ->setParameter('agentId', $agentId)
+            ->orderBy('i.createdAt', 'ASC')
             ->getQuery()
             ->getResult();
     }
