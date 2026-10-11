@@ -79,6 +79,7 @@ class Organization extends AbstractEntity
 
     #[ORM\ManyToMany(targetEntity: ActivityArea::class, inversedBy: 'organizations', cascade: ['persist'])]
     #[ORM\JoinTable(name: 'activity_area_organizations')]
+    #[ORM\OrderBy(['name' => 'ASC'])]
     #[Groups(['organization.get', 'organization.get.item'])]
     private Collection $activityAreas;
 
