@@ -111,9 +111,71 @@ php bin/console lexik:jwt:generate-keypair
 
 ### Uso
 
-Depois que tudo estiver configurado e as dependências instaladas, você pode acessar a sua aplicação Symfony em [http://localhost:8080](http://localhost:8080).
+Depois que tudo estiver configurado e as dependências instaladas, você pode acessar a sua aplicação Symfony em:
+- **Padrão:** [http://localhost:8080](http://localhost:8080)
+- **Via Proxy Reverso (com override):** [http://aurora.localhost](http://aurora.localhost)
+- **Via `/etc/hosts`** (sem necessidade de proxy)
+  - **Alterando a porta:** [http://aurora.local](http://aurora.local)
+  - **Sem mudar a porta:** [http://aurora.local:8080](http://aurora.local:8080)
 
-Há também uma rota de teste para a API. Você pode acessá-la em [http://localhost:8080/api/example](http://localhost:8080/api/example). Esta rota está definida no controller `ExampleController` e retorna a mensagem de sucesso.
+<details>
+<summary>Configuração com Proxy Reverso (Passo a passo)</summary>
+
+Caso queira utilizar um proxy reverso para acessar a aplicação diretamente via [http://aurora.localhost](http://aurora.localhost) (na porta padrão 80):
+
+#### 1. Criar a rede do proxy
+Execute no terminal para criar a rede compartilhada Docker:
+```bash
+docker network create dev-proxy
+```
+
+#### 2. Iniciar o Proxy Reverso (Traefik)
+Suba o contêiner do Traefik escutando na porta 80:
+```bash
+docker run -d \
+  --name dev-proxy \
+  --restart unless-stopped \
+  -p 80:80 \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  --network dev-proxy \
+  traefik:v3.7 \
+  --api.dashboard=true \
+  --providers.docker=true \
+  --providers.docker.network=dev-proxy \
+  --providers.docker.exposedbydefault=false \
+  --entrypoints.web.address=:80
+```
+
+#### 3. Criar o arquivo `docker-compose.override.yml`
+Na raiz do projeto **Aurora**, crie o arquivo `docker-compose.override.yml` (já configurado no `.gitignore`):
+
+```yaml
+services:
+  nginx:
+    networks:
+      - dev-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.aurora.rule=Host(`aurora.localhost`)"
+      - "traefik.http.services.aurora.loadbalancer.server.port=80"
+
+networks:
+  dev-proxy:
+    external: true
+```
+
+#### 4. Subir os contêineres
+Execute o Docker Compose para aplicar o override:
+```bash
+docker compose up -d
+```
+Pronto! A aplicação estará acessível em [http://aurora.localhost](http://aurora.localhost).
+
+> *(Caso já utilize outro nome para a rede do seu proxy reverso local, basta substituir `dev-proxy` pelo nome da sua rede).*
+
+</details>
+
+> Há também uma rota de teste para a API disponível em `/api/example` (ex.: [http://localhost:8080/api/example](http://localhost:8080/api/example) ou [http://aurora.localhost/api/example](http://aurora.localhost/api/example)). Esta rota está definida no controller `ExampleController` e retorna a mensagem de sucesso.
 
 #### Usuário padrão
 Há alguns usuários que você pode utilizar para fins de teste:
