@@ -62,3 +62,7 @@ coverage.txt
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+####> infra environment ###
+/docker-compose.override.yml
+###< infra environment ###
