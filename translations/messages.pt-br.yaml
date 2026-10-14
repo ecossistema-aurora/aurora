@@ -1,5 +1,9 @@
 actions_in_priority_territory: Haverão ações da iniciativa em algum território prioritário?
 add: Adicionar
+add_occurrence: Adicionar Ocorrência
+informations: Informações
+members: Membros
+timeline: Linha do tempo
 address_complement: Complemento
 address_data: Dados de endereço
 add_alternative_address: Adicionar endereço alternativo
@@ -16,12 +20,19 @@ accountability: Prestações de Conta
 accompany: Acompanhar
 action: Ação
 actions: Ações
+active: Ativo
+cancelled: Cancelado
+confirmed: Confirmado
+suspended: Suspenso
+inscription_suspended: Inscrição suspensa
+check_in: Check In
 activity: Atividade
 activity_area: Área de atuação
 activity_created: Área de atuação foi criada
 activity_deleted: Área de atuação foi excluída
 activity_updated: Área de atuação foi atualizado
 area_of_activity: Área de Atuação
+audio_description: Audiodescrição
 activity_area_register: Criar nova Área de Atuação
 architectural_accessibility: Acessibilidade Arquitetônica
 accept_terms: Aceite os termos
@@ -58,6 +69,7 @@ available_name: Nome não disponível
 available_type: Tipo não informado
 available_description: Descrição não disponível
 available_address: Endereço não informado
+awaiting_confirmation: Aguardando confirmação
 asian: Amarelo
 apply_filter: Aplicar Filtros
 attachments_and_links: Anexos e links
@@ -65,7 +77,9 @@ attitudinal_accessibility: Acessibilidade atitudinal
 
 back: Voltar
 birth_date: Data de nascimento
+blocked: Bloqueado
 black: Preta
+race: Raça/Cor
 
 calendar: Calendário
 cancel: Cancelar
@@ -85,6 +99,7 @@ click_here: Clique aqui
 connections: Conexões
 confirm: Confirmar
 confirm_password: Confirmar senha
+confirm_user: Confirmar usuário
 continue: Continuar
 contribute: Contribua
 control_panel: Painel de Controle
@@ -133,6 +148,7 @@ edit_initiative: Editar Iniciativa
 edit_seals: Editar Selos
 edit_space: Editar Espaços
 edit_activity_area: Editar Área de Atuação
+education: Escolaridade
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
@@ -141,7 +157,12 @@ enter_organization: Digite o nome da organização
 enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
 end_date: Data de término
+entry_fee: Valor da entrada
 event: Evento
+event_format_types.IN_PERSON: Presencial
+event_format_types.ONLINE: Online
+event_format_types.HYBRID: Híbrido
+exception.already_inscription_event: Você já se inscreveu no evento
 events: Eventos
 event_types:
   in_person: Presencial
@@ -168,6 +189,7 @@ full_name: Nome completo
 from: De
 from_to: Para
 from_to_date: Até
+free: Gratuito
 
 gallery: Galeria
 gender: Selecione o Gênero
@@ -194,8 +216,10 @@ initiative_data: Dados da Iniciativa
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
+inscription_realized: Inscrição realizada
 inscriptions: Inscrições
 introduction: Apresentação
+invalid_credentials: E-mail ou senha incorretos
 is_itinerant: É agente itinerante?
 is-accessible: O espaço é acessível?
 
@@ -207,6 +231,7 @@ linked_with: Vinculado com
 list: Lista
 link: Adicionar link
 link_description: Descrição do link
+libras: Libras
 links: Links
 local: Local
 locate_yourself: Localize-se
@@ -222,6 +247,7 @@ management: Gerenciamento de Entidades
 masculine: Masculino
 maroons: Quilombola
 max-capacity: Capacidade máxima do espaço
+maximum_capacity: Capacidade máxima de pessoas
 max_capacity: Capacidade máxima
 mei: MEI (CNPJ do MEI)
 menu: Menu do Painel de Controle
@@ -254,6 +280,8 @@ neighborhood: Bairro
 new_phase: Nova Fase
 next_30_days: Próximos 30 dias
 notifications: Notificações
+unread_notifications: Notificações não lidas
+read_notifications: Notificações lidas
 no: Não
 no_inform: Não Informar
 no_phase: Nenhuma fase disponível
@@ -271,7 +299,9 @@ none_area_specified: Nenhuma área especificada
 not_informed: Não informado
 not_sent: Não enviadas
 notice: EDITAL
+no_languages: Nenhum idioma disponível
 no_records_found: Nenhum registro encontrado
+no_subtitle: Sem subtítulo
 number_address: Número
 
 offers_architectural_accessibility: Oferece acessibilidade física
@@ -310,6 +340,7 @@ person_disabled: Pessoa com Deficiência
 presentation_information: Informações de apresentação
 postgraduate: Pós-graduação
 phone: Telefone
+phone_for_information: Telefone para informações
 photo: Foto
 phase: Fase
 phases: Fases
@@ -323,6 +354,7 @@ physical_accessibility: Recursos de acessibilidade física
 postal_code: CEP
 private_email: Email privado
 private_phone: Telefone privado (com DDD)
+profile_name: Nome do Perfil
 profile_picture: Foto de Perfil
 profile_of_public: Perfil do Público
 projects: Projetos
@@ -331,6 +363,8 @@ project_information: Informações do Projeto
 promotion: Divulgação
 promotion_strategy: Estratégia de divulgação
 public: Público
+publish: Publicar
+unpublish: Despublicar
 public_data_notice: Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
 public_email: Email público
 public_information: Informações públicas
@@ -346,12 +380,15 @@ recent_registrations: Inscrições recentes
 recently_modified: Modificados recentemente
 reference_point: Complemento ou ponto de referência
 register: Cadastro
+registration_info: Informações sobre a inscrição
 registration_date: Data de inscrição
 related-agents: Agentes Relacionados
-required_field: Este campo é obrigatório.
 report: Denúncia
+required_field: Este campo é obrigatório.
+roles_in_culture: Função(ões) na Cultura
 responsible_agent: Agente Responsável
 
+tag_already_exists: Já existe uma tag com esse nome
 tags: Tags
 term: Termo
 terms: Termos
@@ -373,10 +410,33 @@ type_organization: Tipo da organização
 type_space: Tipo do espaço
 total_value: Valor total
 
+view.agent_edit.account_type: Tipo da conta bancária para pagamentos
+view.agent_edit.bank_account: Número da conta bancária para pagamentos
+view.agent_edit.bank_agency_number: Número da agência bancária
+view.agent_edit.bank_number: Número do banco para pagamentos
+view.agent_edit.bank_verification: Dígito verificador
+view.agent_edit.link_platform_space: Vincular à um espaço da plataforma
+view.agent_edit.monthly_income: Renda mensal
+view.agent_edit.register_new_address: Cadastrar um endereço
+view.agent_edit.sensitive_data: Dados sensíveis
+view.event.edit.add_occurrence_details: Adicione data, hora e local da ocorrência
+view.event.edit.event_date_time_location: Data, hora e local do evento
+view.event.edit.event_information: Informações sobre o evento
+view.event.edit.subtitle: Subtítulo do evento
+view.my_events.subtitle: Gerenciar as inscrições de eventos
+view.my_events.happening_now: Acontecendo agora
+view.my_events.past: Passados
+view.my_events.events_found: Eventos encontrados
+view.my_events.without_events: Sem eventos
+view.organization.data: Dados da organização
+view.organization.editing_organization: Edição de
+view.organization.name: Nome da Organização
 user: Usuário
+user_created: Criar usuário
 user_name: Nome do Usuário
 users: Usuários
 
+view.space.no_spaces_found: Nenhum espaço encontrado
 view_all: Ver todas
 view_file: ver arquivo
 video: vídeo
@@ -406,15 +466,18 @@ sent: Enviadas
 see_all: ver tudo
 see_how: Visualizar como
 see_more: Ver mais
+sexual_orientation: Orientação Sexual
 see_phase: Ver fase
 site: Site
 short_description: Descrição curta
+show_public: Mostrar Publicamente
 show_calendar: Ver calendário
 social_media: Redes sociais
 sort_by: Ordenar por
 social_name: Nome Social
 space: Espaço
 space_type: Tipo de Espaço
+space_type_deleted: Tipo de espaço foi deletado
 spaces: Espaços
 specific_objective: Objetivo Específico
 specific_objective_description: Descrição do Objetivo Específico
@@ -423,8 +486,13 @@ start_now: Comece agora
 start_date: Data de início
 state: Estado
 status: Status
+status_published: Publicado
+status_draft: Rascunho
+status_trashed: Excluído
 street: Logradouro
 subscribe: Inscreva-se
+subscribed: Inscrito
+subscribed_since: Inscrito desde
 subsites: Subsites
 suggestions: Sugestões
 
@@ -440,6 +508,21 @@ white: Branca
 work_plan: Plano de trabalho
 
 yes: Sim
+
+sunday: Domingo
+monday: Segunda-feira
+tuesday: Terça-feira
+wednesday: Quarta-feira
+thursday: Quinta-feira
+friday: Sexta-feira
+saturday: Sábado
+
+zip_code_not_found: CEP não encontrado. Por favor, preencha o formulário manualmente.
+zip_code_city_not_found: Cidade não encontrada. Por favor, selecione manualmente.
+zip_code_generic_error: Erro ao buscar CEP. Verifique sua conexão ou tente novamente.
+zip_code_invalid: Por favor, digite um CEP válido com 8 dígitos.
+zip_code_state_not_found: Estado não encontrado. Por favor, selecione manualmente.
+zip_code_number_required: O numero do endereço é obrigatório, por favor, preencha o campo. Caso o seu endereço não possua número, selecione a opção "Sem número".
 
 #components
 
@@ -464,6 +547,9 @@ footer:
   platform_created: plataforma criada pela comunidade
   privacy_policy: Termos de uso e Política de privacidade
   send_email: Ou envie um email para
+  events: Meus Eventos
+  agents: Meus Agentes
+  spaces: Meus Espaços
   visit_repository: visite o repositório
 
 #pages

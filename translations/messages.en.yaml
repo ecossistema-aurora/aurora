@@ -1,5 +1,9 @@
 actions_in_priority_territory: ¿Habrá acciones de la iniciativa en algún territorio prioritario?
 add: Add
+add_occurrence: Add Occurrence
+informations: Information
+members: Members
+timeline: Timeline
 address_complement: Address Complement
 address_data: Address Data
 add_alternative_address: Add Alternative Address
@@ -16,12 +20,19 @@ accountability: Accountability
 accompany: To accompany
 action: Action
 actions: Actions
+active: Active
+cancelled: Cancelled
+confirmed: Confirmed
+suspended: Suspended
+inscription_suspended: Registration suspended
+check_in: Check In
 activity: Activity
 activity_area: Area of activity
 activity_created: Area of activity was created
 activity_deleted: Area of activity has been excluded
 activity_updated: Area of activity has been updated
 area_of_activity: Area of Activity
+audio_description: Audio description
 activity_area_register: Create a new area of activity
 architectural_accessibility: Architectural Accessibility
 accept_terms: Accept the terms
@@ -58,14 +69,17 @@ available_name: Name not available
 available_type: Type not specified
 available_description: Description not available
 available_address: Address not available
+awaiting_confirmation: Awaiting confirmation
 asian: Yellow
 apply_filter: Apply Filters
 attachments_and_links: Attachemnts and Links
 attitudinal_accessibility: Attitudinal Accessibility
 
 back: Back
+blocked: Blocked
 birth_date: Birth Date
 black: Black
+race: Race/Color
 
 calendar: Calendar
 cancel: Cancel
@@ -86,6 +100,7 @@ connections: Connections
 configure: Configure
 confirm: Confirm
 confirm_password: Confirm Password
+confirm_user: Confirm user
 continue: Continue
 contribute: Contribute
 control_panel: Control Panel
@@ -133,6 +148,7 @@ edit_initiative: Edit Initiative
 edit_seals: Edit Seals
 edit_space: Edit Space
 edit_activity_area: Edit Area of Activity
+education: Education
 email: Email
 entity_banner: Entity Banner
 entity: Entity
@@ -143,6 +159,10 @@ enter_initiative: Enter the name of the initiative
 enter_space: Enter the name of the space
 end_date: End date
 event: Event
+event_format_types.IN_PERSON: In person
+event_format_types.ONLINE: Online
+event_format_types.HYBRID: Hybrid
+exception.already_inscription_event: You have already registered for this event
 events: Events
 event_types:
   in_person: In Person
@@ -196,8 +216,10 @@ initiative: Initiative
 initiative_data: Initiative Data
 initiatives: Initiatives
 in_progress: In Progress
+invalid_credentials: Invalid email or password
 inscriptions: Inscriptions
 input_search: Search for keywords
+inscription_realized: Registration completed
 introduction: Introduction
 is_itinerant: Is it an itinerant agent?
 is-accessible: Is the space accessible?
@@ -210,6 +232,7 @@ linked_with: Linked With
 link: Add Link
 links: Links
 link_description: Link Description
+libras: Brazilian Sign Language
 list: List
 local: Local
 locate_yourself: Locate Yourself
@@ -225,6 +248,7 @@ management: Management of Entities
 masculine: Masculine
 maroons: Maroon
 max-capacity: Maximum space capacity
+maximum_capacity: Maximum number of people
 max_capacity: Maximum capacity
 mei: MEI (CNPJ of MEI)
 menu: Control Panel Menu
@@ -257,6 +281,8 @@ neighborhood: Neighborhood
 new_phase: New phase
 next_30_days: Next 30 days
 notifications: Notifications
+unread_notifications: Unread notifications
+read_notifications: Read notifications
 no: No
 no_inform: Do Not Inform
 no_phase: No phase registered.
@@ -314,6 +340,7 @@ personal_data: Personal Data
 person_disabled: Person with Disability
 presentation_information: Presentation Information
 phone: Phone
+phone_for_information: Phone for information
 postgraduate: Postgraduate
 photo: Photo
 phase: Phase
@@ -326,6 +353,7 @@ phase_timeline: Phase Timeline
 postal_code: Postal Code
 private_email: Private Email
 private_phone: Private Telephone (with area code)
+profile_name: Profile Name
 profile_picture: Profile Picture
 profile_of_public: Profile of the public
 projects: Projects
@@ -336,6 +364,8 @@ physical_accessibility: Physical accessibility features
 project_value: Project value
 project_information: Project Information
 public: Public
+publish: Publish
+unpublish: Unpublish
 public_data_notice: The data entered below will be displayed to all users on the platform.
 public_information: Public Information
 public_email: Public Email
@@ -351,12 +381,15 @@ recent_registrations: Recent Registrations
 recently_modified: Recently modified
 reference_point: Complement or reference point
 register: Register
+registration_info: Registration information
 registration_date: Registration Date
 related-agents: Related Agents
 required_field: Required Field
 report: Report
+roles_in_culture: Role(s) in Culture
 
 responsible_agent: Responsible Agent
+tag_already_exists: A tag with this name already exists
 tags: Tags
 term: Term
 terms: Terms
@@ -378,10 +411,33 @@ type_initiative: Type of initiative
 type_space: Space type
 total_value: Total Value
 
+view.agent_edit.account_type: Bank account type for payments
+view.agent_edit.bank_account: Bank account number for payments
+view.agent_edit.bank_agency_number: Bank branch number
+view.agent_edit.bank_number: Bank number for payments
+view.agent_edit.bank_verification: Verification digit
+view.agent_edit.link_platform_space: Link to a space on the platform
+view.agent_edit.monthly_income: Monthly income
+view.agent_edit.register_new_address: Register an address
+view.agent_edit.sensitive_data: Sensitive data
+view.event.edit.add_occurrence_details: Add the occurrence's date, time and location
+view.event.edit.event_date_time_location: Event date, time and location
+view.event.edit.event_information: Event information
+view.event.edit.subtitle: Event subtitle
+view.my_events.subtitle: Manage your event registrations
+view.my_events.happening_now: Happening now
+view.my_events.past: Past
+view.my_events.events_found: Events found
+view.my_events.without_events: No events
+view.organization.data: Organization data
+view.organization.editing_organization: Editing
+view.organization.name: Organization Name
 user: User
+user_created: Create user
 user_name: User Name
 users: Users
 
+view.space.no_spaces_found: No spaces found
 view_all: View All
 view_file: view file
 video: video
@@ -404,8 +460,10 @@ sent: Sent
 see_all: see all
 see_how: See How
 see_more: See More
+sexual_orientation: Sexual Orientation
 see_phase: See phase
 short_description: Short description
+show_public: Show Publicly
 select_bank: Select the bank
 select_state: Select the State
 select_municipality: Select the Municipality
@@ -420,6 +478,7 @@ sort_by: Sort by
 social_name: Social Name
 space: Space
 space_type: Space Type
+space_type_deleted: Space type has been deleted
 spaces: Spaces
 specific_objective: Specific Objective
 specific_objective_description: Specific Objective Description
@@ -428,9 +487,14 @@ start_now: Start Now
 start_date: Start date
 state: State
 status: Status
+status_published: Published
+status_draft: Draft
+status_trashed: Deleted
 street: Street
 suggestions: Suggestions
 subscribe: Subscribe
+subscribed: Subscribed
+subscribed_since: Subscribed since
 subsites: Subsites
 your_name: Enter your name
 your_question: Write your question
@@ -442,6 +506,21 @@ white: White
 work_plan: Work plan
 
 yes: Yes
+
+sunday: Sunday
+monday: Monday
+tuesday: Tuesday
+wednesday: Wednesday
+thursday: Thursday
+friday: Friday
+saturday: Saturday
+
+zip_code_not_found: Zip code not found. Please fill in the form manually.
+zip_code_city_not_found: City not found. Please select manually.
+zip_code_generic_error: Error fetching zip code. Check your connection or try again.
+zip_code_invalid: Please enter a valid 8-digit zip code.
+zip_code_state_not_found: State not found. Please select manually.
+zip_code_number_required: The address number is required, please fill in the field. If your address has no number, select the "No number" option.
 
 #components
 

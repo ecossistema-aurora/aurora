@@ -1,5 +1,9 @@
 actions_in_priority_territory: Will there be initiative actions in any priority territory?
 add: Añadir
+add_occurrence: Agregar Ocurrencia
+informations: Información
+members: Miembros
+timeline: Línea de tiempo
 address_complement: Complemento
 address_data: Datos de Dirección
 add_alternative_address: Añadir dirección alternativa
@@ -16,12 +20,19 @@ accountability: Rendición de Cuentas
 accompany: Acompañar
 action: Acción
 actions: Acciones
+active: Activo
+cancelled: Cancelado
+confirmed: Confirmado
+suspended: Suspendido
+inscription_suspended: Inscripción suspendida
+check_in: Check In
 activity: Actividad
 activity_area: Área de actividad
 activity_created: Se creó el área de actividad
 activity_deleted: Se ha excluido el área de actividad
 activity_updated: Se ha actualizado el área de actividad
 area_of_activity: Área de Actividad
+audio_description: Audiodescripción
 activity_area_register: Crear nueva área de actuación
 architectural_accessibility: Accesibilidad arquitectónica
 accept_terms: Aceite de los termos
@@ -58,14 +69,17 @@ available_name: Nombre no disponible
 available_type: Tipo no especificado
 available_description: Descripción no disponible
 available_address: Dirección no disponible
+awaiting_confirmation: Esperando confirmación
 asian: Amarillo
 apply_filter: Aplicar filtros
 attachments_and_links: Archivos adjuntos y enlaces
 attitudinal_accessibility: Accesibilidad Actitudinal
 
 back: Volver
+blocked: Bloqueado
 birth_date: Fecha de Nacimiento
 black: Negra
+race: Raza/Color
 
 calendar: Calendario
 cancel: Cancelar
@@ -86,6 +100,7 @@ connections: Conexiones
 configure: Configurar
 confirm: Confirmar
 confirm_password: Confirmar Contraseña
+confirm_user: Confirmar usuario
 continue: Continuar
 contribute: Contribuir
 control_panel: Panel de control
@@ -133,6 +148,7 @@ edit_initiative: Editar Iniciativa
 edit_seals: Editar sellos
 edit_space: Editar espacio
 edit_activity_area: Editar Área de Actividad
+education: Escolaridad
 email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad
@@ -141,7 +157,12 @@ enter_organization: Ingrese el nombre de la organización
 enter_initiative: Digite el nombre de la iniciativa
 enter_space: Introduce el nombre del espacio
 end_date: Fecha de finalización
+entry_fee: Tarifa de entrada
 event: Evento
+event_format_types.IN_PERSON: Presencial
+event_format_types.ONLINE: En línea
+event_format_types.HYBRID: Híbrido
+exception.already_inscription_event: Ya te has inscrito en este evento
 events: Eventos
 event_types:
   in_person: En persona
@@ -194,8 +215,10 @@ initiative: Iniciativa
 initiative_data: Datos de la Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
+invalid_credentials: Correo electrónico o contraseña incorrectos
 inscriptions: Inscripciones
 input_search: Buscar por palabras clave
+inscription_realized: Inscripción realizada
 introduction: Presentación
 is_itinerant: ¿Es agente itinerante?
 is-accessible: ¿El espacio es accesible?
@@ -207,6 +230,7 @@ last_updated: Última actualización
 linked_with: Vinculado Con
 link: Añadir Enlace
 link_description: Descripción del enlace
+libras: Lengua de Señas Brasileña
 links: Enlaces
 list: Lista
 local: Ubicación
@@ -223,6 +247,7 @@ management: Gerenciamiento de Entidades
 masculine: Masculino
 maroons: Quilombola
 max-capacity: Capacidad máxima de espacio
+maximum_capacity: Capacidad máxima de personas
 max_capacity: Capacidad máxima
 mei: MEI (CNPJ del MEI)
 menu: Menú del Panel de Control
@@ -255,6 +280,8 @@ neighborhood: Barrio
 new_phase: Nueva fase
 next_30_days: Próximos 30 días
 notifications: Notificaciones
+unread_notifications: Notificaciones no leídas
+read_notifications: Notificaciones leídas
 no: No
 no_inform: No Informar
 no_phase: No se registró ninguna fase.
@@ -312,6 +339,7 @@ personal_data: Datos Personales
 person_disabled: Persona con Discapacidad
 presentation_information: Información de presentación
 phone: Teléfono
+phone_for_information: Teléfono para información
 postgraduate: Posgrado
 photo: Foto
 phase: Fase
@@ -324,6 +352,7 @@ phase_timeline: Cronología de fases
 postal_code: Código Postal
 private_email: Correo electrónico privado
 private_phone: Teléfono privado (con DDD)
+profile_name: Nombre del Perfil
 profile_picture: Foto de Perfil
 profile_of_public: Perfil del público
 projects: Proyectos
@@ -334,6 +363,8 @@ physical_accessibility: Recursos de accesibilidad física
 project_value: Valor del proyecto
 project_information: Información del proyecto
 public: Público
+publish: Publicar
+unpublish: Despublicar
 public_data_notice: Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
 public_email: Correo electrónico público
 public_information: Información pública
@@ -349,12 +380,14 @@ recent_registrations: Inscripciones Recientes
 recently_modified: Modificados recientemente
 reference_point: Complemento o punto de referencia
 register: Registro
+registration_info: Información sobre la inscripción
 registration_date: Fecha de Inscripción
 related-agents: Agentes Relacionados
 required_field: Campo obligatorio
 report: Reportar
+roles_in_culture: Función(es) en la Cultura
 responsible_agent: Agente Responsable
-
+tag_already_exists: Ya existe una etiqueta con ese nombre
 tags: Etiquetas
 term: Término
 terms: Términos
@@ -376,10 +409,33 @@ type_organization: Tipo de organización
 type_space: Tipo de espacio
 total_value: Valor total
 
+view.agent_edit.account_type: Tipo de cuenta bancaria para pagos
+view.agent_edit.bank_account: Número de cuenta bancaria para pagos
+view.agent_edit.bank_agency_number: Número de agencia bancaria
+view.agent_edit.bank_number: Número del banco para pagos
+view.agent_edit.bank_verification: Dígito verificador
+view.agent_edit.link_platform_space: Vincular a un espacio de la plataforma
+view.agent_edit.monthly_income: Ingreso mensual
+view.agent_edit.register_new_address: Registrar una dirección
+view.agent_edit.sensitive_data: Datos sensibles
+view.event.edit.add_occurrence_details: Agrega la fecha, hora y lugar de la ocurrencia
+view.event.edit.event_date_time_location: Fecha, hora y lugar del evento
+view.event.edit.event_information: Información sobre el evento
+view.event.edit.subtitle: Subtítulo del evento
+view.my_events.subtitle: Gestiona tus inscripciones a eventos
+view.my_events.happening_now: Sucediendo ahora
+view.my_events.past: Pasados
+view.my_events.events_found: Eventos encontrados
+view.my_events.without_events: Sin eventos
+view.organization.data: Datos de la organización
+view.organization.editing_organization: Edición de
+view.organization.name: Nombre de la Organización
 user: Usuario
+user_created: Crear usuario
 user_name: Nombre de usuario
 users: Usuarios
 
+view.space.no_spaces_found: No se encontraron espacios
 view_all: Ver Todas
 view_file: ver archivo
 video: vídeo
@@ -407,9 +463,11 @@ select_education: Seleccione su Nivel Educativo
 see_all: ver todo
 see_how: Ver Cómo
 see_more: Ver Más
+sexual_orientation: Orientación Sexual
 see_phase: Ver fase
 seal_name: Nombre del sello
 short_description: Breve descripción
+show_public: Mostrar Públicamente
 show_calendar: Ver calendario
 site: Sitio Web
 social_media: Redes sociales
@@ -418,6 +476,7 @@ social_name: Nombre Social
 short_presentation: Presentación Corta
 space: Espacio
 space_type: Tipo de Espacio
+space_type_deleted: El tipo de espacio fue eliminado
 spaces: Espacios
 specific_objective: Objetivo Específico
 specific_objective_description: Descripción del objetivo específico
@@ -426,8 +485,13 @@ start_now: Comenzar Ahora
 start_date: Fecha de inicio
 state: Estado
 status: Status
+status_published: Publicado
+status_draft: Borrador
+status_trashed: Eliminado
 suggestions: Sugerencias
 subscribe: Suscribir
+subscribed: Suscrito
+subscribed_since: Suscrito desde
 subsites: Subsitios
 street: Vía Pública
 
@@ -443,6 +507,21 @@ white: Blanca
 work_plan: Plan de trabajo
 
 yes: Si
+
+sunday: Domingo
+monday: Lunes
+tuesday: Martes
+wednesday: Miércoles
+thursday: Jueves
+friday: Viernes
+saturday: Sábado
+
+zip_code_not_found: Código postal no encontrado. Por favor, complete el formulario manualmente.
+zip_code_city_not_found: Ciudad no encontrada. Por favor, seleccione manualmente.
+zip_code_generic_error: Error al buscar el código postal. Verifique su conexión o intente nuevamente.
+zip_code_invalid: Por favor, ingrese un código postal válido con 8 dígitos.
+zip_code_state_not_found: Estado no encontrado. Por favor, seleccione manualmente.
+zip_code_number_required: El número de la dirección es obligatorio, por favor complete el campo. Si su dirección no tiene número, seleccione la opción "Sin número".
 
 #components
 
