@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web;
 
 use App\Service\Interface\EventServiceInterface;
+use App\Service\Interface\InscriptionEventServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use DateInterval;
 use DateTimeImmutable;
@@ -18,6 +19,7 @@ class EventWebController extends AbstractWebController
     public function __construct(
         public readonly EventServiceInterface $service,
         private readonly TranslatorInterface $translator,
+        private readonly InscriptionEventServiceInterface $inscriptionEventService,
     ) {
     }
 
@@ -59,6 +61,7 @@ class EventWebController extends AbstractWebController
     public function show(Uuid $id): Response
     {
         $event = $this->service->get($id);
+        $userInscription = $this->inscriptionEventService->getUserInscription($id);
 
         return $this->render('event/details.html.twig', [
             'event' => $event,
